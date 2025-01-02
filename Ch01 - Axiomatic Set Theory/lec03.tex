@@ -1,0 +1,398 @@
+\lecture{3}
+
+\section{Classifications of Sets}
+
+A recurrent theme in mathematics is the study/classification of spaces by means of structure-preserving maps between those spaces.
+
+A space is usually meant to be some set equipped with some additional structure. In this context, we are interested in the classification of sets which is a space without any additional structure.
+
+\begin{definition}[Map]
+	A map \(\phi: A \to B\) is a relation such that for every \(a \in A\), there exists exactly one \(b \in B\) such that \(\phi(a, b)\).
+
+	\noindent \uline{Notation:} \(\phi: A \to B\) or \(A \xrightarrow{\phi} B\). Since there is a unique \(b\) for every \(a\), we have a notational abuse as \(a \mapsto b =: \phi(a)\),
+\end{definition}
+Some basic terminologies:
+\begin{itemize}
+	\item \(A\) is called the \emph{domain} of \(\phi\).
+	\item \(B\) is called the \emph{co-domain} of \(\phi\).
+	\item The set \(\phi(A) \equiv \img_\phi(A) := \qty{\phi(a) \in B \mid a \in A}\) is called the \emph{image} of \(A\) under \(\phi\).
+\end{itemize}
+
+\begin{definition}
+	Let \(A\) and \(B\) be sets. A map \(\phi: A \to B\) is called
+	\begin{itemize}
+		\item \emph{Surjective} (or \emph{onto}) if and only if \(\img_\phi(A) = B\).
+		\item \emph{Injective} (or \emph{one-to-one}) if and only if for all \(a_1, a_2 \in A\), \(\phi(a_1) = \phi(a_2) \implies a_1 = a_2\).
+		\item \emph{Bijective} if and only if it is both surjective and injective.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[Iso-morphism]
+	Let \(A\) and \(B\) be sets. We say that \(A\) and \(B\) are (set-theoretic) \emph{isomorphic} if there exists a bijection \(\phi: A \to B\). In this case, we write \(A \setIso B\).
+\end{definition}
+For two sets to be isomorphic, we only need to prove the existence of a bijection between them. We do not need to construct the bijection explicitly.
+
+\begin{remark}[Number of isomorphisms]
+	If there is any bijection between two sets, then generically there are many bijections between them.
+
+	\noindent \uline{Intuition:} pair the elements of the two sets in any way you like.
+\end{remark}
+In case of set theory, the structure-preserving maps are bijections.
+
+\begin{definition}
+	Let \(A\) be a set. The set \(A\) is
+	\begin{itemize}
+		\item \emph{Infinite} if there exists a proper subset \(B \subsetneqq A\) such that \(B \setIso A\).
+		      \begin{itemize}[$*$]
+			      \item \(A\) is called countable infinite if and only if \(A \setIso \N\).
+			      \item \(A\) is called uncountable infinite if and only if it is infinite but not countably infinite.
+		      \end{itemize}
+		\item \emph{Finite} if it is not infinite.
+
+		      In this case, we have \(A \setIso \qty{1, 2, 3, \ldots, N}\) for some \(N \in \N\). Then we write \(\abs{A} = N\) and call \(N\) the \emph{cardinality} of \(A\).
+	\end{itemize}
+\end{definition}
+
+\noindent \uline{Composition of maps:} Given two maps \(\phi: A \to B\) and \(\psi: B \to C\), we can construct a new map know as the composition of \(\phi\) and \(\psi\), denoted by \(\psi \circ \phi\), defined as
+\begin{align*}
+	\psi \circ \phi: & A \to C                 \\
+	                 & a \mapsto \psi(\phi(a))
+\end{align*}
+Diagrammatically, we can represent the composition of maps as follows:
+\begin{figure}[H]
+	\centering
+	\begin{tikzcd}
+		& B \arrow[dr, "\psi"] & \\
+		A \arrow[ru, "\phi"] \arrow[rr, "\psi \circ \phi"'] &  & C
+	\end{tikzcd}
+	[Commutes]
+	\label{fig:composition_of_maps}
+\end{figure}\noindent
+And the composition of maps is associative, i.e., \(\xi \circ (\psi \circ \phi) = (\xi \circ \psi) \circ \phi\).
+
+% We require the notion of composition of maps to define inverse of a map.
+
+\noindent \uline{Identity map:} For any set \(A\), there exists a unique map \(\id_A: A \to A\) such that
+\begin{align*}
+	\forall a \in A: \quad a \xmapsto{\id_A} a
+\end{align*}
+
+\begin{definition}[Inverse of a map]
+	Let \(\phi: A \to B\) be a bijection. Then the inverse of \(\phi\), is the map \(\phi\inv: B \to A\) defined uniquely by
+	\begin{minipage}{0.4\textwidth}
+		\begin{figure}[H]
+			\centering
+			\begin{tikzcd}
+				A \arrow[r, bend left, "\phi"] \arrow[loop left, "\id_A"] & B \arrow[l, bend left, "\phi\inv"] \arrow[loop right, "\id_B"]
+			\end{tikzcd}
+			\label{fig:inverse_of_map}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.6\textwidth}
+		\begin{equation}
+			\begin{aligned}
+				\phi\inv \circ \phi & = \id_A \\
+				\phi \circ \phi\inv & = \id_B
+			\end{aligned}
+		\end{equation}
+	\end{minipage}
+\end{definition}
+
+\begin{definition}[Pre-image]
+	Let \(\phi: A \to B\) be a map and let \(B' \subseteq B\). Then define the set
+	\begin{equation}
+		\preimg_{\phi}(B') := \qty{a \in A \mid \phi(a) \in B'}.
+	\end{equation}
+	\(\preimg_{\phi}(B')\) is called the \emph{pre-image} of \(B'\) under \(\phi\).
+\end{definition}
+
+\section{Equivalence Relations}
+
+\begin{definition}[Equivalence relation]
+	Let \(M\) be a set and let \(\sim\) be a relation such that:
+	\begin{enumerate}[(i)]
+		\item \emph{Reflexivity:} \(\forall m \in M: m \sim m\).
+		\item \emph{Symmetry:} \(\forall m, n \in M: m \sim n \implies n \sim m\).
+		\item \emph{Transitivity:} \(\forall m, n, p \in M: m \sim n \land n \sim p \implies m \sim p\).
+	\end{enumerate}
+	Then \(\sim\) is called an \emph{equivalence relation} on \(M\).
+\end{definition}
+
+\begin{example}
+	Consider the following wordy examples.
+	\begin{enumerate}[(a)]
+		\item $p\sim q :\iff p$ is of the same opinion as $q$. This relation is reflexive, symmetric and transitive. Hence, it is an equivalence relation.
+		\item $p\sim q :\iff p$ is a sibling of $q$. This relation is symmetric and transitive but not reflexive and hence, it is not an equivalence relation.
+		\item $p\sim q :\iff p$ is taller $q$. This relation is transitive, but neither reflexive nor symmetric and hence, it is not an equivalence relation.
+		\item $p\sim q :\iff p$ is in love with $q$. This relation is generally not reflexive. People don't like themselves very much. It is certainly not normally symmetric, which is the basis of much drama in literature. It is also not transitive, except in some French films.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}[Equivalence class]
+	Let \(M\) be a set and let \(\sim\) be an equivalence relation on \(M\). For any \(m \in M\), the set
+	\begin{equation}
+		\qty[m] := \qty{n \in M \mid n \sim m}
+	\end{equation}
+	is called the \emph{equivalence class} of \(m\) under \(\sim\).
+\end{definition}\noindent
+Two key properties of equivalence classes are:
+\begin{proposition}
+	Let \(M\) be a set and let \(\sim\) be an equivalence relation on \(M\). Then:
+	\begin{enumerate}[(a)]
+		\item \(a \in \qty[m] \implies \qty[a] = \qty[m]\).
+
+		      In other words, this means that ``any element of an equivalence class can act as a representative of the equivalence class''.
+
+		\item Let \(m, n \in M\), then either \(\qty[m] = \qty[n]\) or \(\bigcap\qty{\qty[m], \qty[n]} = \0\).
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}[(a)]
+		\item Let \(a \in \qty[m]\). Then by definition, \(a \sim m\). Let \(b \in \qty[a]\). Then \(b \sim a\). By transitivity, \(b \sim m\). Hence, \(b \in \qty[m]\). Therefore, \(\qty[a] \subseteq \qty[m]\). Now, let \(b \in \qty[m]\). Then \(b \sim m\). By transitivity, \(b \sim a\). Hence, \(b \in \qty[a]\). Therefore, \(\qty[m] \subseteq \qty[a]\). Hence, \(\qty[a] = \qty[m]\).
+
+		\item For two elements, either \(m \sim n\) or \(m \nsim n\). If \(m \sim n\), then \(n \in \qty[m]\) and hence, \(\qty[m] = \qty[n]\). If \(m \nsim n\), then \(\forall p \in M: (p \in \qty[m]) \lxor (p \in \qty[n])\). Hence, \(\bigcap\qty{\qty[m], \qty[n]} = \0\).
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}[Quotient set]
+	Let \(M\) be a set and let \(\sim\) be an equivalence relation on \(M\). Then define the quotient set
+	\begin{equation}
+		\faktor{M}{\sim} := \qty{\qty[m] \in \powerset(M) \mid m \in M}
+	\end{equation}
+	\uline{Notation:} \(\faktor{M}{\sim}\) is read as ``\(M\) modulo \(\sim\)''. The elements of \(\faktor{M}{\sim}\) are the equivalence classes of \(M\) under \(\sim\).
+\end{definition}\noindent
+\uline{Intuition:} The quotient set is the set of all equivalence classes of \(M\) under \(\sim\).
+
+\begin{remark}[Set of representatives]
+	Due to the \nameref{axiom:C8}, there exists a complete system of representatives for \(\sim\) \ie\ a set \(R\) such that \(\forall m \in M: \exists! r \in R: m \sim r\). Then we can write
+	\begin{equation}
+		R \setIso \faktor{M}{\sim}.
+	\end{equation}
+\end{remark}
+This essentially means that we can choose a representative from each equivalence class and put them in a set namely \(R\). Then this provides us a natural bijection between the set of representatives \(R\) and the quotient set \(\faktor{M}{\sim}\).
+
+\begin{remark}
+	Care must be taken while defining maps whose domain or co-domain is a quotient set and if one uses representatives to define the map. The map must be well-defined, \ie\ the map must not depend on the choice of representatives.
+\end{remark}
+
+\begin{example}
+	Let \(M = \Z\) and let \(\sim\) be a relation defined by \(m \sim n :\iff m - n \in 2\Z\). Then \(\sim\) is an equivalence relation. The equivalence classes are
+	\begin{gather*}
+		\qty[0] = \qty[2] = \qty[4] = \ldots = \qty[-2] = \qty[-4] = \ldots = 2\Z, \\
+		\qty[1] = \qty[3] = \qty[5] = \ldots = \qty[-1] = \qty[-3] = \ldots = 2\Z + 1.
+	\end{gather*}
+	Therefore, the quotient set is
+	\begin{equation*}
+		\faktor{\Z}{\sim} = \qty{\qty[0], \qty[1]}.
+	\end{equation*}
+	\uline{Idea:} on \(\Z\) we have addition \(+: \Z \times \Z \to \Z\). We wish to inherit an addition on \(\faktor{\Z}{\sim}\) from the addition on \(\Z\) \ie\ \(\oplus: \faktor{\Z}{\sim} \times \faktor{\Z}{\sim} \to \faktor{\Z}{\sim}\). We can define this map as follows:
+	\begin{equation*}
+		\qty[a] \oplus \qty[b] \mapsto \qty[a + b]
+	\end{equation*}
+	Care needs to be taken precisely because this could be inconsistent (not well-defined). Check whether choice of representatives matters:\\
+	Let \(a', b' \in \Z\) such that \(\qty[a] = \qty[a']\) and \(\qty[b] = \qty[b']\). Then we need to check whether \([a'] \oplus [b'] = [a] \oplus [b]\). So by assumptions we have \(a \sim a' \implies a - a' = 2 n \in 2\Z\) and \(b \sim b' \implies b - b' = 2 m \in 2\Z\). Then
+	\begin{align*}
+		[a'] \oplus [b'] \overset{\stackrel{\text{def}}{\oplus}}{=} \qty[a' + b'] & = [a - 2 n + b - 2 m]                                                         \\
+		                                                                          & = [a + b - 2 (n + m)]                                                         \\
+		                                                                          & = [a + b] \underset{\stackrel{\text{def}}{\oplus}}{=} \qty[a] \oplus \qty[b].
+	\end{align*}
+	Therefore, the addition is well-defined.
+\end{example}
+
+\section[Construction of Naturals, Integers, Rationals and Reals]{Construction of \(\N\), \(\Z\), \(\Q\), \(\R\)}
+We are only going through the outline of the construction of these sets.
+
+\subsection[Natural Numbers]{Natural Numbers \(\N\)}
+Recall, from the \nameref{axiom:I7}, that there exists a set \(\N\) such that
+\begin{equation}
+	\begin{gathered}
+		\N = \qty{0, 1, 2, 3, \ldots} \\
+		0 := \0, \qquad 1 := \qty{\0}, \qquad 2 := \qty{\qty{\0}}, \qquad 3 := \qty{\qty{\qty{\0}}}, \qquad \ldots
+	\end{gathered}
+\end{equation}
+We wish to establish addition on \(\N\). For that we need to define the \emph{successor map} as
+\begin{equation}
+	\begin{aligned}
+		S: \N & \to \N          \\
+		n     & \mapsto \qty{n}
+	\end{aligned}
+\end{equation}
+This works as, \(S(2) = S(\qty{\qty{\0}}) = \qty{\qty{\qty{\0}}} = 3\).\\
+We need to define the \emph{predecessor map} as
+\begin{equation}
+	\begin{aligned}
+		P: \N^\ast & \to \N                                         \\
+		n          & \mapsto m \quad \text{such that} \quad m \in n
+	\end{aligned}
+\end{equation}
+Here, \(\N^\ast = \N \setminus \qty{0}\). In this case, \(P(2) = P(\qty{\qty{\0}}) = \qty{\0} = 1\) as there is only one element in \(2\).\\
+Now, with this we can define \((n \in \N)\)\textsuperscript{th} power of \(S\):
+\begin{equation}
+	\begin{aligned}
+		S^{n} & = S \circ S^{P(n)}, \quad \text{if}\ n \in \N^\ast \\
+		S^0   & = \id_\N
+	\end{aligned}
+\end{equation}
+At this point, we can define addition on \(\N\) as
+\begin{definition}[Addition on \(\N\)]
+	\begin{equation}
+		\begin{aligned}
+			+: \N \times \N & \to \N                  \\
+			(m, n)          & \mapsto m + n := S^n(m)
+		\end{aligned}
+	\end{equation}
+\end{definition}
+\begin{example}[2 + 1 = 3]
+	With this definition, we can verify our intuition of addition on \(\N\). For example, \(2 + 1 = 3\).
+	\begin{equation*}
+		2 + 1 = S^1(2) = S(S^0(2)) = S(\id_\N(2)) = S(2) = 3
+	\end{equation*}
+	And with this, we should be able to check whether the addition is commutative or not.
+	\begin{equation*}
+		1 + 2 = S^2(1) = S(S^1(1)) = S(S(S^0(1))) = S(S(1)) = S(2) = 3
+	\end{equation*}
+\end{example}
+This same calculation generalizes to any two natural numbers and hence, the addition is commutative.
+\begin{remark}[Identity element of addition]
+	We can see that \(0\) is the identity element of addition on \(\N\). This is because
+	\begin{align*}
+		\forall n \in \N: 0 + n & = S^n(0) = \cdots = n, \\
+		\forall n \in \N: n + 0 & = S^0(n) = n.
+	\end{align*}
+\end{remark}
+What about the inverse of addition? We can see that there is no inverse of addition on \(\N\). This is because, for any \(n \in \N\), there is no \(m \in \N\) such that \(n + m = 0\). In language of group theory, \(\N\) is not a commutative group under addition.\\
+Now this hurdle motivates us to define the set of integers \(\Z\).
+
+\subsection[Integers]{Integers \(\Z\)}
+Let's start with defining an equivalence relation \(\sim_{\Z}\) on \(\N \times \N\) as
+\begin{equation}
+	(m, n) \sim_{\Z} (p, q) :\iff m + q = n + p
+\end{equation}
+Check that this is an equivalence relation.
+\begin{enumerate}
+	\item \emph{Reflexivity:} \((m, n) \sim_{\Z} (m, n) \iff m + n = n + m\).
+	\item \emph{Symmetry:} \((m, n) \sim_{\Z} (p, q) \iff m + q = n + p \iff n + p = m + q \iff (p, q) \sim_{\Z} (m, n)\).
+	\item \emph{Transitivity:} \((m, n) \sim_{\Z} (p, q) \land (p, q) \sim_{\Z} (r, s) \implies m + q = n + p \land p + s = q + r \implies m + q + p + s = n + p + q + r \implies m + s = n + r \implies (m, n) \sim_{\Z} (r, s)\).
+\end{enumerate}
+Thus, \(\sim_{\Z}\) is an equivalence relation on \(\N \times \N\).\\
+\uline{Idea:} in this case \((m, n)\) corresponds to \(m - n\). So, we can define the set of integers as
+\begin{equation}
+	\Z := \faktor{(\N \times \N)}{\sim_{\Z}}
+\end{equation}
+Intuitively, we want \(\N \subseteq \Z\) but at this stage this is nonsense as both the sets have different structures. We can resolve this by embedding \(\N\) into \(\Z\) with the help of an \emph{inclusion map}:
+\begin{equation}
+	\begin{aligned}
+		\iota: \N & \into \Z         \\
+		n         & \mapsto [(n, 0)]
+	\end{aligned}
+\end{equation}
+With this new definition of \(\N\) in \(\Z\), we can say that \(\N \subseteq \Z\). Now, in similar fashion we can define negative integers as well.
+\begin{definition}[Negative integers]
+	Let \(n \in \N\), then we define the negative integer as
+	\begin{equation}
+		-n := [(0, n)]
+	\end{equation}
+\end{definition}
+With this, let's define addition on \(\Z\).
+\begin{definition}[Addition on \(\Z\)]
+	\begin{equation}
+		\begin{gathered}
+			+_{\Z}: \Z \times \Z \to \Z \\
+			[(m, n)] +_{\Z} [(p, q)] := [(m + p, n + q)]
+		\end{gathered}
+	\end{equation}
+\end{definition}
+It is easy to see that this addition is well-defined.
+\begin{example}[2 + (-3) = -1]
+	Using our definition of \(2 = [(2, 0)]\) and \(-3 = [(0, 3)]\), we can calculate \(2 +_{\Z} (-3)\) as:
+	\begin{align*}
+		2 +_{\Z} (-3) & = [(2, 0)] +_{\Z} [(0, 3)] = [(2 + 0, 0 + 3)] = [(2, 3)] = [(0, 1)] = -1
+	\end{align*}
+\end{example}
+We will now assume that we have constructed the multiplication on \(\Z\)\footnotemark, and then we can define the set of rational numbers \(\Q\).
+\footnotetext{Multiplication \(\cdot_{\Z}: \Z \times \Z \to \Z\), defined as \([(m, n)] \cdot_{\Z} [(p, q)] = [(m p + n q, m q + n p)]\).}
+\subsection[Rational Numbers]{Rational Numbers \(\Q\)}
+With similar construction as above, we define an equivalence relation \(\sim_{\Q}\) on \(\Z \times \Z^\ast\)\footnote{\(\Z^\ast := \Z \setminus \qty{0}\)} as
+\begin{equation}
+	(m, n) \sim_{\Q} (p, q) :\iff m q = n p
+\end{equation}
+Check that this is an equivalence relation.
+\begin{enumerate}
+	\item \emph{Reflexivity:} \((m, n) \sim_{\Q} (m, n) \iff m n = n m\).
+	\item \emph{Symmetry:} \((m, n) \sim_{\Q} (p, q) \iff m q = n p \iff n p = m q \iff (p, q) \sim_{\Q} (m, n)\).
+	\item \emph{Transitivity:} \((m, n) \sim_{\Q} (p, q) \land (p, q) \sim_{\Q} (r, s) \implies m q = n p \land p s = q r \implies m q p s = n p q r \implies m s = n r \implies (m, n) \sim_{\Q} (r, s)\).
+\end{enumerate}
+Thus, \(\sim_{\Q}\) is an equivalence relation on \(\Z \times \Z^\ast\).\\
+\uline{Idea:} in this case \((m, n)\) corresponds to \(\frac{m}{n}\). So, we can define the set of rational numbers as
+\begin{equation}
+	\Q := \faktor{(\Z \times \Z^\ast)}{\sim_{\Q}}
+\end{equation}
+Intuitively, we want \(\Z \subseteq \Q\) but at this stage this is nonsense as both the sets have different structures. We can resolve this by embedding \(\Z\) into \(\Q\) with the help of an \emph{inclusion map}:
+\begin{equation}
+	\begin{aligned}
+		\iota: \Z & \into \Q         \\
+		n         & \mapsto [(n, 1)]
+	\end{aligned}
+\end{equation}
+With this new definition of \(\Z\) in \(\Q\), we can say that \(\Z \subseteq \Q\).
+
+\begin{definition}[Addition on \(\Q\)]
+	\begin{equation}
+		\begin{gathered}
+			+_{\Q}: \Q \times \Q \to \Q \\
+			[(m, n)] +_{\Q} [(p, q)] := [(m q + n p, n q)]
+		\end{gathered}
+	\end{equation}
+\end{definition}
+Similarly, we can define the multiplication on \(\Q\)
+\begin{definition}[Multiplication on \(\Q\)]
+	\begin{equation}
+		\begin{gathered}
+			\cdot_{\Q}: \Q \times \Q \to \Q \\
+			[(m, n)] \cdot_{\Q} [(p, q)] := [(m p, n q)]
+		\end{gathered}
+	\end{equation}
+\end{definition}
+
+\subsection[Real Numbers]{Real Numbers \(\R\)}
+There are many ways to construct the reals from the rationals. One is to define a set $\mathscr{A}$ of \emph{almost homomorphism} on $\Z$ and hence define:
+\begin{equation}
+	\R := \faktor{\mathscr{A}}{\sim},
+\end{equation}
+where $\sim$ is a ``suitable'' equivalence relation on $\mathscr{A}$.
+
+We will not go into the details of this construction. We will just assume that the reals are constructed, and we have all the usual operations defined on them. Now define the set of positive reals as
+\begin{equation}
+	\R^+ := \qty{r \in \R \mid r > 0}
+\end{equation}
+
+\noindent With this construction, we can define \(\R^d\) for any \(d \in \N\) as
+\begin{equation}
+	\R^d := \underbrace{\R \times \R \times \cdots \times \R}_{d \text{ times}}
+\end{equation}
+For \(x \in \R^d\), we write \(x = (x^1, x^2, \ldots, x^d)\) where \(x^i \in \R\). For further convenience, we need to define the \emph{norm} on \(\R^d\).
+\begin{definition}[norm]
+	Let \(x = (x^1, x^2, \ldots, x^d) \in \R^d\). Then the norm of \(x\) is defined as
+	\begin{equation}
+		\begin{aligned}
+			\norm{\cdot}: \R^d & \to \R^+                                \\
+			x                  & \mapsto \sqrt{\sum_{i = 1}^{d} (x^i)^2}
+		\end{aligned}
+	\end{equation}
+\end{definition}
+We can extend this definition of norm as
+\begin{equation}
+	x \mapsto \sqrt[2 n]{\sum_{i = 1}^{d} (x^i)^{2 n}} \quad \text{for any}\ n \in \N
+\end{equation}
+In order to avoid confusion, we will denote the norm of \(x\) as \(\norm{x}_2\) for \(n = 1\) and in general as \(\norm{x}_{2 n}\) for \(n \in \N\). For convenience, we will use \(n = 1\) most of the time.
+
+With this, one can define a ball in \(\R^d\) as
+\begin{definition}[Ball in \(\R^d\)]
+	Let \(x \in \R^d\) and \(r \in \R^+\). Then define the set \(B_r(x)\) as
+	\begin{equation}
+		B_r(x) := \qty{y \in \R^d \mid \sqrt{\sum_{i = 1}^{d} (x^i - y^i)^2} < r}
+	\end{equation}
+	is called the \emph{ball} of radius \(r\) centered at \(x\).
+\end{definition}
+Later on, we will see that we denote these sets as ``open balls''.
+

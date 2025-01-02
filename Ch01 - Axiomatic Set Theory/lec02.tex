@@ -1,0 +1,336 @@
+\lecture{2}
+
+\section{The \texorpdfstring{\(\in\)}{in}-Relation}
+
+Set theory built on the postulate that there is a fundamental relation\footnote{A predicate of two variables} called \(\in\). There will be no definition of what \(\in\) is, or what a set is.
+
+\noindent Instead of defining what a set is, we have 9 axioms that speak of \(\in\) and sets. Overviews of these axioms are as follows:
+\begin{table}[H]
+	\centering
+	\def\arraystretch{1.5}\tabcolsep=10pt
+	\begin{tabular}{|c|c|}
+		\hline
+		E & \multirow{2}{*}{basic existence axiom}              \\
+		E &                                                     \\
+		\hline
+		P & \multirow{4}{*}{Construction axiom}                 \\
+		U &                                                     \\
+		R &                                                     \\
+		P &                                                     \\
+		\hline
+		I & \multirow{2}{*}{further existence and construction} \\
+		C &                                                     \\
+		\hline
+		F & Non-existence axiom                                 \\
+		\hline
+	\end{tabular}
+	\caption{Mnemonic for Axioms of Set Theory}
+\end{table}\noindent
+Using the \(\in\)-relation, we can immediately define following relations:
+\begin{flalign}
+	 & \textsf{\textbf{Not an element}:} \quad x \notin y :\iff \neg(x \in y)                                              \label{eq:notin} &  & \\
+	 & \textsf{\textbf{Subset}:}         \quad x \subseteq y :\iff \forall z: (z \in x \implies z \in y) \label{eq:subset}                  &  & \\
+	 & \textsf{\textbf{Equality}:}       \quad x = y :\iff x \subseteq y \land y \subseteq x                              \label{eq:equal}  &  &
+\end{flalign}
+
+\section{Zermelo-Fraenkel Axioms of Set Theory}
+\begin{axiom}[Axiom on \(\in\)-relation]\label{axiom:E1}
+	\(x \in y\) is a proposition if and only if \(x\) and \(y\) are both sets.
+	\begin{equation}
+		\forall x: \forall y: (x \in y) \lxor \lnot (x \in y)
+	\end{equation}
+\end{axiom}\noindent
+\textsf{\textbf{Counter example} (Russell's Paradox):} Assume there is some \(u\) that contains all sets that do not contain themselves as an element. To be precise,
+\begin{equation}
+	\exists u: \forall z: (z \in u \iff z \notin z)
+\end{equation}
+Problem: Is \(u\) a set?\\
+If \(u\) was a set, then one must be able to determine whether \(u \in u\) is true or false. As \cref{axiom:E1} states, \(u \in u\) is a proposition if and only if \(u\) is a set.
+\begin{description}
+	\item[Case 1:] Assume \(u \in u\) is true: \(\xRightarrow[\stackrel{\text{def of}}{u}]{} u \notin u\). \(\contra\)
+
+	\item[Case 2:] Assume \(u \in u\) is false: \(\xLeftrightarrow[\stackrel{\text{def}}{\notin}]{} u \notin u \xRightarrow[\stackrel{\text{def}}{u}]{} u \in u\). \(\contra\)
+\end{description}
+Conclusion: \(u\) is not a set. \hfill \(\square\)
+
+\begin{axiom}[Existence of an empty set]\label{axiom:E2}
+	There exists a set that contains no elements.
+	\begin{equation}
+		\exists x: \forall y: y \notin x
+	\end{equation}
+\end{axiom}
+
+\begin{theorem}[Uniqueness of the empty set]\label{thm:empty_set}
+	There is only one empty set. And it is denoted by \(\0\).
+\end{theorem}
+\begin{proof}[Standard textbook style]
+	Assume \(x\) and \(x'\) are both empty sets. But then
+	\begin{equation*}
+		\forall y: \overbrace{\underbrace{(y \notin x)}_{\mathclap{\text{always false}}} \implies (y \in x')}^{\mathclap{\text{since hypothesis is always false the implication is always true}}}
+	\end{equation*}
+	But this just means that \(x \subseteq x'\) from \cref{eq:subset}. Conversely,
+	\begin{equation*}
+		\forall y: (y \notin x') \implies (y \in x)
+	\end{equation*}
+	But thus \(x' \subseteq x\). Hence, \(x = x'\).
+\end{proof}
+The above proof is a bit informal. Now we will prove it using the definition of proof in an axiomatic system.
+\begin{proof}[Formal Version]
+	Suffices to show that if \(x\) and \(x'\) are both empty sets, then \(x = x'\).
+	\begin{flalign*}
+		 & \left.\mqty{ a_1 \iff \forall y: y \notin x                                                                    \\ a_2 \iff \forall y: y \notin x'}\right\} \text{assumptions or axioms} &                                                                                 &     \\
+		 & q_1 \xLeftrightarrow[\text{(T)}]{} \forall y: y \notin x \implies \forall y: (y \in x \implies y \in x')  &  & \\
+		 & q_2 \xLeftrightarrow[\text{(A)1}]{} \forall y: y \notin x                                                 &  & \\
+		 & q_3 \xLeftrightarrow[\text{(M)1,2}]{} \forall y: (y \in x \implies y \in x')\ \boxed{\iff x \subseteq x'} &  & \\
+		 & q_4 \xLeftrightarrow[\text{(T)}]{} \forall y: y \notin x' \implies \forall y: (y \in x' \implies y \in x) &  & \\
+		 & q_5 \xLeftrightarrow[\text{(A)2}]{} \forall y: y \notin x'                                                &  & \\
+		 & q_6 \xLeftrightarrow[\text{(M)4,5}]{} \forall y: (y \in x' \implies y \in x)\ \boxed{\iff x' \subseteq x} &  & \\
+		 & q_7 \xLeftrightarrow[\text{(M)3,6}]{} x = x'                                                              &  &
+	\end{flalign*}
+\end{proof}
+
+\begin{axiom}[Axiom on Pair Sets]\label{axiom:P3}
+	Let \(x\) and \(y\) be sets. Then there exists a set that contains as its elements precisely the sets \(x\) and \(y\).
+	\begin{equation}
+		\forall x: \forall y: \exists m: \forall u: (u \in m \iff u = x \lor u = y)
+	\end{equation}
+	\uline{Notation:} denote this set \(m\) by \(\qty{x, y}\).
+\end{axiom}
+
+\begin{theorem}[Ordering in Pair Sets]\label{thm:order_pair}
+	Let \(x\) and \(y\) be sets. Then \(\qty{x, y} = \qty{y, x}\).
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		a \in \qty{x, y} & \implies a \in \qty{y, x} \implies \qty{x, y} \subseteq \qty{y, x} \\
+		a \in \qty{y, x} & \implies a \in \qty{x, y} \implies \qty{y, x} \subseteq \qty{x, y}
+	\end{align*}
+	Thus, \(\qty{x, y} = \qty{y, x}\).
+\end{proof}
+
+\begin{definition}[Set with one element]
+	Let \(x\) be a set. Then there exists a set that contains as its element precisely the set \(x\).
+	\begin{equation}
+		\qty{x} := \qty{x, x}
+	\end{equation}
+\end{definition}
+
+\begin{axiom}[Axiom on Union Sets]\label{axiom:U4}
+	Let \(x\) be a set. Then there exists a set whose elements are precisely the elements of the elements of \(x\).
+	\begin{equation}
+		\forall x: \exists u: \forall y: (y \in u \iff \exists z: (z \in x \land y \in z))
+	\end{equation}
+	\uline{Notation:} denote this set \(u\) by \(\bigcup x\).
+\end{axiom}
+
+\begin{example}
+	Let \(a, b\) be sets. Then by \cref{axiom:P3}, \(\qty{a}\) and \(\qty{b}\) are sets, and hence \(x := \qty{\qty{a}, \qty{b}}\) is a set. Then \(\bigcup x = \qty{a, b}\).
+\end{example}
+Observe that, since \(a\) and \(b\) are sets, then by \cref{axiom:P3}, \(\qty{a, b}\) is a set. So it gives us a false impression that \cref{axiom:U4} is redundant. But it is not. Consider the following example:
+\begin{example}
+	Let \(a, b, c\) be sets. Then by \cref{axiom:P3}, \(\qty{a, b}\) and \(\qty{c}\) are sets, and hence \(x := \qty{\qty{a, b}, \qty{c}}\) is a set. Then
+	\begin{equation}
+		\bigcup x =: \qty{a, b, c}.
+	\end{equation}
+\end{example}
+With this example, we can generalize the definition of a finite set.
+
+\begin{definition}[Finite Set]
+	Let \(a_1, a_2, \ldots, a_N\) be sets. Define, recursively for all \(N \ge 3\),
+	\begin{equation}
+		\qty{a_1, a_2, \ldots, a_N} := \bigcup\qty{\qty{a_1, a_2, \ldots, a_{N-1}}, \qty{a_N}}
+	\end{equation}
+\end{definition}
+
+\begin{axiom}[Axiom of Replacement]\label{axiom:R5}
+	Let \(R\) be a functional relation. Let \(m\) be a set. Then the image of \(m\) under \(R\) \normalfont{[\(\img_R(m)\)]} is a set.
+\end{axiom}
+For this axiom to make sense, we need to define what a functional relation is.
+\begin{definition}[Functional Relation]
+	A relation \(R\) is functional if and only if
+	\begin{equation}
+		\forall x: \exists!\ y: R(x, y)\footnotemark
+	\end{equation}
+\end{definition}
+\footnotetext{The symbol \(\exists!\) is `Uniqueness' quantifier and read as ``there exists a unique'' and is a shorthand for \(\exists y: R(x, y) \land \forall y': (R(x, y') \implies y = y')\).}
+We define the image of a set under a functional relation keeping in mind that \cref{axiom:R5} guarantees this object to be a set.
+\begin{definition}[Image of a Set under a Functional Relation]
+	Let \(R\) be a functional relation. Let \(m\) be a set. Then the image of \(m\) under \(R\) consists of all those elements \(y\) for which there is an element \(x \in m\) such that \(R(x, y)\).
+\end{definition}
+
+The axiom of replacement is a very powerful axiom. It implies, but is not implied by, the ``\emph{principle of restricted comprehension}''.
+\begin{theorem}[Principle of Restricted Comprehension (PRC)]\label{thm:PRC}
+	Let \(P\) be a predicate of one variable and let \(m\) be a set. Then those elements \(y \in m\) for which \(P(y)\) is true constitute a set.
+
+	\noindent\uline{Notation:} this set is denoted by \(\qty{y \in m \mid P(y)}\).
+\end{theorem}
+PRC is not to be confused with the inconsistent ``\emph{principle of unrestricted comprehension}'' (PUC) which allows for paradoxes like `Self-Reference Paradox.'
+
+Consider the predicate \(P(x)\) is true if \(x\) is a set that doesn't contain themselves as an element. Thus, from PUC we have \(\qty{y \mid P(y)}\) is a set (sick), but this give rise to Russell's Paradox in `\emph{naive set theory}.'
+
+Intuitively PRC makes sure that the image set doesn't grow bigger than a set itself.
+\begin{proof}
+	We can prove PRC using the axiom of replacement in following cases:
+	\begin{description}
+		\item[Case 1:] \(\lnot \exists y \in m: P(y)\)\footnote{The quantifier \(\exists y \in m: P(y)\) is logically equivalent to \(\lnot(\forall y \in m: \lnot P(y))\).} in this case,
+		      \begin{equation*}
+			      \qty{y \in m \mid P(y)} := \0
+		      \end{equation*}
+
+		\item[Case 2:] \(\exists \hat{y} \in m: P(\hat{y})\), then define a relation \(R\) as follows:
+		      \begin{equation*}
+			      R(x, y) := \qty(P(x) \land x = y) \lor \qty(\lnot P(x) \land \hat{y} = y)
+		      \end{equation*}
+		      \begin{claim}
+			      \(R\) is a functional relation.
+		      \end{claim}
+		      \begin{Proof}
+			      Let \(x\) be a set. If \(P(x)\) is true, then \(R(x, y)\) is true if and only if \(y = x\). If \(P(x)\) is false, then \(R(x, y)\) is true if and only if \(y = \hat{y}\). \\
+			      Thus, \(\forall x: \exists! y: R(x, y)\). Hence, \(R\) is a functional relation.
+		      \end{Proof}
+		      Then by \cref{axiom:R5}, \(\img_R(m)\) is a set. And by definition of \(R\), \(\forall y \in \img_R(m): P(y)\)\footnotemark, thus we can define \(\qty{y \in m \mid P(y)} := \img_R(m)\).
+	\end{description}
+\end{proof}
+\footnotetext{The quantifier \(\forall y \in m: P(y)\) is logically equivalent to \(\forall y: (y \in m \implies P(y))\).}
+
+\begin{definition}[Set Difference]
+	Let \(u\) and \(m\) be sets such that \(u \subseteq m\). Then the set difference of \(m\) and \(u\) is defined as
+	\begin{equation}
+		m \setminus u := \qty{x \in m \mid x \notin u}.
+	\end{equation}
+\end{definition}
+The object \(m \setminus u\) is a set due to PRC \ie\ ultimately due to the axiom of replacement.
+
+\begin{definition}[Intersection of Sets]
+	Let \(x\) be a set. Then the intersection of \(x\) is defined as
+	\begin{equation}
+		\bigcap x := \qty{y \in \bigcup x \mid \forall z \in x: y \in z}
+	\end{equation}
+\end{definition}
+Historically, in naive set theory, PUC was thought to be needed in order to define, for any set \(m\),
+\begin{equation*}
+	\powerset(m) \underset{\text{inconsistently}}{:=} \qty{u \mid u \subseteq m}
+\end{equation*}
+This definition is circular, as we need to know a priori, from which bigger set the elements of \(\powerset(m)\) are taken.
+
+\begin{axiom}[Axiom on existence of power sets]\label{axiom:P6}
+	Let \(m\) be a set. Then there exists a set, denoted by \(\powerset(m)\), whose elements are precisely the subsets of \(m\).
+	\begin{equation}
+		\forall m: \exists p: \forall u: (u \in p \iff u \subseteq m)
+	\end{equation}
+\end{axiom}
+\begin{example}
+	Let \(m = \qty{a, b}\), then \(\powerset(m) = \qty{\0, \qty{a}, \qty{b}, \qty{a, b}}\).
+\end{example}
+At this point, we can define what an ordered pair is and what a Cartesian product is.
+\begin{definition}[Ordered Pair]
+	Let \(X\) and \(Y\) be non-empty sets. For any \(x \in X\) and \(y \in Y\), define the ordered pair
+	\begin{equation}
+		(x, y) := \qty{\qty{x}, \qty{x, y}}
+	\end{equation}
+\end{definition}
+From this definition, we can prove the following theorem which justifies the name `ordered pair.'
+\begin{theorem}[Ordering in Ordered Pairs]
+	Let \(X\) and \(Y\) be non-empty sets. Then \((x, y) = (x', y')\) if and only if \(x = x'\) and \(y = y'\).
+\end{theorem}
+\begin{proof}
+
+	[\(\implies\)]\\
+	We will prove this theorem in two cases:\\
+	\textsf{\textbf{Case 1:}} Assume \(x = y\):
+	\begin{gather*}
+		(x, y) = \qty{\qty{x}, \qty{x, y}} = \qty{\qty{x}, \qty{x, x}} = \qty{\qty{x}, \qty{x}} = \qty{\qty{x}} \\
+		\qty{x', y'} \in \qty{\qty{x'}, \qty{x', y'}} = (x', y') = (x, y) = \qty{\qty{x}} \implies \qty{x', y'} = \qty{x}
+	\end{gather*}
+	Thus by \cref{axiom:P3}, \(x' = y' = x\).\\
+	\textsf{\textbf{Case 2:}} Assume \(x \neq y\):\\
+	Observe that \(x' \ne y'\) if not then \(\qty{x, y} \in (x, y) = (x', y') = \qty{\qty{x'}} \implies x = y = x'\). \(\contra\) \\
+	As \(\qty{x'} \in (x', y') = (x, y)  = \qty{\qty{x}, \qty{x, y}}\), we have \(\qty{x'} = \qty{x}\) as \(\qty{x'} \ne \qty{x, y}\) since \(x \ne y\). Hence, \(x' = x\). \\
+	Now, \(\qty{x', y'} \in (x', y') = (x, y) = \qty{\qty{x}, \qty{x, y}}\), then \(\qty{x', y'} = \qty{x}\) or \(\qty{x', y'} = \qty{x, y}\). Observe \(\qty{x', y'} \ne \qty{x}\) if not then \(x' = y' = x\). \(\contra\) \\
+	Hence \(\qty{x', y'} = \qty{x, y}\) and thus \(y' = y\) as \(y' \ne x\) as \(x' \ne y'\). Thus, \(x' = x\) and \(y' = y\).
+
+	\noindent[\(\impliedby\)]\\
+	Trivial.
+\end{proof}
+Is collection of all ordered pairs a set? Answer to this question leads us to the definition of Cartesian product.
+\begin{theorem}[Existence of Cartesian Product]
+	Let \(X\) and \(Y\) be non-empty sets. Then the collection of all ordered pairs of elements of \(X\) and \(Y\) is a set \ie
+	\begin{equation}
+		X \times Y := \qty{(x, y) \mid x \in X \land y \in Y}
+	\end{equation}
+	is a set.
+\end{theorem}
+\begin{proof}
+	Suffice to show that for any \(x \in X\) and \(y \in Y\), \((x, y)\) exists in ``bigger'' set that we know exists. Then by PRC, \(X \times Y\) is a set.
+
+	\noindent Fix \(x \in X\) and \(y \in Y\). Then by \cref{axiom:P3}, \(\qty{x}\) and \(\qty{y}\) are sets. Then by \cref{axiom:P3}, \(\qty{x, y}\) is a set. So by \cref{eq:subset}, \(\qty{x} \subseteq X \implies \qty{x} \subseteq \bigcup \qty{X, Y}\) and \(\qty{x, y} \subseteq \bigcup \qty{X, Y}\). So by \cref{axiom:P6} we know \(\powerset(\bigcup\qty{X, Y})\) exists. Thus,
+	\begin{equation}
+		\qty{x} \in \powerset\qty(\bigcup\qty{X, Y}) \quad \text{and} \quad \qty{x, y} \in \powerset\qty(\bigcup\qty{X, Y})
+	\end{equation}
+	With this we can write \((x, y) = \qty{\qty{x}, \qty{x, y}} \subseteq \powerset\qty(\bigcup\qty{X, Y})\). Hence, \((x, y) \in \powerset\qty(\powerset\qty(\bigcup\qty{X, Y}))\). Thus, by PRC,
+	\begin{equation}
+		X \times Y = \qty{u \in \powerset\qty(\powerset\qty(\bigcup\qty{X, Y})) \mid \exists x \in X: \exists y \in Y: u = (x, y)}
+	\end{equation}
+	is a set.
+\end{proof}
+
+\begin{axiom}[Axiom of Infinity]\label{axiom:I7}
+	There exists a set that contains the empty set as an element and with every of its elements \(y\) it also contains the set \(\qty{y}\) as an element.
+	\begin{equation}
+		\exists x: \0 \in x \land \forall y: (y \in x \implies \qty{y} \in x).
+	\end{equation}
+\end{axiom}
+
+\begin{remark}[Smallest Infinite Set]
+	Let \(x\) be the set guaranteed by \cref{axiom:I7}. Then \(\0 \in x \implies \qty{\0} \in x \implies \cdots\),
+	\begin{equation}
+		x = \qty{\0, \qty{\0}, \qty{\qty{\0}}, \qty{\qty{\qty{\0}}} \ldots}
+	\end{equation}
+\end{remark}
+Notationally, writing down the set \(x\) is cumbersome as there are too many braces. So we denote each element of \(x\) by a natural number as follows:
+\begin{equation}
+	0 := \0, \quad 1 := \qty{\0}, \quad 2 := \qty{\qty{\0}}, \quad 3 := \qty{\qty{\qty{\0}}}, \quad \ldots
+\end{equation}
+Thus, the set \(x\) can be written as
+\begin{equation}
+	x = \qty{0, 1, 2, 3, \ldots}
+\end{equation}
+\begin{corollary}[Existence of Natural Numbers]
+	\(\N\) is a set.
+\end{corollary}
+
+\begin{remark}[Set of Real Numbers]
+	As a set, \(\R = \powerset(\N)\).
+\end{remark}
+
+\begin{axiom}[Axiom of Choice]\label{axiom:C8}
+	Let \(x\) be a set whose elements are non-empty and mutually disjoint sets, then there exists a set \(y\) which contains precisely one element from each element of \(x\).
+	\begin{equation}
+		\forall x: P(x) \implies \exists y: \forall w \in x: \exists! z \in w: z \in y
+	\end{equation}
+	where, \(P(x) :\iff (\exists u: u \in x) \land \qty(\forall u \in x: \forall v \in x: u \neq v \implies \bigcap \qty{u, v} = \0)\).
+\end{axiom}
+The set \(y\) is called ``\emph{dark}'' set. Say we have a set \(x\) that contains pair of shoes, then we can algorithmically choose the left shoe from each pair of shoes to form the set \(y\). But if we have a set \(x\) that contains a pair of socks, then we can't algorithmically choose one sock from each pair of socks to form the set \(y\). This is where the axiom of choice comes into play.
+
+The axiom of choice is independent of the other 8 axioms, which means that one could have set theory with or without the axiom of choice. However, standard mathematics uses the axiom of choice and hence so will we.
+
+There is a number of theorems that can only be proved by using the axiom of choice. Amongst these we have:
+\begin{itemize}
+	\item Proof that every vector space has a basis needs the axiom of choice.
+	\item Proof that there exists a complete system of representatives for the equivalence classes of a set under an equivalence relation needs the axiom of choice.
+\end{itemize}
+
+\begin{axiom}[Axiom of foundation]\label{axiom:F9}
+	Every non-empty set \(x\) contains an element \(y\) that has none of its elements in common with \(x\).
+	\begin{equation}
+		\forall x: (\exists y: y \in x) \implies \exists y \in x: \bigcap \qty{x, y} = \0
+	\end{equation}
+\end{axiom}
+
+\begin{corollary}
+	There is no set that contains itself as an element.
+	\begin{equation}
+		x \in x \quad \text{is false for all sets \(x\)}
+	\end{equation}
+\end{corollary}
+The totality of these 9 axioms is called ZFC (Zermelo-Fraenkel with the axiom of choice) set theory.

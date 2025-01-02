@@ -1,0 +1,225 @@
+\lecture{1}
+
+\section{Propositional Logic}
+\begin{definition}[Proposition]
+	A proposition \(p\) is a variable that can take the values ``true'' or ``false''. No other values are allowed.
+\end{definition}
+It is not the task of `propositional logic' to determine whether a proposition is true or false. It is only concerned with the logical relationship between propositions.
+
+\noindent\note{We can build new propositions from existing ones with the help of logical operators.}
+
+\subsection{Logical Operators}
+
+\begin{enumerate}[(a)]
+	\item \uline{Unary Operators:} These operators operate on a single proposition. There are four unary operators:
+	      \begin{table}[H]
+		      \centering
+		      \def\arraystretch{1.25}\tabcolsep=10pt
+		      \begin{tabular}{|c||c|c|c|c|}
+			      \hline
+			      \(p\) & \thead{\(\lnot p\)             \\ Negation} & \thead{\(\id p\) \\ Identity} & \thead{\(\top p\) \\ Tautology} & \thead{\(\bot p\) \\ Contradiction} \\
+			      \hline
+			      T     & F                  & T & T & F \\
+			      F     & T                  & F & T & F \\
+			      \hline
+		      \end{tabular}
+		      \caption{Unary Operators}
+	      \end{table}
+
+	\item \uline{Binary Operators:} These operators operate on two propositions. There are sixteen binary operators. Some important ones are:
+	      \begin{table}[H]
+		      \centering
+		      \def\arraystretch{1.1}\tabcolsep=10pt
+		      \begin{tabular}{|c|c||c|c|c|c|c|}
+			      \hline
+			      \(p\) & \(q\) & \thead{\(p \land q\)                                    \\ Conjunction (AND)} & \thead{\(p \lor q\) \\ Disjunction (OR)} & \thead{\(p \lxor q\) \\ Exclusive Or} & \thead{\(p \implies q\) \\ Implication} & \thead{\(p \iff q\) \\ Equivalence} \\
+			      \hline
+			      T     & T     & T                    & T & F & T                    & T \\
+			      T     & F     & F                    & T & T & F                    & F \\
+			      F     & T     & F                    & T & T & \cellcolor{red!35} T & F \\
+			      F     & F     & F                    & F & F & \cellcolor{red!35} T & T \\
+			      \hline
+		      \end{tabular}		      \caption{Binary Operators}
+	      \end{table}
+
+	      \begin{remark}[\textit{ex falso quodlibet}]
+		      The definition of implication has two not so obvious cases. The first one is when the hypothesis is false, and the conclusion is true. The second one is when both the hypothesis and the conclusion are false. In both cases, the implication is true.
+
+		      In other words, this says that we can conclude anything from a false assumption.
+	      \end{remark}
+
+	      \begin{theorem}
+		      \((p \implies q) \iff \qty((\lnot q) \implies (\lnot p))\)
+	      \end{theorem}
+	      \begin{proof}
+		      We can prove this by truth table.
+		      \begin{table}[H]
+			      \centering
+			      \def\arraystretch{1.15}\tabcolsep=10pt
+			      \begin{tabular}{|c|c||c|c|c|c|}
+				      \hline
+				      \(p\) & \(q\) & \(\lnot p\) & \(\lnot q\) & \(p \implies q\) & \((\lnot q) \implies (\lnot p)\) \\
+				      \hline
+				      T     & T     & F           & F           & T                & T                                \\
+				      T     & F     & F           & T           & F                & F                                \\
+				      F     & T     & T           & F           & T                & T                                \\
+				      F     & F     & T           & T           & T                & T                                \\
+				      \hline
+			      \end{tabular}
+		      \end{table}
+		      Since the columns for \(p \implies q\) and \((\lnot q) \implies (\lnot p)\) are identical, we have shown that \((p \implies q) \iff \qty((\lnot q) \implies (\lnot p))\).
+	      \end{proof}
+
+	      \begin{corollary}
+		      We can prove assertions by way of contradiction.
+	      \end{corollary}
+\end{enumerate}
+
+\begin{remark}[Binding Order]
+	We agree on the decreasing binding strength of the logical operators as follows:
+	\begin{equation*}
+		\lnot,\ \land,\ \lor,\ \implies,\ \iff
+	\end{equation*}
+\end{remark}
+
+\begin{remark}[Higher Order Operators]
+	All higher order operators (\eg\ \(\heartsuit(p_1, p_2, \ldots, p_N)\)) can be constructed from one single binary operator \ie\ NAND (\(\lnand\)).
+	\begin{table}[H]
+		\centering
+		\def\arraystretch{1.15}\tabcolsep=10pt
+		\begin{tabular}{|c|c||c|}
+			\hline
+			\(p\) & \(q\) & \(p \lnand q\) \\
+			\hline
+			T     & T     & F              \\
+			T     & F     & T              \\
+			F     & T     & T              \\
+			F     & F     & T              \\
+			\hline
+		\end{tabular}
+		\caption{NAND Operator}
+	\end{table}
+\end{remark}
+
+\section{Predicate Logic}
+
+\begin{definition}[Predicate]
+	A predicate is a proposition-valued function of some variable(s).
+\end{definition}
+
+\begin{example}
+	At this point, we don't know how to construct a predicate. But we can only talk about its value for a given value of the variable. In general, predicates are denoted as follows:
+	\begin{enumerate}
+		\item \(P(x)\): true or false depending on the value of \(x\).
+		\item \(Q(x, y)\): true or false depending on the values of \(x\) and \(y\).
+	\end{enumerate}
+\end{example}
+
+We can construct new predicates from existing ones.
+\begin{enumerate}[(a)]
+	\item Let \(P(x)\) and \(R(y, z)\) are two given predicates then we can define a third predicate \(Q(x, y, z) :\iff P(x) \land R(y, z)\)\footnotemark.
+	      \footnotetext{The symbol (\(:\iff\)) means that the left-hand side is defined to be equivalent to the right-hand side.}
+	\item Convert predicate \(P\) of one variable into a proposition:
+	      \begin{definition}[`Universal' quantifier]
+		      \begin{equation}
+			      \boxed{\forall x: P(x)} \quad \text{reads as ``for all \(x\), \(P(x)\) is true.''}
+		      \end{equation}
+		      \uline{defined} to be true, if \(P(x)\) is true independently of \(x\).
+	      \end{definition}
+	      Using for all quantifier, we can define a new proposition from a given predicate \ie\ `existence' quantifier.
+	      \begin{definition}[`Existential' quantifier]
+		      \begin{equation}
+			      \boxed{\exists x: P(x)} \quad \text{reads as ``there exists an \(x\) such that \(P(x)\) is true.''}
+		      \end{equation}
+		      \uline{defined} as \(\exists x: P(x) :\iff \lnot\qty(\forall x: \lnot P(x))\)
+	      \end{definition}
+
+	      \begin{corollary}
+		      \begin{equation}
+			      \forall x: \lnot P(x) \iff \lnot\qty(\exists x: P(x))
+		      \end{equation}
+	      \end{corollary}
+
+	\item Quantification for predicates of more than one variable:
+	      \begin{equation*}
+		      Q(y) :\iff \forall x: P(x, y)
+	      \end{equation*}
+	      here, \(x\) is a \emph{bound variable} and \(y\) is a \emph{free variable}.
+\end{enumerate}
+\begin{remark}[Order of Quantifiers]
+	The order of quantifiers is important. For example,
+	\begin{alignat*}{2}
+		\underbrace{\forall x: \exists y: P(x, y)}_{\text{used for definition of inverse}} \quad & \text{generically different proposition than} \quad \underbrace{\exists y: \forall x: P(x, y)}_{\text{used for definition of identity}}
+	\end{alignat*}
+\end{remark}
+
+
+\section{Axiomatic Systems and Theory of Proofs}
+
+\begin{definition}[Axiomatic System]
+	An axiomatic system is a finite sequence of propositions \(a_1, a_2, \ldots, a_N\) called \emph{axioms}.
+\end{definition}
+
+\begin{definition}[Proof]
+	A \emph{proof} of a proposition \(p\) is within an axiomatic system \(a_1, a_2, \ldots, a_N\) is a finite sequence of propositions \(q_1, q_2, \ldots, (q_M = p)\) such that for any \(1 \le i \le M\) in the sequence, either
+	\begin{enumerate}[(A)]
+		\item[(A)] \(q_i\) is a proposition from the list of axioms, or
+		\item[(T)] \(q_i\) is a tautology, or
+		\item[(M)] ``\textit{modus ponens}''
+		      \begin{equation*}
+			      \exists\ 1 \le m, n < i: (q_m \land q_n \implies q_i)\ \text{is true}.
+		      \end{equation*}
+	\end{enumerate}
+\end{definition}
+This definition allows to easily recognize a proof by checking the sequence of propositions.
+
+\noindent An altogether different matter is to actually find a proof.
+
+\begin{remark}
+	If proposition \(p\) can be proven from an axiomatic system \(a_1, a_2, \ldots, a_N\), we often write this as
+	\begin{equation*}
+		a_1, a_2, \ldots, a_N \vdash p
+	\end{equation*}
+	and say that axiomatic system proves proposition \(p\).
+\end{remark}
+
+\begin{remark}[Redundant Axioms]
+	Any tautology, should it occur in the axioms, can be removed from the list of axioms without impairing the power of the axiomatic system.
+\end{remark}
+Extreme case of this is: axiomatic system for propositional login is `empty sequence.'
+
+\begin{definition}[Consisitency]
+	An axiomatic system is \emph{consistent} if there exists a proposition \(q\) which cannot be proven from the axioms.
+	\begin{equation}
+		\exists q: \lnot(a_1, a_2, \ldots, a_N \vdash q)
+	\end{equation}
+\end{definition}
+\uline{Idea behind consistency:} Consider an axiomatic system containing contradicting propositions:
+\begin{equation*}
+	a_1, a_2, \ldots, s, \ldots, \lnot s, \ldots, a_N
+\end{equation*}
+Then by \emph{modus ponens} (M), we can prove any proposition \(p\) as
+\begin{equation*}
+	s \land \lnot s \implies p\ \text{is a tautology}
+\end{equation*}
+This can be used as a marker for inconsistency \ie\ if an axiomatic system can prove every proposition, then it is inconsistent.
+
+\begin{theorem}
+	Propositional logic is consistent.
+\end{theorem}
+\begin{proof}
+	Suffices to show that there exists a proposition which cannot be proven within propositional logic.
+
+	\noindent Propositional logic has an empty sequence of axioms. Only (T) and (M) must carry any proof \(\implies\) only tautologies can be proven; \ie\ for a proposition \(p\), we can't prove \(p \land \lnot p\).
+\end{proof}
+
+\begin{theorem}[G\"odel's Incompleteness Theorem]
+	Any axiomatic system that is powerful enough to encode the elementary arithmetic of natural numbers is either inconsistent or contains a proposition that can neither be proven nor disproven.
+\end{theorem}
+\begin{proof}
+	The proof of this theorem is complicated; but the basic idea is as follows:
+	\begin{enumerate}[1), noitemsep]
+		\item assign a number to each (meta-)mathematical statement, now called \emph{G\"odel number}.
+		\item Use a ``The barber shaves all man in his village who do not shave themselves''- type of argument to identify a proposition that is neither provable nor disprovable.
+	\end{enumerate}
+\end{proof}
