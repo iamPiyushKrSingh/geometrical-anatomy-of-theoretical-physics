@@ -263,10 +263,21 @@ Intuitively, a section is a map \(\sigma\) which sends each point \(p \in M\) to
 	is a section of the product bundle. \\
 	Thus, for product bundles, sections are in one-to-one correspondence with maps \(M \to F\) \ie\ by choosing a map \(s: M \to F\), we get a section \(\sigma: M \to M \times F\).
 \end{example}
-With this we can order the bundles as follows:
+In case of product bundles, we can analyze `section' of the bundle by looking at the corresponding map \(s: M \to F\).
+
+\noindent With this we can order the bundles as follows:
 \begin{equation}
 	\text{Product Bundles} \subset \text{Fibre Bundles} \subset \text{Bundles}
 \end{equation}
+
+At this point, we can have a physics example (from quantum mechanics) but to understand it fully, we require more maturity.
+\begin{example}[Wave functions]
+	Consider our base space \(M\) to be our physical space (for case \(\R^3\)). The mathematical structure, we are analyzing in quantum mechanics is \(\C^1\)-line bundle over physical space.
+	\begin{equation}
+		\text{wave function} := \text{section of \((E, \pi, M)\)}
+	\end{equation}
+	In case, \(E\) is a product manifold of \(M\) and \(\C\), then wave function is a function.
+\end{example}
 
 \subsection{Constructing Bundles}
 
@@ -287,7 +298,7 @@ With this we can order the bundles as follows:
 	is called the \emph{restricted bundle} of \((E, \pi, M)\) to \(N\).
 \end{definition}
 
-\subsection{Bundle Morphisms}
+\section{Bundle Morphisms}
 
 \begin{definition}[Bundle Morphism]\label{def:bundle-morphism}
 	Let \(E \xrightarrow[]{\ \pi\ } M\) and \(E' \xrightarrow[]{\ \pi'\ } M'\) be bundles and \(u: E \to E'\) and \(v: M \to M'\) be continuous maps. Then \((u, v)\) is called a \emph{bundle morphism} if
@@ -321,4 +332,103 @@ Bundle isomorphisms are structure-preserving maps between bundles.
 	\end{equation}
 \end{definition}
 
-Some useful terminologies:
+\noindent Some useful terminologies:
+\begin{definition}
+	A bundle \(E \xrightarrow[]{\ \pi\ } M\) is called
+	\begin{enumerate}[(a)]
+		\item \emph{trivial} if it is isomorphic to a product bundle \(M \times F \xrightarrow[]{\ \pi_1\ } M\).
+		\item \emph{locally trivial} if it is locally isomorphic to some product bundle.
+	\end{enumerate}
+\end{definition}
+It is obvious that every trivial bundle is locally trivial. But the converse is not true.
+
+\begin{example}
+	Let's see some insightful examples:
+	\begin{enumerate}
+		\item A cylinder \(C\) is trivial \(\implies\) locally trivial.
+		\item M\"obius Strip is not trivial, but it is locally trivial.
+		\item A very specific construction, such that the bundle is not even locally trivial.
+		      \begin{figure}[H]
+			      \centering
+			      \begin{tikzpicture}[scale=1]
+				      \draw[thick, <->] (-4, 0) -- (4, 0) node[right] {\(M\)};
+				      \fill (0, 0) circle (0.07) node[below] {\(0\)};
+				      \draw[<->] (-1, -1) -- (-1, 1) node[above] {\(\C\)};
+				      \fill (-1, 0) circle (0.06) node[below left] {\(-1\)};
+				      \draw[<->] (1, 1) -- (1, -1) node[below] {\(\R\)};
+				      \fill (1, 0) circle (0.06) node[below right] {\(1\)};
+				      \draw[<->] (-2, -1) -- (-2, 1) node[above] {\(\C\)};
+				      \fill (-2, 0) circle (0.06) node[below left] {\(-2\)};
+				      \draw[<->] (2, 1) -- (2, -1) node[below] {\(\R\)};
+				      \fill (2, 0) circle (0.06) node[below right] {\(2\)};
+				      \draw[<->] (-3, -1) -- (-3, 1) node[above] {\(\C\)};
+				      \fill (-3, 0) circle (0.06) node[below left] {\(-3\)};
+				      \draw[<->] (3, 1) -- (3, -1) node[below] {\(\R\)};
+				      \fill (3, 0) circle (0.06) node[below right] {\(3\)};
+			      \end{tikzpicture}
+			      \caption{Non Locally Trivial bundle}
+			      \label{fig:nonlocaltrivial-bundle}
+		      \end{figure}
+	\end{enumerate}
+\end{example}
+From now on, we will be focusing on locally trivial bundles unless mentioned otherwise.
+
+\begin{remark}
+	Since we have restricted ourselves to locally trivial bundles. Thus, any section can be thought of as a map \(M \to F\) locally.
+\end{remark}
+
+\begin{example}[Wave functions (revisited)]
+	Assume that our \(\C^1\)-line bundle over \(M (= \R^3)\) is locally trivial. Then the wave function is a function \(M \to \C\) locally.
+\end{example}
+
+\begin{definition}[Pull-Back Bundle]
+	Let \(E \xrightarrow[]{\ \pi\ } M\) be a bundle and \(f: M' \to M\) be a map from another manifold \(M'\) to \(M\). Define the manifold \(E'\) as
+	\begin{equation}
+		E' := \qty{(m', e) \in M' \times E \mid f(m') = \pi(e)}.
+	\end{equation}
+	Then the bundle \((E', \pi', M')\) with \(\pi'(m', e) = m'\) is called the \emph{pull-back bundle} of \(E \xrightarrow[]{\ \pi\ } M\) induced by \(f: M' \to M\).
+\end{definition}
+
+\begin{remark}[Bundle Morphism on Pull-Back Bundle]
+	Let \(E' \xrightarrow[]{\ \pi'\ } M'\) be a pull-back bundle of \(E \xrightarrow[]{\ \pi\ } M\) induced by \(v: M' \to M\). Define the map
+	\begin{equation}
+		\begin{aligned}
+			u: E'   & \to E      \\
+			(m', e) & \mapsto e.
+		\end{aligned}
+	\end{equation}
+	Then \((u, v)\) is a bundle morphism. This corresponds to the commutative diagram
+	\begin{equation}
+		\begin{tikzcd}
+			E' \arrow[r, "u"] \arrow[d, "\pi'"'] & E \arrow[d, "\pi"] \\
+			M' \arrow[r, "v"']                    & M
+		\end{tikzcd}
+	\end{equation}
+\end{remark}
+
+\begin{remark}[Pull-back of Sections]
+	Let \(E' \xrightarrow[]{\ \pi'\ } M'\) be a pull-back bundle of \(E \xrightarrow[]{\ \pi\ } M\) induced by \(f: M' \to M\). Let \(\sigma\) be a section of \(E \xrightarrow[]{\ \pi\ } M\).
+	\begin{equation}
+		\begin{tikzcd}
+			E' \arrow[dd, shift left, "\pi'"] & & E \arrow[dd, shift left, "\pi"] \\
+			& & \\
+			M' \arrow[uu, blue, shift left, "\sigma'"] \arrow[rr, "f"] \arrow[rruu, purple, "\sigma \circ f"] & & M \arrow[uu, shift left, "\sigma"]
+		\end{tikzcd}
+	\end{equation}
+	Observe that \(\sigma \circ f\) is a map \(M' \to E\). Using the fact that \(\sigma\) is a section, we have,
+	\begin{gather}
+		(\pi \circ (\sigma \circ f))(m') = ((\pi \circ \sigma) \circ f)(m') = (\id_{M} \circ f)(m') = f(m') \nonumber \\
+		\intertext{This can be interpreted as \(\pi((\sigma \circ f)(m')) = f(m')\). Thus, \((m', (\sigma \circ f)(m')) \in E'\). Define the map \(\sigma'\) as}
+		\begin{aligned}
+			\sigma': M' & \to E'                              \\
+			m'          & \mapsto (m', (\sigma \circ f)(m')).
+		\end{aligned}
+	\end{gather}
+	Furthermore, \(\pi' \circ \sigma' = \id_{M'}\) as \(\pi'(m', (\sigma \circ f)(m')) = m'\). Thus, \(\sigma'\) is a section of the pull-back bundle.
+\end{remark}
+
+\section{Viewing Manifolds from Atlases}
+
+\begin{definition}[Chart]\label{def:chart}
+	Let \((M, \O)\) be a \(d\)-dimensional topological manifold. Then the pair \((U, x)\), where \(U \in \O\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism, is called a \emph{chart} on \(M\).
+\end{definition}

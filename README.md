@@ -1,1 +1,1 @@
-# anatomy-of-theoretical-physics
+# Geometrical Anatomy of Theoretical Physics
