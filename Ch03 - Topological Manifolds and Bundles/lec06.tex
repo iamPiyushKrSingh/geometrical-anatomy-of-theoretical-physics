@@ -1,6 +1,6 @@
 \lecture{6}
 
-Roughly speaking, a topological manifold is a topological space that locally looks like \(\R^d\) for some fixed \(n \in \N\). For example, 2-sphere is a topological manifold as well as a 2-torus and a pretzel with \(d = 2\) in each case.
+Roughly speaking, a topological manifold is a topological space that locally looks like \(\R^d\) for some fixed \(d \in \N\). For example, 2-sphere is a topological manifold as well as a 2-torus and a pretzel with \(d = 2\) in each case.
 
 \section{Definition and Construction of Topological Manifolds}
 
@@ -398,23 +398,23 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 		\end{aligned}
 	\end{equation}
 	Then \((u, v)\) is a bundle morphism. This corresponds to the commutative diagram
-	\begin{equation}
+	\begin{equation*}
 		\begin{tikzcd}
 			E' \arrow[r, "u"] \arrow[d, "\pi'"'] & E \arrow[d, "\pi"] \\
 			M' \arrow[r, "v"']                    & M
 		\end{tikzcd}
-	\end{equation}
+	\end{equation*}
 \end{remark}
 
 \begin{remark}[Pull-back of Sections]
 	Let \(E' \xrightarrow[]{\ \pi'\ } M'\) be a pull-back bundle of \(E \xrightarrow[]{\ \pi\ } M\) induced by \(f: M' \to M\). Let \(\sigma\) be a section of \(E \xrightarrow[]{\ \pi\ } M\).
-	\begin{equation}
+	\begin{equation*}
 		\begin{tikzcd}
 			E' \arrow[dd, shift left, "\pi'"] & & E \arrow[dd, shift left, "\pi"] \\
 			& & \\
 			M' \arrow[uu, blue, shift left, "\sigma'"] \arrow[rr, "f"] \arrow[rruu, purple, "\sigma \circ f"] & & M \arrow[uu, shift left, "\sigma"]
 		\end{tikzcd}
-	\end{equation}
+	\end{equation*}
 	Observe that \(\sigma \circ f\) is a map \(M' \to E\). Using the fact that \(\sigma\) is a section, we have,
 	\begin{gather}
 		(\pi \circ (\sigma \circ f))(m') = ((\pi \circ \sigma) \circ f)(m') = (\id_{M} \circ f)(m') = f(m') \nonumber \\
@@ -430,5 +430,61 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 \section{Viewing Manifolds from Atlases}
 
 \begin{definition}[Chart]\label{def:chart}
-	Let \((M, \O)\) be a \(d\)-dimensional topological manifold. Then the pair \((U, x)\), where \(U \in \O\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism, is called a \emph{chart} on \(M\).
+	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the pair \((U, x)\), where \(U \in \O\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism, is called a \emph{chart} on \(M\).
 \end{definition}
+
+\begin{remark}[Component Functions]\label{rem:component-functions}
+	Let \((U, x)\) be a chart on \(M\). Then the \emph{component functions} of \(x\) are the functions
+	\begin{equation}
+		\begin{aligned}
+			x^i: U & \to \R                \\
+			p      & \mapsto \proj_i(x(p))
+		\end{aligned}
+	\end{equation}
+	for \(1 \le i \le d\), where \(\proj_i\) is the \(i\)-component of \(x(p) \in \R^d\). The \(x^i(p)\)'s are called \emph{co-ordinate} of the point \(p \in U\) with respect to the chart \((U, x)\).
+\end{remark}
+
+\begin{definition}[Atlas]\label{def:atlas}
+	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the collection of all charts \(\mathscr{A} := \qty{(U_\alpha, x_\alpha) \mid \alpha \in I}\) is called an \emph{atlas} of the manifold \(M\) if,
+	\begin{equation}
+		\bigcup_{\alpha \in I} U_\alpha = M,
+	\end{equation}
+	for some index set \(I\).
+\end{definition}
+
+This is obvious to see that this collection is a set, as from the definition of manifolds, we have an open set \(U_p\) at each point with an appropriate homeomorphism \(x_p\). Thus, this provides a trivial atlas of \(M\),
+\begin{equation}
+	\mathscr{A} = \qty{(U_p, x_p) \mid p \in M}
+\end{equation}
+
+\begin{definition}[\(\SC^0\)-Compatibility]
+	Let \((U_\alpha, x_\alpha)\) and \((U_\beta, x_\beta)\) be two charts of a manifold \(M\). They are called \emph{\(\SC^0\)-compatible} either
+	\begin{enumerate}[(a)]
+		\item \(U_\alpha \cap U_\beta = \0\), or
+		\item the map \(x_{\beta} \circ x_{\alpha}\inv: x_{\alpha}(U_{\alpha} \cap U_{\beta}) \to x_{\beta}(U_{\alpha} \cap U_{\beta})\) is continuous.
+	\end{enumerate}
+\end{definition}
+
+\(x_{\beta} \circ x_{\alpha}\inv\) (and its inverse \(x_{\alpha} \circ x_{\beta}\inv\)) is a map from a subset of \(\R^d\) to another subset of \(\R^d\).
+\begin{figure}[H]
+	\centering
+	\begin{tikzcd}
+		& U_{\alpha} \cap U_{\beta} \arrow[ld, "x_{\alpha}"'] \arrow[rd, "x_{\beta}"] & \\
+		\R^d \supseteq x_{\alpha}(U_{\alpha} \cap U_{\beta}) \arrow[rr, shift left, "x_{\beta} \circ x_{\alpha}\inv"] & & x_{\beta}(U_{\alpha} \cap U_{\beta}) \subseteq \R^d \arrow[ll, shift left, "x_{\alpha} \circ x_{\beta}\inv"]
+	\end{tikzcd}
+\end{figure} \noindent
+
+Here it may seem like a redundant definition, since \(x_{\alpha}\) and \(x_{\beta}\) are homeomorphisms, the composition map \(x_{\beta} \circ x_{\alpha}\inv\) (or its inverse \(x_{\alpha} \circ x_{\beta}\inv\)) is also a homeomorphism thus continuous. Therefore, any two charts on a topological manifold are \(\SC^0\)-compatible.
+
+This notion will be useful, when we want to talk about differentialable manifolds. In that case, we require the map \(x_{\beta} \circ x_{\alpha}\inv\) to be continuously differentiable or \(k\)-smooth for \(\SC^1\) or \(\SC^k\)-compatible respectively using the notion of differentiability on \(\R^d\).
+
+\begin{remark}[Co-ordinate Change]
+	The map \(\tau_{\alpha, \beta} := x_{\beta} \circ x_{\alpha}\inv\) (and its inverse \(\tau_{\beta, \alpha} := x_{\alpha} \circ x_{\beta}\inv\)) is called the \emph{co-ordinate change map} or \emph{chart transition map}.
+\end{remark}
+This also express that, all the physics that we have done so far lives in chart. For example, the motion of a particle is a subset of our physical manifold, and we use different co-ordinates (or charts) for our understanding.
+
+\begin{definition}[\(\SC^0\)-Atlas]
+	An atlas \(\mathscr{A}\) is a \emph{\(\SC^0\)-atlas} if all the charts in \(\mathscr{A}\) are pairwise \(\SC^0\)-compatible.
+\end{definition}
+
+\noindent Any atlas is a \(\SC^0\)-atlas.
