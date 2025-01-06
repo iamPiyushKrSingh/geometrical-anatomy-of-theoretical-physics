@@ -488,3 +488,33 @@ This also express that, all the physics that we have done so far lives in chart.
 \end{definition}
 
 \noindent Any atlas is a \(\SC^0\)-atlas.
+
+\begin{definition}[Maximal Atlas]
+	A \(\SC^0\)-atlas \(\mathscr{A}\) is called a \emph{maximal} if it contains every chart that is \(\SC^0\)-compatible with every chart in \(\mathscr{A}\).
+\end{definition}
+
+\begin{example}
+	Let \((\R, \Ostd)\) be our topological manifold. Then we have a trivial atlas \(\mathscr{A} = \qty{(\R, \id_{\R})}\), but it is not maximal. Since chart \(((0, 1), \id_{(0, 1)})\) is \(\SC^0\)-compatible with the chart \((\R, \id_{\R})\), but it is not in the atlas \(\mathscr{A}\).
+\end{example}
+
+We can look at ``objects on'' topological manifolds from two point of view. Consider a curve \(\gamma\) in a \(d\)-dimensional manifold, \ie\ \(\gamma: \R \to M\). From our previous knowledge, we know this curve has to be continuous if it describes the trajectory of a classical particle.
+
+One way to verify this, let an open set in \(M\) and check whether its pre-image is open or not (topological definition).
+
+Another way is through the concept of charts. Let \((U, x)\) be a chart, rather than studying \(\gamma\) directly, we will focus on \(x \circ \gamma: \R \supseteq \preimg_{\gamma}(U) \to x(U) \subseteq \R^d\). Checking continuity of this composition map is easier as well as guarantees the continuity of \(\gamma\).
+
+Let the problem is very complicated in this co-ordinate system, let \((U, y)\) be another chart. And this change of co-ordinate is facilitated by transition maps. We can summarize all this in the following cummatative diagram:
+\begin{figure}[H]
+	\centering
+	\begin{tikzcd}
+		&& y(U) \subseteq \R^d \arrow[dddd, bend left=110, shift left, "x \circ y\inv"] \\
+		&&\\
+		\preimg_{\gamma}(U) \subseteq \R \arrow[rr, "{\gamma}"] \arrow[ddrr, "x \circ {\gamma}"'] \arrow[uurr, "y \circ {\gamma}"]&& U \subseteq M \arrow[dd, "x"] \arrow[uu, "y"'] \\
+		&&\\
+		&& x(U) \subseteq \R^d \arrow[uuuu, bend right=75, shift left, "y \circ x\inv"]
+	\end{tikzcd}
+	\caption{Looking at Continuity of a curve in a manifold using charts}
+	\label{fig:chart_application_curves}
+\end{figure}
+
+Intuitively, this description allows us to forget about the inner structure (\ie\ \(U\) and the maps \(\gamma\), \(x\) and \(y\)) which, in a sense, is the real world, and only consider \(\preimg_{\gamma}(U) \subseteq \R\) and \(x(U), y(U) \subseteq \R^d\) together with the maps between them, which is our representation of the real world.
