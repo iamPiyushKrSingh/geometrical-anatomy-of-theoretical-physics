@@ -156,7 +156,7 @@ Counterexample: M\"obius strip is not a product manifold.
 	Define \(\pi': E \to F\) as \(\pi'(m, f) = f\). Then \((E, \pi', F)\) is also a product bundle.
 \end{example}
 
-\begin{example}[Mobius Strip as a Bundle]
+\begin{example}[M\"obius Strip as a Bundle]
 	Consider the M\"obius strip as a bundle. Define the total space \(E\) as the M\"obius strip and the projection map \(\pi: E \to S^1\) as the projection of the M\"obius strip onto the circle. Then \((E, \pi, S^1)\) is a bundle.
 
 	It is easy to see that the fibre over any point \(p \in S^1\) is a line segment. See \cref{fig:moebius-strip-bundle}.
@@ -445,7 +445,7 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 \end{remark}
 
 \begin{definition}[Atlas]\label{def:atlas}
-	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the collection of all charts \(\mathscr{A} := \qty{(U_\alpha, x_\alpha) \mid \alpha \in I}\) is called an \emph{atlas} of the manifold \(M\) if,
+	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the collection of all charts \(\A := \qty{(U_\alpha, x_\alpha) \mid \alpha \in I}\) is called an \emph{atlas} of the manifold \(M\) if,
 	\begin{equation}
 		\bigcup_{\alpha \in I} U_\alpha = M,
 	\end{equation}
@@ -454,7 +454,7 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 
 This is obvious to see that this collection is a set, as from the definition of manifolds, we have an open set \(U_p\) at each point with an appropriate homeomorphism \(x_p\). Thus, this provides a trivial atlas of \(M\),
 \begin{equation}
-	\mathscr{A} = \qty{(U_p, x_p) \mid p \in M}
+	\A = \qty{(U_p, x_p) \mid p \in M}
 \end{equation}
 
 \begin{definition}[\(\SC^0\)-Compatibility]
@@ -483,18 +483,18 @@ This notion will be useful, when we want to talk about differentialable manifold
 \end{remark}
 This also express that, all the physics that we have done so far lives in chart. For example, the motion of a particle is a subset of our physical manifold, and we use different co-ordinates (or charts) for our understanding.
 
-\begin{definition}[\(\SC^0\)-Atlas]
-	An atlas \(\mathscr{A}\) is a \emph{\(\SC^0\)-atlas} if all the charts in \(\mathscr{A}\) are pairwise \(\SC^0\)-compatible.
+\begin{definition}[\(\SC^0\)-Atlas]\label{def:c0-atlas}
+	An atlas \(\A\) is a \emph{\(\SC^0\)-atlas} if all the charts in \(\A\) are pairwise \(\SC^0\)-compatible.
 \end{definition}
 
 \noindent Any atlas is a \(\SC^0\)-atlas.
 
 \begin{definition}[Maximal Atlas]
-	A \(\SC^0\)-atlas \(\mathscr{A}\) is called a \emph{maximal} if it contains every chart that is \(\SC^0\)-compatible with every chart in \(\mathscr{A}\).
+	A \(\SC^0\)-atlas \(\A\) is called a \emph{maximal} if it contains every chart that is \(\SC^0\)-compatible with every chart in \(\A\).
 \end{definition}
 
 \begin{example}
-	Let \((\R, \Ostd)\) be our topological manifold. Then we have a trivial atlas \(\mathscr{A} = \qty{(\R, \id_{\R})}\), but it is not maximal. Since chart \(((0, 1), \id_{(0, 1)})\) is \(\SC^0\)-compatible with the chart \((\R, \id_{\R})\), but it is not in the atlas \(\mathscr{A}\).
+	Let \((\R, \Ostd)\) be our topological manifold. Then we have a trivial atlas \(\A = \qty{(\R, \id_{\R})}\), but it is not maximal. Since chart \(((0, 1), \id_{(0, 1)})\) is \(\SC^0\)-compatible with the chart \((\R, \id_{\R})\), but it is not in the atlas \(\A\).
 \end{example}
 
 We can look at ``objects on'' topological manifolds from two point of view. Consider a curve \(\gamma\) in a \(d\)-dimensional manifold, \ie\ \(\gamma: \R \to M\). From our previous knowledge, we know this curve has to be continuous if it describes the trajectory of a classical particle.

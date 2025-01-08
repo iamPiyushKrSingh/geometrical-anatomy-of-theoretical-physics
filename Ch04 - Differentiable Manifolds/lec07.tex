@@ -1,3 +1,42 @@
 \lecture{7}
 
 \section{Adding Structure by refining the (maximal) \texorpdfstring{\(\SC^0\)}{C0}-atlas}
+
+\begin{definition}[{\scalebox{0.75}\FiveFlowerOpen}-Atlas]
+	Let \((M, \O)\) be a \(d\)-dimensional manifold. An atlas \(\A\) is called {\scalebox{0.75}\FiveFlowerOpen}-atlas, if any two charts \((U, x), (V, y) \in \A\) are {\scalebox{0.75}\FiveFlowerOpen}-compatible.
+\end{definition}
+
+In other words, either \(U \cap V = \0\) or if \(U \cap V \neq \0\), then the transition map \(y \circ x^{-1}\) is {\scalebox{0.75}\FiveFlowerOpen} as a map from \(\R^d\) to \(\R^d\).
+\begin{figure}[H]
+	\centering
+	\begin{tikzcd}
+		& U \cap V \arrow[ld, "x"'] \arrow[rd, "y"] & \\
+		\R^d \supseteq x(U \cap V) \arrow[rr, shift left, "y \circ x\inv"] & & y(U \cap V) \subseteq \R^d \arrow[ll, shift left, "x \circ y\inv"]
+	\end{tikzcd}
+\end{figure}
+
+Now, we can define the placeholder symbol {\scalebox{0.75}\FiveFlowerOpen} as:
+\begin{itemize}
+	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^0\): see \cref{def:c0-atlas}.
+	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^k\): the transition map is \(k\)-times continuously differentiable as maps \(\R^d \to \R^d\).
+	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\infty}\): the transition map is smooth (infinitely many times differentiable); i.e., \(k\)-times continuously differentiable for all \(k \in \N\).
+	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\omega}\): the transition map is real-analytic; \ie, it can be locally represented by a convergent power series.
+	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\omega}_{\C}\): the transition map is complex-analytic; equivalently, it starifies the Cauchy-Riemann condition.
+\end{itemize}
+
+\noindent Here for completeness, we need to define what are the Cauchy-Riemann conditions:\\
+Set theoretical we know that \(\C \setIso \R^2\). Let \(f: \C \to \C\) be a complex function defined as
+\begin{equation}
+	\begin{aligned}
+		f: \C    & \to \C                       \\
+		x + \I y & \mapsto u(x, y) + \I v(x, y)
+	\end{aligned}
+\end{equation}
+where \(u, v: \R^2 \to \R\) are real-valued functions. Then the Cauchy-Riemann conditions says that \(f\) is complex-analytic at \(x_0 + \I y_0\) if and only if the following two conditions are satisfied:
+\begin{enumerate}
+	\item All the partial derivatives of \(u\) and \(v\) exist at \((x_0, y_0)\) and are continuous in a neighborhood of \((x_0, y_0)\).
+	\item The following two equations are satisfied:
+	      \begin{equation}
+		      \pdv{u}{x} \qty(x_0, y_0) = \pdv{v}{y} \qty(x_0, y_0) \quad \text{and} \quad \pdv{u}{y} \qty(x_0, y_0) = -\pdv{v}{x} \qty(x_0, y_0).
+	      \end{equation}
+\end{enumerate}
