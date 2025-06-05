@@ -2,11 +2,11 @@
 
 \section{Adding Structure by refining the (maximal) \texorpdfstring{\(\SC^0\)}{C0}-atlas}
 
-\begin{definition}[{\scalebox{0.75}\FiveFlowerOpen}-Atlas]
-	Let \((M, \O)\) be a \(d\)-dimensional manifold. An atlas \(\A\) is called {\scalebox{0.75}\FiveFlowerOpen}-atlas, if any two charts \((U, x), (V, y) \in \A\) are {\scalebox{0.75}\FiveFlowerOpen}-compatible.
+\begin{definition}[\(\flower\)-Atlas]
+	Let \((M, \O)\) be a \(d\)-dimensional manifold. An atlas \(\A\) is called \(\flower\)-atlas, if any two charts \((U, x), (V, y) \in \A\) are \(\flower\)-compatible.
 \end{definition}
 
-In other words, either \(U \cap V = \0\) or if \(U \cap V \neq \0\), then the transition map \(y \circ x^{-1}\) is {\scalebox{0.75}\FiveFlowerOpen} as a map from \(\R^d\) to \(\R^d\).
+In other words, either \(U \cap V = \0\) or if \(U \cap V \neq \0\), then the transition map \(y \circ x^{-1}\) is \(\flower\) as a map from \(\R^d\) to \(\R^d\).
 \begin{figure}[H]
 	\centering
 	\begin{tikzcd}
@@ -15,13 +15,13 @@ In other words, either \(U \cap V = \0\) or if \(U \cap V \neq \0\), then the tr
 	\end{tikzcd}
 \end{figure}
 
-Now, we can define the placeholder symbol {\scalebox{0.75}\FiveFlowerOpen} as:
+Now, we can define the placeholder symbol \(\flower\) as:
 \begin{itemize}
-	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^0\): see \cref{def:c0-atlas}.
-	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^k\): the transition map is \(k\)-times continuously differentiable as maps \(\R^d \to \R^d\).
-	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\infty}\): the transition map is smooth (infinitely many times differentiable); i.e., \(k\)-times continuously differentiable for all \(k \in \N\).
-	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\omega}\): the transition map is real-analytic; \ie, it can be locally represented by a convergent power series.
-	\item \({\scalebox{0.75}\FiveFlowerOpen} = \SC^{\omega}_{\C}\): the transition map is complex-analytic; equivalently, it starifies the Cauchy-Riemann condition.
+	\item \(\flower = \SC^0\): see \cref{def:c0-atlas}.
+	\item \(\flower = \SC^k\): the transition map is \(k\)-times continuously differentiable as maps \(\R^d \to \R^d\).
+	\item \(\flower = \SC^{\infty}\): the transition map is smooth (infinitely many times differentiable); i.e., \(k\)-times continuously differentiable for all \(k \in \N\).
+	\item \(\flower = \SC^{\omega}\): the transition map is real-analytic; \ie, it can be locally represented by a convergent power series.
+	\item \(\flower = \SC^{\omega}_{\C}\): the transition map is complex-analytic; equivalently, it satisfies the Cauchy-Riemann conditions.
 \end{itemize}
 
 \noindent Here for completeness, we need to define what are the Cauchy-Riemann conditions:\\
@@ -40,3 +40,128 @@ where \(u, v: \R^2 \to \R\) are real-valued functions. Then the Cauchy-Riemann c
 		      \pdv{u}{x} \qty(x_0, y_0) = \pdv{v}{y} \qty(x_0, y_0) \quad \text{and} \quad \pdv{u}{y} \qty(x_0, y_0) = -\pdv{v}{x} \qty(x_0, y_0).
 	      \end{equation}
 \end{enumerate}
+
+\begin{theorem}[Whitney]
+	Any maximal \(\SC^k\)-atlas (for any \(k \ge 1\)) contains a \(\SC^{\infty}\)-atlas. Moreover, any two maximal \(\SC^k\)-atlases that contains the same \(\SC^{\infty}\)-atlas are identical.
+\end{theorem}
+In other words, we refine (or remove) all the charts in a maximal \(\SC^k\)-atlas which are not \(\SC^{\infty}\)-compatible, and we get a maximal \(\SC^{\infty}\)-atlas. This is the reason why we can always work with \(\SC^{\infty}\)-atlases given that we are working with a differentiable manifold. Immediate consequence of this theorem is that if any result is true for a \(\SC^k\)-atlas for any \(k \ge 1\), then it is also true for a \(\SC^{\infty}\)-atlas.
+
+But in the case of \(\SC^0\)-atlas, it may happen that it doesn't admit a \(\SC^1\)-atlas, and hence we cannot refine it to a \(\SC^{\infty}\)-atlas.
+
+Hence, we will not make any distinction between \(\SC^k\)-manifolds and \(\SC^{\infty}\)-manifolds, and we will always work with \(\SC^{\infty}\)-manifolds.
+
+\begin{definition}[\(\SC^{k}\)-manifold]
+	A triple \((M, \O, \A)\) is called a \(\SC^{k}\)-manifold where
+	\begin{itemize}
+		\item \((M, \O)\) is a topological manifold.
+		\item \(\A\) is a maximal \(\SC^{k}\)-atlas on \(M\).
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[Incompatible Atlases]
+	Let two \(\flower\)-compactible atlases \(\A_1\) and \(\A_2\) on a topological manifold \((M, \O)\) be called compatible if \(\A_1 \cup \A_2\) is a $\flower$-atlas on \(M\). Otherwise, they are called incompatible.
+\end{definition}
+
+\begin{remark}
+	A given topological manifold \((M, \O)\) can have different incompatible atlases.
+\end{remark}
+
+A simple example of incompatible atlases,
+\begin{example}
+	Let \(M = \R\) with the standard topology, and let \(\A_1 = \{(\R, \id_{\R})\}\) and \(\A_2 = \{(\R, a \xmapsto[]{x} \sqrt[3]{a})\}\). Since each atlas contains only one chart, they are trivially \(\SC^{\infty}\)-compatible as the transition map is the identity map in both cases. But \(\A_1 \cup \A_2\) is not a \(\SC^{\infty}\)-atlas on \(M\) because the transition maps \(\id_{\R} \circ x\inv \equiv a \mapsto a^3\) which is a smooth map, but the transition map \(x \circ \id_{\R}\inv \equiv a \mapsto \sqrt[3]{a}\) is not smooth as it is not differentiable at \(a = 0\). Hence, \(\A_1\) and \(\A_2\) are incompatible atlases on \(M\).
+\end{example}
+
+This example shows that we can equip the real line \(\R\) with different incompatible \(\SC^{\infty}\)-struictures. This sounds bad as we want to do physics on \(\R\), and we want to have a unique \(\SC^{\infty}\)-structure on it. But this is not a problem, as we are given an atlas by the definition of differentiable manifold.
+
+\begin{definition}[Differentiability]
+	Let \((M, \O_M, \A_M)\) and \((N, \O_N, \A_N)\) be two \(\SC^{k}\)-manifolds of dimension \(m\) and \(n\) respectively. A map \(f: M \to N\) is called \(\SC^{k}\)-differentiable at a point \(p \in M\) if there exists a chart \((U, x) \in \A_M\) around \(p\) and a chart \((V, y) \in \A_N\) around \(f(p)\) such that the map \((y \circ f \circ x^{-1}): x(U) \to y(V)\) is \(\SC^{k}\)-differentiable at \(x(p)\) as a map from \(\R^m\) to \(\R^n\).
+	\begin{figure}[H]
+		\centering
+		\begin{tikzcd}
+			M \supseteq U \arrow[rr, "f"] \arrow[dd, "x"'] & & N \subseteq V \arrow[dd, "y"] \\
+			& & \\
+			\R^m \supseteq x(U) \arrow[rr, "y \circ f \circ x^{-1}"] & & y(V) \subseteq \R^n
+		\end{tikzcd}
+	\end{figure}
+	If \(f\) is \(\SC^{k}\)-differentiable at every point \(p \in M\), then we say that \(f\) is a \(\SC^{k}\)-differentiable map from \(M\) to \(N\).
+\end{definition}
+
+\begin{proposition}
+	The definition of \(\SC^{k}\)-differentiability is independent of the choice of charts \((U, x) \in \A_M\) and \((V, y) \in \A_N\) \ie\ the definition is well-defined.
+\end{proposition}
+\begin{proof}
+	Consider two charts \((U, x), (\tilde{U}, \tilde{x}) \in \A_M\) around \(p\) and two charts \((V, y), (\tilde{V}, \tilde{y}) \in \A_N\) around \(f(p)\). We need to show that if \(f\) is \(\SC^{k}\)-differentiable at \(p\) with respect to the charts \((U, x)\) and \((V, y)\), then it should also be \(\SC^{k}\)-differentiable with respect to the charts \((\tilde{U}, \tilde{x})\) and \((\tilde{V}, \tilde{y})\). Consider the following commutative diagram:
+	\begin{figure}[H]
+		\centering
+		\begin{tikzcd}
+			\R^m \supseteq \tilde{x}(U \cap \tilde{U}) \arrow[rrrr, "\tilde{y} \circ f \circ \tilde{x}^{-1}"] \arrow[dddd, bend right=75, "x \circ \tilde{x}^{-1}"'] & & & & \tilde{y}(V \cap \tilde{V}) \subseteq \R^n \\
+			& & & & \\
+			M \supseteq U \cap \tilde{U} \ni p \arrow[uu, "\tilde{x}"'] \arrow[rrrr, "f"] \arrow[dd, "x"] & & & & f(p) \in V \cap \tilde{V} \subseteq N \arrow[uu, "\tilde{y}"] \arrow[dd, "y"'] \\
+			& & & & \\
+			\R^m \supseteq x(U \cap \tilde{U}) \arrow[rrrr, "y \circ f \circ x^{-1}"] & & & & y(V \cap \tilde{V}) \subseteq \R^n \arrow[uuuu, bend right=75, "\tilde{y} \circ y\inv"']
+		\end{tikzcd}
+	\end{figure}
+	We know that the transition maps \(x \circ \tilde{x}^{-1}\) and \(\tilde{y} \circ y^{-1}\) are \(\SC^{k}\)-differentiable as they are transition maps between charts in the same atlas. So the composition of the maps
+	\begin{equation}
+		\tilde{y} \circ f \circ \tilde{x}^{-1} = (\tilde{y} \circ y\inv) \circ (y \circ f \circ x\inv) \circ (x \circ \tilde{x}^{-1})
+	\end{equation}
+	is also \(\SC^{k}\)-differentiable as a composition of \(\SC^{k}\)-differentiable maps. Hence, \(f\) is \(\SC^{k}\)-differentiable at \(p\) with respect to the charts \((\tilde{U}, \tilde{x})\) and \((\tilde{V}, \tilde{y})\).
+\end{proof}
+
+\begin{definition}[Diffeomorphism]
+	Let \((M, \O_M, \A_M)\) and \((N, \O_N, \A_N)\) be two \(\SC^{k}\)-manifolds. A map \(f: M \to N\) is called a \(\SC^{k}\)-diffeomorphism if it is a bijection and both \(f\) and its inverse \(f^{-1}: N \to M\) are \(\SC^{k}\)-differentiable.
+\end{definition}
+
+\begin{definition}[Diffeomorphic]
+	Two \(\SC^{k}\)-manifolds \((M, \O_M, \A_M)\) and \((N, \O_N, \A_N)\) are called diffeomorphic if there exists a \(\SC^{k}\)-diffeomorphism \(f: M \to N\). Then we write
+	\begin{equation}
+		M \diffIso N \quad \text{or} \quad (M, \O_M, \A_M) ~\diffIso~ (N, \O_N, \A_N).
+	\end{equation}
+\end{definition}
+
+With this new notation, we want to finally answer the question: whether, for instance
+\begin{equation}
+	(\R, \Ostd, \A_{1, \text{max}}) \diffIso (\R, \Ostd, \A_{2, \text{max}})
+\end{equation}
+where \(\A_{1, \text{max}}\) and \(\A_{2, \text{max}}\) are the maximal \(\SC^{\infty}\)-atlases on \(\R\) defined in the previous example.
+
+In principle, we want to know, how many different differentiable structures are there on a given topological manifold \((M, \O)\) -- up to diffeomorphism? The answer to this question is not known in general, but we know that it depends on the dimension of the manifold \(M\).
+
+\begin{theorem}[Radon-Moise]
+	For \(d \le 3\), any two \(\SC^{\infty}\)-manifolds of dimension \(d\) are diffeomorphic if and only if they are homeomorphic. In other words, let \((M, \O_M, \A_M)\) and \((N, \O_N, \A_N)\) be two \(\SC^{\infty}\)-manifolds of dimension \(d\) and \(d \le 3\). Then
+	\begin{equation}
+		(M, \O_M, \A_M) \diffIso (N, \O_N, \A_N) \iff (M, \O_M) \topIso (N, \O_N).
+	\end{equation}
+	So in particular, if \((M, \O_M)\) and \((N, \O_N)\) are homeomorphic, then we have a unique \(\SC^{\infty}\)-structure on \(M\) and \(N\) up to diffeomorphism.
+\end{theorem}
+
+From the above theorem, we can say that given a topological manifold \((M, \O_M)\), there is a unique \(\SC^{\infty}\)-structure on it up to diffeomorphism if \(\dim M \le 3\).
+
+The answer for \(d > 4\) (specifically for \(d \ne 4\)) is that there are finitely many different differentiable structures on a given \emph{compact} topological manifold \((M, \O_M)\) up to diffeomorphism. This answer is provided by \emph{surgery theory} (or obstruction theory). This is a collection of tools and techniques in topology with which one obtains a new manifold from given ones by performing surgery on them, \ie\ by cutting, replacing and gluing parts in such a way as to control topological invariants like the fundamental group. The idea is to understand all manifolds in dimensions higher than 4 by performing surgery systematically.
+
+\begin{remark}[Good News for String Theorists]
+	According to many string theorists, our space-time is a 10-dimensional manifold. Since we don't have a unique differentiable structure on a 10-dimensional manifold, so in principle, different differentiable structures can lead to different predictions in physics, which is not what we want. But the good news is that for \(d = 10\), there are only finitely many different differentiable structures, so we can decide which one is the correct for our space-time by performing finite number of experiments.
+\end{remark}
+
+For \(d = 4\), the situation is very different. In fact, the problem of classifying all smooth differentiable structures is still open. But we know following partial results:
+\begin{itemize}
+	\item Non-compact 4-manifolds:
+
+	      There are uncountably many non-diffeomorphic \(\SC^{\infty}\)-structures, specifically on \(\R^4\).
+
+	\item Compact 4-manifolds:
+
+	      The classification is not yet complete, but one of the most interesting results is that there are countably many non-diffeomorphic \(\SC^{\infty}\)-structures on a given compact 4-manifold with \(b_2 > 18\) (where \(b_2\) is the second Betti number, which is a topological invariant of the manifold).
+\end{itemize}
+\begin{remark}[Betti Numbers]
+	Betti numbers are topological invariants defined using homology groups (notion of algebraic topology). But, intiuitively, the \(k\)-th Betti number \(b_k\) of a topological space is the number of \(k\)-dimensional holes in it.
+	\begin{itemize}
+		\item \(b_0\) is the number of connected components;
+		\item \(b_1\) is the number of 1-dimensional or ``circular'' holes;
+		\item \(b_2\) is the number of 2-dimensional ``voids'' or ``cavities''.
+		\item And so on.
+	\end{itemize}
+	For example, the 2-sphere \(S^2\) has \(b_0 = 1\), \(b_1 = 0\) and \(b_2 = 1\) as it has one connected component, no circular holes and one 2-dimensional cavity. And the 2-torus \(T^2\) has \(b_0 = 1\), \(b_1 = 2\) and \(b_2 = 1\) as it has one connected component, two circular holes (one equitorial and one meridional) and one 2-dimensional cavity.
+\end{remark}
+
+Key feature of a differentiable manifold is that there exists a ``\emph{tangent space}'' at each point of the manifold.
