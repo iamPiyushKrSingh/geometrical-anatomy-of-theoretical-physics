@@ -1,0 +1,50 @@
+\lecture{8}
+
+\section{Review of Vector Spaces}
+
+\begin{definition}[(Algebraic) Field]
+    Let \(K\) be a non-empty set with two binary operations \(+\) and \(\cdot\) (addition and multiplication) such that
+    \begin{itemize}
+        \item \((K, +)\) is an abelian group with identity element \(0\).
+        \item \((K \setminus \{0\}, \cdot)\) is an abelian group with identity element \(1\).
+        \item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in K\),
+              \begin{equation}
+                  a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
+              \end{equation}
+    \end{itemize}
+    Then \(K\) is called a field.
+\end{definition}
+Later we will use a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) but fewer axioms than a field, and we will call it a \emph{ring}.
+\begin{definition}[Ring]
+    A ring is a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) such that
+    \begin{itemize}
+        \item \((R, +)\) is an abelian group with identity element \(0\).
+        \item \((R, \cdot)\) is a monoid with identity element \(1\).
+
+              \ie\ multiplication is associative and has an identity element, but it need not be commutative.
+        \item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in R\),
+              \begin{equation}
+                  a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
+              \end{equation}
+    \end{itemize}
+\end{definition}
+Some examples which we are using from our school days:
+\begin{itemize}
+    \item \((\Z, +, \cdot)\) is a \emph{commutative} ring but not a field as it has no multiplicative inverses for all non-zero elements.
+    \item \((\Q, +, \cdot)\) and \((\R, +, \cdot)\) are fields.
+    \item \((\SM_{n}(\R), +, \circ)\) is a ring, where \(\SM_{n}(\R)\) is the set of \(n \times n\) real matrices with the usual matrix addition and multiplication. Matrix multiplication is associative but not commutative, and it has an identity element \(I_n\) (the identity matrix). But it does not have multiplicative inverses for all non-zero elements, so it is not a field.
+\end{itemize}
+
+\begin{definition}[Vector Space over a Field \(K\)]
+    A vector space \(V\) over a field \((K, +, \cdot)\) is a set equipped with two operations \(\oplus: V \times V \to V\) (vector addition) and \(\odot: K \times V \to V\) (scalar multiplication) such that
+    \begin{itemize}
+        \item \((V, \oplus)\) is an abelian group with identity element \(\va{0}\) (the zero vector).
+        \item The scalar multiplication satisfies the following properties
+              \begin{enumerate}[(i)]
+                  \item Let \(1\) be the multiplicative identity of the field \(K\). Then for all \(\va{v} \in V: 1 \odot \va{v} = \va{v}\).
+                  \item \(\forall a, b \in K: \forall \va{v} \in V: a \odot (b \odot \va{v}) = (a \cdot b) \odot \va{v}\).
+                  \item \(\forall a \in K: \forall \va{u}, \va{v} \in V: a \odot (\va{u} \oplus \va{v}) = a \odot \va{u} \oplus a \odot \va{v}\).
+                  \item \(\forall a, b \in K: \forall \va{v} \in V: (a + b) \odot \va{v} = a \odot \va{v} \oplus b \odot \va{v}\).
+              \end{enumerate}
+    \end{itemize}
+\end{definition}
