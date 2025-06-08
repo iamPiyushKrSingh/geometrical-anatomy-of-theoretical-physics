@@ -44,6 +44,27 @@
 \usepackage{bbding}
 \newcommand{\flower}{{\scalebox{0.75}{\FiveFlowerOpen} }}
 \DeclareMathOperator{\diffIso}{\cong_{\text{diff}}}
+\DeclareMathOperator{\vecIso}{\cong_{\text{vec}}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareMathSymbol{\diamondplus}{\mathbin}{MnSyC}{"7C}
+\DeclareMathSymbol{\diamonddot}{\mathbin}{MnSyC}{"7E}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\usepackage{tensor}
+\DeclareMathOperator{\hateq}{\hat{=}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\vol}{vol}
+
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12}{}
 
 \makeatletter
 \def\input@path{{Ch01 - Axiomatic Set Theory/}{Ch02 - Topological Spaces/}{Ch03 - Topological Manifolds and Bundles/}{Ch04 - Differentiable Manifolds/}}
@@ -55,7 +76,7 @@
 }
 
 \subtitle{
-    \huge Geometric Anatomy of Theoretical Physics \\[10pt]
+    \huge Geometrical Anatomy of Theoretical Physics \\[10pt]
     \LARGE\normalfont\sffamily Dr. Fredric P Schuller\thanks{YouTube \href{https://youtube.com/playlist?list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&si=Uy5ciENkuiTlvx6X}{playlist}}
 }
 
@@ -79,7 +100,7 @@
 \changesecondcolor{Periwinkle}
 
 \hypersetup{
-    pdftitle={Geometric Anatomy of Theoretical Physics},
+    pdftitle={Geometrical Anatomy of Theoretical Physics},
 	pdfsubject={Physics, Quantum Mechanics, Differential Geometry, Topology},
     pdfauthor={Piyush Kumar Singh, Fredric Schuller},
     pdfkeywords={Quantum Mechanics, physics, qm, topology, geometry, notes, differentialbe manifold, theoretical physics, geometric anatomy},
@@ -89,30 +110,30 @@
 \begin{document}
 \frontmatter
 \begin{titlepage}
-	\let\newpage\relax
-	\singhtitle
+    \let\newpage\relax
+    \singhtitle
 \end{titlepage}
 
 \chapter{Structure of this Course}
 \noindent In theoretical physics we mainly deal with three big part of mathematics, namely, `Analysis', `Algebra' and `Geometry'. And at the mutual intersection of these three, we have different branches of physics like `Quantum Mechanics', `General Relativity', `Statistical Mechanics', etc. see \cref{fig:structure}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\textwidth]{lec01-math_struct.png}
-	\caption{Structure of Theoretical Physics}
-	\label{fig:structure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{lec01-math_struct.png}
+    \caption{Structure of Theoretical Physics}
+    \label{fig:structure}
 \end{figure}\noindent
 This course mainly focuses on differential geometry and topology, and their applications in theoretical physics. And we will start with the basic propositional logic and set theory, and then move to the topology and geometry of manifolds, and then we will see the applications of these in physics. Following is the structure of this course:
 
 \begin{itemize}
-	\item Logic
-	\item Set Theory
-	\item Topology
-	\item Topological Manifolds
-	\item Differential Manifolds
-	\item Bundles
-	\item Geometry: Symplectic Geometry, Metric Geometry, etc.
-	\item Physics: Classical Mechanics, Electrodynamics, Quantum Mechanics, Statistical Mechanics, Special and General Relativity, etc.
+    \item Logic
+    \item Set Theory
+    \item Topology
+    \item Topological Manifolds
+    \item Differential Manifolds
+    \item Bundles
+    \item Geometry: Symplectic Geometry, Metric Geometry, etc.
+    \item Physics: Classical Mechanics, Electrodynamics, Quantum Mechanics, Statistical Mechanics, Special and General Relativity, etc.
 \end{itemize}
 
 
