@@ -1,0 +1,384 @@
+\lecture{9}
+
+\section{Tangent Spaces to a Manifold}
+
+Let \(M\) be a smooth manifold (from now on, whenever we say a smooth manifold, the associated topology and atlas are always implied). Then we can construct the followwing vector space over \(\R\):
+\begin{equation}
+    \qty(\SC^\infty(M), +, \cdot)
+\end{equation}
+where \(\SC^\infty(M) := \qty{f : M \to \R \mid f \text{ is smooth}}\) is the set of all smooth real-valued functions on \(M\). The notion of smoothness is via smooth charts in the atlas of \(M\). The addition and scalar multiplication are defined pointwise, for all \(f, g \in \SC^\infty(M)\), \(\lambda \in \R\), and \(p \in M\), as
+\begin{align}
+    (f + g)(p)           & := f(p) + g(p)         \\
+    (\lambda \cdot f)(p) & := \lambda \cdot f(p).
+\end{align}
+It is easy to check that \(\qty(\SC^\infty(M), +, \cdot)\) is indeed a vector space over \(\R\).
+
+\begin{definition}[Directional Derivative]
+    Let \(\gamma: \R \to M\) be a smooth curve\footnotemark through a point \(p \in M\), and WLOG let \(\gamma(0) = p\). Then the \emph{directional derivative operator} along \(\gamma\) at \(p\) is a map
+    \footnotetext{Here the notion of smoothness is via charts in the atlas of \(M\), \ie, for all charts \((U, x)\) of \(M\) such that \(p \in U\), the composition \(x \circ \gamma: \R \to \R^d\) is a smooth map in the usual sense.}
+    \begin{equation}
+        X_{\gamma, p} : \SC^\infty(M) \to \R
+    \end{equation}
+    defined as
+    \begin{equation}
+        \SC^\infty(M) \ni f \mapsto X_{\gamma, p}(f) := (f \circ \gamma)'(0) \in \R.
+    \end{equation}
+\end{definition}
+Note the composition \(f \circ \gamma\) is a map from \(\R\) to \(\R\), and hence the derivative is the usual derivative of real-valued functions of a real variable.
+
+\begin{proposition}
+    The directional derivative operator \(X_{\gamma, p}\) along a smooth curve \(\gamma\) through \(p\) is a linear map, \ie, for all \(f, g \in \SC^\infty(M)\) and \(\lambda, \mu \in \R\),
+    \begin{equation}
+        X_{\gamma, p}(\lambda f + \mu g) = \lambda X_{\gamma, p}(f) + \mu X_{\gamma, p}(g).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    This follows from the linearity of the usual derivative of real-valued functions of a real variable.
+    \begin{align*}
+        X_{\gamma, p}(\lambda f + \mu g) & = ((\lambda f + \mu g) \circ \gamma)'(0)                  \\
+                                         & = (\lambda (f \circ \gamma) + \mu (g \circ \gamma))'(0)   \\
+                                         & = \lambda (f \circ \gamma)'(0) + \mu (g \circ \gamma)'(0) \\
+                                         & = \lambda X_{\gamma, p}(f) + \mu X_{\gamma, p}(g).
+    \end{align*}
+\end{proof}
+In differential geometry, \(X_{\gamma, p}\) is usually called a \emph{tangent vector} to curve \(\gamma\) at point \(p\). Physically, we can think of \(X_{\gamma, p}\) as the velocity vector of a particle moving along the curve \(\gamma\) at point \(p\). To see this, let \(\gamma_1, \gamma_2: \R \to M\) be two smooth curves through \(p\) such that \(\gamma_1(0) = \gamma_2(0) = p\), and \(\gamma_1(t) = \gamma_2(2 t)\) for all \(t \in \R\). Let \(f \in \SC^\infty(M)\) be a smooth function. Then
+\begin{equation}
+    X_{\gamma_1, p}(f) = (f \circ \gamma_1)'(0) = (f \circ \gamma_2)'(0) \cdot 2 = 2 (f \circ \gamma_2)'(0) = 2 X_{\gamma_2, p}(f).
+\end{equation}
+This means that \(X_{\gamma_1, p} = 2 X_{\gamma_2, p}\). So, if we think of \(\gamma_1\) and \(\gamma_2\) as the trajectories of two particles moving through point \(p\) on manifold \(M\), then the velocity vector of the first particle at \(p\) is twice that of the second particle at \(p\), which is consistent with our physical intuition.
+
+\begin{definition}[Tangent Vector Space]
+    Let \(M\) be a smooth manifold and \(p \in M\). The \emph{tangent vector space} to \(M\) at \(p\), denoted by \(\ST_p M\), is defined as
+    \begin{equation}
+        \ST_p M := \qty{X_{\gamma, p} \mid \gamma: \R \to M \text{ is a smooth curve with } \gamma(0) = p}.
+    \end{equation}
+    Equipped with following operations:
+    \begin{align*}
+         & \oplus: \ST_p M \times \ST_p M \to \ST_p M, \\
+         & \odot:  \R \times \ST_p M \to \ST_p M,
+    \end{align*}
+    defined pointwise as
+    \begin{align*}
+        (X_{\gamma_1, p} \oplus X_{\gamma_2, p})(f) & := X_{\gamma_1, p}(f) + X_{\gamma_2, p}(f), \quad \forall f \in \SC^\infty(M),                    \\
+        (\lambda \odot X_{\gamma, p})(f)            & := \lambda \cdot X_{\gamma, p}(f), \quad \forall f \in \SC^\infty(M) \text{ and } \lambda \in \R,
+    \end{align*}
+    \(\qty(\ST_p M, \oplus, \odot)\) is a vector space over \(\R\).
+\end{definition}
+This definition is still incomplete, as the pointwise addition and scalar multiplication doesn't guarantee that the results are still in \(\ST_p M\). So, we have to prove the following proposition.
+\begin{proposition}
+    The operations \(\oplus\) and \(\odot\) defined above are closed in \(\ST_p M\), \ie, for all \(X_{\gamma_1, p}, X_{\gamma_2, p} \in \ST_p M\) and \(\lambda \in \R\),
+    \begin{gather}
+        X_{\gamma_1, p} \oplus X_{\gamma_2, p} \in \ST_p M, \\
+        \lambda \odot X_{\gamma, p}            \in \ST_p M.
+    \end{gather}
+\end{proposition}
+So we need to show that there exist smooth curves \(\gamma_3, \gamma_4: \R \to M\) such that \(\gamma_3(0) = \gamma_4(0) = p\) and
+\begin{align*}
+    X_{\gamma_3, p} & = X_{\gamma_1, p} \oplus X_{\gamma_2, p}, \\
+    X_{\gamma_4, p} & = \lambda \odot X_{\gamma, p}.
+\end{align*}
+Since the notion of derivative is local, so if two curves agree on a neighborhood of \(0 \in \R\), then they have the same derivative at \(0\) \ie, if \(\gamma_1(t) = \gamma_2(t)\) for all \(t\) in some open interval containing \(0\), then \(X_{\gamma_1, p} = X_{\gamma_2, p}\). So, it is sufficient to construct \(\gamma_3\) and \(\gamma_4\) on some open interval containing \(0\).
+\begin{proof}
+    Let \((U, x)\) be a chart of \(M\) around \(p\), \ie, \(p \in U\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism.
+
+    Let \(I \subseteq \R\) be an open interval containing \(0\) such that \(\gamma(t), \gamma_1(t), \gamma_2(t) \in U\) for all \(t \in I\). Such an interval exists since \(\gamma, \gamma_1, \gamma_2\) are continuous and \(\gamma(0) = \gamma_1(0) = \gamma_2(0) = p \in U\), and \(U\) is open in \(M\).
+    \begin{enumerate}
+        \item Construct a curve \(\gamma_3: I \to M\) using the chart \((U, x)\) as follows:
+              \begin{equation}
+                  \gamma_3(t) := x^{-1} \circ (x \circ \gamma_1(t) + x \circ \gamma_2(t) - x(p)), \quad \forall t \in I.
+              \end{equation}
+              Note that \(x \circ \gamma_1(t), x \circ \gamma_2(t) \in \R^d\) and \(x(p) \in \R^d\), so the addition and subtraction are well-defined. Also, since \(x\) is a diffeomorphism, \(x \circ \gamma_1\) and \(x \circ \gamma_2\) are smooth maps from \(I\) to \(\R^d\), and hence their sum is also a smooth map from \(I\) to \(\R^d\). Therefore, the composition \(\gamma_3\) is a smooth map from \(I\) to \(M\). Moreover, \(\gamma_3(0) = x^{-1}(x(p) + x(p) - x(p)) = p\).
+
+              Now, for all \(f \in \SC^\infty(M)\),
+              \begin{align*}
+                  X_{\gamma_3, p}(f) & = (f \circ \gamma_3)'(0)                                                                                                                  \\
+                                     & = \qty(f \circ x^{-1} \circ (x \circ \gamma_1 + x \circ \gamma_2 - x(p)))'(0)                                                             \\
+                  \intertext{map \(f \circ x^{-1}: x(U) \subseteq \R^d \to \R\), and \(x \circ \gamma_1 + x \circ \gamma_2 - x(p): I \subseteq \R \to \R^d\), so we can apply the multivariate chain rule, taking derivative in \(j\)-th coordinate direction, \(j = 1, \ldots, d\):}
+                                     & = \qty[\partial_j (f \circ x^{-1})(x(p))] \cdot \qty(x^j \circ \gamma_1 + x^j \circ \gamma_2 - x^j(p))'(0)                                \\
+                  \shortintertext{where \(x^j\) is the \(j\)-th coordinate function of chart \(x\). Here sum over \(j\) from \(1\) to \(d\) is implied. Using linearity of the usual derivative, we have:}
+                                     & = \qty[\partial_j (f \circ x^{-1})(x(p))] \cdot \qty((x^j \circ \gamma_1)'(0) + (x^j \circ \gamma_2)'(0))                                 \\
+                                     & = [\partial_j (f \circ x^{-1})(x(p)) \cdot (x^j \circ \gamma_1)'(0)] + [\partial_j (f \circ x^{-1})(x(p)) \cdot (x^j \circ \gamma_2)'(0)] \\
+                  \shortintertext{combining the term in the square brackets, we get:}
+                                     & = (f \circ \gamma_1)'(0) + (f \circ \gamma_2)'(0)                                                                                         \\
+                                     & = X_{\gamma_1, p}(f) + X_{\gamma_2, p}(f)                                                                                                 \\
+                                     & = (X_{\gamma_1, p} \oplus X_{\gamma_2, p})(f).
+              \end{align*}
+              Since this is true for all \(f \in \SC^\infty(M)\), we have
+              \begin{equation}
+                  X_{\gamma_3, p} = X_{\gamma_1, p} \oplus X_{\gamma_2, p}.
+              \end{equation}
+
+        \item Construct a curve \(\gamma_4: I \to M\) using the chart \((U, x)\) as follows:
+              \begin{equation}
+                  \gamma_4(t) := x^{-1} \circ (x \circ \gamma(\lambda t)) , \quad \forall t \in I.
+              \end{equation}
+              Here it is tempting rewrite \(\gamma_4(t) = \gamma(\lambda t)\), but this lead to a problem that how to define \(f'(p)\) when we find \(X_{\gamma_4, p}(f)\).
+
+              Note that since \(x\) is a diffeomorphism, \(x \circ \gamma\) is a smooth map from \(I\) to \(\R^d\), and hence the composition \(\gamma_4\) is also a smooth map from \(I\) to \(M\). Moreover, \(\gamma_4(0) = x^{-1}(x(p)) = p\).
+
+              Now, for all \(f \in \SC^\infty(M)\),
+              \begin{align*}
+                  X_{\gamma_4, p}(f) & = (f \circ \gamma_4)'(0)                                                                   \\
+                                     & = \qty(f \circ x^{-1} \circ (x \circ \gamma(\lambda t)))'(0)                               \\
+                  \intertext{map \(f \circ x^{-1}: x(U) \subseteq \R^d \to \R\), and \(x \circ \gamma(\lambda t): I \subseteq \R \to \R^d\), so we can apply the multivariate chain rule, taking derivative in \(j\)-th coordinate direction, \(j = 1, \ldots, d\):}
+                                     & = \qty[\partial_j (f \circ x^{-1})(x(p))] \cdot \qty(x^j \circ \gamma(\lambda t))'(0)      \\
+                  \shortintertext{where \(x^j\) is the \(j\)-th coordinate function of chart \(x\). Using the chain rule for the usual derivative, we have:}
+                                     & = \qty[\partial_j (f \circ x^{-1})(x(p))] \cdot \qty[(x^j \circ \gamma)'(0) \cdot \lambda] \\
+                                     & = \lambda [\partial_j (f \circ x^{-1})(x(p)) \cdot (x^j \circ \gamma)'(0)]                 \\
+                  \shortintertext{combining the term in the square brackets, we get:}
+                                     & = \lambda (f \circ \gamma)'(0)                                                             \\
+                                     & = \lambda X_{\gamma, p}(f)                                                                 \\
+                                     & = (\lambda \odot X_{\gamma, p})(f).
+              \end{align*}
+              Since this is true for all \(f \in \SC^\infty(M)\), we have
+              \begin{equation}
+                  X_{\gamma_4, p} = \lambda \odot X_{\gamma, p}.
+              \end{equation}
+    \end{enumerate}
+\end{proof}
+\begin{remark}[Independence of Chart Choice]
+    The construction of \(\gamma_3\) and \(\gamma_4\) depends on the choice of chart \((U, x)\). However, the resulting tangent vectors \(X_{\gamma_3, p}\) and \(X_{\gamma_4, p}\) do not depend on the choice of chart. This is because if we choose another chart \((V, y)\) around \(p\), then the transition map \(y \circ x^{-1}: x(U \cap V) \to y(U \cap V)\) is a diffeomorphism between open subsets of \(\R^d\), and hence the construction of \(\gamma_3\) and \(\gamma_4\) using chart \((V, y)\) will yield the same tangent vectors \(X_{\gamma_3, p}\) and \(X_{\gamma_4, p}\).
+\end{remark}
+
+\subsection{Algebras and Derivations}
+
+\begin{definition}[Algebra over a Field]
+    Let \((V, +, \cdot)\) be a vector space over a field \(K\) equipped with a ``product'' operation,
+    \begin{equation}
+        \bullet: V \times V \to V,
+    \end{equation}
+    such that \(\bullet\) is bilinear. Then \((V, +, \cdot, \bullet)\) is called an \emph{algebra over field \(K\)}.
+\end{definition}
+In the future, we will impose more conditions on the product operation \(\bullet\), such as anti-symmetry to get something called a Lie algebra. A typical example for that is the cross product in \(\R^3\).
+\begin{example}[Algebra of Smooth Functions]
+    We have already seen that \(\qty(\SC^\infty(M), +, \cdot)\) is a vector space over \(\R\). Now, we can define a product operation \(\bullet\) on \(\SC^\infty(M)\) as follows:
+    \begin{equation}
+        \begin{aligned}
+            \bullet: \SC^\infty(M) \times \SC^\infty(M) & \to \SC^\infty(M),  \\
+            (f, g)                                      & \mapsto f \bullet g
+        \end{aligned}
+    \end{equation}
+    where \((f \bullet g)(p) := f(p) \cdot g(p)\) for all \(p \in M\). It is easy to check that \(\bullet\) is bilinear, and hence \(\qty(\SC^\infty(M), +, \cdot, \bullet)\) is an algebra over \(\R\).
+
+    Note the difference between \(\cdot\) and \(\bullet\): the former is scalar multiplication, while the latter is function multiplication, both at heart uses the field multiplication in \(\R\).
+\end{example}
+Let's look at some special algebras where the product operation satisfies some special properties.
+\begin{definition}
+    Let \((V, +, \cdot, \bullet)\) be an algebra over a field \(K\). The algebra is called:
+    \begin{itemize}
+        \item \emph{Associative} if for all \(u, v, w \in V\),
+              \begin{equation}
+                  (u \bullet v) \bullet w = u \bullet (v \bullet w).
+              \end{equation}
+        \item \emph{Commutative} if for all \(u, v \in V\),
+              \begin{equation}
+                  u \bullet v = v \bullet u.
+              \end{equation}
+        \item \emph{Unital} if there exists an element \(\mathbf{1} \in V\) such that
+              \begin{equation}
+                  \mathbf{1} \bullet v = v \bullet \mathbf{1} = v, \quad \forall v \in V.
+              \end{equation}
+    \end{itemize}
+\end{definition}
+Now let's look at more important class of algebras, which are not necessarily associative or commutative.
+\begin{definition}[Lie Algebra]
+    A \emph{Lie algebra} over a field \(K\) is an algebra \((V, +, \cdot, \comm{\star}{\star})\) such that the product operation \(\comm{\star}{\star}\), called the \emph{Lie bracket}, satisfies the following properties:
+    \begin{itemize}
+        \item \emph{Antisymmetry}: for all \(u, v \in V\),
+              \begin{equation}
+                  \comm{u}{v} = -\comm{v}{u}.
+              \end{equation}
+        \item \emph{Jacobi Identity}: for all \(u, v, w \in V\),
+              \begin{equation}
+                  \comm{u}{\comm{v}{w}} + \comm{v}{\comm{w}{u}} + \comm{w}{\comm{u}{v}} = 0.
+              \end{equation}
+    \end{itemize}
+    Note that the \(0\) here is the additive identity of the vector space \((V, +, \cdot)\).
+\end{definition}
+It is easy to see that for a non-trivial Lie bracket, the algebra cannot be unital.
+
+\begin{definition}[Derivation]
+    Let \((V, +, \cdot, \bullet)\) be an algebra over a field \(K\). A \emph{derivation} on \(V\) is a linear map \(D: V \to V\) such that it satisfies the Leibniz rule:
+    \begin{equation}
+        D(u \bullet v) = D(u) \bullet v + u \bullet D(v), \quad \forall u, v \in V.
+    \end{equation}
+\end{definition}
+\begin{example}[Derivation on Smooth Functions]
+    We have already seen that \((\SC^\infty(M), +, \cdot, \bullet)\) is an algebra over \(\R\). Fix a point \(p \in M\), take any tangent vector \(X_{\gamma, p} \in \ST_p M\). We know from the definition that \(X_{\gamma, p}: \SC^\infty(M) \to \R\) is a linear map. Now let's check if it satisfies the Leibniz rule, for all \(f, g \in \SC^\infty(M)\),
+    \begin{align*}
+        X_{\gamma, p}(f \bullet g) & = ((f \bullet g) \circ \gamma)'(0)                                                                \\
+                                   & = ((f \circ \gamma) \cdot (g \circ \gamma))'(0)                                                   \\
+                                   & = (f \circ \gamma)'(0) \cdot (g \circ \gamma)(0) + (f \circ \gamma)(0) \cdot (g \circ \gamma)'(0) \\
+                                   & = X_{\gamma, p}(f) \cdot g(p) + f(p) \cdot X_{\gamma, p}(g).
+    \end{align*}
+    So, \(X_{\gamma, p}\) satisfies the Leibniz rule. However, note that \(X_{\gamma, p}(f)\) is a real number, not a smooth function on \(M\). So, \(X_{\gamma, p}\) is not a derivation on the algebra \((\SC^\infty(M), +, \cdot, \bullet)\), usually called a derivation at point \(p\).
+
+    Now define a map
+    \begin{equation}
+        \begin{aligned}
+            D: \SC^\infty(M) & \to \SC^\infty(M), \\
+            f                & \mapsto D(f)
+        \end{aligned}
+    \end{equation}
+    where \(D(f)(p) := X_{\gamma, p}(f)\) for all \(p \in M\). Then \(D\) is a derivation on the algebra \((\SC^\infty(M), +, \cdot, \bullet)\).
+\end{example}
+
+\begin{example}
+    Let \(V\) be the vector space over \(\R\), define \(A := \End(V)\), we know that \((A, +, \cdot)\) is a vector space over \(\R\). Now define a product operation on \(A\) as follows:
+    \begin{equation}
+        \begin{aligned}
+            \comm{\star}{\star}: A \times A & \to A,                                                          \\
+            (\phi, \psi)                    & \mapsto \comm{\phi}{\psi} := \phi \circ \psi - \psi \circ \phi,
+        \end{aligned}
+    \end{equation}
+    where \(\circ\) is the composition of linear maps. It is easy to see that \(\comm{\star}{\star}\) is bilinear, and hence \((A, +, \cdot, \comm{\star}{\star})\) is an algebra over \(\R\).
+    Moreover, \(\comm{\star}{\star}\) is antisymmetric, and for all \(\phi, \psi, \rho \in A\),
+    \begin{equation}
+        \comm{\phi}{\comm{\psi}{\rho}} + \comm{\psi}{\comm{\rho}{\phi}} + \comm{\rho}{\comm{\phi}{\psi}} = 0,
+    \end{equation}
+    which is called the \emph{Jacobi identity}. So, \((A, +, \cdot, \comm{\star}{\star})\) is a Lie algebra over \(\R\).
+
+    Now fix \(H \in A\), define a map
+    \begin{equation}
+        \begin{aligned}
+            D_H : A & \to A,                               \\
+            \phi    & \mapsto D_H(\phi) := \comm{H}{\phi}.
+        \end{aligned}
+    \end{equation}
+    Let's check if \(D_H\) is a derivation, for all \(\phi, \psi \in A\),
+    \begin{align*}
+        D_H(\comm{\phi}{\psi}) & = \comm{H}{\comm{\phi}{\psi}}                                \\
+        \shortintertext{using the Jacobi identity, we have:}
+                               & = -\comm{\phi}{\comm{\psi}{H}} - \comm{\psi}{\comm{H}{\phi}} \\
+        \shortintertext{rearranging the terms and use antisymmetry, we get:}
+                               & = \comm{\comm{H}{\phi}}{\psi} + \comm{\phi}{\comm{H}{\psi}}  \\
+                               & = \comm{D_H(\phi)}{\psi} + \comm{\phi}{D_H(\psi)}.
+    \end{align*}
+    So, \(D_H\) is a derivation on the Lie algebra \((A, +, \cdot, \comm{\star}{\star})\).
+\end{example}
+With this example, we can see the algebraic structure of Poisson brackets in classical mechanics, and the commutator in quantum mechanics.
+\begin{remark}[Poisson Bracket]
+    In classical mechanics, the state of a system is represented by a point in phase space (which is a symplectic manifold), and observables are represented by smooth functions on the phase space. The Poisson bracket defines a Lie algebra structure on the space of observables. If we fix an observable \(H\) (the Hamiltonian), then the map \(D_H(f) := \acomm{H}{f}\) is a derivation on the Lie algebra of observables, which generates the time evolution of the system according to Hamilton's equations.
+\end{remark}
+\begin{remark}[Commutator in Quantum Mechanics]
+    Similarly, in quantum mechanics, the state of a system is represented by a vector in a Hilbert space, and observables are represented by self-adjoint operators on that space. The commutator defines a Lie algebra structure on the space of observables. If we fix an observable \(H\) (the Hamiltonian operator), then the map \(D_H(\phi) := \comm{H}{\phi}\) is a derivation on the Lie algebra of observables, which generates the time evolution of the system according to the Heisenberg equation of motion.
+\end{remark}
+
+\subsection{Basis and Dimension of Tangent Space}
+
+We have shown that for a smooth manifold \(M\) and a point \(p \in M\), the set of tangent vectors \(\ST_p M\) is a vector space over \(\R\). Now we will prove a very crucial theorem in differential geometry, which states that the dimension of the tangent space \(\ST_p M\) is equal to the dimension of the manifold \(M\).
+
+\begin{theorem}[Dimension of Tangent Space]
+    Let \(M\) be a smooth manifold of dimension \(d\), then for all \(p \in M\), the tangent vector space \(\ST_p M\) is a vector space over \(\R\) of dimension \(d\).
+    \begin{equation}
+        \dim(\ST_p M) = \dim(M) = d.
+    \end{equation}
+\end{theorem}
+Note that we have used the same symbol \(\dim\) for the dimension of a manifold and the dimension of a vector space, but they are different concepts. The dimension of a manifold is defined as the dimension of the Euclidean space that it locally resembles, while the dimension of a vector space is defined as the cardinality of its basis.
+\begin{proof}
+    Fix a point \(p \in M\), and fix a chart \((U, x)\) of \(M\) around \(p\).
+
+    To prove this theorem, we will construct a basis of \(\ST_p M\) consisting of \(d\) tangent vectors.
+
+    Define \(d\) curves \(\gamma_j: \R \to U\), \(j = 1, \ldots, d\), such that
+    \begin{equation}
+        \gamma_j(0) = p; \qquad \qquad \qquad \qquad x^i \circ \gamma_j(t) = \delta_j^i t, \quad \forall t \in \R,
+    \end{equation}
+    where \(x^i\) is the \(i\)-th coordinate function of chart \(x\), and \(\delta_j^i\) is the Kronecker delta. So pictorially, \(\gamma_j\) is a curve that moves along the \(j\)-th coordinate axis in the Euclidean space \(\R^d\) under the chart \(x\).
+
+    Name the corresponding tangent vectors at \(p\) as
+    \begin{equation}
+        e_j := X_{\gamma_j, p}, \quad j = 1, \ldots, d.
+    \end{equation}
+    Let's look at how \(e_j\) acts on a smooth function \(f \in \SC^\infty(M)\):
+    \begin{align*}
+        e_j(f) & = (f \circ \gamma_j)'(0) = \qty(f \circ \id_U \circ \gamma_j)'(0)            \\
+        \shortintertext{insert the identity map \(\id_U = x^{-1} \circ x\) on \(U\):}
+               & = \qty(f \circ x^{-1} \circ (x \circ \gamma_j))'(0)                          \\
+               & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \qty(x^i \circ \gamma_j)'(0) \\
+               & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \delta_j^i                   \\
+               & = \partial_j (f \circ x^{-1})(x(p)).
+    \end{align*}
+    Define a formal symbol as
+    \begin{equation}
+        \qty(\pdv{x^j})_p (f) := \partial_j (f \circ x^{-1})(x(p)), \quad \forall f \in \SC^\infty(M).
+    \end{equation}
+    Don't confuse this notation with the usual partial derivative of a function of several real variables.
+    \begin{align*}
+         & \qty(\partial_j)_p: \SC^\infty(\R^d, \R) \to \R, \\
+         & \qty(\pdv{x^j})_p: \SC^\infty(M) \to \R.
+    \end{align*}
+    So we have
+    \begin{equation}
+        e_j = \qty(\pdv{x^j})_p, \quad j = 1, \ldots, d.
+    \end{equation}
+    Define the set
+    \begin{equation}
+        \SB := \qty{e_1, \ldots, e_d} = \qty{\qty(\pdv{x^1})_p, \ldots, \qty(\pdv{x^d})_p}.
+    \end{equation}
+    We will show that \(\SB\) is a basis of \(\ST_p M\), \ie, for any \(X \in \ST_p M\), there exist unique real numbers \(X^1, \ldots, X^d\) such that
+    \begin{equation}
+        X = X^j e_j = X^j \qty(\pdv{x^j})_p. \qquad \text{(sum over \(j\) from \(1\) to \(d\) is implied)}
+    \end{equation}
+    \begin{enumerate}
+        \item \textbf{Spanning}: We know \(\exists \gamma: \R \to M\) such that \(X = X_{\gamma, p}\). For all \(f \in \SC^\infty(M)\),
+              \begin{align*}
+                  X(f) & = (f \circ \gamma)'(0) = \qty(f \circ \id_U \circ \gamma)'(0)              \\
+                  \shortintertext{insert the identity map \(\id_U = x^{-1} \circ x\) on \(U\):}
+                       & = \qty(f \circ x^{-1} \circ (x \circ \gamma))'(0)                          \\
+                       & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \qty(x^i \circ \gamma)'(0) \\
+                       & = (x^i \circ \gamma)'(0) \cdot \qty(\pdv{x^i})_p (f).
+              \end{align*}
+              Note that \(x^i \circ \gamma: \R \to \R\) is a smooth function of a real variable, so \((x^i \circ \gamma)'(0) \in \R\). Define
+              \begin{equation}
+                  X^i := (x^i \circ \gamma)'(0) \in \R, \quad i = 1, \ldots, d.
+              \end{equation}
+              So we have
+              \begin{equation}
+                  X(f) = X^i \qty(\pdv{x^i})_p (f) = X^i e_i(f), \quad \forall f \in \SC^\infty(M).
+              \end{equation}
+              Since this is true for all \(f \in \SC^\infty(M)\), we have
+              \begin{equation}
+                  X = X^i e_i.
+              \end{equation}
+              Thus, \(\ST_p M = \Span(\SB)\).
+
+              \begin{remark}[Smoothness of Chart map and co-ordinate functions]
+                  In general to talk about smooth of any function \(f: M \to \R\), we have used charts such that \(f\) is smooth if and only if \(f \circ x^{-1}: x(U) \subseteq \R^d \to \R\).
+
+                  So by this definition, the chart map \(x: U \to x(U) \subseteq \R^d\) is trivially smooth, since \(x \circ x^{-1} = \id_{x(U)}\) is smooth. Similarly, the coordinate functions \(x^i: U \to \R\) are also smooth, since \(x^i \circ x^{-1}: x(U) \subseteq \R^d \to \R\) is just the projection onto the \(i\)-th coordinate, which is a linear map and hence smooth.
+              \end{remark}
+
+        \item \textbf{Linear Independence}: Suppose that \(\SB\) is linearly dependent, then there exist real numbers \(X^1, \ldots, X^d\), not all zero, such that
+              \begin{equation}
+                  X^j e_j = 0.
+              \end{equation}
+              So for all \(f \in \SC^\infty(M)\), we have \(X^j e_j(f) = 0\). In particular, take \(f = x^i\), the \(i\)-th coordinate function of chart \(x\), then
+              \begin{align*}
+                  0 & = X^j e_j(x^i) = X^j \qty(\pdv{x^j})_p (x^i) = X^j \partial_j (x^i \circ x^{-1})(x(p)) \\
+                    & = X^j \partial_j (\proj^i) (x(p)) = X^j \delta_j^i = X^i.
+              \end{align*}
+              Since this is true for all \(i = 1, \ldots, d\), we have \(X^1 = X^2 = \ldots = X^d = 0\), which contradicts our assumption. Hence, \(\SB\) is linearly independent.
+    \end{enumerate}
+    Therefore, \(\SB\) is a basis of \(\ST_p M\), and \(\dim(\ST_p M) = d\).
+\end{proof}
+Terminology: Let \(X \in \ST_p M\), then we have
+\begin{equation}
+    X = X^j \qty(\pdv{x^j})_p,
+\end{equation}
+where \(X^j = X(x^j) = (x^j \circ \gamma)'(0)\) are called the \emph{components} of \(X\) with respect to the basis \(\SB\) induced by the chart \((U, x)\).
+
+\begin{remark}[Dependence on Chart Choice]
+    The basis \(\SB\) of \(\ST_p M\) constructed above depends on the choice of chart \((U, x)\). If we choose another chart \((V, y)\) around \(p\), then the transition map \(y \circ x^{-1}: x(U \cap V) \to y(U \cap V)\) is a diffeomorphism between open subsets of \(\R^d\). The new basis induced by chart \((V, y)\) will be
+    \begin{equation}
+        \tilde{\SB} = \qty{\qty(\pdv{y^1})_p, \ldots, \qty(\pdv{y^d})_p}.
+    \end{equation}
+    The relationship between the two bases can be expressed using the Jacobian matrix of the transition map. Specifically, for each \(j\),
+    \begin{equation}
+        \qty(\pdv{y^j})_p = \qty[\pdv{y^i}{x^j} \qty(x(p))] \qty(\pdv{x^i})_p,
+    \end{equation}
+    where \(\pdv{y^i}{x^j}(x(p))\) is the \((i,j)\)-th entry of the Jacobian matrix of the transition map \(y \circ x^{-1}\) evaluated at \(x(p)\). This shows how the basis of the tangent space transforms under a change of coordinates.
+\end{remark}
+Usually in physics, when we talk about position vector, we mean the coordinates functions \(x^i\) in some chart. Say we go to a different chart \(y\) (coordinate transformation) which has high non-linear dependence on \(x\), then the position vector in the new chart \(y\) is not simply related to the old position vector in chart \(x\) by a linear transformation, but rather by a non-linear transformation. However, the tangent vectors (velocity vectors) transform linearly under the change of coordinates, as shown above. So the notion of position vector, and its transformation is ill-defined in general.
+
+This becomes very important when we study general relativity, where the spacetime is modeled as a 4-dimensional Lorentzian manifold. In some older physics literature, you may find the term position vector being used for the coordinates \(x^\mu\), which is not a well-defined concept.
