@@ -288,16 +288,16 @@ Note that we have used the same symbol \(\dim\) for the dimension of a manifold 
 
     Name the corresponding tangent vectors at \(p\) as
     \begin{equation}
-        e_j := X_{\gamma_j, p}, \quad j = 1, \ldots, d.
+        \vb{e}_j := X_{\gamma_j, p}, \quad j = 1, \ldots, d.
     \end{equation}
-    Let's look at how \(e_j\) acts on a smooth function \(f \in \SC^\infty(M)\):
+    Let's look at how \(\vb{e}_j\) acts on a smooth function \(f \in \SC^\infty(M)\):
     \begin{align*}
-        e_j(f) & = (f \circ \gamma_j)'(0) = \qty(f \circ \id_U \circ \gamma_j)'(0)            \\
+        \vb{e}_j(f) & = (f \circ \gamma_j)'(0) = \qty(f \circ \id_U \circ \gamma_j)'(0)            \\
         \shortintertext{insert the identity map \(\id_U = x^{-1} \circ x\) on \(U\):}
-               & = \qty(f \circ x^{-1} \circ (x \circ \gamma_j))'(0)                          \\
-               & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \qty(x^i \circ \gamma_j)'(0) \\
-               & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \delta_j^i                   \\
-               & = \partial_j (f \circ x^{-1})(x(p)).
+                    & = \qty(f \circ x^{-1} \circ (x \circ \gamma_j))'(0)                          \\
+                    & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \qty(x^i \circ \gamma_j)'(0) \\
+                    & = \qty[\partial_i (f \circ x^{-1})(x(p))] \cdot \delta_j^i                   \\
+                    & = \partial_j (f \circ x^{-1})(x(p)).
     \end{align*}
     Define a formal symbol as
     \begin{equation}
@@ -310,15 +310,15 @@ Note that we have used the same symbol \(\dim\) for the dimension of a manifold 
     \end{align*}
     So we have
     \begin{equation}
-        e_j = \qty(\pdv{x^j})_p, \quad j = 1, \ldots, d.
+        \vb{e}_j = \qty(\pdv{x^j})_p, \quad j = 1, \ldots, d.
     \end{equation}
     Define the set
     \begin{equation}
-        \SB := \qty{e_1, \ldots, e_d} = \qty{\qty(\pdv{x^1})_p, \ldots, \qty(\pdv{x^d})_p}.
+        \SB := \qty{\vb{e}_1, \ldots, \vb{e}_d} = \qty{\qty(\pdv{x^1})_p, \ldots, \qty(\pdv{x^d})_p}.
     \end{equation}
     We will show that \(\SB\) is a basis of \(\ST_p M\), \ie, for any \(X \in \ST_p M\), there exist unique real numbers \(X^1, \ldots, X^d\) such that
     \begin{equation}
-        X = X^j e_j = X^j \qty(\pdv{x^j})_p. \qquad \text{(sum over \(j\) from \(1\) to \(d\) is implied)}
+        X = X^j \vb{e}_j = X^j \qty(\pdv{x^j})_p. \qquad \text{(sum over \(j\) from \(1\) to \(d\) is implied)}
     \end{equation}
     \begin{enumerate}
         \item \textbf{Spanning}: We know \(\exists \gamma: \R \to M\) such that \(X = X_{\gamma, p}\). For all \(f \in \SC^\infty(M)\),
@@ -335,11 +335,11 @@ Note that we have used the same symbol \(\dim\) for the dimension of a manifold 
               \end{equation}
               So we have
               \begin{equation}
-                  X(f) = X^i \qty(\pdv{x^i})_p (f) = X^i e_i(f), \quad \forall f \in \SC^\infty(M).
+                  X(f) = X^i \qty(\pdv{x^i})_p (f) = X^i \vb{e}_i(f), \quad \forall f \in \SC^\infty(M).
               \end{equation}
               Since this is true for all \(f \in \SC^\infty(M)\), we have
               \begin{equation}
-                  X = X^i e_i.
+                  X = X^i \vb{e}_i.
               \end{equation}
               Thus, \(\ST_p M = \Span(\SB)\).
 
@@ -351,11 +351,11 @@ Note that we have used the same symbol \(\dim\) for the dimension of a manifold 
 
         \item \textbf{Linear Independence}: Suppose that \(\SB\) is linearly dependent, then there exist real numbers \(X^1, \ldots, X^d\), not all zero, such that
               \begin{equation}
-                  X^j e_j = 0.
+                  X^j \vb{e}_j = 0.
               \end{equation}
-              So for all \(f \in \SC^\infty(M)\), we have \(X^j e_j(f) = 0\). In particular, take \(f = x^i\), the \(i\)-th coordinate function of chart \(x\), then
+              So for all \(f \in \SC^\infty(M)\), we have \(X^j \vb{e}_j(f) = 0\). In particular, take \(f = x^i\), the \(i\)-th coordinate function of chart \(x\), then
               \begin{align*}
-                  0 & = X^j e_j(x^i) = X^j \qty(\pdv{x^j})_p (x^i) = X^j \partial_j (x^i \circ x^{-1})(x(p)) \\
+                  0 & = X^j \vb{e}_j(x^i) = X^j \qty(\pdv{x^j})_p (x^i) = X^j \partial_j (x^i \circ x^{-1})(x(p)) \\
                     & = X^j \partial_j (\proj^i) (x(p)) = X^j \delta_j^i = X^i.
               \end{align*}
               Since this is true for all \(i = 1, \ldots, d\), we have \(X^1 = X^2 = \ldots = X^d = 0\), which contradicts our assumption. Hence, \(\SB\) is linearly independent.
@@ -368,17 +368,91 @@ Terminology: Let \(X \in \ST_p M\), then we have
 \end{equation}
 where \(X^j = X(x^j) = (x^j \circ \gamma)'(0)\) are called the \emph{components} of \(X\) with respect to the basis \(\SB\) induced by the chart \((U, x)\).
 
-\begin{remark}[Dependence on Chart Choice]
-    The basis \(\SB\) of \(\ST_p M\) constructed above depends on the choice of chart \((U, x)\). If we choose another chart \((V, y)\) around \(p\), then the transition map \(y \circ x^{-1}: x(U \cap V) \to y(U \cap V)\) is a diffeomorphism between open subsets of \(\R^d\). The new basis induced by chart \((V, y)\) will be
-    \begin{equation}
-        \tilde{\SB} = \qty{\qty(\pdv{y^1})_p, \ldots, \qty(\pdv{y^d})_p}.
-    \end{equation}
-    The relationship between the two bases can be expressed using the Jacobian matrix of the transition map. Specifically, for each \(j\),
-    \begin{equation}
-        \qty(\pdv{y^j})_p = \qty[\pdv{y^i}{x^j} \qty(x(p))] \qty(\pdv{x^i})_p,
-    \end{equation}
-    where \(\pdv{y^i}{x^j}(x(p))\) is the \((i,j)\)-th entry of the Jacobian matrix of the transition map \(y \circ x^{-1}\) evaluated at \(x(p)\). This shows how the basis of the tangent space transforms under a change of coordinates.
-\end{remark}
-Usually in physics, when we talk about position vector, we mean the coordinates functions \(x^i\) in some chart. Say we go to a different chart \(y\) (coordinate transformation) which has high non-linear dependence on \(x\), then the position vector in the new chart \(y\) is not simply related to the old position vector in chart \(x\) by a linear transformation, but rather by a non-linear transformation. However, the tangent vectors (velocity vectors) transform linearly under the change of coordinates, as shown above. So the notion of position vector, and its transformation is ill-defined in general.
+\subsection{Change of Basis and Coordinate Transformation}
 
-This becomes very important when we study general relativity, where the spacetime is modeled as a 4-dimensional Lorentzian manifold. In some older physics literature, you may find the term position vector being used for the coordinates \(x^\mu\), which is not a well-defined concept.
+In the construction of the basis \(\SB\) of \(\ST_p M\), we have used a chart \((U, x)\) around \(p\). Now suppose we have another chart \((V', y)\) around \(p\), we can similarly construct another basis of \(\ST_p M\) as
+\begin{equation}
+    \tilde{\SB} := \qty{\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_d} = \qty{\qty(\pdv{y^1})_p, \ldots, \qty(\pdv{y^d})_p}.
+\end{equation}
+For simiplicity, define \(V := U \cap V'\), which is also a chart neighborhood of \(p\), now we have two charts \((V, x)\) and \((V, y)\) around \(p\).
+
+These two charts induce two different bases \(\SB\) and \(\tilde{\SB}\) of the same vector space \(\ST_p M\), so there must exist a change of basis map between them \(A, B \in \End(\ST_p M)\) such that
+\begin{align} \label{eq:change-of-basis-tangent-space}
+    \tilde{\vb{e}}_j & = \tensor{A}{^i_j} \vb{e}_i, & \vb{e}_j & = \tensor{B}{^i_j} \tilde{\vb{e}}_i,
+\end{align}
+where \(\tensor{A}{^i_j}, \tensor{B}{^i_j} \in \R\) are the components of the linear maps \(A\) and \(B\) with respect to the basis \(\SB\). Since change of basis maps are invertible, we have the following relation
+\begin{equation}
+    \tensor{A}{^i_j} \tensor{B}{^k_i} = \tensor{\delta}{^k_j} = \tensor{B}{^i_j} \tensor{A}{^k_i}.
+\end{equation}
+Now let's find the explicit form of the components \(\tensor{A}{^i_j}\) and \(\tensor{B}{^i_j}\). Take \(x^k\), the \(k\)-th coordinate function of chart \(x\), and apply \(\tilde{\vb{e}}_j\) on it, we have
+\begin{align*}
+    \tilde{\vb{e}}_j(x^k)               & = \tensor{A}{^i_j} \vb{e}_i(x^k)                       \\
+    \qty(\pdv{y^j})_p (x^k)             & = \tensor{A}{^i_j} \qty(\pdv{x^i})_p (x^k)             \\
+    \partial_j (x^k \circ y^{-1})(y(p)) & = \tensor{A}{^i_j} \partial_i (x^k \circ x^{-1})(x(p)) \\
+    \partial_j (x^k \circ y^{-1})(y(p)) & = \tensor{A}{^i_j} \delta_i^k                          \\
+    \partial_j (x^k \circ y^{-1})(y(p)) & = \tensor{A}{^k_j}.
+\end{align*}
+So we have
+\begin{equation}
+    \tensor{A}{^k_j} = \partial_j (x^k \circ y^{-1})(y(p)).
+\end{equation}
+Similarly, take \(y^k\), the \(k\)-th coordinate function of chart \(y\), and apply \(\vb{e}_j\) on it, we have
+\begin{equation}
+    \tensor{B}{^k_j} = \partial_j (y^k \circ x^{-1})(x(p)).
+\end{equation}
+With this let's look at the transformation of components of a tangent vector \(X \in \ST_p M\) under change of basis. We have
+\begin{equation}
+    X = X^j \vb{e}_j = \tilde{X}^j \tilde{\vb{e}}_j,
+\end{equation}
+where \(X^j = X(x^j)\) and \(\tilde{X}^j = X(y^j)\) are the components of \(X\) with respect to the bases \(\SB\) and \(\tilde{\SB}\) respectively. Using the change of basis relation \eqref{eq:change-of-basis-tangent-space}, we have
+\begin{equation*}
+    X = X^j \vb{e}_j = X^j \tensor{B}{^i_j} \tilde{\vb{e}}_i = \tilde{X}^i \tilde{\vb{e}}_i.
+\end{equation*}
+Since \(\tilde{\SB}\) is a basis, we have
+\begin{equation}
+    \tilde{X}^i = X^j \tensor{B}{^i_j} = X^j \partial_j (y^i \circ x^{-1})(x(p)).
+\end{equation}
+
+Now, let's write this component of change of basis in a more familiar form, \ie, the Jacobian matrix of the coordinate transformation. Note that the transition map between the two charts \((V, x)\) and \((V, y)\) is given by
+\begin{equation}
+    y^i \circ x^{-1}: x(V) \subseteq \R^d \to \R.
+\end{equation}
+Abusing the notation a bit, for now call \(y^i \circ x^{-1}\) as \(y^i\), so \(y^i\) is a real-valued smooth function of \(d\) real variables. Since we are only interested in a single point \(p \in V\), we can think of \(x^j\) as independent variables for the function \(y^i\). So we have
+\begin{equation}
+    y^i = y^i(x^1, \ldots, x^d).
+\end{equation}
+With this new interpretation, we have
+\begin{equation}
+    \partial_j (y^i \circ x^{-1})(x(p)) = \pdv{y^i}{x^j} \qty(x(p)).
+\end{equation}
+Similarly, we can also write
+\begin{equation}
+    \partial_j (x^i \circ y^{-1})(y(p)) = \pdv{x^i}{y^j} \qty(y(p)).
+\end{equation}
+So the change of basis relation \eqref{eq:change-of-basis-tangent-space} can be rewritten as
+\begin{align}
+    \tilde{\vb{e}}_j & = \pdv{y^i}{x^j} \qty(x(p)) \vb{e}_i, & \vb{e}_j & = \pdv{x^i}{y^j} \qty(y(p)) \tilde{\vb{e}}_i,
+\end{align}
+and the transformation of components of a tangent vector \(X \in \ST_p M\) under change of basis can be rewritten as
+\begin{equation} \label{eq:transformation-of-components-tangent-vector}
+    \tilde{X}^i = X^j \pdv{y^i}{x^j} \qty(x(p)).
+\end{equation}
+\begin{remark}[Jacobian Matrix]
+    Let \(f: \R^m \to \R^n\) be a smooth map, then the Jacobian matrix of \(f\) at a point \(a \in \R^m\) is defined as the \(n \times m\) matrix whose \((i, j)\)-th entry is given by
+    \begin{equation}
+        \pdv{f^i}{x^j} \qty(a),
+    \end{equation}
+    where \(f^i\) is the \(i\)-th component function of \(f\), and \(x^j\) is the \(j\)-th coordinate of \(\R^m\).
+\end{remark}
+
+In older literature, you may see that the transformation law (see \eqref{eq:transformation-of-components-tangent-vector}) is being used to define a `vector'. It goes like this: an array of \(d\) real numbers \((X^1, \ldots, X^d)\) is called a vector if under a change of coordinates \(x \to y = y(x)\), the components transform as
+\begin{equation}
+    \tilde{X}^i = X^j \pdv{y^i}{x^j}.
+\end{equation}
+This definition is not wrong, but it is not very useful, since it does not tell you what a vector actually is.
+
+\subsubsection{Position Vector in Physics}
+
+In physics, we often talk about the position vector of a point in space. From all this discussion, only coordinate functions \(x^i\) looks like a good candidate for a position vector. However, this does not make sense, as we have seen that vectors have a specific transformation law under change of coordinates. Let's consider a chart \((U, y)\) such that \(y\) is highly non-linear, for example, polar coordinates in \(\R^2\). So the transformation of components of \(y^i\) under change of basis will not be linear, and hence \(y^i\) cannot be a vector.
+
+This shows that the concept of position vector in physics is not very well-defined in the context of differential geometry. In fact, the position vector is not a vector in the sense of differential geometry, but rather an image of a point on a manifold under a chart map.
