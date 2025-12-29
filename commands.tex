@@ -1,0 +1,86 @@
+%% New Commands %%
+\usepackage{xparse}
+
+\NewDocumentCommand{\lecture}{om}{%
+
+	\makeatletter
+	\addtocontents{toc}{\def\string\@dotsep{1000}}
+	\makeatother
+
+	\noindent\rule[0.35em]{0.4\textwidth}{1pt} \hfill \fbox{\large\textsc{Lecture #2}} \hfill \rule[0.35em]{0.4\textwidth}{1pt}
+	\IfNoValueTF{#1}
+	{
+		\addcontentsline{toc}{section}{%
+			% \protect\newline{}%
+			\sffamily{\bfseries Lecture #2}
+		}
+	}
+	{
+		\addcontentsline{toc}{section}{%
+			% \protect\newline{}%
+			\sffamily{\bfseries Lecture #2:} #1
+		}
+	}
+
+	\makeatletter
+	\addtocontents{toc}{\def\string\@dotsep{4.5}}  % 4.5 might be a different value in your class
+	\makeatother
+}
+
+% Ch01 - Axiomatic Set Theory %
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lxor}{\veebar}
+\DeclareMathOperator{\lnand}{\uparrow}
+\usepackage{stmaryrd}
+\DeclareMathOperator{\contra}{\lightning}
+% \DeclareMathOperator{\im}{im} % already defined as \img
+\newcommand{\0}{\emptyset}
+\DeclareMathOperator{\preimg}{preim}
+\DeclareMathAlphabet{\euscr}{U}{eus}{m}{n}
+\DeclareMathOperator{\powerset}{\euscr{P}}
+\DeclareMathOperator{\setIso}{\cong_{\text{set}}}
+\usetikzlibrary{cd}
+\renewcommand{\nsim}{\not\sim}
+\newcommand{\into}{\hookrightarrow}
+
+% Ch02 - Topological Spaces %
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\Ostd}{\mathcal{O}_{\text{std.}}}
+\newcommand{\Oq}[1]{\mathcal{O}_{\faktor{#1}{\sim}}}
+\DeclareMathOperator{\topIso}{\cong_{\text{top.}}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dcup}{\dot{\cup}}
+\DeclareMathOperator{\grpIso}{\cong_{\text{grp}}}
+
+% Ch03 - Topological Manifolds and Bundles %
+\usetikzlibrary{decorations.markings}
+\DeclareMathOperator{\bdlIso}{\cong_{\text{bdl}}}
+\DeclareMathOperator{\proj}{proj}
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\I}{\mathrm{i}}
+
+% Ch04 - Differentiable Manifolds %
+\usepackage{bbding}
+\newcommand{\flower}{{\scalebox{0.75}{\FiveFlowerOpen} }}
+\DeclareMathOperator{\diffIso}{\cong_{\text{diff}}}
+\DeclareMathOperator{\vecIso}{\cong_{\text{vec}}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareMathSymbol{\diamondplus}{\mathbin}{MnSyC}{"7C}
+\DeclareMathSymbol{\diamonddot}{\mathbin}{MnSyC}{"7E}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\usepackage{tensor}
+\DeclareMathOperator{\hateq}{\hat{=}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\vol}{vol}
+
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+	<-6>  MnSymbolC5
+	<6-7>  MnSymbolC6
+	<7-8>  MnSymbolC7
+	<8-9>  MnSymbolC8
+	<9-10> MnSymbolC9
+	<10-12> MnSymbolC10
+	<12->   MnSymbolC12}{}

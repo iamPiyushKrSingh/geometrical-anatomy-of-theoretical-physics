@@ -1,14 +1,7 @@
-*.bbl
-*.bcf
 .vscode/
-*.toc
+.zed/
+build_tex/
+
 *.synctex.gz
-*.aux
-*.log
-*.out
-*.run.xml
-*.fls
-*.blg
-*.fdb_latexmk
-*.lol
+
 Lecture Notes.pdf

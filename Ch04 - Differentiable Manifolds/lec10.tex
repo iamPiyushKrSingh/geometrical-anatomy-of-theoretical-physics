@@ -1,0 +1,73 @@
+\lecture[Construction of Tangent Bundle]{10}
+
+\section{Cotangent Spaces and Gradient}
+
+\begin{definition}[Cotangent Space]
+	Let \(M\) be a smooth manifold and \(p \in M\). The \emph{cotangent space} at \(p\), denoted \(\ST_p^* M\), is the dual space of the tangent space \(\ST_p M\):
+	\begin{equation}
+		\ST_p^* M := (\ST_p M)^*.
+	\end{equation}
+\end{definition}
+Since the manifold is finite-dimensional\footnotemark, the tangent space \(\ST_p M\) is a finite-dimensional vector space. Therefore, its dual space \(\ST_p^* M\) is also a finite-dimensional vector space of the same dimension, moreover, we have the isomorphism
+\begin{equation}
+	\ST_p M \vecIso \ST_p^* M.
+\end{equation}
+\footnotetext{The way we have defined manifolds in this course, they are finite-dimensional by default as we always map them to \(\R^d\). For infinite-dimensional manifolds, we need to more sophisticated tools like Banach and Hilbert spaces, which are beyond the scope of this course.}%
+However, this isomorphism is not canonical, \ie, there is no natural way to identify vectors in \(\ST_p M\) with covectors in \(\ST_p^* M\) without introducing some additional structure on these tangent and cotangent spaces.
+
+Now, using these vector and dual vector spaces, we can define tensor spaces at a point \(p \in M\),
+\begin{equation}
+	\mathsf{T}^r_s(\ST_p M) := \qty{t : \underbrace{\ST_p^* M \times \dots \times \ST_p^* M}_{r\text{ times}} \times \underbrace{\ST_p M \times \dots \times \ST_p M}_{s\text{ times}} \to \R \mid t \text{ is multilinear}}.
+\end{equation}
+This is set (even vector space) of all \((r,s)\)-type tensors at the point \(p\).
+
+\begin{definition}[Gradient]
+	Let \(f \in \SC^\infty(M)\). Then at each point \(p \in M\), we have a linear map
+	\begin{equation}
+		\begin{aligned}
+			\dd_p : \SC^\infty(M) & \to \ST_p^* M    \\
+			f                     & \mapsto \dd_p f,
+		\end{aligned}
+	\end{equation}
+	where \(\dd_p f\) is defined by
+	\begin{equation}
+		\dd_p f (X) := X(f), \quad \forall X \in \ST_p M.
+	\end{equation}
+	The linear map \(\dd_p\) is called the \emph{gradient operator} at the point \(p\), and \(\dd_p f\) is called the \emph{gradient} of the function \(f\) at the point \(p\).
+\end{definition}
+Observe that the gradient \(\dd_p f\) is a covector at the point \(p\) not a vector. Also, the gradient of a function \(f\) at a point \(p\) is ``\emph{orthogonal}'' to the level set of \(f\) passing through the point \(p\), \ie, let a tangent vector \(X \in \ST_p M\) be tangent to the level set\footnotemark\ of \(f\) at the point \(p\), then we have
+\begin{equation*}
+	\dd_p f (X) = X(f) = 0,
+\end{equation*}
+since the function \(f\) is constant on its level set. Thus, the gradient \(\dd_p f\) annihilates all tangent vectors to the level set of \(f\) at the point \(p\).
+\footnotetext{The level set of a function \(f : M \to \R\) corresponding to a value \(c \in \R\) is defined as the set \(\mathfrak{L}_c(f) := \qty{p \in M \mid f(p) = c}\).}%
+
+\subsection{Basis of Cotangent Space}
+
+We have defined the gradient operator at a point \(p \in M\), using which we can construct a basis for the cotangent space \(\ST_p^* M\).
+\begin{theorem}[Basis of Cotangent Space]
+	Let \(M\) be a smooth manifold and \(p \in M\). Let \((U, x)\) be a chart around the point \(p\). Then the set
+	\begin{equation}
+		\qty{\dd_p x^1, \dd_p x^2, \dots, \dd_p x^{\dim M}}
+	\end{equation}
+	where \(x^i\) is the \(i\)-th component function of the chart \(x\), forms a basis of the cotangent space \(\ST_p^* M\).
+\end{theorem}
+\begin{proof}
+	Since the dimension of the cotangent space \(\ST_p^* M\) is equal to the dimension of the manifold \(M\), it is sufficient to show that the set \(\qty{\dd_p x^i}_{i = 1}^{\dim M}\) is linearly independent. Suppose not the set is linearly dependent, then there exist real numbers \(\omega_i \in \R\), not all zero, such that
+	\begin{equation*}
+		\omega_i \dd_p x^i = 0. \qquad (\text{sum over } i \text{ from } 1 \text{ to } \dim M \text{ is implied}).
+	\end{equation*}
+	So for any tangent vector \(X \in \ST_p M\), we have \(\omega_i \dd_p x^i (X) = 0\). In particular, let us choose \(X = \qty(\pdv{x^j})_p\), the \(j\)-th basis vector of the tangent space \(\ST_p M\) induced by the chart \((U, x)\). Then we have
+	\begin{align*}
+		0 & = \omega_i \dd_p x^i \qty(\qty(\pdv{x^j})_p) = \omega_i \qty(\pdv{x^j})_p (x^i) = \omega_i \partial_j (x^i \circ x\inv) (x(p)) \\
+		  & = \omega_i \partial_j (\proj^i) (x(p)) = \omega_i \delta^i_j = \omega_j.
+	\end{align*}
+	Here, \(\proj^i : \R^{\dim M} \to \R\) is the projection map onto the \(i\)-th coordinate. Since \(j\) was arbitrary, we have \(\omega_j = 0\) for all \(j = 1, 2, \dots, \dim M\), which contradicts our assumption that not all \(\omega_i\) are zero. Thus, the set \(\qty{\dd_p x^i}_{i = 1}^{\dim M}\) is linearly independent and hence forms a basis of the cotangent space \(\ST_p^* M\).
+\end{proof}
+Moreover, we have the following duality relation between the basis of the tangent space and the basis of the cotangent space induced by the same chart \((U, x)\):
+\begin{equation}
+	\dd_p x^i \qty(\qty(\pdv{x^j})_p) = \delta^i_j.
+\end{equation}
+Thus, the basis \(\qty{\dd_p x^i}_{i = 1}^{\dim M}\) is \emph{dual basis} to the basis \(\qty{\qty(\pdv{x^i})_p}_{i = 1}^{\dim M}\).
+
+\section{Push-Forward and Pull-Back}
