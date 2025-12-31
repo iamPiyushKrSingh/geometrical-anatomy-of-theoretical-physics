@@ -40,12 +40,12 @@
 
 \def\maincolor{BlueViolet} % one color only, no halves and stuff
 \newcommand{\changemaincolor}[1]{
-    \def\maincolor{#1}
+	\def\maincolor{#1}
 }
 
 \def\secondcolor{BlueViolet} % one color only, no halves and stuff
 \newcommand{\changesecondcolor}[1]{
-    \def\secondcolor{#1}
+	\def\secondcolor{#1}
 }
 
 %% Fake Options %%
@@ -133,43 +133,43 @@
 
 %% Linear Algebra Specific %%
 \ifsinghlinear
-    \DeclareMathOperator{\GL}{GL} % General linear group
-    \DeclareMathOperator{\SL}{SL} % Special linear group
-    \DeclareMathOperator{\img}{im} % Image
-    \DeclareMathOperator{\Img}{Im} % Image
-    \DeclareMathOperator{\Ker}{Ker} % Kernel
-    % \DeclareMathOperator{\ker}{ker} % Kernel
-    % \DeclareMathOperator{\rank}{rank}
-    \DeclareMathOperator{\nullity}{nullity}
-    \DeclareMathOperator{\Spec}{Spec} % spectrum
-    \DeclareMathOperator{\Span}{span} % span
-    % \DeclareMathOperator{\Tr}{Tr} % trace
-    \DeclareMathOperator{\col}{col} % Column Space
-    \DeclareMathOperator{\row}{row} % Row Space
-    \DeclareMathOperator{\rowrank}{row~rank} % Row Rank
-    \DeclareMathOperator{\colrank}{col~rank} % Col Rank
+	\DeclareMathOperator{\GL}{GL} % General linear group
+	\DeclareMathOperator{\SL}{SL} % Special linear group
+	\DeclareMathOperator{\im}{im} % Image
+	\DeclareMathOperator{\Img}{Im} % Image
+	\DeclareMathOperator{\Ker}{Ker} % Kernel
+	% \DeclareMathOperator{\ker}{ker} % Kernel
+	% \DeclareMathOperator{\rank}{rank}
+	\DeclareMathOperator{\nullity}{nullity}
+	\DeclareMathOperator{\Spec}{Spec} % spectrum
+	\DeclareMathOperator{\Span}{span} % span
+	% \DeclareMathOperator{\Tr}{Tr} % trace
+	\DeclareMathOperator{\col}{col} % Column Space
+	\DeclareMathOperator{\row}{row} % Row Space
+	\DeclareMathOperator{\rowrank}{row~rank} % Row Rank
+	\DeclareMathOperator{\colrank}{col~rank} % Col Rank
 
-    % \renewcommand{\I}[1]{\mathbb{I}_{#1}}
-    \newcommandx{\M}[2][2 = {}]{\mathcal{M}_{#1 #2}}
+	% \renewcommand{\I}[1]{\mathbb{I}_{#1}}
+	\newcommandx{\M}[2][2 = {}]{\mathcal{M}_{#1 #2}}
 
-    \DeclarePairedDelimiter\bilinear{\langle}{\rangle}
-    \newcommand{\trans}{^\top}
-    \newcommand{\herm}{^\dagger}
-    % \DeclarePairedDelimiter\norm{||}{||}
+	\DeclarePairedDelimiter\bilinear{\langle}{\rangle}
+	\newcommand{\trans}{^\top}
+	\newcommand{\herm}{^\dagger}
+	% \DeclarePairedDelimiter\norm{||}{||}
 \fi
 
 %% Hyperref %%
 
 \ifsinghhref
-    \usepackage{hyperref}
-    \hypersetup{
-        colorlinks=true,
-        urlcolor=RubineRed,
-        linkcolor=RoyalBlue!90!black,
-        citecolor=retrocyan,
-        breaklinks=true
-    }
-    \usepackage[nameinlink]{cleveref}
+	\usepackage{hyperref}
+	\hypersetup{
+		colorlinks=true,
+		urlcolor=RubineRed,
+		linkcolor=RoyalBlue!90!black,
+		citecolor=retrocyan,
+		breaklinks=true
+	}
+	\usepackage[nameinlink]{cleveref}
 \fi
 
 %% DECALRING THEOREMS %%
@@ -246,37 +246,37 @@
 %% MD BOXES %%
 
 \mdfdefinestyle{mdbluebox}{
-    backgroundcolor=retrolavender!55!white,
-    nobreak=true,
-    innertopmargin=5pt,
-    innerleftmargin=7pt,
-    innerrightmargin=7pt,
-    linecolor=retroblue,
-    linewidth=1pt,
-    topline=true,
-    bottomline=true,
-    rightline=true,
-    leftline=true
+	backgroundcolor=retrolavender!55!white,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=retroblue,
+	linewidth=1pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdbluebox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={\normalfont},
-    notefont={\sffamily\bfseries},
-    headindent={0pt},
-    headfont={\color{retroblue!90!black}\sffamily\bfseries},
-    headpunct={\\},
-    postheadspace={0pt},
-    notebraces={(}{)},
-    % headformat=\NAME\ \NUMBER\ \NOTE
+	mdframed={style=mdbluebox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={\normalfont},
+	notefont={\sffamily\bfseries},
+	headindent={0pt},
+	headfont={\color{retroblue!90!black}\sffamily\bfseries},
+	headpunct={\\},
+	postheadspace={0pt},
+	notebraces={(}{)},
+	% headformat=\NAME\ \NUMBER\ \NOTE
 ]{singhthm}
 
 \ifsinghsecthm
-    \declaretheorem[style=singhthm, name=Theorem, numberwithin=chapter]{theorem}
+	\declaretheorem[style=singhthm, name=Theorem, numberwithin=chapter]{theorem}
 \else
-    \declaretheorem[style=singhthm, name=Theorem]{theorem}
+	\declaretheorem[style=singhthm, name=Theorem]{theorem}
 \fi
 \declaretheorem[style=singhthm, name=Theorem, numbered=no]{theorem*}
 
@@ -292,30 +292,30 @@
 %% Lemma & Shit %%
 
 \mdfdefinestyle{mdlemmabox}{
-    backgroundcolor=SkyBlue!15,
-    nobreak=false,
-    innerleftmargin=5pt,
-    innerrightmargin=5pt,
-    linecolor=Cyan!50!retrolazuli,
-    linewidth=0.3mm,
-    topline=true,
-    bottomline=true,
-    rightline=true,
-    leftline=true
+	backgroundcolor=SkyBlue!15,
+	nobreak=false,
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	linecolor=Cyan!50!retrolazuli,
+	linewidth=0.3mm,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdlemmabox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={},
-    notefont={},
-    headindent={0pt},
-    headfont={\color{Cyan!50!retrolazuli}\sffamily\bfseries},
-    headpunct={\\},
-    postheadspace={0pt},
-    notebraces={(}{)},
-    % headformat=\NAME\ \NUMBER\ \NOTE
+	mdframed={style=mdlemmabox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={},
+	notefont={},
+	headindent={0pt},
+	headfont={\color{Cyan!50!retrolazuli}\sffamily\bfseries},
+	headpunct={\\},
+	postheadspace={0pt},
+	notebraces={(}{)},
+	% headformat=\NAME\ \NUMBER\ \NOTE
 ]{singhlemma}
 
 \declaretheorem[style=singhlemma, name=Lemma, sibling=theorem]{lemma}
@@ -330,10 +330,10 @@
 %% Axiom %%
 
 \declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    bodyfont=\itshape,
-    headpunct={:\ },
-    postheadspace={0pt},
+	headfont=\sffamily\bfseries,
+	bodyfont=\itshape,
+	headpunct={:\ },
+	postheadspace={0pt},
 ]{axiombox}
 
 \declaretheorem[style=axiombox, name=Axiom, sibling=theorem]{axiom}
@@ -344,31 +344,31 @@
 %% Definition %%
 
 \mdfdefinestyle{mdpinkbox}{
-    % backgroundcolor=retropink!20!white,
-    nobreak=true,
-    innertopmargin=5pt,
-    innerleftmargin=7pt,
-    innerrightmargin=7pt,
-    linecolor=retropink,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    leftline=true
+	% backgroundcolor=retropink!20!white,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=retropink,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdpinkbox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={\normalfont\itshape},
-    headindent={0pt},
-    notefont={\sffamily\bfseries},
-    headfont={\color{retropink}\sffamily\bfseries},
-    headpunct={:\\},
-    postheadspace={0pt},
-    notebraces={(}{)},
-    % headformat={\NAME\ \NUMBER\NOTE}
+	mdframed={style=mdpinkbox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={\normalfont\itshape},
+	headindent={0pt},
+	notefont={\sffamily\bfseries},
+	headfont={\color{retropink}\sffamily\bfseries},
+	headpunct={:\\},
+	postheadspace={0pt},
+	notebraces={(}{)},
+	% headformat={\NAME\ \NUMBER\NOTE}
 ]{singhdef}
 
 \declaretheorem[style=singhdef, name=Definition, sibling=theorem]{definition}
@@ -377,30 +377,30 @@
 %% Claim %%
 
 \mdfdefinestyle{mdclaimbox}{
-    backgroundcolor=Emerald!5,
-    nobreak=false,
-    innerleftmargin=5pt,
-    innerrightmargin=5pt,
-    linecolor=Cyan!40!black,
-    linewidth=1mm,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    leftline=true
+	backgroundcolor=Emerald!5,
+	nobreak=false,
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	linecolor=Cyan!40!black,
+	linewidth=1mm,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdclaimbox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={},
-    notefont={\sffamily},
-    headindent={0pt},
-    headfont={\color{Cyan!40!black}\sffamily},
-    headpunct={:},
-    postheadspace={5pt},
-    notebraces={(}{)},
-    headformat=\NAME\NOTE
+	mdframed={style=mdclaimbox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={},
+	notefont={\sffamily},
+	headindent={0pt},
+	headfont={\color{Cyan!40!black}\sffamily},
+	headpunct={:},
+	postheadspace={5pt},
+	notebraces={(}{)},
+	headformat=\NAME\NOTE
 ]{singhclaim}
 
 \declaretheorem[style=singhclaim, name=Claim, numbered=no]{claim}
@@ -408,28 +408,28 @@
 %% Example %%
 
 \mdfdefinestyle{mdgreenbox}{
-    % backgroundcolor=thmgreen!30!white,
-    nobreak=false,
-    innerleftmargin=5pt,
-    innerrightmargin=5pt,
-    linecolor=ForestGreen,
-    linewidth=0.3mm,
-    topline=true,
-    bottomline=true,
-    rightline=true,
-    leftline=true
+	% backgroundcolor=thmgreen!30!white,
+	nobreak=false,
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	linecolor=ForestGreen,
+	linewidth=0.3mm,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdgreenbox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={\normalfont},
-    headindent={0pt},
-    notefont={\sffamily\bfseries},
-    headfont={\color{ForestGreen}\sffamily\bfseries},
-    headpunct={\\[2pt]},
-    postheadspace={0pt},
+	mdframed={style=mdgreenbox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={\normalfont},
+	headindent={0pt},
+	notefont={\sffamily\bfseries},
+	headfont={\color{ForestGreen}\sffamily\bfseries},
+	headpunct={\\[2pt]},
+	postheadspace={0pt},
 ]{singhexam}
 
 \declaretheorem[style=singhexam, name=Example, sibling=theorem]{example}
@@ -438,30 +438,30 @@
 %% Moral %%
 
 \mdfdefinestyle{mdcyanbox}{
-    backgroundcolor=retrocyan!10,
-    nobreak=false,
-    innerleftmargin=5pt,
-    innerrightmargin=5pt,
-    linecolor=retrocyan,
-    linewidth=0.3mm,
-    topline=true,
-    bottomline=true,
-    rightline=true,
-    leftline=true
+	backgroundcolor=retrocyan!10,
+	nobreak=false,
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	linecolor=retrocyan,
+	linewidth=0.3mm,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdcyanbox},
-    spaceabove={0pt},
-    spacebelow={0pt},
-    bodyfont={\normalfont},
-    headindent={0pt},
-    notefont={\sffamily\bfseries},
-    headfont={\color{retrocyan}\sffamily\bfseries},
-    headpunct={\\},
-    postheadspace={0pt},
-    notebraces={(}{)},
-    headformat={\NAME\NOTE}
+	mdframed={style=mdcyanbox},
+	spaceabove={0pt},
+	spacebelow={0pt},
+	bodyfont={\normalfont},
+	headindent={0pt},
+	notefont={\sffamily\bfseries},
+	headfont={\color{retrocyan}\sffamily\bfseries},
+	headpunct={\\},
+	postheadspace={0pt},
+	notebraces={(}{)},
+	headformat={\NAME\NOTE}
 ]{singhmoral}
 
 \declaretheorem[style=singhmoral, name=Moral, numbered=no]{moral}
@@ -469,28 +469,28 @@
 %% Fact %%
 
 \mdfdefinestyle{mdorangebox}{
-    backgroundcolor=retroorange!15,
-    nobreak=false,
-    innerleftmargin=5pt,
-    innerrightmargin=5pt,
-    linecolor=retroorange,
-    linewidth=0.3mm,
-    topline=true,
-    bottomline=true,
-    rightline=true,
-    leftline=true
+	backgroundcolor=retroorange!15,
+	nobreak=false,
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	linecolor=retroorange,
+	linewidth=0.3mm,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdorangebox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={\normalfont},
-    notefont={\sffamily\bfseries},
-    headindent={0pt},
-    headfont={\color{retroorange}\sffamily\bfseries},
-    headpunct={. },
-    postheadspace={0pt}
+	mdframed={style=mdorangebox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={\normalfont},
+	notefont={\sffamily\bfseries},
+	headindent={0pt},
+	headfont={\color{retroorange}\sffamily\bfseries},
+	headpunct={. },
+	postheadspace={0pt}
 ]{singhfact}
 
 \declaretheorem[style=singhfact, name=Fact, sibling=theorem]{fact}
@@ -499,37 +499,37 @@
 %% Exercise %%
 
 \newmdenv[
-    backgroundcolor=retroindigo!10,
-    linecolor=retroindigo,
-    linewidth=1mm,
-    topline=false,
-    bottomline=false,
-    leftline=true,
-    rightline=false,
-    innertopmargin=3pt,
-    innerbottommargin=2pt,
-    innerrightmargin=5pt,
-    innerleftmargin=5pt
+	backgroundcolor=retroindigo!10,
+	linecolor=retroindigo,
+	linewidth=1mm,
+	topline=false,
+	bottomline=false,
+	leftline=true,
+	rightline=false,
+	innertopmargin=3pt,
+	innerbottommargin=2pt,
+	innerrightmargin=5pt,
+	innerleftmargin=5pt
 ]{exercisebox}
 
 \declaretheoremstyle[
-    mdframed={style=mdmidbluebox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    headindent={0pt},
-    headfont={\color{retroindigo}\sffamily\bfseries},
-    headpunct={:\\},
-    postheadspace={0pt},
+	mdframed={style=mdmidbluebox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	headindent={0pt},
+	headfont={\color{retroindigo}\sffamily\bfseries},
+	headpunct={:\\},
+	postheadspace={0pt},
 ]{singhexercise}
 
 \mdfdefinestyle{mdmidbluebox}{
-    nobreak=false,
-    innerleftmargin=0pt,
-    innerrightmargin=0pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    leftline=false
+	nobreak=false,
+	innerleftmargin=0pt,
+	innerrightmargin=0pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false
 }
 
 \declaretheorem[style=singhexercise, name=Exercise, sibling=theorem]{exercise}
@@ -541,25 +541,25 @@
 %% Problem %%
 
 \mdfdefinestyle{mdprobbox}{
-    nobreak=false,
-    innerleftmargin=0pt,
-    innerrightmargin=0pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    leftline=false
+	nobreak=false,
+	innerleftmargin=0pt,
+	innerrightmargin=0pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdprobbox},
-    spaceabove={0pt},
-    spacebelow={2pt},
-    bodyfont={},
-    notefont={\notofont\bfseries},
-    headindent={0pt},
-    headfont={\notofont\color{\maincolor}\bfseries},
-    headpunct={. },
-    postheadspace={0pt},
+	mdframed={style=mdprobbox},
+	spaceabove={0pt},
+	spacebelow={2pt},
+	bodyfont={},
+	notefont={\notofont\bfseries},
+	headindent={0pt},
+	headfont={\notofont\color{\maincolor}\bfseries},
+	headpunct={. },
+	postheadspace={0pt},
 ]{singhproblem}
 
 \declaretheorem[style=singhproblem, name=Problem]{problem}
@@ -568,66 +568,66 @@
 %% Proof and Solution %%
 
 \declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    bodyfont=\normalfont,
-    headpunct={.\\},
-    postheadspace={0pt},
-    spaceabove=0pt,
-    spacebelow=0pt,
-    qed=\footnotesize$\blacktriangleleft$
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	headpunct={.\\},
+	postheadspace={0pt},
+	spaceabove=0pt,
+	spacebelow=0pt,
+	qed=\footnotesize$\blacktriangleleft$
 ]{solnbox}
 
 % \declaretheorem[style=solnbox, name=Solution, numbered=no]{solution}
 \declaretheorem[style=solnbox, name=Solution]{solution}
 
 \declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    bodyfont=\normalfont,
-    headpunct={:\\},
-    postheadspace={0pt},
-    qed=\scriptsize{\texttt{Q.E.D.}}
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	headpunct={:\\},
+	postheadspace={0pt},
+	qed=\scriptsize{\texttt{Q.E.D.}}
 ]{proofbox}
 
 \let\proof\@undefined
 \declaretheorem[style=proofbox, name=Proof, numbered=no]{proof}
 
 \declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    bodyfont=\normalfont,
-    headpunct={: },
-    postheadspace={0pt},
-    qed=\footnotesize{$\square$}
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	headpunct={: },
+	postheadspace={0pt},
+	qed=\footnotesize{$\square$}
 ]{Proofbox}
 \declaretheorem[style=Proofbox, name=Pf, numbered=no]{Proof}
 
 %% Remark %%
 
 \mdfdefinestyle{mdremarkbox}{
-    backgroundcolor=black!5,
-    nobreak=false,
-    innertopmargin=5pt,
-    innerleftmargin=7pt,
-    innerrightmargin=7pt,
-    linecolor=black,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    leftline=true
+	backgroundcolor=black!5,
+	nobreak=false,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=black,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true
 }
 
 \declaretheoremstyle[
-    mdframed={style=mdremarkbox},
-    spaceabove={0pt},
-    spacebelow={0pt},
-    bodyfont={\small},
-    notefont={\sffamily},
-    headindent={0pt},
-    headfont={\color{black}\sffamily},
-    headpunct={. },
-    postheadspace={0pt},
-    notebraces={(}{)},
-    % headformat=\NAME\ \NUMBER\ \NOTE
+	mdframed={style=mdremarkbox},
+	spaceabove={0pt},
+	spacebelow={0pt},
+	bodyfont={\small},
+	notefont={\sffamily},
+	headindent={0pt},
+	headfont={\color{black}\sffamily},
+	headpunct={. },
+	postheadspace={0pt},
+	notebraces={(}{)},
+	% headformat=\NAME\ \NUMBER\ \NOTE
 ]{singhremark}
 
 \declaretheorem[style=singhremark, name=Remark, sibling=theorem]{remark}
@@ -636,111 +636,111 @@
 %% Color Sections %%
 
 \ifsinghcolorsec
-    \@ifundefined{KOMAClassName}{}{
-        \@ifundefined{chapter}{}{
-            \addtokomafont{partprefix}{\rmfamily}
-            \renewcommand*{\partformat}{\color{\secondcolor}
-                \scalebox{2.5}{\thepart}\enlargethispage{2em}}
-            \addtokomafont{chapterprefix}{\raggedleft}
-            \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
-            \renewcommand*{\chapterformat}{\mbox{%
-                    \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
-                    \scalebox{1.5}{\color{\maincolor}\thechapter}\enskip}}
-        }
-        \renewcommand*{\sectionformat}%
-        {\color{\maincolor}\S\thesection\enskip}
-        \renewcommand*{\subsectionformat}%
-        {\color{\maincolor}\S\thesubsection\enskip}
-        \renewcommand*{\subsubsectionformat}%
-        {\color{\maincolor}\S\thesubsubsection\enskip}
-        \KOMAoptions{numbers=noenddot}
-        % \usepackage[tocindentauto]{tocstyle}
-        % \usetocstyle{KOMAlike}
-    }
+	\@ifundefined{KOMAClassName}{}{
+		\@ifundefined{chapter}{}{
+			\addtokomafont{partprefix}{\rmfamily}
+			\renewcommand*{\partformat}{\color{\secondcolor}
+				\scalebox{2.5}{\thepart}\enlargethispage{2em}}
+			\addtokomafont{chapterprefix}{\raggedleft}
+			\RedeclareSectionCommand[beforeskip=0.5em]{chapter}
+			\renewcommand*{\chapterformat}{\mbox{%
+					\scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+					\scalebox{1.5}{\color{\maincolor}\thechapter}\enskip}}
+		}
+		\renewcommand*{\sectionformat}%
+		{\color{\maincolor}\S\thesection\enskip}
+		\renewcommand*{\subsectionformat}%
+		{\color{\maincolor}\S\thesubsection\enskip}
+		\renewcommand*{\subsubsectionformat}%
+		{\color{\maincolor}\S\thesubsubsection\enskip}
+		\KOMAoptions{numbers=noenddot}
+		% \usepackage[tocindentauto]{tocstyle}
+		% \usetocstyle{KOMAlike}
+	}
 \fi
 
 
 %% Header and Footer %%
 
 \ifsinghfancy
-    \@ifundefined{KOMAClassName}
-    {
-        \usepackage{fancyhdr}
-        \setlength{\headheight}{0.75in}
-        \setlength{\oddsidemargin}{0in}
-        \setlength{\evensidemargin}{0in}
-        \setlength{\voffset}{-1.0in}
-        \setlength{\headsep}{10pt}
-        \setlength{\textwidth}{6.5in}
-        \setlength{\headwidth}{6.5in}
-        \setlength{\textheight}{8.75in}
-        \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-        \setlength{\footskip}{0.3in}
-        \renewcommand{\headrulewidth}{0.5pt}
-        \renewcommand{\footrulewidth}{0.0pt}
-        \pagestyle{fancy}
-        \lhead{\theauthor}
-        \chead{}
-        \rhead{\nouppercase{\leftmark}}
-        \lfoot{}
-        \cfoot{}
-        \rfoot{\thepage}
-    }{
-        \usepackage[headsepline]{scrlayer-scrpage}
-        \renewcommand{\headfont}{}
-        % \addtolength{\textheight}{3cm}
-        % \addtolength{\textwidth}{2cm}
-        \setlength{\footskip}{30pt}
-        \setlength{\headsep}{7pt}
-        \usepackage{geometry}
-        \geometry{
-            left = 0.8in,
-            right = 0.6in,
-            bottom = 0.6in,
-            top = 0.5in,
-            a4paper
-        }
-        % \ihead{\sffamily\footnotesize\textbf{\theauthor} {\textcolor{\maincolor!80!black}{(\thedate )}}} %% For Header with date
-        % \ihead{\sffamily\footnotesize\textbf{\theauthor}} %% For Header with name only
-        \ihead{\sffamily\bfseries\footnotesize{Lecture Notes}}
-        \chead{}
-        \cfoot{\thepage}
-        \ohead{\sffamily\footnotesize\textbf{Geometrical Anatomy of Theoretical Physics}}
-        \ofoot{}
-    }
+	\@ifundefined{KOMAClassName}
+	{
+		\usepackage{fancyhdr}
+		\setlength{\headheight}{0.75in}
+		\setlength{\oddsidemargin}{0in}
+		\setlength{\evensidemargin}{0in}
+		\setlength{\voffset}{-1.0in}
+		\setlength{\headsep}{10pt}
+		\setlength{\textwidth}{6.5in}
+		\setlength{\headwidth}{6.5in}
+		\setlength{\textheight}{8.75in}
+		\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+		\setlength{\footskip}{0.3in}
+		\renewcommand{\headrulewidth}{0.5pt}
+		\renewcommand{\footrulewidth}{0.0pt}
+		\pagestyle{fancy}
+		\lhead{\theauthor}
+		\chead{}
+		\rhead{\nouppercase{\leftmark}}
+		\lfoot{}
+		\cfoot{}
+		\rfoot{\thepage}
+	}{
+		\usepackage[headsepline]{scrlayer-scrpage}
+		\renewcommand{\headfont}{}
+		% \addtolength{\textheight}{3cm}
+		% \addtolength{\textwidth}{2cm}
+		\setlength{\footskip}{30pt}
+		\setlength{\headsep}{7pt}
+		\usepackage{geometry}
+		\geometry{
+			left = 0.8in,
+			right = 0.6in,
+			bottom = 0.6in,
+			top = 0.5in,
+			a4paper
+		}
+		% \ihead{\sffamily\footnotesize\textbf{\theauthor} {\textcolor{\maincolor!80!black}{(\thedate )}}} %% For Header with date
+		% \ihead{\sffamily\footnotesize\textbf{\theauthor}} %% For Header with name only
+		\ihead{\sffamily\bfseries\footnotesize{Lecture Notes}}
+		\chead{}
+		\cfoot{\thepage}
+		\ohead{\sffamily\footnotesize\textbf{Geometrical Anatomy of Theoretical Physics}}
+		\ofoot{}
+	}
 \else
-    \@ifundefined{KOMAClassName}
-    {
-        \usepackage{fancyhdr}
-        \setlength{\headheight}{0.75in}
-        \setlength{\oddsidemargin}{0in}
-        \setlength{\evensidemargin}{0in}
-        \setlength{\voffset}{-1.0in}
-        \setlength{\headsep}{10pt}
-        \setlength{\textwidth}{6.5in}
-        \setlength{\headwidth}{6.5in}
-        \setlength{\textheight}{8.75in}
-        \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-        \setlength{\footskip}{0.3in}
-        \renewcommand{\headrulewidth}{0pt}
-        \renewcommand{\footrulewidth}{0pt}
-        \pagestyle{empty}
-    }{
-        \usepackage[]{scrlayer-scrpage}
-        \renewcommand{\headfont}{}
-        % \addtolength{\textheight}{4cm}
-        % \addtolength{\textwidth}{1.25cm}
-        \usepackage{geometry}
-        \geometry{
-            left = 0.8in,
-            right = 0.7in,
-            bottom = 0.8in,
-            top = 0.8in,
-            a4paper
-        }
-        % \setlength{\footskip}{10pt}
-        % \setlength{\headsep}{10pt}
-    }
+	\@ifundefined{KOMAClassName}
+	{
+		\usepackage{fancyhdr}
+		\setlength{\headheight}{0.75in}
+		\setlength{\oddsidemargin}{0in}
+		\setlength{\evensidemargin}{0in}
+		\setlength{\voffset}{-1.0in}
+		\setlength{\headsep}{10pt}
+		\setlength{\textwidth}{6.5in}
+		\setlength{\headwidth}{6.5in}
+		\setlength{\textheight}{8.75in}
+		\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+		\setlength{\footskip}{0.3in}
+		\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\footrulewidth}{0pt}
+		\pagestyle{empty}
+	}{
+		\usepackage[]{scrlayer-scrpage}
+		\renewcommand{\headfont}{}
+		% \addtolength{\textheight}{4cm}
+		% \addtolength{\textwidth}{1.25cm}
+		\usepackage{geometry}
+		\geometry{
+			left = 0.8in,
+			right = 0.7in,
+			bottom = 0.8in,
+			top = 0.8in,
+			a4paper
+		}
+		% \setlength{\footskip}{10pt}
+		% \setlength{\headsep}{10pt}
+	}
 \fi
 
 %% Decorations on titlepage %%
@@ -748,48 +748,48 @@
 \usetikzlibrary{arrows, automata}
 
 \newcommand\titlepagedecoration{%
-    \begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+	\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
 
-        \coordinate (aux1) at ([yshift=-15pt]current page.north east);
-        \coordinate (aux2) at ([yshift=-410pt]current page.north east);
-        \coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
-        \coordinate (aux4) at ([yshift=-150pt]current page.north east);
+		\coordinate (aux1) at ([yshift=-15pt]current page.north east);
+		\coordinate (aux2) at ([yshift=-410pt]current page.north east);
+		\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+		\coordinate (aux4) at ([yshift=-150pt]current page.north east);
 
-        \begin{scope}[\maincolor!63,line width=12pt,rounded corners=12pt]
+		\begin{scope}[\maincolor!63,line width=12pt,rounded corners=12pt]
 
-            \draw[\maincolor!63]
-            (aux1) -- coordinate (a)
-            ++(225:5) --
-            ++(-45:5.1) coordinate (b);
-            \draw[shorten <= -10pt]
-            (aux3) --
-            (a) --
-            (aux1);
-            \draw[opacity=0.6,\secondcolor!50!\maincolor,shorten <= -10pt]
-            (b) --
-            ++(225:2.2) --
-            ++(-45:2.2);
-        \end{scope}
-        \draw[\maincolor!70!\secondcolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
-        (aux4) --
-        ++(225:0.8) --
-        ++(-45:0.8);
-        \begin{scope}[\secondcolor!70,line width=6pt,rounded corners=8pt]
-            \draw[shorten <= -10pt]
-            (aux2) --
-            ++(225:3) coordinate[pos=0.45] (c) --
-            ++(-45:3.1);
-            \draw[\secondcolor!80!\maincolor]
-            (aux2) --
-            (c) --
-            ++(135:2.5) --
-            ++(45:2.5) --
-            ++(-45:2.5) coordinate[pos=0.3] (d);
-            \draw[\secondcolor!65!\maincolor]
-            (d) -- +(45:1);
+			\draw[\maincolor!63]
+			(aux1) -- coordinate (a)
+			++(225:5) --
+			++(-45:5.1) coordinate (b);
+			\draw[shorten <= -10pt]
+			(aux3) --
+			(a) --
+			(aux1);
+			\draw[opacity=0.6,\secondcolor!50!\maincolor,shorten <= -10pt]
+			(b) --
+			++(225:2.2) --
+			++(-45:2.2);
+		\end{scope}
+		\draw[\maincolor!70!\secondcolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+		(aux4) --
+		++(225:0.8) --
+		++(-45:0.8);
+		\begin{scope}[\secondcolor!70,line width=6pt,rounded corners=8pt]
+			\draw[shorten <= -10pt]
+			(aux2) --
+			++(225:3) coordinate[pos=0.45] (c) --
+			++(-45:3.1);
+			\draw[\secondcolor!80!\maincolor]
+			(aux2) --
+			(c) --
+			++(135:2.5) --
+			++(45:2.5) --
+			++(-45:2.5) coordinate[pos=0.3] (d);
+			\draw[\secondcolor!65!\maincolor]
+			(d) -- +(45:1);
 
-        \end{scope}
-    \end{tikzpicture}%
+		\end{scope}
+	\end{tikzpicture}%
 }
 
 %% Redefining title and author commands %%
@@ -797,10 +797,10 @@
 \@ifundefined{KOMAClassName}%
 {} % do nothing outside KOMA class
 {% If KOMA exists. . .
-    \addtokomafont{title}{}
-    \setkomafont{subtitle}{\sffamily\bfseries}
-    \setkomafont{author}{\scshape}
-    \setkomafont{date}{\itshape}
+	\addtokomafont{title}{}
+	\setkomafont{subtitle}{\sffamily\bfseries}
+	\setkomafont{author}{\scshape}
+	\setkomafont{date}{\itshape}
 }
 \providecommand{\thetitle}{\@title}
 \providecommand{\theauthor}{\@author}

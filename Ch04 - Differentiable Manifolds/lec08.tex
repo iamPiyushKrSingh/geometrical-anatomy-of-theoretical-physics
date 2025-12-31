@@ -3,431 +3,430 @@
 \section{Review of Vector Spaces}
 
 \begin{definition}[(Algebraic) Field]
-    Let \(K\) be a non-empty set with two binary operations \(+\) and \(\cdot\) (addition and multiplication) such that
-    \begin{itemize}
-        \item \((K, +)\) is an abelian group with identity element \(0\).
-        \item \((K \setminus \{0\}, \cdot)\) is an abelian group with identity element \(1\).
-        \item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in K\),
-              \begin{equation}
-                  a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
-              \end{equation}
-    \end{itemize}
-    Then \(K\) is called a field.
+	Let \(K\) be a non-empty set with two binary operations \(+\) and \(\cdot\) (addition and multiplication) such that
+	\begin{itemize}
+		\item \((K, +)\) is an abelian group with identity element \(0\).
+		\item \((K \setminus \{0\}, \cdot)\) is an abelian group with identity element \(1\).
+		\item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in K\),
+		      \begin{equation}
+			      a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
+		      \end{equation}
+	\end{itemize}
+	Then \(K\) is called a field.
 \end{definition}
 Later we will use a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) but fewer axioms than a field, and we will call it a \emph{ring}.
 \begin{definition}[Ring]
-    A ring is a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) such that
-    \begin{itemize}
-        \item \((R, +)\) is an abelian group with identity element \(0\).
-        \item \((R, \cdot)\) is a monoid with identity element \(1\).
+	A ring is a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) such that
+	\begin{itemize}
+		\item \((R, +)\) is an abelian group with identity element \(0\).
+		\item \((R, \cdot)\) is a monoid with identity element \(1\).
 
-              \ie\ multiplication is associative and has an identity element, but it need not be commutative.
-        \item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in R\),
-              \begin{equation}
-                  a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
-              \end{equation}
-    \end{itemize}
+		      \ie\ multiplication is associative and has an identity element, but it need not be commutative.
+		\item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in R\),
+		      \begin{equation}
+			      a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
+		      \end{equation}
+	\end{itemize}
 \end{definition}
 Some examples which we are using from our school days:
 \begin{itemize}
-    \item \((\Z, +, \cdot)\) is a \emph{commutative} ring but not a field as it has no multiplicative inverses for all non-zero elements.
-    \item \((\Q, +, \cdot)\) and \((\R, +, \cdot)\) are fields.
-    \item \((\SM_{n}(\R), +, \circ)\) is a ring, where \(\SM_{n}(\R)\) is the set of \(n \times n\) real matrices with the usual matrix addition and multiplication. Matrix multiplication is associative but not commutative, and it has an identity element \(I_n\) (the identity matrix). But it does not have multiplicative inverses for all non-zero elements, so it is not a field.
+	\item \((\Z, +, \cdot)\) is a \emph{commutative} ring but not a field as it has no multiplicative inverses for all non-zero elements.
+	\item \((\Q, +, \cdot)\) and \((\R, +, \cdot)\) are fields.
+	\item \((\SM_{n}(\R), +, \circ)\) is a ring, where \(\SM_{n}(\R)\) is the set of \(n \times n\) real matrices with the usual matrix addition and multiplication. Matrix multiplication is associative but not commutative, and it has an identity element \(I_n\) (the identity matrix). But it does not have multiplicative inverses for all non-zero elements, so it is not a field.
 \end{itemize}
 
 \begin{definition}[Vector Space over a Field \(K\)]
-    A vector space \(V\) over a field \((K, +, \cdot)\) is a set equipped with two operations \(\oplus: V \times V \to V\) (vector addition) and \(\odot: K \times V \to V\) (scalar multiplication) such that
-    \begin{itemize}
-        \item \((V, \oplus)\) is an abelian group with identity element \(\vb{0}\) (the zero vector).
-        \item The scalar multiplication satisfies the following properties
-              \begin{enumerate}[(i)]
-                  \item Let \(1\) be the multiplicative identity of the field \(K\). Then for all \(\vb{v} \in V: 1 \odot \vb{v} = \vb{v}\).
-                  \item \(\forall a, b \in K: \forall \vb{v} \in V: a \odot (b \odot \vb{v}) = (a \cdot b) \odot \vb{v}\).
-                  \item \(\forall a \in K: \forall \vb{u}, \vb{v} \in V: a \odot (\vb{u} \oplus \vb{v}) = a \odot \vb{u} \oplus a \odot \vb{v}\).
-                  \item \(\forall a, b \in K: \forall \vb{v} \in V: (a + b) \odot \vb{v} = a \odot \vb{v} \oplus b \odot \vb{v}\).
-              \end{enumerate}
-    \end{itemize}
+	A vector space \(V\) over a field \((K, +, \cdot)\) is a set equipped with two operations \(\oplus: V \times V \to V\) (vector addition) and \(\odot: K \times V \to V\) (scalar multiplication) such that
+	\begin{itemize}
+		\item \((V, \oplus)\) is an abelian group with identity element \(\vb{0}\) (the zero vector).
+		\item The scalar multiplication satisfies the following properties
+		      \begin{enumerate}[(i)]
+			      \item Let \(1\) be the multiplicative identity of the field \(K\). Then for all \(\vb{v} \in V: 1 \odot \vb{v} = \vb{v}\).
+			      \item \(\forall a, b \in K: \forall \vb{v} \in V: a \odot (b \odot \vb{v}) = (a \cdot b) \odot \vb{v}\).
+			      \item \(\forall a \in K: \forall \vb{u}, \vb{v} \in V: a \odot (\vb{u} \oplus \vb{v}) = a \odot \vb{u} \oplus a \odot \vb{v}\).
+			      \item \(\forall a, b \in K: \forall \vb{v} \in V: (a + b) \odot \vb{v} = a \odot \vb{v} \oplus b \odot \vb{v}\).
+		      \end{enumerate}
+	\end{itemize}
 \end{definition}
 
 \begin{definition}[(Vector) Subspace]
-    A subset \(U \subseteq V\) of a vector space \(V\) over a field \(K\) is called a \emph{subspace} if it is closed under the vector addition and scalar multiplication, \ie\
-    \begin{equation}
-        \forall \vb{u}, \vb{v} \in U: \vb{u} \oplus \vb{v} \in U \quad \text{and} \quad \forall a \in K: \forall \vb{u} \in U: a \odot \vb{u} \in U.
-    \end{equation}
+	A subset \(U \subseteq V\) of a vector space \(V\) over a field \(K\) is called a \emph{subspace} if it is closed under the vector addition and scalar multiplication, \ie\
+	\begin{equation}
+		\forall \vb{u}, \vb{v} \in U: \vb{u} \oplus \vb{v} \in U \quad \text{and} \quad \forall a \in K: \forall \vb{u} \in U: a \odot \vb{u} \in U.
+	\end{equation}
 \end{definition}
 Since we are already comfortable with vector spaces, we drop the special notation for vector addition and scalar multiplication and use the usual \(+\) and \(\cdot\) for these operations.
 
 Now, continuing with our usual structure, now we will define structure preserving maps between vector spaces \ie\ \emph{linear maps}.
 \begin{definition}[Linear Map]
-    Let \((V, \oplus, \odot)\) and \((W, \boxplus, \boxdot)\) be two vector spaces over the same field \(K\). A map \(L: V \to W\) is called a \emph{linear map} if it satisfies the following properties:
-    \begin{enumerate}[(i)]
-        \item \(\forall \vb{u}, \vb{v} \in V: L(\vb{u} \oplus \vb{v}) = L(\vb{u}) \boxplus L(\vb{v})\) (preserves vector addition).
-        \item \(\forall a \in K: \forall \vb{v} \in V: L(a \odot \vb{v}) = a \boxdot L(\vb{v})\) (preserves scalar multiplication).
-    \end{enumerate}
-    If a linear map \(L: V \to W\) is bijective, it is called a \emph{linear isomorphism}. We write \(V \vecIso W\) if there exists a linear isomorphism between \(V\) and \(W\).
+	Let \((V, \oplus, \odot)\) and \((W, \boxplus, \boxdot)\) be two vector spaces over the same field \(K\). A map \(L: V \to W\) is called a \emph{linear map} if it satisfies the following properties:
+	\begin{enumerate}[(i)]
+		\item \(\forall \vb{u}, \vb{v} \in V: L(\vb{u} \oplus \vb{v}) = L(\vb{u}) \boxplus L(\vb{v})\) (preserves vector addition).
+		\item \(\forall a \in K: \forall \vb{v} \in V: L(a \odot \vb{v}) = a \boxdot L(\vb{v})\) (preserves scalar multiplication).
+	\end{enumerate}
+	If a linear map \(L: V \to W\) is bijective, it is called a \emph{linear isomorphism}. We write \(V \vecIso W\) if there exists a linear isomorphism between \(V\) and \(W\).
 \end{definition}
 We can compress the definition of a linear map into a single equation:
 \begin{equation}
-    \forall \vb{v}_1, \vb{v}_2 \in V, \forall a, b \in K: L(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) = a \boxdot L(\vb{v}_1) \boxplus b \boxdot L(\vb{v}_2).
+	\forall \vb{v}_1, \vb{v}_2 \in V, \forall a, b \in K: L(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) = a \boxdot L(\vb{v}_1) \boxplus b \boxdot L(\vb{v}_2).
 \end{equation}
 
 \begin{remark}[Inverse being a linear map]
-    As in case of topological spaces, we need to check that the inverse of a continuous map is continuous, here linearity of the inverse map follows from the linearity of the original map. Thus, it is enough to check that a linear map \(L: V \to W\) is bijective to conclude that its inverse \(L^{-1}: W \to V\) is also a linear map.
+	As in case of topological spaces, we need to check that the inverse of a continuous map is continuous, here linearity of the inverse map follows from the linearity of the original map. Thus, it is enough to check that a linear map \(L: V \to W\) is bijective to conclude that its inverse \(L^{-1}: W \to V\) is also a linear map.
 
-    \begin{Proof}
-        Let \(L: V \to W\) be a linear map which is bijective. We need to show that \(L^{-1}: W \to V\) is linear.
-        \begin{enumerate}[(i)]
-            \item Since \(L\) is bijective, there exists a unique \(\vb{v} \in V\) such that \(L(\vb{v}) = \vb{w}\) for any \(\vb{w} \in W\). Thus, \(L^{-1}(\vb{w}) = \vb{v}\).
-            \item For any \(\vb{w}_1, \vb{w}_2 \in W\), we have
-                  \[
-                      L^{-1}(\vb{w}_1 + \vb{w}_2) = L^{-1}(L(\vb{v}_1) + L(\vb{v}_2)) = L^{-1}(L(\vb{v}_1 + \vb{v}_2)) = \vb{v}_1 + \vb{v}_2 = L^{-1}(\vb{w}_1) + L^{-1}(\vb{w}_2),
-                  \]
-                  where we used the linearity of \(L\) and the fact that \(L^{-1}\) is the inverse of \(L\).
-            \item For any \(a \in K\) and \(\vb{w} \in W\), we have
-                  \[
-                      L^{-1}(a \cdot \vb{w}) = L^{-1}(a \cdot L(\vb{v})) = L^{-1}(L(a \cdot \vb{v})) = a \cdot \vb{v} = a \cdot L^{-1}(\vb{w}),
-                  \]
-                  again using the linearity of \(L\).
-        \end{enumerate}
-        Thus, \(L^{-1}\) is a linear map.
-    \end{Proof}
+	\begin{Proof}
+		Let \(L: V \to W\) be a linear map which is bijective. We need to show that \(L^{-1}: W \to V\) is linear.
+		\begin{enumerate}[(i)]
+			\item Since \(L\) is bijective, there exists a unique \(\vb{v} \in V\) such that \(L(\vb{v}) = \vb{w}\) for any \(\vb{w} \in W\). Thus, \(L^{-1}(\vb{w}) = \vb{v}\).
+			\item For any \(\vb{w}_1, \vb{w}_2 \in W\), we have
+			      \[
+				      L^{-1}(\vb{w}_1 + \vb{w}_2) = L^{-1}(L(\vb{v}_1) + L(\vb{v}_2)) = L^{-1}(L(\vb{v}_1 + \vb{v}_2)) = \vb{v}_1 + \vb{v}_2 = L^{-1}(\vb{w}_1) + L^{-1}(\vb{w}_2),
+			      \]
+			      where we used the linearity of \(L\) and the fact that \(L^{-1}\) is the inverse of \(L\).
+			\item For any \(a \in K\) and \(\vb{w} \in W\), we have
+			      \[
+				      L^{-1}(a \cdot \vb{w}) = L^{-1}(a \cdot L(\vb{v})) = L^{-1}(L(a \cdot \vb{v})) = a \cdot \vb{v} = a \cdot L^{-1}(\vb{w}),
+			      \]
+			      again using the linearity of \(L\).
+		\end{enumerate}
+		Thus, \(L^{-1}\) is a linear map.
+	\end{Proof}
 \end{remark}
 
 Let's consider the set of all linear maps from \(V\) to \(W\), denoted by \(\Hom(V, W)\).
 \begin{equation}
-    \Hom(V, W) := \qty{L: V \to W \mid L \text{ is a linear map}} \equiv \qty{L: V \xrightarrow{\sim} W}
+	\Hom(V, W) := \qty{L: V \to W \mid L \text{ is a linear map}} \equiv \qty{L: V \xrightarrow{\sim} W}
 \end{equation}
 here \(\xrightarrow{\sim}\) denotes that the map is a linear map.
 \begin{proposition}
-    \(\Hom(V, W)\) is a vector space over the field \(K\) with the following operations:
-    \begin{itemize}
-        \item \(\diamondplus: \Hom(V, W) \times \Hom(V, W) \to \Hom(V, W)\) defined by
-              \begin{equation}
-                  (L_1, L_2) \xmapsto{\diamondplus} L_1 \diamondplus L_2
-              \end{equation}
-              where
-              \begin{equation}
-                  L_1 \diamondplus L_2: V \xrightarrow{\sim} W, \quad \vb{v} \mapsto (L_1 \diamondplus L_2)(\vb{v}) := L_1(\vb{v}) \boxplus L_2(\vb{v}).
-              \end{equation}
+	\(\Hom(V, W)\) is a vector space over the field \(K\) with the following operations:
+	\begin{itemize}
+		\item \(\diamondplus: \Hom(V, W) \times \Hom(V, W) \to \Hom(V, W)\) defined by
+		      \begin{equation}
+			      (L_1, L_2) \xmapsto{\diamondplus} L_1 \diamondplus L_2
+		      \end{equation}
+		      where
+		      \begin{equation}
+			      L_1 \diamondplus L_2: V \xrightarrow{\sim} W, \quad \vb{v} \mapsto (L_1 \diamondplus L_2)(\vb{v}) := L_1(\vb{v}) \boxplus L_2(\vb{v}).
+		      \end{equation}
 
-        \item \(\diamonddot: K \times \Hom(V, W) \to \Hom(V, W)\) defined by
-              \begin{equation}
-                  (a, L) \xmapsto{\diamonddot} a \diamonddot L
-              \end{equation}
-              where
-              \begin{equation}
-                  a \diamonddot L: V \xrightarrow{\sim} W, \quad \vb{v} \mapsto (a \diamonddot L)(\vb{v}) := a \boxdot L(\vb{v}).
-              \end{equation}
-    \end{itemize}
+		\item \(\diamonddot: K \times \Hom(V, W) \to \Hom(V, W)\) defined by
+		      \begin{equation}
+			      (a, L) \xmapsto{\diamonddot} a \diamonddot L
+		      \end{equation}
+		      where
+		      \begin{equation}
+			      a \diamonddot L: V \xrightarrow{\sim} W, \quad \vb{v} \mapsto (a \diamonddot L)(\vb{v}) := a \boxdot L(\vb{v}).
+		      \end{equation}
+	\end{itemize}
 \end{proposition}
 To establish this, we need to verify that the operations defined above satisfy the linear map properties:
 \begin{proof}
-    We need to show that \(\Hom(V, W)\) is a vector space over \(K\) with the operations \(\diamondplus\) and \(\diamonddot\).
-    \begin{enumerate}[(i)]
-        \item Closure under addition:
-              Let \(L_1, L_2 \in \Hom(V, W)\). Then \(L_1 \diamondplus L_2\) is defined as
-              \begin{equation}
-                  (L_1 \diamondplus L_2)(\vb{v}) = L_1(\vb{v}) \boxplus L_2(\vb{v}).
-              \end{equation}
-              So for all \(\vb{v}_1, \vb{v}_2 \in V\) and \(a, b \in K\),
-              \begin{align*}
-                  (L_1 \diamondplus L_2)(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) & = L_1(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) \boxplus L_2(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2)                           \\
-                                                                                   & = (a \boxdot L_1(\vb{v}_1) \boxplus b \boxdot L_1(\vb{v}_2)) \boxplus (a \boxdot L_2(\vb{v}_1) \boxplus b \boxdot L_2(\vb{v}_2)) \\
-                                                                                   & = a \boxdot (L_1(\vb{v}_1) \boxplus L_2(\vb{v}_1)) \boxplus b \boxdot (L_1(\vb{v}_2) \boxplus L_2(\vb{v}_2))                     \\
-                                                                                   & = a \boxdot (L_1 \diamondplus L_2)(\vb{v}_1) \boxplus b \boxdot (L_1 \diamondplus L_2)(\vb{v}_2).
-              \end{align*}
-              Thus, \(L_1 \diamondplus L_2\) is a linear map.
+	We need to show that \(\Hom(V, W)\) is a vector space over \(K\) with the operations \(\diamondplus\) and \(\diamonddot\).
+	\begin{enumerate}[(i)]
+		\item Closure under addition:
+		      Let \(L_1, L_2 \in \Hom(V, W)\). Then \(L_1 \diamondplus L_2\) is defined as
+		      \begin{equation}
+			      (L_1 \diamondplus L_2)(\vb{v}) = L_1(\vb{v}) \boxplus L_2(\vb{v}).
+		      \end{equation}
+		      So for all \(\vb{v}_1, \vb{v}_2 \in V\) and \(a, b \in K\),
+		      \begin{align*}
+			      (L_1 \diamondplus L_2)(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) & = L_1(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2) \boxplus L_2(a \odot \vb{v}_1 \oplus b \odot \vb{v}_2)                           \\
+			                                                                       & = (a \boxdot L_1(\vb{v}_1) \boxplus b \boxdot L_1(\vb{v}_2)) \boxplus (a \boxdot L_2(\vb{v}_1) \boxplus b \boxdot L_2(\vb{v}_2)) \\
+			                                                                       & = a \boxdot (L_1(\vb{v}_1) \boxplus L_2(\vb{v}_1)) \boxplus b \boxdot (L_1(\vb{v}_2) \boxplus L_2(\vb{v}_2))                     \\
+			                                                                       & = a \boxdot (L_1 \diamondplus L_2)(\vb{v}_1) \boxplus b \boxdot (L_1 \diamondplus L_2)(\vb{v}_2).
+		      \end{align*}
+		      Thus, \(L_1 \diamondplus L_2\) is a linear map.
 
-        \item Closure under scalar multiplication:
-              Let \(a \in K\) and \(L \in \Hom(V, W)\). Then \(a \diamonddot L\) is defined as
-              \begin{equation}
-                  (a \diamonddot L)(\vb{v}) = a \boxdot L(\vb{v}).
-              \end{equation}
-              So for all \(\vb{v}_1, \vb{v}_2 \in V\) and \(b \in K\),
-              \begin{align*}
-                  (a \diamonddot L)(b \odot \vb{v}_1 \oplus c \odot \vb{v}_2) & = a \boxdot L(b \odot \vb{v}_1 \oplus c \odot \vb{v}_2)                                 \\
-                                                                              & = a \boxdot (b \boxdot L(\vb{v}_1) \boxplus c \boxdot L(\vb{v}_2))                      \\
-                                                                              & = (a \cdot b) \boxdot L(\vb{v}_1) \boxplus (a \cdot c) \boxdot L(\vb{v}_2)              \\
-                                                                              & = (b \cdot a) \boxdot L(\vb{v}_1) \boxplus (c \cdot a) \boxdot L(\vb{v}_2)              \\
-                                                                              & = b \boxdot (a \boxdot L(\vb{v}_1)) \boxplus c \boxdot (a \boxdot L(\vb{v}_2))          \\
-                                                                              & = b \boxdot (a \diamonddot L)(\vb{v}_1) \boxplus c \boxdot (a \diamonddot L)(\vb{v}_2).
-              \end{align*}
-              Thus, \(a \diamonddot L\) is a linear map.
-    \end{enumerate}
-    We have shown that \(\Hom(V, W)\) is closed under both operations \(\diamondplus\) and \(\diamonddot\). Thus, \(\Hom(V, W)\) is a vector space over the field \(K\).
+		\item Closure under scalar multiplication:
+		      Let \(a \in K\) and \(L \in \Hom(V, W)\). Then \(a \diamonddot L\) is defined as
+		      \begin{equation}
+			      (a \diamonddot L)(\vb{v}) = a \boxdot L(\vb{v}).
+		      \end{equation}
+		      So for all \(\vb{v}_1, \vb{v}_2 \in V\) and \(b \in K\),
+		      \begin{align*}
+			      (a \diamonddot L)(b \odot \vb{v}_1 \oplus c \odot \vb{v}_2) & = a \boxdot L(b \odot \vb{v}_1 \oplus c \odot \vb{v}_2)                                 \\
+			                                                                  & = a \boxdot (b \boxdot L(\vb{v}_1) \boxplus c \boxdot L(\vb{v}_2))                      \\
+			                                                                  & = (a \cdot b) \boxdot L(\vb{v}_1) \boxplus (a \cdot c) \boxdot L(\vb{v}_2)              \\
+			                                                                  & = (b \cdot a) \boxdot L(\vb{v}_1) \boxplus (c \cdot a) \boxdot L(\vb{v}_2)              \\
+			                                                                  & = b \boxdot (a \boxdot L(\vb{v}_1)) \boxplus c \boxdot (a \boxdot L(\vb{v}_2))          \\
+			                                                                  & = b \boxdot (a \diamonddot L)(\vb{v}_1) \boxplus c \boxdot (a \diamonddot L)(\vb{v}_2).
+		      \end{align*}
+		      Thus, \(a \diamonddot L\) is a linear map.
+	\end{enumerate}
+	We have shown that \(\Hom(V, W)\) is closed under both operations \(\diamondplus\) and \(\diamonddot\). Thus, \(\Hom(V, W)\) is a vector space over the field \(K\).
 \end{proof}
 
 Till now, we haven't used the inverse element of the field \(K\) in the definition of a vector space. So, we can define a similar structure on a set \(M\) over a (unital) ring \(R\) with two operations \(\oplus: M \times M \to M\) (addition) and \(\odot: R \times M \to M\) (scalar multiplication), we call this a \emph{module} over the ring \(R\).
 
 \begin{remark}[Case of \(\Hom(V, W)\) as a module]
-    In case of modules, we can still define \(\Hom(V, W)\) as a set of all linear maps from \(V\) to \(W\) over a ring \(R\). But as in general, ring multiplication is not commutative, \(\Hom(V, W)\) is not a module over \(R\).
+	In case of modules, we can still define \(\Hom(V, W)\) as a set of all linear maps from \(V\) to \(W\) over a ring \(R\). But as in general, ring multiplication is not commutative, \(\Hom(V, W)\) is not a module over \(R\).
 \end{remark}
 
 Some useful terminology:
 \begin{itemize}
-    \item \textsf{Endomorphism} is a linear map \(L: V \to V\) from a vector space \(V\) to itself.
-          \begin{equation}
-              \End(V) := \Hom(V, V) = \qty{L: V \xrightarrow{\sim} V}
-          \end{equation}
+	\item \textsf{Endomorphism} is a linear map \(L: V \to V\) from a vector space \(V\) to itself.
+	      \begin{equation}
+		      \End(V) := \Hom(V, V) = \qty{L: V \xrightarrow{\sim} V}
+	      \end{equation}
 
-    \item \textsf{Automorphism} is a linear isomorphism \(L: V \to V\) from a vector space \(V\) to itself.
-          \begin{equation}
-              \Aut(V) := \qty{L: V \xrightarrow{\sim} V \mid L \text{ is a linear isomorphism}}.
-          \end{equation}
+	\item \textsf{Automorphism} is a linear isomorphism \(L: V \to V\) from a vector space \(V\) to itself.
+	      \begin{equation}
+		      \Aut(V) := \qty{L: V \xrightarrow{\sim} V \mid L \text{ is a linear isomorphism}}.
+	      \end{equation}
 
-          It is easy to see that \(\Aut(V)\) is a subspace of \(\End(V)\).
+	      It is easy to see that \(\Aut(V)\) is a subspace of \(\End(V)\).
 
-    \item A field \(K\) can be considered as a vector space over itself, \ie\ \(K\) is a vector space over \(K\) with the usual addition and multiplication operations. With this view, we can define the notion of \emph{linear functionals} as linear maps from \(V\) to \(K\):
-          \begin{equation}
-              V^* := \Hom(V, K)
-          \end{equation}
-          This set \(V^*\) is called the \emph{dual space} of \(V\).
+	\item A field \(K\) can be considered as a vector space over itself, \ie\ \(K\) is a vector space over \(K\) with the usual addition and multiplication operations. With this view, we can define the notion of \emph{linear functionals} as linear maps from \(V\) to \(K\):
+	      \begin{equation}
+		      V^* := \Hom(V, K)
+	      \end{equation}
+	      This set \(V^*\) is called the \emph{dual space} of \(V\).
 \end{itemize}
 
 \subsection{Tensors}
 
 \begin{definition}[Tensor]
-    A type \((p, q)\)-\emph{tensor} is a multilinear map (linear in each argument) of the form
-    \begin{equation}
-        T: \underbrace{V^* \times \cdots \times V^*}_{p \text{ times}} \times \underbrace{V \times \cdots \times V}_{q \text{ times}} \to K
-    \end{equation}
-    where \(V\) is a vector space over a field \(K\) and \(V^*\) is its dual space.
+	A type \((p, q)\)-\emph{tensor} is a multilinear map (linear in each argument) of the form
+	\begin{equation}
+		T: \underbrace{V^* \times \cdots \times V^*}_{p \text{ times}} \times \underbrace{V \times \cdots \times V}_{q \text{ times}} \to K
+	\end{equation}
+	where \(V\) is a vector space over a field \(K\) and \(V^*\) is its dual space.
 
-    \begin{equation}
-        \mathsf{T}^p_q V := \underbrace{V \otimes \cdots \otimes V}_{p \text{ times}} \otimes \underbrace{V^* \otimes \cdots \otimes V^*}_{q \text{ times}} = \qty{T \mid T \text{ is type } (p, q) \text{-tensor}}
-    \end{equation}
+	\begin{equation}
+		\mathsf{T}^p_q V := \underbrace{V \otimes \cdots \otimes V}_{p \text{ times}} \otimes \underbrace{V^* \otimes \cdots \otimes V^*}_{q \text{ times}} = \qty{T \mid T \text{ is type } (p, q) \text{-tensor}}
+	\end{equation}
 \end{definition}
 
 Let's define the operations on tensors similar to the operations we defined on the set of linear maps \(\Hom(V, W)\):
 \begin{enumerate}
-    \item \textsf{Addition of tensors}:
-          \begin{equation}
-              \oplus: \mathsf{T}^p_q V \times \mathsf{T}^p_q V \to \mathsf{T}^p_q V
-          \end{equation}
-          Let \(T_1, T_2 \in \mathsf{T}^p_q V\) be two tensors. Then their sum \(T_1 \oplus T_2\) is defined as
-          \begin{equation}
-              (T_1 \oplus T_2)(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) = T_1(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) + T_2(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q)
-          \end{equation}
+	\item \textsf{Addition of tensors}:
+	      \begin{equation}
+		      \oplus: \mathsf{T}^p_q V \times \mathsf{T}^p_q V \to \mathsf{T}^p_q V
+	      \end{equation}
+	      Let \(T_1, T_2 \in \mathsf{T}^p_q V\) be two tensors. Then their sum \(T_1 \oplus T_2\) is defined as
+	      \begin{equation}
+		      (T_1 \oplus T_2)(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) = T_1(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) + T_2(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q)
+	      \end{equation}
 
-    \item \textsf{Scalar multiplication of tensors}:
-          \begin{equation}
-              \odot: K \times \mathsf{T}^p_q V \to \mathsf{T}^p_q V
-          \end{equation}
-          Let \(a \in K\) and \(T \in \mathsf{T}^p_q V\) be a tensor. Then the scalar multiplication \(a \odot T\) is defined as
-          \begin{equation}
-              (a \odot T)(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) = a \cdot T(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q)
-          \end{equation}
+	\item \textsf{Scalar multiplication of tensors}:
+	      \begin{equation}
+		      \odot: K \times \mathsf{T}^p_q V \to \mathsf{T}^p_q V
+	      \end{equation}
+	      Let \(a \in K\) and \(T \in \mathsf{T}^p_q V\) be a tensor. Then the scalar multiplication \(a \odot T\) is defined as
+	      \begin{equation}
+		      (a \odot T)(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) = a \cdot T(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q)
+	      \end{equation}
 \end{enumerate}
 
 \begin{proposition}
-    \(\mathsf{T}^p_q V\) is a vector space over the field \(K\) with the operations defined above.
+	\(\mathsf{T}^p_q V\) is a vector space over the field \(K\) with the operations defined above.
 \end{proposition}
 Sometimes, we refer \((p, q)\) as the valence of the tensor, and \(p + q\) as the rank of the tensor.
 
 Now, we define a binary operation on tensors, called the \emph{tensor product} of two tensors.
 \begin{definition}[Tensor Product]
-    Let \(T_1 \in \mathsf{T}^p_q V\) and \(T_2 \in \mathsf{T}^r_s V\) be two tensors. The tensor product \(T_1 \otimes T_2\) is defined as a tensor of type \((p + r, q + s)\) given by
-    \begin{multline}
-        (T_1 \otimes T_2)(\vb*{\omega}_1, \ldots, \vb*{\omega}_{p + r}, \vb{v}_1, \ldots, \vb{v}_{q + s}) =\\ T_1(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) \cdot T_2(\vb*{\omega}_{p + 1}, \ldots, \vb*{\omega}_{p + r}, \vb{v}_{q + 1}, \ldots, \vb{v}_{q + s}).
-    \end{multline}
+	Let \(T_1 \in \mathsf{T}^p_q V\) and \(T_2 \in \mathsf{T}^r_s V\) be two tensors. The tensor product \(T_1 \otimes T_2\) is defined as a tensor of type \((p + r, q + s)\) given by
+	\begin{multline}
+		(T_1 \otimes T_2)(\vb*{\omega}_1, \ldots, \vb*{\omega}_{p + r}, \vb{v}_1, \ldots, \vb{v}_{q + s}) =\\ T_1(\vb*{\omega}_1, \ldots, \vb*{\omega}_p, \vb{v}_1, \ldots, \vb{v}_q) \cdot T_2(\vb*{\omega}_{p + 1}, \ldots, \vb*{\omega}_{p + r}, \vb{v}_{q + 1}, \ldots, \vb{v}_{q + s}).
+	\end{multline}
 \end{definition}
 
 \begin{example}
-    Now, let's look at some examples and interesting results involving tensors:
-    \begin{enumerate}[(a)]
-        \item The set \(\mathsf{T}^0_0 V = K\) is the set of all scalar tensors, which is just the field \(K\) itself.
-        \item The set \(\mathsf{T}^0_1 V = V^* := \Hom(V, K)\).
-        \item The set \(\mathsf{T}^1_1 V \equiv V \otimes V^* = \qty{T \mid T: V^* \times V \to K \text{ is a linear in both argument}} \vecIso \End(V^*)\).
+	Now, let's look at some examples and interesting results involving tensors:
+	\begin{enumerate}[(a)]
+		\item The set \(\mathsf{T}^0_0 V = K\) is the set of all scalar tensors, which is just the field \(K\) itself.
+		\item The set \(\mathsf{T}^0_1 V = V^* := \Hom(V, K)\).
+		\item The set \(\mathsf{T}^1_1 V \equiv V \otimes V^* = \qty{T \mid T: V^* \times V \to K \text{ is a linear in both argument}} \vecIso \End(V^*)\).
 
-              \begin{Proof}
-                  Let \(T \in \mathsf{T}^1_1 V\) be a tensor. We need to construct a linear map \(L \in \End(V^*)\) using \(T\). For each \(\vb*{\omega} \in V^*\), we define a linear map \(L_{\vb*{\omega}}: V \to K \in V^*\) by
-                  \begin{equation}
-                      \forall \vb{v} \in V: L_{\vb*{\omega}}(\vb{v}) = T(\vb*{\omega}, \vb{v}).
-                  \end{equation}
-                  Now, we can define a linear map \(L: V^* \to V^*\) by
-                  \begin{equation}
-                      L(\vb*{\omega}) = L_{\vb*{\omega}} \qquad \implies \qquad \vb*{\omega} \mapsto \underbrace{(\vb{v} \mapsto T(\vb*{\omega}, \vb{v}))}_{L_{\vb*{\omega}}}.
-                  \end{equation}
-                  Now, let \(L \in \End(V^*)\) be a linear map. We need to show that there exists a tensor \(T \in \mathsf{T}^1_1 V\) corresponding to \(L\).
-                  Define \(T: V^* \times V \to K\) by
-                  \begin{equation}
-                      T(\vb*{\omega}, \vb{v}) = L(\vb*{\omega})(\vb{v})
-                  \end{equation}
-                  as \(L(\vb*{\omega}) \in V^*\) is a linear map from \(V\) to \(K\).
-              \end{Proof}
+		      \begin{Proof}
+			      Let \(T \in \mathsf{T}^1_1 V\) be a tensor. We need to construct a linear map \(L \in \End(V^*)\) using \(T\). For each \(\vb*{\omega} \in V^*\), we define a linear map \(L_{\vb*{\omega}}: V \to K \in V^*\) by
+			      \begin{equation}
+				      \forall \vb{v} \in V: L_{\vb*{\omega}}(\vb{v}) = T(\vb*{\omega}, \vb{v}).
+			      \end{equation}
+			      Now, we can define a linear map \(L: V^* \to V^*\) by
+			      \begin{equation}
+				      L(\vb*{\omega}) = L_{\vb*{\omega}} \qquad \implies \qquad \vb*{\omega} \mapsto \underbrace{(\vb{v} \mapsto T(\vb*{\omega}, \vb{v}))}_{L_{\vb*{\omega}}}.
+			      \end{equation}
+			      Now, let \(L \in \End(V^*)\) be a linear map. We need to show that there exists a tensor \(T \in \mathsf{T}^1_1 V\) corresponding to \(L\).
+			      Define \(T: V^* \times V \to K\) by
+			      \begin{equation}
+				      T(\vb*{\omega}, \vb{v}) = L(\vb*{\omega})(\vb{v})
+			      \end{equation}
+			      as \(L(\vb*{\omega}) \in V^*\) is a linear map from \(V\) to \(K\).
+		      \end{Proof}
 
-        \item From previous example, we expect that \(\mathsf{T}^1_0 V \vecIso V\); but this is not true in general. However, if \(V\) is finite-dimensional, then \(\mathsf{T}^1_0 V \vecIso V\).
+		\item From previous example, we expect that \(\mathsf{T}^1_0 V \vecIso V\); but this is not true in general. However, if \(V\) is finite-dimensional, then \(\mathsf{T}^1_0 V \vecIso V\).
 
-        \item Similarly, \(\mathsf{T}^1_1 V \vecIso \End(V)\) is also not true in general, but if \(V\) is finite-dimensional, then \(\mathsf{T}^1_1 V \vecIso \End(V)\).
+		\item Similarly, \(\mathsf{T}^1_1 V \vecIso \End(V)\) is also not true in general, but if \(V\) is finite-dimensional, then \(\mathsf{T}^1_1 V \vecIso \End(V)\).
 
-        \item All these examples which are not true in general, but true for finite-dimensional vector spaces, can be summarized as
-              \begin{equation}
-                  (V^*)^* \ncong_{\text{vec}} V.
-              \end{equation}
-              This is true only for finite-dimensional vector spaces.
-    \end{enumerate}
+		\item All these examples which are not true in general, but true for finite-dimensional vector spaces, can be summarized as
+		      \begin{equation}
+			      (V^*)^* \ncong_{\text{vec}} V.
+		      \end{equation}
+		      This is true only for finite-dimensional vector spaces.
+	\end{enumerate}
 \end{example}
 
 \subsection{Dimension of a Vector Space}
 
-Now, we have mentioned dimensions of vector spaces several times, so let's define the notion of dimension of a vector space. But first, we need to define a basis of a vector space. Since till now, we haven't considered any additional structure on a vector space, we can only define a \emph{Hamel basis} of a vector space.
+We have mentioned dimension of a vector space multiple times, but we have not defined it properly yet. To define the dimension of a vector space, we first need to define \emph{basis} of a vector space, and a natural choice is to use \emph{Hamel basis} as it doesn't require any additional structure on the vector space.
 \begin{definition}[Hamel Basis]
-    Let \((V, +, \cdot)\) be a vector space over a field \(K\). A subset \(\SB \subseteq V\) is called a \emph{Hamel basis} if it satisfies the following properties:
-    \begin{enumerate}[(i)]
-        \item \(\SB\) is a linearly independent set, \ie\ for any finite subset \(\qty{\vb{b}_1, \ldots, \vb{b}_N} \subseteq \SB\), the only solution to the equation
-              \begin{equation}
-                  \sum_{i=1}^{N} \lambda^i \cdot \vb{b}_i = \vb{0} \quad \text{for } \lambda^i \in K
-              \end{equation}
-              is \(\lambda^i = 0\) for all \(i\).
+	Let \((V, +, \cdot)\) be a vector space over a field \(K\). A subset \(\SB \subseteq V\) is called a \emph{Hamel basis} if it satisfies the following properties:
+	\begin{enumerate}[(i), noitemsep]
+		\item \(\SB\) is a linearly independent set, \ie\ for any finite subset \(\qty{\vb{b}_1, \ldots, \vb{b}_N} \subseteq \SB\), the only solution to the following equation is the trivial solution \(\lambda^i = 0\) for all \(i = 1, \ldots, N\):
+		      \begin{equation}
+			      \sum_{i=1}^{N} \lambda^i \cdot \vb{b}_i = \vb{0} \quad \text{for } \lambda^i \in K
+		      \end{equation}
 
-        \item \(\SB\) is a spanning set, \ie\ every element \(\vb{v} \in V\) can be expressed as a finite linear combination of elements from \(\SB\), \ie\
-              \begin{equation}
-                  \forall \vb{v} \in V: \exists M \in \N: \exists v^1, \ldots, v^M \in K: \exists \vb{b}_1, \ldots, \vb{b}_M \in \SB: \vb{v} = \sum_{i=1}^{M} v^i \cdot \vb{b}_i.
-              \end{equation}
-    \end{enumerate}
+		\item \(\SB\) is a spanning set, \ie\ every element \(\vb{v} \in V\) can be expressed as a finite linear combination of elements from \(\SB\), \ie\
+		      \begin{equation}
+			      \forall \vb{v} \in V: \exists M \in \N: \exists v^1, \ldots, v^M \in K: \exists \vb{b}_1, \ldots, \vb{b}_M \in \SB: \vb{v} = \sum_{i=1}^{M} v^i \cdot \vb{b}_i.
+		      \end{equation}
+	\end{enumerate}
 \end{definition}
 Say we all have decided to use a single Hamel basis \(\SB\) for our vector space \(V\). Then it is more convenient to talk about the elements of \(V\) as an array of coefficients \ie\ \((v^1, \ldots, v^M)\) also called the \emph{coordinates} of the vector with respect to the Hamel basis \(\SB\).
 
 With this definition, we can define the dimension of a vector space. But first, we need to ensure that the dimension is well-defined, \ie\ it does not depend on the choice of Hamel basis. This is guaranteed by the following proposition.
 \begin{proposition}
-    Let \((V, +, \cdot)\) be a vector space over a field \(K\) and let \(\SB\) be a Hamel basis of \(V\). Then \(\SB\) is the minimal spanning set of \(V\), and maximal linearly independent set of \(V\). In other words, let \(S \subseteq V\).
-    \begin{enumerate}[(i)]
-        \item If \(\Span(S) = V\), then \(\abs{S} \geq \abs{\SB}\).
-        \item If \(S\) is linearly independent, then \(\abs{S} \leq \abs{\SB}\).
-    \end{enumerate}
+	Let \((V, +, \cdot)\) be a vector space over a field \(K\) and let \(\SB\) be a Hamel basis of \(V\). Then \(\SB\) is the minimal spanning set of \(V\), and maximal linearly independent set of \(V\). In other words, let \(S \subseteq V\).
+	\begin{enumerate}[(i)]
+		\item If \(\Span(S) = V\), then \(\abs{S} \geq \abs{\SB}\).
+		\item If \(S\) is linearly independent, then \(\abs{S} \leq \abs{\SB}\).
+	\end{enumerate}
 \end{proposition}
 \begin{definition}[Dimension]
-    The \emph{dimension} of a vector space \(V\) over a field \(K\) is defined as the cardinality of any Hamel basis of \(V\). We denote the dimension of \(V\) by \(\dim V\).
-    \begin{equation}
-        \dim V := \abs{\SB} \quad \text{for any Hamel basis } \SB \subseteq V.
-    \end{equation}
-    If \(V\) has a finite Hamel basis, we say that \(V\) is \emph{finite-dimensional} and \(\dim V < \infty\). If \(V\) does not have a finite Hamel basis, we say that \(V\) is \emph{infinite-dimensional} and \(\dim V = \infty\).
+	The \emph{dimension} of a vector space \(V\) over a field \(K\) is defined as the cardinality of any Hamel basis of \(V\). We denote the dimension of \(V\) by \(\dim V\).
+	\begin{equation}
+		\dim V := \abs{\SB} \quad \text{for any Hamel basis } \SB \subseteq V.
+	\end{equation}
+	If \(V\) has a finite Hamel basis, we say that \(V\) is \emph{finite-dimensional} and \(\dim V < \infty\). If \(V\) does not have a finite Hamel basis, we say that \(V\) is \emph{infinite-dimensional} and \(\dim V = \infty\).
 \end{definition}
 Now, we have proper tools to prove following theorem.
 \begin{theorem}
-    Let \(V\) be a finite-dimensional vector space. Then
-    \begin{equation}
-        (V^*)^* \vecIso V.
-    \end{equation}
+	Let \(V\) be a finite-dimensional vector space. Then
+	\begin{equation}
+		(V^*)^* \vecIso V.
+	\end{equation}
 \end{theorem}
 \begin{proof}
-    Let \(V\) be an \(n\)-dimensional vector space over a field \(K\). Define a linear map \(L: V \to (V^*)^*\) by
-    \begin{equation}
-        \begin{aligned}
-            L: V   & \to (V^*)^*        \\
-            \vb{v} & \mapsto L_{\vb{v}}
-        \end{aligned}
-    \end{equation}
-    where \(L_{\vb{v}}: V^* \to K \in (V^*)^*\) is defined by
-    \begin{equation}
-        \begin{aligned}
-            L_{\vb{v}}: V^* & \to K                                                    \\
-            \vb*{\omega}    & \mapsto L_{\vb{v}}(\vb*{\omega}) := \vb*{\omega}(\vb{v})
-        \end{aligned}
-    \end{equation}
-    We need to show that \(L\) is a linear isomorphism.
-    \begin{enumerate}[(i)]
-        \item \textsf{Linearity of \(L\)}:\\
-              For any \(\vb{v}_1, \vb{v}_2 \in V\) and \(a, b \in K\),
-              \begin{align*}
-                  L(a \vb{v}_1 + b \vb{v}_2)(\vb*{\omega}) & = L_{\qty{a \vb{v}_1 + b \vb{v}_2}}(\vb*{\omega})                         \\
-                                                           & = \vb*{\omega}(a \vb{v}_1 + b \vb{v}_2)                                   \\
-                                                           & = a \cdot \vb*{\omega}(\vb{v}_1) + b \cdot \vb*{\omega}(\vb{v}_2)         \\
-                                                           & = a \cdot L_{\vb{v}_1}(\vb*{\omega}) + b \cdot L_{\vb{v}_2}(\vb*{\omega}) \\
-                                                           & = (a L_{\vb{v}_1} + b L_{\vb{v}_2})(\vb*{\omega}).
-              \end{align*}
-              Thus, \(L(a \vb{v}_1 + b \vb{v}_2) = a L_{\vb{v}_1} + b L_{\vb{v}_2}\), which shows that \(L\) is linear.
+	Let \(V\) be an \(n\)-dimensional vector space over a field \(K\). Define a linear map \(L: V \to (V^*)^*\) by
+	\begin{equation}
+		\begin{aligned}
+			L: V   & \to (V^*)^*        \\
+			\vb{v} & \mapsto L_{\vb{v}}
+		\end{aligned}
+	\end{equation}
+	where \(L_{\vb{v}}: V^* \to K \in (V^*)^*\) is defined by
+	\begin{equation}
+		\begin{aligned}
+			L_{\vb{v}}: V^* & \to K                                                    \\
+			\vb*{\omega}    & \mapsto L_{\vb{v}}(\vb*{\omega}) := \vb*{\omega}(\vb{v})
+		\end{aligned}
+	\end{equation}
+	We need to show that \(L\) is a linear isomorphism.
+	\begin{enumerate}[(i)]
+		\item \textsf{Linearity of \(L\)}:\\
+		      For any \(\vb{v}_1, \vb{v}_2 \in V\) and \(a, b \in K\),
+		      \begin{align*}
+			      L(a \vb{v}_1 + b \vb{v}_2)(\vb*{\omega}) & = L_{\qty{a \vb{v}_1 + b \vb{v}_2}}(\vb*{\omega})                         \\
+			                                               & = \vb*{\omega}(a \vb{v}_1 + b \vb{v}_2)                                   \\
+			                                               & = a \cdot \vb*{\omega}(\vb{v}_1) + b \cdot \vb*{\omega}(\vb{v}_2)         \\
+			                                               & = a \cdot L_{\vb{v}_1}(\vb*{\omega}) + b \cdot L_{\vb{v}_2}(\vb*{\omega}) \\
+			                                               & = (a L_{\vb{v}_1} + b L_{\vb{v}_2})(\vb*{\omega}).
+		      \end{align*}
+		      Thus, \(L(a \vb{v}_1 + b \vb{v}_2) = a L_{\vb{v}_1} + b L_{\vb{v}_2}\), which shows that \(L\) is linear.
 
 
-        \item \textsf{Injectivity of \(L\)}:\\
-              Let \(\vb{v} \ne \vb{0} \in V\). We need to show that \(L(\vb{v}) \ne 0 \in (V^*)^*\). Since \(\vb{v} \ne \vb{0}\), so \(\Span(\vb{v}) \subseteq V\) is a proper subspace of \(V\), so we can extend this to a Hamel basis \(\SB = \qty{\vb{v}, \vb{e}_2, \ldots, \vb{e}_n}\) of \(V\). Thus, any \(\vb{u} \in V\) can be expressed as
-              \begin{equation}
-                  \vb{u} = b \cdot \vb{v} + \sum_{i=2}^{n} b^i \cdot \vb{e}_i
-              \end{equation}
-              for some \(b, b^2, \ldots, b^n \in K\). Now, we can define a linear functional \(\vb*{\omega} \in V^*\) as follows:
-              \begin{equation}
-                  \vb{u} \mapsto \vb*{\omega}(\vb{u}) := b.
-              \end{equation}
-              Thus, we have
-              \begin{equation}
-                  L(\vb{v})(\vb*{\omega}) = \vb*{\omega}(\vb{v}) = 1 \ne 0.
-              \end{equation}
-              This shows that \(L(\vb{v}) \ne 0\), hence \(L\) is injective.
+		\item \textsf{Injectivity of \(L\)}:\\
+		      Let \(\vb{v} \ne \vb{0} \in V\). We need to show that \(L(\vb{v}) \ne 0 \in (V^*)^*\). Since \(\vb{v} \ne \vb{0}\), so \(\Span(\vb{v}) \subseteq V\) is a proper subspace of \(V\), so we can extend this to a Hamel basis \(\SB = \qty{\vb{v}, \vb{e}_2, \ldots, \vb{e}_n}\) of \(V\). Thus, any \(\vb{u} \in V\) can be expressed as
+		      \begin{equation}
+			      \vb{u} = b \cdot \vb{v} + \sum_{i=2}^{n} b^i \cdot \vb{e}_i
+		      \end{equation}
+		      for some \(b, b^2, \ldots, b^n \in K\). Now, we can define a linear functional \(\vb*{\omega} \in V^*\) as follows:
+		      \begin{equation}
+			      \vb{u} \mapsto \vb*{\omega}(\vb{u}) := b.
+		      \end{equation}
+		      Thus, we have
+		      \begin{equation}
+			      L(\vb{v})(\vb*{\omega}) = \vb*{\omega}(\vb{v}) = 1 \ne 0.
+		      \end{equation}
+		      This shows that \(L(\vb{v}) \ne 0\), hence \(L\) is injective.
 
-              \begin{claim}[Dual Basis]
-                  For a finite-dimensional vector space \(V\), with a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\), there exists a unique dual basis \(\SB^* = \qty{\vb{f}^1, \ldots, \vb{f}^n}\) such that
-                  \begin{equation}
-                      \forall i, j \in \qty{1, \ldots, n}: \vb{f}^i(\vb{e}_j) = \delta^{i}_j := \begin{cases}
-                          1 & \text{if } i = j   \\
-                          0 & \text{if } i \ne j
-                      \end{cases}
-                  \end{equation}
-              \end{claim}
+		      \begin{claim}[Dual Basis]
+			      For a finite-dimensional vector space \(V\), with a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\), there exists a unique dual basis \(\SB^* = \qty{\vb{f}^1, \ldots, \vb{f}^n}\) such that
+			      \begin{equation}
+				      \forall i, j \in \qty{1, \ldots, n}: \vb{f}^i(\vb{e}_j) = \delta^{i}_j := \begin{cases}
+					      1 & \text{if } i = j   \\
+					      0 & \text{if } i \ne j
+				      \end{cases}
+			      \end{equation}
+		      \end{claim}
 
-        \item \textsf{Surjectivity of \(L\)}:\\
-              Let \(F \in (V^*)^*\) be any linear functional. We need to show that there exists a \(\vb{v} \in V\) such that \(L(\vb{v}) = F\). Since \(V\) is finite-dimensional, we can choose a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) of \(V\). Now, we can define a vector \(\vb{v} \in V\) as follows:
-              \begin{equation}
-                  \vb{v} = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \vb{e}_i
-              \end{equation}
-              where \(\vb{f}^i\) is the \(i\)-th element of the dual basis \(\SB^* = \qty{\vb{f}^1, \ldots, \vb{f}^n}\) corresponding to the Hamel basis \(\SB\). Now, we can check that
-              \begin{align*}
-                  L(\vb{v})(\vb*{\omega}) & = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \vb*{\omega}(\vb{e}_i) \\
-                                          & = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \delta_i^j             \\
-                                          & = F(\vb*{\omega}).
-              \end{align*}
-              Thus, \(L(\vb{v}) = F\), which shows that \(L\) is surjective.
-    \end{enumerate}
+		\item \textsf{Surjectivity of \(L\)}:\\
+		      Let \(F \in (V^*)^*\) be any linear functional. We need to show that there exists a \(\vb{v} \in V\) such that \(L(\vb{v}) = F\). Since \(V\) is finite-dimensional, we can choose a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) of \(V\). Now, we can define a vector \(\vb{v} \in V\) as follows:
+		      \begin{equation}
+			      \vb{v} = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \vb{e}_i
+		      \end{equation}
+		      where \(\vb{f}^i\) is the \(i\)-th element of the dual basis \(\SB^* = \qty{\vb{f}^1, \ldots, \vb{f}^n}\) corresponding to the Hamel basis \(\SB\). Now, we can check that
+		      \begin{align*}
+			      L(\vb{v})(\vb*{\omega}) & = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \vb*{\omega}(\vb{e}_i) \\
+			                              & = \sum_{i=1}^{n} F(\vb{f}^i) \cdot \delta_i^j             \\
+			                              & = F(\vb*{\omega}).
+		      \end{align*}
+		      Thus, \(L(\vb{v}) = F\), which shows that \(L\) is surjective.
+	\end{enumerate}
 \end{proof}
 \begin{corollary}
-    If \(V\) is a finite-dimensional vector space, then
-    \begin{enumerate}[(i)]
-        \item \(\mathsf{T}^1_1 V \vecIso \End(V)\).
-        \item \(\mathsf{T}^1_0 V \vecIso V\).
-    \end{enumerate}
+	If \(V\) is a finite-dimensional vector space, then
+	\begin{enumerate}[(i)]
+		\item \(\mathsf{T}^1_1 V \vecIso \End(V)\).
+		\item \(\mathsf{T}^1_0 V \vecIso V\).
+	\end{enumerate}
 \end{corollary}
 Till now, we have only used basis to classify vector spaces, either finite-dimensional or infinite-dimensional. In vector thoery, we don't use basis to construct objects, but once we have the definition of the object without using basis, we can use basis to study the object in a more convenient way.
 
 We have seen the components of a vector with respect to a basis, now we can define the components of a tensor with respect to a basis.
 \begin{definition}[Components of a Tensor]
-    Let \(V\) be a finite-dimensional vector space over a field \(K\) with a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) and the corresponding dual basis \(\SB^* = \qty{\vb*{\epsilon}^1, \ldots, \vb*{\epsilon}^n}\). The components of a tensor \(T \in \mathsf{T}^p_q V\) with respect to the basis \(\SB\) and \(\SB^*\) are defined as follows:
-    \begin{equation}
-        \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} := T(\vb*{\epsilon}^{i_1}, \ldots, \vb*{\epsilon}^{i_p}, \vb{e}_{j_1}, \ldots, \vb{e}_{j_q}) \quad \text{for } i_k, j_l \in \qty{1, \ldots, n}.
-    \end{equation}
+	Let \(V\) be a finite-dimensional vector space over a field \(K\) with a Hamel basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) and the corresponding dual basis \(\SB^* = \qty{\vb*{\epsilon}^1, \ldots, \vb*{\epsilon}^n}\). The components of a tensor \(T \in \mathsf{T}^p_q V\) with respect to the basis \(\SB\) and \(\SB^*\) are defined as follows:
+	\begin{equation}
+		\tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} := T(\vb*{\epsilon}^{i_1}, \ldots, \vb*{\epsilon}^{i_p}, \vb{e}_{j_1}, \ldots, \vb{e}_{j_q}) \quad \text{for } i_k, j_l \in \qty{1, \ldots, n}.
+	\end{equation}
 \end{definition}
 With these tensor components, we can express the tensor \(T\) as a sum of its components multiplied by the basis `tensors':
 \begin{equation}
-    T = \underbrace{\sum_{i_1 = 1}^{n} \cdots \sum_{j_q = 1}^{n}}_{p + q \text{ sums}} \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} \cdot \vb{e}_{i_1} \otimes \cdots \otimes \vb{e}_{i_p} \otimes \vb*{\epsilon}^{j_1} \otimes \cdots \otimes \vb*{\epsilon}^{j_q}.
+	T = \underbrace{\sum_{i_1 = 1}^{n} \cdots \sum_{j_q = 1}^{n}}_{p + q \text{ sums}} \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} \cdot \vb{e}_{i_1} \otimes \cdots \otimes \vb{e}_{i_p} \otimes \vb*{\epsilon}^{j_1} \otimes \cdots \otimes \vb*{\epsilon}^{j_q}.
 \end{equation}
 Here \(\otimes\) denotes the tensor product of tensors, as \(\vb{e}_{i_k} \in V \vecIso \mathsf{T}^1_0 V\) and \(\vb*{\epsilon}^{j_l} \in V^* \vecIso \mathsf{T}^0_1 V\). The components are field elements, so the implicit multiplication is the scalar multiplication of tensors of type \((p, q)\).
 
 From now on, we will do this big sums multiple times, so to reduce the clutter, we will use the Einstein summation convention. In this convention, we will omit the summation symbol and assume that repeated indices (one upper and one lower) are summed over. For example, the above expression can be written as
 \begin{multline}
-    T = \underbrace{\sum_{i_1 = 1}^{n} \cdots \sum_{j_q = 1}^{n}}_{p + q \text{ sums}} \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} \cdot \vb{e}_{i_1} \otimes \cdots \otimes \vb{e}_{i_p} \otimes \vb*{\epsilon}^{j_1} \otimes \cdots \otimes \vb*{\epsilon}^{j_q} \equiv \\
-    \tensor{T}{^{\textcolor{blue}{i_1} \ldots \textcolor{green}{i_p}}_{\textcolor{red}{j_1} \ldots \textcolor{orange}{j_q}}} \cdot \vb{e}_{\textcolor{blue}{i_1}} \otimes \cdots \otimes \vb{e}_{\textcolor{green}{i_p}} \otimes \vb*{\epsilon}^{\textcolor{red}{j_1}} \otimes \cdots \otimes \vb*{\epsilon}^{\textcolor{orange}{j_q}}.
+	T = \underbrace{\sum_{i_1 = 1}^{n} \cdots \sum_{j_q = 1}^{n}}_{p + q \text{ sums}} \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} \cdot \vb{e}_{i_1} \otimes \cdots \otimes \vb{e}_{i_p} \otimes \vb*{\epsilon}^{j_1} \otimes \cdots \otimes \vb*{\epsilon}^{j_q} \equiv \\
+	\tensor{T}{^{\textcolor{blue}{i_1} \ldots \textcolor{green}{i_p}}_{\textcolor{red}{j_1} \ldots \textcolor{orange}{j_q}}} \cdot \vb{e}_{\textcolor{blue}{i_1}} \otimes \cdots \otimes \vb{e}_{\textcolor{green}{i_p}} \otimes \vb*{\epsilon}^{\textcolor{red}{j_1}} \otimes \cdots \otimes \vb*{\epsilon}^{\textcolor{orange}{j_q}}.
 \end{multline}
 For Up-Down convection, we only need to remember the fundamental convention \ie
 \begin{itemize}
-    \item Basis vectors of \(V\) are denoted by lower indices, \(\vb{e}_i\).
-    \item Basis vectors of \(V^*\) are denoted by upper indices, \(\vb*{\epsilon}^i\).
+	\item Basis vectors of \(V\) are denoted by lower indices, \(\vb{e}_i\).
+	\item Basis vectors of \(V^*\) are denoted by upper indices, \(\vb*{\epsilon}^i\).
 \end{itemize}
 So the indices of the components of a tensor are due to the basis vectors of \(V\) and \(V^*\) used to define it.
 \begin{equation}
-    \tensor{T}{^{\textcolor{blue}{i_1} \ldots \textcolor{green}{i_p}}_{\textcolor{red}{j_1} \ldots \textcolor{orange}{j_q}}} := T(\vb*{\epsilon}^{\textcolor{blue}{i_1}}, \ldots, \vb*{\epsilon}^{\textcolor{green}{i_p}}, \vb{e}_{\textcolor{red}{j_1}}, \ldots, \vb{e}_{\textcolor{orange}{j_q}}).
+	\tensor{T}{^{\textcolor{blue}{i_1} \ldots \textcolor{green}{i_p}}_{\textcolor{red}{j_1} \ldots \textcolor{orange}{j_q}}} := T(\vb*{\epsilon}^{\textcolor{blue}{i_1}}, \ldots, \vb*{\epsilon}^{\textcolor{green}{i_p}}, \vb{e}_{\textcolor{red}{j_1}}, \ldots, \vb{e}_{\textcolor{orange}{j_q}}).
 \end{equation}
 We can recover the indices for the coordinates of a vector and a covector as follows (given a choice of basis and dual basis)
 \begin{align}
-    \vb{v}       & = v^i \cdot \vb{e}_i \quad \text{where } v^i = \vb*{\epsilon}^i(\vb{v})                  \\
-    \vb*{\omega} & = \omega_j \cdot \vb*{\epsilon}^j \quad \text{where } \omega_j = \vb{e}_j(\vb*{\omega}).
+	\vb{v}       & = v^i \cdot \vb{e}_i \quad \text{where } v^i = \vb*{\epsilon}^i(\vb{v})                  \\
+	\vb*{\omega} & = \omega_j \cdot \vb*{\epsilon}^j \quad \text{where } \omega_j = \vb{e}_j(\vb*{\omega}).
 \end{align}
 \begin{remark}[Caution]
-    But we need to be careful about this convention, as it is only works for linear spaces and linear maps. For example, if we have a tensor \(T: V^* \times V \to K\), then for any \(\vb*{\omega} \in V^*\) and \(\vb{v} \in V\), we have
-    \begin{align*}
-        T(\vb*{\omega}, \vb{v}) & = T\qty(\sum_{i = 1}^{n} \omega_i \vb*{\epsilon}^i, \sum_{j = 1}^{n} v^j \vb{e}_j) \\
-                                & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} T(\omega_i \vb*{\epsilon}^i, v^j \vb{e}_j)     \\
-                                & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} \omega_i v^j T(\vb*{\epsilon}^i, \vb{e}_j)     \\
-                                & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} \omega_i v^j \tensor{T}{^{i}_{j}}.
-    \end{align*}
-    So, if we omit the summation symbol, then there is no way to distinguish between the first and second equation. But the second equation is only true for bilinear maps, and not for non-bilinear maps. So, we need to be careful about the context in which we are using the Einstein summation convention.
+	But we need to be careful about this convention, as it is only works for linear spaces and linear maps. For example, if we have a tensor \(T: V^* \times V \to K\), then for any \(\vb*{\omega} \in V^*\) and \(\vb{v} \in V\), we have
+	\begin{align*}
+		T(\vb*{\omega}, \vb{v}) & = T\qty(\sum_{i = 1}^{n} \omega_i \vb*{\epsilon}^i, \sum_{j = 1}^{n} v^j \vb{e}_j) \\
+		                        & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} T(\omega_i \vb*{\epsilon}^i, v^j \vb{e}_j)     \\
+		                        & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} \omega_i v^j T(\vb*{\epsilon}^i, \vb{e}_j)     \\
+		                        & = \sum_{i = 1}^{n} \sum_{j = 1}^{n} \omega_i v^j \tensor{T}{^{i}_{j}}.
+	\end{align*}
+	So, if we omit the summation symbol, then there is no way to distinguish between the first and second equation. But the second equation is only true for bilinear maps, and not for non-bilinear maps. So, we need to be careful about the context in which we are using the Einstein summation convention.
 \end{remark}
 It is important to know that, how to go from one basis to another basis. This is called the \emph{change of basis}.
 
@@ -435,125 +434,125 @@ It is important to know that, how to go from one basis to another basis. This is
 
 Consider two bases \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) and \(\tilde{\SB} = \qty{\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_n}\) of a vector space \(V\). Since each vector in \(\tilde{\SB}\) is a vector in \(V\), we can express each \(\tilde{\vb{e}}_i\) as a linear combination of the vectors in \(\SB\): (using the Einstein summation convention)
 \begin{equation}
-    \tilde{\vb{e}}_i = \tensor{A}{^j_i} \vb{e}_j
+	\tilde{\vb{e}}_i = \tensor{A}{^j_i} \vb{e}_j
 \end{equation}
 where \(\tensor{A}{^j_i} \in K\). Similarly, we can express each \(\vb{e}_i\) as a linear combination of the vectors in \(\tilde{\SB}\):
 \begin{equation}
-    \vb{e}_i = \tensor{B}{^j_i} \tilde{\vb{e}}_j
+	\vb{e}_i = \tensor{B}{^j_i} \tilde{\vb{e}}_j
 \end{equation}
 where \(\tensor{B}{^j_i} \in K\). In linear algebra, we can define two matrices \(A\) and \(B\) with entries \(\tensor{A}{^j_i}\) and \(\tensor{B}{^j_i}\) respectively, such that
 \begin{equation}
-    A\inv = B \quad \text{and} \quad B\inv = A.
+	A\inv = B \quad \text{and} \quad B\inv = A.
 \end{equation}
 
 But till now, we haven't explored the vector spaces using arrays, so we define following notation for using usual notion of matrices and (row and column) vectors from our linear algebra course.
 \begin{remark}[Matrix Notation]
-    Fix a basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) of a vector space \(V\) and a dual basis \(\SB^* = \qty{\vb*{\epsilon}^1, \ldots, \vb*{\epsilon}^n}\). Then we will express
-    \begin{equation}
-        \vb{v} = v^i \vb{e}_i \quad \leftrightsquigarrow \quad \vb{v} \hateq \mqty(v^1 \\ \vdots \\ v^n)
-    \end{equation}
-    and
-    \begin{equation}
-        \vb*{\omega} = \omega_j \vb*{\epsilon}^j \quad \leftrightsquigarrow \quad \vb*{\omega}\trans \hateq \mqty(\omega_1 & \cdots & \omega_n).
-    \end{equation}
-    Now let \(\phi \in \End(V) \vecIso \mathsf{T}^1_1 V\) be a linear map. Then we can express \(\phi\) as
-    \begin{equation}
-        \phi = \tensor{\phi}{^{i}_{j}} \vb{e}_i \otimes \vb*{\epsilon}^j \quad \leftrightsquigarrow \quad \Phi \hateq \mqty(\tensor{\phi}{^{1}_{1}} & \cdots & \tensor{\phi}{^{1}_{n}} \\ \vdots & \ddots & \vdots \\ \tensor{\phi}{^{n}_{1}} & \cdots & \tensor{\phi}{^{n}_{n}}).
-    \end{equation}
+	Fix a basis \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) of a vector space \(V\) and a dual basis \(\SB^* = \qty{\vb*{\epsilon}^1, \ldots, \vb*{\epsilon}^n}\). Then we will express
+	\begin{equation}
+		\vb{v} = v^i \vb{e}_i \quad \leftrightsquigarrow \quad \vb{v} \hateq \mqty(v^1 \\ \vdots \\ v^n)
+	\end{equation}
+	and
+	\begin{equation}
+		\vb*{\omega} = \omega_j \vb*{\epsilon}^j \quad \leftrightsquigarrow \quad \vb*{\omega}\trans \hateq \mqty(\omega_1 & \cdots & \omega_n).
+	\end{equation}
+	Now let \(\phi \in \End(V) \vecIso \mathsf{T}^1_1 V\) be a linear map. Then we can express \(\phi\) as
+	\begin{equation}
+		\phi = \tensor{\phi}{^{i}_{j}} \vb{e}_i \otimes \vb*{\epsilon}^j \quad \leftrightsquigarrow \quad \Phi \hateq \mqty(\tensor{\phi}{^{1}_{1}} & \cdots & \tensor{\phi}{^{1}_{n}} \\ \vdots & \ddots & \vdots \\ \tensor{\phi}{^{n}_{1}} & \cdots & \tensor{\phi}{^{n}_{n}}).
+	\end{equation}
 \end{remark}
 So in general, the convention is that we will use the upper indices for the rows and lower indices for the columns of a matrix.
 
 We know for finite-dimensional vector space \(V\), we have \(\End(V) \vecIso \mathsf{T}^1_1 V\). Let \(\phi \in \End(V)\), so we can rethink \(\phi\) as a type \((1, 1)\)-tensor in following sense:
 \begin{equation}
-    \phi(\vb*{\omega}, \vb{v}) := \vb*{\omega}(\phi(\vb{v})).
+	\phi(\vb*{\omega}, \vb{v}) := \vb*{\omega}(\phi(\vb{v})).
 \end{equation}
 So the components of tensor \(\phi\) is defined as,
 \begin{equation}
-    \tensor{\phi}{^{i}_{j}} := \phi(\vb*{\epsilon}^i, \vb{e}_j) = \vb*{\epsilon}^i(\phi(\vb{e}_j)).
+	\tensor{\phi}{^{i}_{j}} := \phi(\vb*{\epsilon}^i, \vb{e}_j) = \vb*{\epsilon}^i(\phi(\vb{e}_j)).
 \end{equation}
 Let \(\phi, \psi \in \End(V)\). Let's compute the components of linear map \(\phi \circ \psi\)
 \begin{align*}
-    \tensor{(\phi \circ \psi)}{^{i}_{j}} & = \vb*{\epsilon}^i((\phi \circ \psi)(\vb{e}_j))                                                                  \\
-                                         & = \vb*{\epsilon}^i(\phi(\psi(\vb{e}_j)))                                                                         \\
-                                         & = \vb*{\epsilon}^i(\phi(\tensor{\psi}{^{a}_{j}} \vb{e}_a))                                                       \\
-                                         & = \vb*{\epsilon}^i(\tensor{\psi}{^{a}_{j}} \phi(\vb{e}_a))                                                       \\
-                                         & = \vb*{\epsilon}^i(\tensor{\psi}{^{a}_{j}} \tensor{\phi}{^{b}_{a}} \vb{e}_b)                                     \\
-                                         & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{b}_{a}} \vb*{\epsilon}^i(\vb{e}_b)                               \\
-                                         & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{b}_{a}} \cdot \tensor{\delta}{^{i}_{b}}                          \\
-                                         & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{i}_{a}} = \tensor{\phi}{^{i}_{a}} \cdot \tensor{\psi}{^{a}_{j}}.
+	\tensor{(\phi \circ \psi)}{^{i}_{j}} & = \vb*{\epsilon}^i((\phi \circ \psi)(\vb{e}_j))                                                                  \\
+	                                     & = \vb*{\epsilon}^i(\phi(\psi(\vb{e}_j)))                                                                         \\
+	                                     & = \vb*{\epsilon}^i(\phi(\tensor{\psi}{^{a}_{j}} \vb{e}_a))                                                       \\
+	                                     & = \vb*{\epsilon}^i(\tensor{\psi}{^{a}_{j}} \phi(\vb{e}_a))                                                       \\
+	                                     & = \vb*{\epsilon}^i(\tensor{\psi}{^{a}_{j}} \tensor{\phi}{^{b}_{a}} \vb{e}_b)                                     \\
+	                                     & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{b}_{a}} \vb*{\epsilon}^i(\vb{e}_b)                               \\
+	                                     & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{b}_{a}} \cdot \tensor{\delta}{^{i}_{b}}                          \\
+	                                     & = \tensor{\psi}{^{a}_{j}} \cdot \tensor{\phi}{^{i}_{a}} = \tensor{\phi}{^{i}_{a}} \cdot \tensor{\psi}{^{a}_{j}}.
 \end{align*}
 With this, we have a definition for matrix multiplication \ie\ say \(\Phi, \Psi\) are matrices corresponding to linear maps \(\phi, \psi\), so the matrix for the composed linear map \(\phi \circ \psi\) is given as
 \begin{equation}
-    \Phi \vdot \Psi \hateq \mqty(\tensor{\phi}{^{i}_{a}} \cdot \tensor{\psi}{^{a}_{j}})_{i, j = 1}^{n}
+	\Phi \vdot \Psi \hateq \mqty(\tensor{\phi}{^{i}_{a}} \cdot \tensor{\psi}{^{a}_{j}})_{i, j = 1}^{n}
 \end{equation}
 We call this rule of producing matrices ``\emph{matrix-multiplication}.''
 
 Similarly, the action of a covector \(\vb*{\omega}(\vb{v}) = \omega_m v^m\), and this can be thought of as matrix multiplication as \(\vb*{\omega}\trans \vdot \vb{v}\). This notaion gives us a false picture that these are basis independent, but they are not. And in the similar spirit we also write,
 \begin{equation}
-    \phi(\vb*{\omega}, \vb{v}) = \omega_i \tensor{\phi}{^{i}_{j}} v^j \quad \leftrightsquigarrow \quad \vb*{\omega}\trans \vdot \Phi \vdot \vb{v}
+	\phi(\vb*{\omega}, \vb{v}) = \omega_i \tensor{\phi}{^{i}_{j}} v^j \quad \leftrightsquigarrow \quad \vb*{\omega}\trans \vdot \Phi \vdot \vb{v}
 \end{equation}
 There is another issue with these representations, \ie\ for tensor of type other than these three, we don't have nice picture to draw. So it is better to think them as multilinear maps instead of matrices.
 
 Now, let's talk about the effect of change of basis on the vectors, covectors, and tensors. Recall we have two basis, \(\SB = \qty{\vb{e}_1, \ldots, \vb{e}_n}\) and \(\tilde{\SB} = \qty{\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_n}\) of a vector space \(V\). Then the change of basis for vectors is given by
 \begin{align}
-    \tilde{\vb{e}}_i & = \tensor{A}{^j_i} \vb{e}_j &  & \vb{e}_j = \tensor{B}{^i_j} \tilde{\vb{e}_i}.
+	\tilde{\vb{e}}_i & = \tensor{A}{^j_i} \vb{e}_j &  & \vb{e}_j = \tensor{B}{^i_j} \tilde{\vb{e}_i}.
 \end{align}
 Since these relations are invertible, we have
 \begin{equation}
-    \tensor{A}{^i_m} \tensor{B}{^m_j} = \tensor{B}{^i_m} \tensor{A}{^m_j} = \tensor{\delta}{^i_j}
+	\tensor{A}{^i_m} \tensor{B}{^m_j} = \tensor{B}{^i_m} \tensor{A}{^m_j} = \tensor{\delta}{^i_j}
 \end{equation}
 For both the bases, we have the dual bases \(\SB^* = \qty{\vb*{\epsilon}^1, \ldots, \vb*{\epsilon}^n}\) and \(\tilde{\SB}^* = \qty{\tilde{\vb*{\epsilon}}^1, \ldots, \tilde{\vb*{\epsilon}}^n}\).
 \begin{enumerate}
-    \item \textsf{Covectors:}\\
-          Let \(\vb*{\omega} = \omega_j \vb*{\epsilon}^j\) be a covector, where \(\omega_j = \vb{e}_j(\vb*{\omega})\). Here \(\vb{e}_j\) is an element of \(\mathsf{T}^1_0 V\). Then we have
-          \begin{align}
-              \omega_j & = \vb{e}_j(\vb*{\omega}) = \vb*{\omega}(\vb{e}_j) = \vb*{\omega}(\tensor{B}{^i_j} \tilde{\vb{e}}_i) = \tensor{B}{^i_j} \vb*{\omega}(\tilde{\vb{e}}_i) = \tensor{B}{^i_j} \tilde{\vb{e}}_i(\vb*{\omega}) = \tensor{B}{^i_j} \tilde{\omega}_i.
-          \end{align}
+	\item \textsf{Covectors:}\\
+	      Let \(\vb*{\omega} = \omega_j \vb*{\epsilon}^j\) be a covector, where \(\omega_j = \vb{e}_j(\vb*{\omega})\). Here \(\vb{e}_j\) is an element of \(\mathsf{T}^1_0 V\). Then we have
+	      \begin{align}
+		      \omega_j & = \vb{e}_j(\vb*{\omega}) = \vb*{\omega}(\vb{e}_j) = \vb*{\omega}(\tensor{B}{^i_j} \tilde{\vb{e}}_i) = \tensor{B}{^i_j} \vb*{\omega}(\tilde{\vb{e}}_i) = \tensor{B}{^i_j} \tilde{\vb{e}}_i(\vb*{\omega}) = \tensor{B}{^i_j} \tilde{\omega}_i.
+	      \end{align}
 
-    \item \textsf{Vectors:}\\
-          Let \(\vb{v} = v^i \vb{e}_i\) be a vector, where \(v^i = \vb*{\epsilon}^i(\vb{v})\). Then we have
-          \begin{align}
-              v^i & = \vb*{\epsilon}^i(\vb{v}) = \vb*{\epsilon}^i(\tilde{v}^j \tilde{\vb{e}}_j) = \tilde{v}^j \vb*{\epsilon}^i(\tilde{\vb{e}}_j) = \tilde{v}^j \vb*{\epsilon}^i(\tensor{A}{^k_j} \vb{e}_k) = \tilde{v}^j \tensor{A}{^k_j} \vb*{\epsilon}^i(\vb{e}_k) = \tilde{v}^j \tensor{A}{^k_j} \tensor{\delta}{^i_k} = \tensor{A}{^i_j} \tilde{v}^j.
-          \end{align}
+	\item \textsf{Vectors:}\\
+	      Let \(\vb{v} = v^i \vb{e}_i\) be a vector, where \(v^i = \vb*{\epsilon}^i(\vb{v})\). Then we have
+	      \begin{align}
+		      v^i & = \vb*{\epsilon}^i(\vb{v}) = \vb*{\epsilon}^i(\tilde{v}^j \tilde{\vb{e}}_j) = \tilde{v}^j \vb*{\epsilon}^i(\tilde{\vb{e}}_j) = \tilde{v}^j \vb*{\epsilon}^i(\tensor{A}{^k_j} \vb{e}_k) = \tilde{v}^j \tensor{A}{^k_j} \vb*{\epsilon}^i(\vb{e}_k) = \tilde{v}^j \tensor{A}{^k_j} \tensor{\delta}{^i_k} = \tensor{A}{^i_j} \tilde{v}^j.
+	      \end{align}
 \end{enumerate}
 Summarizing the above two equations, we have
 \begin{align}
-    v^i         & = \tensor{A}{^i_j} \tilde{v}^j &  & \omega_j = \tensor{B}{^i_j} \tilde{\omega}_i  \\
-    \tilde{v}^i & = \tensor{B}{^i_j} v^j         &  & \tilde{\omega}_j = \tensor{A}{^i_j} \omega_i.
+	v^i         & = \tensor{A}{^i_j} \tilde{v}^j &  & \omega_j = \tensor{B}{^i_j} \tilde{\omega}_i  \\
+	\tilde{v}^i & = \tensor{B}{^i_j} v^j         &  & \tilde{\omega}_j = \tensor{A}{^i_j} \omega_i.
 \end{align}
 Now, let's see how the basis of dual space changes with respect to the change of basis of the vector space. Recall that the dual basis is defined as follows
 \begin{align}
-    \vb*{\epsilon}^i(\vb{e}_j) & = \delta^i_j &  & \tilde{\vb*{\epsilon}}^i(\tilde{\vb{e}}_j) = \delta^i_j.
+	\vb*{\epsilon}^i(\vb{e}_j) & = \delta^i_j &  & \tilde{\vb*{\epsilon}}^i(\tilde{\vb{e}}_j) = \delta^i_j.
 \end{align}
 Let \(\tilde{\vb*{\epsilon}}^i = \tensor{C}{^i_j} \vb*{\epsilon}^j\), where \(\tensor{C}{^i_j} \in K\). Then we have
 \begin{align}
-    \tilde{\vb*{\epsilon}}^i(\tilde{\vb{e}}_j) & = \tensor{C}{^i_k} \vb*{\epsilon}^k(\tensor{A}{^l_j} \vb{e}_l) = \tensor{C}{^i_k} \tensor{A}{^l_j} \vb*{\epsilon}^k(\vb{e}_l) = \tensor{C}{^i_k} \tensor{A}{^l_j} \delta^k_l = \tensor{C}{^i_k} \tensor{A}{^k_j} = \delta^i_j.
+	\tilde{\vb*{\epsilon}}^i(\tilde{\vb{e}}_j) & = \tensor{C}{^i_k} \vb*{\epsilon}^k(\tensor{A}{^l_j} \vb{e}_l) = \tensor{C}{^i_k} \tensor{A}{^l_j} \vb*{\epsilon}^k(\vb{e}_l) = \tensor{C}{^i_k} \tensor{A}{^l_j} \delta^k_l = \tensor{C}{^i_k} \tensor{A}{^k_j} = \delta^i_j.
 \end{align}
 Thus, using unique existence of the inverse, we have
 \begin{equation}
-    \tensor{C}{^i_j} = \tensor{B}{^i_j}.
+	\tensor{C}{^i_j} = \tensor{B}{^i_j}.
 \end{equation}
 So we have the following relations for the dual basis:
 \begin{align}
-    \tilde{\vb*{\epsilon}}^i & = \tensor{B}{^i_j} \vb*{\epsilon}^j &  & \vb*{\epsilon}^j = \tensor{A}{^j_i} \tilde{\vb*{\epsilon}}^i.
+	\tilde{\vb*{\epsilon}}^i & = \tensor{B}{^i_j} \vb*{\epsilon}^j &  & \vb*{\epsilon}^j = \tensor{A}{^j_i} \tilde{\vb*{\epsilon}}^i.
 \end{align}
 \begin{enumerate}[resume]
-    \item \textsf{Tensors:}\\
-          Let \(T \in \mathsf{T}^p_q V\) be a tensor, then the components of \(T\) with respect to the basis \(\SB\) and \(\SB^*\) are given by
-          \begin{equation}
-              \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} = T(\vb*{\epsilon}^{i_1}, \ldots, \vb*{\epsilon}^{i_p}, \vb{e}_{j_1}, \ldots, \vb{e}_{j_q}).
-          \end{equation}
-          Now, we can express the components of \(T\) with respect to the basis \(\tilde{\SB}\) and \(\tilde{\SB}^*\) as follows:
-          \begin{align}
-              \tensor{\tilde{T}}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} & = T(\tilde{\vb*{\epsilon}}^{i_1}, \ldots, \tilde{\vb*{\epsilon}}^{i_p}, \tilde{\vb{e}}_{j_1}, \ldots, \tilde{\vb{e}}_{j_q})                                                                                               \\
-                                                                     & = T(\tensor{B}{^{i_1}_{a_1}} \vb*{\epsilon}^{a_1}, \ldots, \tensor{B}{^{i_p}_{a_p}} \vb*{\epsilon}^{a_p}, \tensor{A}{^{b_1}_{j_1}} \vb{e}_{b_1}, \ldots, \tensor{A}{^{b_q}_{j_q}} \vb{e}_{b_q})                           \\
-                                                                     & = \tensor{B}{^{i_1}_{a_1}} \cdots \tensor{B}{^{i_p}_{a_p}} \cdot \tensor{A}{^{b_1}_{j_1}} \cdots \tensor{A}{^{b_q}_{j_q}} \cdot T(\vb*{\epsilon}^{a_1}, \ldots, \vb*{\epsilon}^{a_p}, \vb{e}_{b_1}, \ldots, \vb{e}_{b_q}) \\
-                                                                     & = \tensor{B}{^{i_1}_{a_1}} \cdots \tensor{B}{^{i_p}_{a_p}} \cdot \tensor{A}{^{b_1}_{j_1}} \cdots \tensor{A}{^{b_q}_{j_q}} \cdot \tensor{T}{^{a_1 \ldots a_p}_{b_1 \ldots b_q}}.
-          \end{align}
-          Thus, the reversal of the basis is given by
-          \begin{equation}
-              \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} = \tensor{A}{^{i_1}_{a_1}} \cdots \tensor{A}{^{i_p}_{a_p}} \cdot \tensor{B}{^{b_1}_{j_1}} \cdots \tensor{B}{^{b_q}_{j_q}} \cdot \tensor{\tilde{T}}{^{a_1 \ldots a_p}_{b_1 \ldots b_q}}.
-          \end{equation}
+	\item \textsf{Tensors:}\\
+	      Let \(T \in \mathsf{T}^p_q V\) be a tensor, then the components of \(T\) with respect to the basis \(\SB\) and \(\SB^*\) are given by
+	      \begin{equation}
+		      \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} = T(\vb*{\epsilon}^{i_1}, \ldots, \vb*{\epsilon}^{i_p}, \vb{e}_{j_1}, \ldots, \vb{e}_{j_q}).
+	      \end{equation}
+	      Now, we can express the components of \(T\) with respect to the basis \(\tilde{\SB}\) and \(\tilde{\SB}^*\) as follows:
+	      \begin{align}
+		      \tensor{\tilde{T}}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} & = T(\tilde{\vb*{\epsilon}}^{i_1}, \ldots, \tilde{\vb*{\epsilon}}^{i_p}, \tilde{\vb{e}}_{j_1}, \ldots, \tilde{\vb{e}}_{j_q})                                                                                               \\
+		                                                             & = T(\tensor{B}{^{i_1}_{a_1}} \vb*{\epsilon}^{a_1}, \ldots, \tensor{B}{^{i_p}_{a_p}} \vb*{\epsilon}^{a_p}, \tensor{A}{^{b_1}_{j_1}} \vb{e}_{b_1}, \ldots, \tensor{A}{^{b_q}_{j_q}} \vb{e}_{b_q})                           \\
+		                                                             & = \tensor{B}{^{i_1}_{a_1}} \cdots \tensor{B}{^{i_p}_{a_p}} \cdot \tensor{A}{^{b_1}_{j_1}} \cdots \tensor{A}{^{b_q}_{j_q}} \cdot T(\vb*{\epsilon}^{a_1}, \ldots, \vb*{\epsilon}^{a_p}, \vb{e}_{b_1}, \ldots, \vb{e}_{b_q}) \\
+		                                                             & = \tensor{B}{^{i_1}_{a_1}} \cdots \tensor{B}{^{i_p}_{a_p}} \cdot \tensor{A}{^{b_1}_{j_1}} \cdots \tensor{A}{^{b_q}_{j_q}} \cdot \tensor{T}{^{a_1 \ldots a_p}_{b_1 \ldots b_q}}.
+	      \end{align}
+	      Thus, the reversal of the basis is given by
+	      \begin{equation}
+		      \tensor{T}{^{i_1 \ldots i_p}_{j_1 \ldots j_q}} = \tensor{A}{^{i_1}_{a_1}} \cdots \tensor{A}{^{i_p}_{a_p}} \cdot \tensor{B}{^{b_1}_{j_1}} \cdots \tensor{B}{^{b_q}_{j_q}} \cdot \tensor{\tilde{T}}{^{a_1 \ldots a_p}_{b_1 \ldots b_q}}.
+	      \end{equation}
 \end{enumerate}
 
 \subsection{Determinants}
@@ -561,22 +560,22 @@ So we have the following relations for the dual basis:
 From our previous knowledge of linear algebra, we know that the determinant is a scalar-valued function that takes a square matrix and returns a scalar. But since we know that the square matrix is just a convention for a linear map, we need to define the determinant in a more general way, independent of the basis. But first, look at this weird result which is pruely due to the fact that we are using a witchcraft called \emph{matrices} to represent linear maps.
 
 \begin{remark}
-    Let \(\phi \in \mathsf{T}^1_1 V\) be an endomorphism and \(g \in \mathsf{T}^0_2 V\) be a bilinear form. We have
-    \begin{equation}
-        \phi = \tensor{\phi}{^{i}_{j}} \vb{e}_i \otimes \vb*{\epsilon}^j \quad \text{and} \quad g = \tensor{g}{_{i j}} \vb*{\epsilon}^i \otimes \vb*{\epsilon}^j.
-    \end{equation}
-    We can arrange the components of \(\phi\) and \(g\) in a matrix form as follows:
-    \begin{equation}
-        \Phi = \mqty(\tensor{\phi}{^{1}_{1}} & \cdots & \tensor{\phi}{^{1}_{n}} \\ \vdots & \ddots & \vdots \\ \tensor{\phi}{^{n}_{1}} & \cdots & \tensor{\phi}{^{n}_{n}}) \quad \text{and} \quad G = \mqty(\tensor{g}{_{1 1}} & \cdots & \tensor{g}{_{1 n}} \\ \vdots & \ddots & \vdots \\ \tensor{g}{_{n 1}} & \cdots & \tensor{g}{_{n n}}).
-    \end{equation}
-    But say, we change the basis of \(V\) to \(\tilde{\SB}\), then the components of \(\phi\) and \(g\) change as follows:
-    \begin{equation}
-        \tensor{\tilde{\phi}}{^{i}_{j}} = \tensor{B}{^i_k} \cdot \tensor{\phi}{^{k}_{l}} \cdot \tensor{A}{^l_j} \quad \text{and} \quad \tensor{\tilde{g}}{_{i j}} = \tensor{A}{^k_i} \cdot \tensor{g}{_{k l}} \cdot \tensor{A}{^l_j}.
-    \end{equation}
-    Recall \(\tensor{(A\inv)}{^{i}_{j}} = \tensor{B}{^i_j}\), so we can write the above equations as (remember that \(\tensor{A}{^i_j} = \tensor{A}{_{i j}}\), which give rise to transpose in the expression)
-    \begin{equation}
-        \tilde{\Phi} = A\inv \vdot \Phi \vdot A \quad \text{and} \quad \tilde{G} = A\trans \vdot G \vdot A.
-    \end{equation}
+	Let \(\phi \in \mathsf{T}^1_1 V\) be an endomorphism and \(g \in \mathsf{T}^0_2 V\) be a bilinear form. We have
+	\begin{equation}
+		\phi = \tensor{\phi}{^{i}_{j}} \vb{e}_i \otimes \vb*{\epsilon}^j \quad \text{and} \quad g = \tensor{g}{_{i j}} \vb*{\epsilon}^i \otimes \vb*{\epsilon}^j.
+	\end{equation}
+	We can arrange the components of \(\phi\) and \(g\) in a matrix form as follows:
+	\begin{equation}
+		\Phi = \mqty(\tensor{\phi}{^{1}_{1}} & \cdots & \tensor{\phi}{^{1}_{n}} \\ \vdots & \ddots & \vdots \\ \tensor{\phi}{^{n}_{1}} & \cdots & \tensor{\phi}{^{n}_{n}}) \quad \text{and} \quad G = \mqty(\tensor{g}{_{1 1}} & \cdots & \tensor{g}{_{1 n}} \\ \vdots & \ddots & \vdots \\ \tensor{g}{_{n 1}} & \cdots & \tensor{g}{_{n n}}).
+	\end{equation}
+	But say, we change the basis of \(V\) to \(\tilde{\SB}\), then the components of \(\phi\) and \(g\) change as follows:
+	\begin{equation}
+		\tensor{\tilde{\phi}}{^{i}_{j}} = \tensor{B}{^i_k} \cdot \tensor{\phi}{^{k}_{l}} \cdot \tensor{A}{^l_j} \quad \text{and} \quad \tensor{\tilde{g}}{_{i j}} = \tensor{A}{^k_i} \cdot \tensor{g}{_{k l}} \cdot \tensor{A}{^l_j}.
+	\end{equation}
+	Recall \(\tensor{(A\inv)}{^{i}_{j}} = \tensor{B}{^i_j}\), so we can write the above equations as (remember that \(\tensor{A}{^i_j} = \tensor{A}{_{i j}}\), which give rise to transpose in the expression)
+	\begin{equation}
+		\tilde{\Phi} = A\inv \vdot \Phi \vdot A \quad \text{and} \quad \tilde{G} = A\trans \vdot G \vdot A.
+	\end{equation}
 \end{remark}
 Now, we keep the old notion of determinant, so we can find determinant of \(G\). But that is not true, as determinant is only defined for endomorphisms. And to see, why this the case, we have to look at basis free definition of determinants.
 
@@ -584,97 +583,97 @@ Now, we keep the old notion of determinant, so we can find determinant of \(G\).
 
 Before we define the determinant, we need a few definitions. We will use the \emph{permutation group} to define the determinant.
 \begin{definition}[Permutation and Permutation Group]
-    A \emph{permutation} of a non-empty set \(M\) is a bijective function \(\sigma: M \to M\).
+	A \emph{permutation} of a non-empty set \(M\) is a bijective function \(\sigma: M \to M\).
 
-    Let the set \(M\) be finite with \(n\) elements, for purpose of this course, we will assume \(M = \qty{1, 2, \ldots, n}\). The set of all permutations of \(M\) is denoted by \(S_n\) and is called the \emph{permutation group} of order \(n\) (or symmetric group of degree \(n\)). Binary operation on \(S_n\) is defined as the composition of two permutations.
+	Let the set \(M\) be finite with \(n\) elements, for purpose of this course, we will assume \(M = \qty{1, 2, \ldots, n}\). The set of all permutations of \(M\) is denoted by \(S_n\) and is called the \emph{permutation group} of order \(n\) (or symmetric group of degree \(n\)). Binary operation on \(S_n\) is defined as the composition of two permutations.
 \end{definition}
 There are some special type of permutations, which are called \emph{transpositions}. A transposition is a permutation that swaps two elements of the set and leaves the rest unchanged. For example, in \(S_3\), the permutation \((1, 2, 3) \mapsto (2, 1, 3)\) is a transposition, usually denoted as \((1, 2)\).
 
 There is a result from group theory, which states that every permutation can be expressed as a product of transpositions (precisely composition of transpositions). The number of transpositions in this product is called the \emph{signature} or \emph{sign} or \emph{parity} of the permutation. Let \(\sigma \in S_n\) be a permutation, then we define the sign of \(\sigma\) as follows:
 \begin{equation}
-    \sgn(\sigma) := \begin{cases}
-        +1 & \text{if } \sigma \text{ is the product of an even number of transpositions} \\
-        -1 & \text{if } \sigma \text{ is the product of an odd number of transpositions}
-    \end{cases}
+	\sgn(\sigma) := \begin{cases}
+		+1 & \text{if } \sigma \text{ is the product of an even number of transpositions} \\
+		-1 & \text{if } \sigma \text{ is the product of an odd number of transpositions}
+	\end{cases}
 \end{equation}
 But there is an issue with this definition, \ie\ the decomposition of a permutation into transpositions is not unique. For example, the permutation \((1, 2, 3)\) can be expressed as \((1, 2)(2, 3)\) or \((1, 3)(1, 2)\). But we can still show that the sign of a permutation is well-defined, \ie\ it does not depend on the decomposition of the permutation into transpositions. Since the number of transpositions in the decomposition is either even or odd, and this property is preserved under composition of permutations.
 
 Now we can define \(n\)-form for a vector space \(V\) of dimension \(d\).
 \begin{definition}[\(n\)-form]
-    Let \(V\) be a finite-dimensional vector space of dimension \(d\). An \emph{\(n\)-form} on \(V\) (where \(0 \le n \le d\)) is a type \((0, n)\)-tensor \(\omega \in \mathsf{T}^0_n V\) such that it is \emph{totally antisymmetric}, \ie\ for any \(n\) vectors \(\vb{v}_1, \ldots, \vb{v}_n \in V\) and any permutation \(\sigma \in S_n\), we have
-    \begin{equation}
-        \omega(\vb{v}_1, \ldots, \vb{v}_n) = \sgn(\sigma) \cdot \omega(\vb{v}_{\sigma(1)}, \ldots, \vb{v}_{\sigma(n)}).
-    \end{equation}
-    For \(n = 0\), we define the \(0\)-form to be the scalar field \(K\) itself, which is trivially totally antisymmetric.
+	Let \(V\) be a finite-dimensional vector space of dimension \(d\). An \emph{\(n\)-form} on \(V\) (where \(0 \le n \le d\)) is a type \((0, n)\)-tensor \(\omega \in \mathsf{T}^0_n V\) such that it is \emph{totally antisymmetric}, \ie\ for any \(n\) vectors \(\vb{v}_1, \ldots, \vb{v}_n \in V\) and any permutation \(\sigma \in S_n\), we have
+	\begin{equation}
+		\omega(\vb{v}_1, \ldots, \vb{v}_n) = \sgn(\sigma) \cdot \omega(\vb{v}_{\sigma(1)}, \ldots, \vb{v}_{\sigma(n)}).
+	\end{equation}
+	For \(n = 0\), we define the \(0\)-form to be the scalar field \(K\) itself, which is trivially totally antisymmetric.
 \end{definition}
 Special case of \(n\)-form is the \emph{top form} on \(V\), which is for \(n = d\).
 \begin{proposition}
-    A \((0, n)\)-tensor \(\omega\) is an \(n\)-form if and only if, \(\omega(\vb{v}_1, \ldots, \vb{v}_n) = 0\) whenever any \(\qty{\vb{v}_1, \ldots, \vb{v}_n}\) is linearly dependent.
+	A \((0, n)\)-tensor \(\omega\) is an \(n\)-form if and only if, \(\omega(\vb{v}_1, \ldots, \vb{v}_n) = 0\) whenever any \(\qty{\vb{v}_1, \ldots, \vb{v}_n}\) is linearly dependent.
 \end{proposition}
 Since any collection of \(n > d\) vectors in \(V\) is linearly dependent, we can conclude that any \(n\)-form (for \(n > d\)) is identically zero.
 
 We have a special symbol for the space of \(n\)-forms on \(V\), which is denoted by \(\Lambda^n V\). With this we have following important result
 \begin{theorem}[Dimension of \(n\)-forms]
-    Let \(V\) be a finite-dimensional vector space of dimension \(d\). Then the dimension of the space of \(n\)-forms on \(V\) is given by
-    \begin{equation}
-        \dim \Lambda^n V = \begin{cases}
-            \binom{d}{n} & \text{if } 0 \le n \le d \\
-            0            & \text{if } n > d
-        \end{cases}
-    \end{equation}
+	Let \(V\) be a finite-dimensional vector space of dimension \(d\). Then the dimension of the space of \(n\)-forms on \(V\) is given by
+	\begin{equation}
+		\dim \Lambda^n V = \begin{cases}
+			\binom{d}{n} & \text{if } 0 \le n \le d \\
+			0            & \text{if } n > d
+		\end{cases}
+	\end{equation}
 \end{theorem}
 In particular, the dimension of the space of top forms on \(V\) is 1, \ie\ \(\dim \Lambda^d V = 1\). This means that for any two top forms \(\omega_1, \omega_2 \in \Lambda^d V\), there exists a scalar \(\lambda \in K\) such that \(\omega_1 = \lambda \cdot \omega_2\).
 
 With this, we define \emph{volume form} on \(V\) as a non-zero top form \(\omega \in \Lambda^d V\). And a vector space \(V\) with a specified volume form is called a \emph{vector space with volume form}.
 \begin{definition}[Volume Span]
-    Let \(V\) be a \(d\)-dimensional vector space with a volume form \(\omega\). Given a set of \(d\) vectors \(\qty{\vb{v}_1, \ldots, \vb{v}_d} \subseteq V\), the \emph{volume span} of these vectors is defined as
-    \begin{equation}
-        \vol(\vb{v}_1, \ldots, \vb{v}_d) := \omega(\vb{v}_1, \ldots, \vb{v}_d).
-    \end{equation}
+	Let \(V\) be a \(d\)-dimensional vector space with a volume form \(\omega\). Given a set of \(d\) vectors \(\qty{\vb{v}_1, \ldots, \vb{v}_d} \subseteq V\), the \emph{volume span} of these vectors is defined as
+	\begin{equation}
+		\vol(\vb{v}_1, \ldots, \vb{v}_d) := \omega(\vb{v}_1, \ldots, \vb{v}_d).
+	\end{equation}
 \end{definition}
 Due to the antisymmetry of the volume form, we have \(\vol(\vb{v}_1, \ldots, \vb{v}_d) = 0\) if and only if the vectors are linearly dependent. Indeed, in this case, these vectors at most span a \((d - 1)\)-dimensional hyperplane in \(V\), which should have zero volume.
 
 Now, we can define the determinant of a linear map \(\phi \in \End(V)\) as follows:
 \begin{definition}[Determinant]
-    Let \(V\) be a \(d\)-dimensional vector space. The \emph{determinant} of a linear map \(\phi \in \End(V)\) is defined as
-    \begin{equation}
-        \det(\phi) := \frac{\omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\omega(\vb{e}_1, \ldots, \vb{e}_d)}
-    \end{equation}
-    for some volume form \(\omega\) on \(V\) and a basis \(\qty{\vb{e}_1, \ldots, \vb{e}_d}\) of \(V\).
+	Let \(V\) be a \(d\)-dimensional vector space. The \emph{determinant} of a linear map \(\phi \in \End(V)\) is defined as
+	\begin{equation}
+		\det(\phi) := \frac{\omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\omega(\vb{e}_1, \ldots, \vb{e}_d)}
+	\end{equation}
+	for some volume form \(\omega\) on \(V\) and a basis \(\qty{\vb{e}_1, \ldots, \vb{e}_d}\) of \(V\).
 \end{definition}
 First and foremost, we need to check that this definition is independent of the choice of volume form and basis. For any other volume form \(\tilde{\omega}\) on \(V\), we can write
 \begin{equation}
-    \tilde{\omega} = \lambda \cdot \omega \quad \implies \quad \det(\phi) = \frac{\tilde{\omega}(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\tilde{\omega}(\vb{e}_1, \ldots, \vb{e}_d)} = \frac{\lambda \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\lambda \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)}.
+	\tilde{\omega} = \lambda \cdot \omega \quad \implies \quad \det(\phi) = \frac{\tilde{\omega}(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\tilde{\omega}(\vb{e}_1, \ldots, \vb{e}_d)} = \frac{\lambda \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\lambda \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)}.
 \end{equation}
 So, the determinant is independent of the choice of volume form. Now, let \(\qty{\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_d}\) be another basis of \(V\). Then we can write
 \begin{align*}
-    \det(\phi) & = \frac{\omega(\phi(\tilde{\vb{e}}_1), \ldots, \phi(\tilde{\vb{e}}_d))}{\omega(\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_d)}                                                                                                                                                                                           \\
-               & = \frac{\omega(\phi(\tensor{A}{^{i_1}_1} \vb{e}_{i_1}), \ldots, \phi(\tensor{A}{^{i_d}_d} \vb{e}_{i_d}))}{\omega(\tensor{A}{^{i_1}_1} \vb{e}_{i_1}, \ldots, \tensor{A}{^{i_d}_d} \vb{e}_{i_d})}                                                                                                                       \\
-               & = \frac{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_{i_1}), \ldots, \phi(\vb{e}_{i_d}))}{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_{i_1}, \ldots, \vb{e}_{i_d})}                                                                                             \\
-    \intertext{say there is a permutation \(\sigma_{i_1 \ldots i_d}\) such that \(\sigma_{i_1 \ldots i_d}(i_1, \ldots, i_d) = (1, \ldots, d)\), then we can write}
-               & = \frac{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_{\sigma_{i_1 \ldots i_d}(1)}), \ldots, \phi(\vb{e}_{\sigma_{i_1 \ldots i_d}(d)}))}{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_{\sigma_{i_1 \ldots i_d}(1)}, \ldots, \vb{e}_{\sigma_{i_1 \ldots i_d}(d)})} \\
-               & = \frac{\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)}                                     \\
-    \intertext{call \(\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} = \lambda\), as all the indices are summed over, so we can write}
-               & = \frac{\lambda \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\lambda \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)} = \det(\phi).
+	\det(\phi) & = \frac{\omega(\phi(\tilde{\vb{e}}_1), \ldots, \phi(\tilde{\vb{e}}_d))}{\omega(\tilde{\vb{e}}_1, \ldots, \tilde{\vb{e}}_d)}                                                                                                                                                                                           \\
+	           & = \frac{\omega(\phi(\tensor{A}{^{i_1}_1} \vb{e}_{i_1}), \ldots, \phi(\tensor{A}{^{i_d}_d} \vb{e}_{i_d}))}{\omega(\tensor{A}{^{i_1}_1} \vb{e}_{i_1}, \ldots, \tensor{A}{^{i_d}_d} \vb{e}_{i_d})}                                                                                                                       \\
+	           & = \frac{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_{i_1}), \ldots, \phi(\vb{e}_{i_d}))}{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_{i_1}, \ldots, \vb{e}_{i_d})}                                                                                             \\
+	\intertext{say there is a permutation \(\sigma_{i_1 \ldots i_d}\) such that \(\sigma_{i_1 \ldots i_d}(i_1, \ldots, i_d) = (1, \ldots, d)\), then we can write}
+	           & = \frac{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_{\sigma_{i_1 \ldots i_d}(1)}), \ldots, \phi(\vb{e}_{\sigma_{i_1 \ldots i_d}(d)}))}{\tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_{\sigma_{i_1 \ldots i_d}(1)}, \ldots, \vb{e}_{\sigma_{i_1 \ldots i_d}(d)})} \\
+	           & = \frac{\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)}                                     \\
+	\intertext{call \(\sgn(\sigma_{i_1 \ldots i_d}) \cdot \tensor{A}{^{i_1}_1} \cdots \tensor{A}{^{i_d}_d} = \lambda\), as all the indices are summed over, so we can write}
+	           & = \frac{\lambda \cdot \omega(\phi(\vb{e}_1), \ldots, \phi(\vb{e}_d))}{\lambda \cdot \omega(\vb{e}_1, \ldots, \vb{e}_d)} = \det(\phi).
 \end{align*}
 With this, we can conclude that the determinant is independent of the choice of basis. So we have
 \begin{equation}
-    \det(\tilde{\Phi}) = \det(A\inv \vdot \Phi \vdot A) = \det(A\inv) \cdot \det(\Phi) \cdot \det(A) = \det(\Phi).
+	\det(\tilde{\Phi}) = \det(A\inv \vdot \Phi \vdot A) = \det(A\inv) \cdot \det(\Phi) \cdot \det(A) = \det(\Phi).
 \end{equation}
 Recall the transformation of the bilinear form \(g\) under change of basis, we have
 \begin{equation}
-    g \to A\trans g A.
+	g \to A\trans g A.
 \end{equation}
 So the determinant of the bilinear form \(g\) transforms as follows:
 \begin{equation}
-    \det(A\trans g A) = \det(A\trans) \cdot \det(g) \cdot \det(A) = \det(A)^2 \cdot \det(g).
+	\det(A\trans g A) = \det(A\trans) \cdot \det(g) \cdot \det(A) = \det(A)^2 \cdot \det(g).
 \end{equation}
 \ie\ the determinant of a bilinear form transforms is not invariant under change of basis. But say there is another quantity, which transforms as follows:
 \begin{equation}
-    X \to \frac{1}{\det(A)^2} X.
+	X \to \frac{1}{\det(A)^2} X.
 \end{equation}
 Then the quantity \(\det(g) \cdot X\) is invariant under change of basis, \ie\ it transforms as
 \begin{equation}
-    \det(g) \cdot X \to \det(A)^2 \cdot \det(g) \cdot \frac{1}{\det(A)^2} X = \det(g) \cdot X.
+	\det(g) \cdot X \to \det(A)^2 \cdot \det(g) \cdot \frac{1}{\det(A)^2} X = \det(g) \cdot X.
 \end{equation}
 Here, it seems like two wrongs make a right, but this is not the case. In order to make this mathematically precise, we will have to introduce principal fibre bundles. Using them, we will be able to give a bundle definition of tensor and of tensor densities which are, loosely speaking, quantities that transform with powers of det A under a change of basis.

@@ -71,3 +71,341 @@ Moreover, we have the following duality relation between the basis of the tangen
 Thus, the basis \(\qty{\dd_p x^i}_{i = 1}^{\dim M}\) is \emph{dual basis} to the basis \(\qty{\qty(\pdv{x^i})_p}_{i = 1}^{\dim M}\).
 
 \section{Push-Forward and Pull-Back}
+
+\begin{definition}[Push-Forward]
+	Let \(M\) and \(N\) be two smooth manifolds and \(\phi: M \to N\) be a smooth map between them. Then the \emph{push-forward} of \(\phi\) at a point \(p \in M\), denoted by \(\phi_{*p}\), is the linear map
+	\begin{equation}
+		\begin{aligned}
+			\phi_{*p} : \ST_p M & \to \ST_{\phi(p)} N   \\
+			X                   & \mapsto \phi_{*p}(X),
+		\end{aligned}
+	\end{equation}
+	where \(\phi_{*p}(X)\) is defined by its action on smooth functions \(f \in \SC^\infty(N)\) as
+	\begin{equation}
+		\phi_{*p}(X)(f) := X(f \circ \phi).
+	\end{equation}
+\end{definition}
+It is easy to reconstruct the definition of push-forward by observing that the composition \(f \circ \phi\) is a smooth function on the manifold \(M\), and hence the tangent vector \(X \in \ST_p M\) can act on it. The result of this action is a real number, which is exactly what we want from the tangent vector \(\phi_{*p}(X) \in \ST_{\phi(p)} N\) when it acts on the smooth function \(f \in \SC^\infty(N)\).
+
+The push-forward of the smooth map \(\phi : M \to N\) is also called the \emph{differential} of \(\phi\) at the point \(p\), and is often denoted by \(\dd_p \phi\).
+\begin{proposition}
+	Let \(X_{\gamma, p} \in \ST_p M\) be the tangent vector at the curve \(\gamma\) at the point \(p\) (with \(\gamma(0) = p\)). Then the push-forward of \(X_{\gamma, p}\) by the smooth map \(\phi : M \to N\) is the tangent vector at the curve \(\phi \circ \gamma\) at the point \(\phi(p)\), that is,
+	\begin{equation}
+		\phi_{*p}(X_{\gamma, p}) = X_{\phi \circ \gamma, \phi(p)}.
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	For any smooth function \(f \in \SC^\infty(N)\), we have
+	\begin{align*}
+		\phi_{*p}(X_{\gamma, p})(f) & = X_{\gamma, p}(f \circ \phi)        &  & \text{(by definition of push-forward)}                           \\
+		                            & = ((f \circ \phi) \circ \gamma)'(0)  &  & \text{(by definition of } X_{\gamma, p}\text{)}                  \\
+		                            & = (f \circ (\phi \circ \gamma))'(0)  &  & \text{(by associativity of function composition \(\circ\))}      \\
+		                            & = X_{\phi \circ \gamma, \phi(p)}(f). &  & \text{(by definition of } X_{\phi \circ \gamma, \phi(p)}\text{)}
+	\end{align*}
+	Since this is true for all smooth functions \(f \in \SC^\infty(N)\), we have \(\phi_{*p}(X_{\gamma, p}) = X_{\phi \circ \gamma, \phi(p)}\).
+\end{proof}
+
+\begin{definition}[Pull-Back]
+	Let \(M\) and \(N\) be two smooth manifolds and \(\phi: M \to N\) be a smooth map between them. Then the \emph{pull-back} of \(\phi\) at a point \(p \in M\), denoted by \(\phi^*_p\), is the linear map
+	\begin{equation}
+		\begin{aligned}
+			\phi^*_p : \ST_{\phi(p)}^* N & \to \ST_p^* M             \\
+			\omega                       & \mapsto \phi^*_p(\omega),
+		\end{aligned}
+	\end{equation}
+	where \(\phi^*_p(\omega)\) is defined by its action on tangent vectors \(X \in \ST_p M\) as
+	\begin{equation}
+		\phi^*_p(\omega)(X) := \omega(\phi_{*p}(X)).
+	\end{equation}
+\end{definition}
+This definition can also be reconstructed by observing that the push-forward \(\phi_{*p}(X)\) is a tangent vector at the point \(\phi(p) \in N\), and hence the covector \(\omega \in \ST_{\phi(p)}^* N\) can act on it. The result of this action is a real number, which is exactly what we want from the covector \(\phi^*_p(\omega) \in \ST_p^* M\) when it acts on the tangent vector \(X \in \ST_p M\).
+
+\begin{proposition}
+	Let \(\dd_{\phi(p)} f \in \ST_{\phi(p)}^* N\) be the gradient of the function \(f \in \SC^\infty(N)\) at the point \(\phi(p) \in N\). Then the pull-back of \(\dd_{\phi(p)} f\) by the smooth map \(\phi : M \to N\) is the gradient of the function \(f \circ \phi \in \SC^\infty(M)\) at the point \(p \in M\), that is,
+	\begin{equation}
+		\phi^*_p(\dd_{\phi(p)} f) = \dd_p (f \circ \phi).
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	For any tangent vector \(X \in \ST_p M\), we have
+	\begin{align*}
+		\phi^*_p(\dd_{\phi(p)} f)(X) & = \dd_{\phi(p)} f (\phi_{*p}(X)) &  & \text{(by definition of pull-back)}                      \\
+		                             & = \phi_{*p}(X)(f)                &  & \text{(by definition of } \dd_{\phi(p)} f\text{)}        \\
+		                             & = X(f \circ \phi)                &  & \text{(by definition of push-forward } \phi_{*p}\text{)} \\
+		                             & = \dd_p (f \circ \phi)(X).       &  & \text{(by definition of } \dd_p (f \circ \phi)\text{)}
+	\end{align*}
+	Since this is true for all tangent vectors \(X \in \ST_p M\), we have \(\phi^*_p(\dd_{\phi(p)} f) = \dd_p (f \circ \phi)\).
+\end{proof}
+So given a smooth map \(\phi : M \to N\) between two smooth manifolds \(M\) and \(N\),
+\begin{center}\itshape
+	vectors are pushed forward from \(M\) to \(N\), and \\
+	covectors are pulled back from \(N\) to \(M\).
+\end{center}
+However, if the smooth map \(\phi : M \to N\) is a diffeomorphism, then we can also pull back vectors from \(N\) to \(M\) and push forward covectors from \(M\) to \(N\) using the inverse map \(\phi\inv : N \to M\).
+\begin{equation}
+	\begin{gathered}
+		\phi^*_{p} : \ST_{\phi(p)} N \to \ST_{p} M \\
+		\phi^*_{p}(Y) := (\phi\inv)_{*\phi(p)}(Y), \quad \forall Y \in \ST_{\phi(p)} N,
+	\end{gathered}
+	\qquad \qquad
+	\begin{gathered}
+		\phi^*_{p} : \ST_{p}^* M \to \ST_{\phi(p)}^* N     \\
+		\phi^*_{p}(\eta) := (\phi\inv)^*_{\phi(p)}(\eta), \quad \forall \eta \in \ST_{p}^* M.
+	\end{gathered}
+\end{equation}
+
+\section{Immersions and Embeddings}
+
+Now we want to go back to usual intiutive notion of tangent vectors as arrows attached to points on the manifold. For that, we need to think about the manifold being ``inside'' some higher-dimensional space like \(\R^n\) (for some \(n\)). We want to decide under which conditions some smooth manifold \(M\) can `sit' inside some \(\R^n\). Here we are using the term `sit inside' in intuitive sense, as there are two different notions of sitting inside another manifold, namely, immersion and embedding. Embedding is a stronger notion than immersion, however, both of these notions have their use cases sometimes we need only immersion, sometimes we need embedding.
+
+\begin{definition}[Immersion]
+	Let \(M\) and \(N\) be two smooth manifolds and \(\phi : M \to N\) be a smooth map between them. The map \(\phi\) is called an \emph{immersion} if for every point \(p \in M\), the differential \(\dd_p \phi : \ST_p M \to \ST_{\phi(p)} N\) is injective.
+\end{definition}
+
+\begin{example}[1-Sphere \(S^1\) immersed in \(\R^2\)]\label{eg:immersion_s1_r2_lemniscate}
+	Consider the smooth map \(\phi : S^1 \to \R^2\) such that
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[c]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=1]
+
+				% Circle
+				\draw[thick] (0,0) circle (1.5);
+
+				% Arrows
+				\draw[Latex-Latex, very thick, red] (-1, 1.5) -- (1, 1.5);
+				\draw[Latex-Latex, very thick, blue] (-1, -1.5) -- (1, -1.5);
+
+				% Points
+				\fill (0, -1.5) circle (2pt);
+				\fill (0, 1.5) circle (2pt);
+
+				% Labels
+				\node[above, text = red] at (0, 1.75) {\(p_2\)};
+				\node[below, text = blue]  at (0, -1.75) {\(p_1\)};
+
+			\end{tikzpicture}
+		\end{subfigure}
+		\(\xmapsto{\quad \phi \quad}\)
+		\begin{subfigure}[c]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=1.3, line cap=round, line join=round]
+
+				% Black infinity curve
+				\draw[line width=1.2pt]
+				(0, 0) to[out=45, in=90] (2, 0) to[out=-90, in=-45] (0, 0) to[out=135, in=90] (-2, 0) to[out=-90, in=-135] (0, 0);
+				% Red arrows
+				\draw[Stealth-Stealth, very thick, red] (-0.85, -0.85) -- (0.85, 0.85);
+
+				% Blue arrows
+				\draw[Stealth-Stealth, very thick, blue] (-0.85, 0.85) -- (0.85, -0.85);
+
+				% Point
+				\fill (0, 0) circle (1.5pt);
+
+				% Label
+				\node[text = red] at (0, 0.5) {\(\phi(p_1)\)};
+				\node[text = blue] at (0, -0.5) {\(\phi(p_2)\)};
+
+			\end{tikzpicture}
+		\end{subfigure}
+	\end{figure}
+	Notice that both points \(p_1\) and \(p_2\) on the circle \(S^1\) are mapped to the same point \(\phi(p_1) = \phi(p_2)\) in \(\R^2\). Thus, the tangent spaces at these points are same, \(\ST_{\phi(p_1)} \R^2 = \ST_{\phi(p_2)} \R^2\). However, the push-forwards of the tangent vectors at these points are different, represented by the red and blue arrows respectively. Thus, the differential \(\dd_{p} \phi\) is injective at both points \(p_1\) and \(p_2\). Hence, the map \(\phi : S^1 \to \R^2\) is an immersion.
+\end{example}
+
+\begin{definition}[Embedding]
+	Let \(M\) and \(N\) be two smooth manifolds and \(\phi : M \to N\) be a smooth map between them. The map \(\phi\) is called an \emph{embedding} if
+	\begin{enumerate}[(i)]
+		\item \(\phi\) is an immersion, and
+		\item \(M \topIso \phi(M) \subseteq N\) via the subspace topology induced from \(N\).
+	\end{enumerate}
+\end{definition}
+Using the condition of embedding being an immersion, we can show that the image is also diffeomorphic to the original manifold.
+\begin{proposition}
+	Let \(M\) and \(N\) be two smooth manifolds and \(\phi : M \to N\) be an embedding. Then the image \(\phi(M)\) is a smooth manifold and \(M \diffIso \phi(M)\).
+\end{proposition}
+
+It is easy to see that the \cref{eg:immersion_s1_r2_lemniscate} is not an embedding, since the map \(\phi\) itself is not injective.
+
+With these notions of immersion and embedding, now we can comment on the two different ways of thinking about tangent vectors:
+\begin{itemize}
+	\item \textbf{\sffamily Abstract Viewpoint:} In this viewpoint, we think of tangent vectors as derivations acting on smooth functions at a point on the manifold.
+
+	\item \textbf{\sffamily Concrete Viewpoint:} In this viewpoint, we think of tangent vectors as arrows attached to points on the manifold, which can be visualized when the manifold is immersed or embedded in a higher-dimensional space like \(\R^n\).
+\end{itemize}
+Whitney's embedding theorem states that both these viewpoints are equivalent,
+\begin{theorem}[Whitney's Embedding Theorem]
+	Any smooth manifold \(M\) can be
+	\begin{itemize}
+		\item embedded in \(\R^{2\dim M}\), and
+		\item immersed in \(\R^{2\dim M - 1}\).
+	\end{itemize}
+\end{theorem}
+This theorem doesn't say that we only can embed or immerse a manifold in these dimensions, rather it says that these dimensions are sufficient to embed or immerse any smooth manifold. For example, we can embed the \(2\)-sphere \(S^2\) in \(\R^3\) itself, even though Whitney's embedding theorem states that we can embed it in \(\R^4\). Similarly, we have another extreme example of the Klein bottle, which cannot be embedded in \(\R^3\) but can be immersed in \(\R^3\).
+
+This version of Whitney's embedding theorem is called the \emph{strong Whitney embedding theorem}. There is also a \emph{weak Whitney embedding theorem}, but there are even stronger versions of the strong Whitney embedding theorem.
+\begin{theorem}[Strong Whitney Embedding Theorem (Improved Version)]
+	Any smooth manifold \(M\) can be immersed in \(\R^{2\dim M - \alpha(M)}\), where \(\alpha(M)\) is the number of \(1\)'s in the binary representation of \(\dim M\).
+\end{theorem}
+For example, for \(\dim M = 3\), the binary representation is \(11_2\), which has two \(1\)'s. Thus, any \(3\)-dimensional smooth manifold can be immersed in \(\R^{2 \times 3 - 2} = \R^4\), which is an improvement over the previous version of the strong Whitney embedding theorem that stated that any \(3\)-dimensional smooth manifold can be immersed in \(\R^5\).
+
+\section{Tangent Bundle and Vector Fields}
+
+So far we have defined the tangent space at a point \(p\) on a smooth manifold \(M\). Now say we want to study all tangent spaces at all points on the manifold \(M\) together.
+\begin{definition}[Tangent Bundle]
+	Let \(M\) be a smooth manifold. The \emph{tangent bundle} of \(M\), denoted by \(\ST M\), is the disjoint union of all tangent spaces at all points on the manifold \(M\):
+	\begin{equation}
+		\ST M := \bigsqcup_{p \in M} \ST_p M
+	\end{equation}
+\end{definition}
+There is a canonical projection map \(\pi : \ST M \to M\), called the \emph{bundle projection}, defined by
+\begin{equation}
+	\begin{aligned}
+		\pi : \ST M & \to M      \\
+		X           & \mapsto p,
+	\end{aligned}
+\end{equation}
+where \(X \in \ST_p M\) is a tangent vector at the point \(p \in M\).
+\begin{remark}[Implications of disjoint union]
+	Note that the tangent bundle \(\ST M\) is defined as a disjoint union of all tangent spaces at all points on the manifold \(M\). Since the tangent spaces are finite-dimensional real vector spaces, thus, each tangent space is isomorphic to \(\R^{\dim M}\), so each tangent space is isomorphic to each other as vector spaces. However, since the tangent bundle is defined as a disjoint union, the elements of different tangent spaces are considered distinct even if they are isomorphic as vector spaces.
+
+	A consequence of this definition is that zero vector in each tangent space are distinct elements in the tangent bundle. That is, if \(0_p \in \ST_p M\) and \(0_q \in \ST_q M\) are the zero vectors in the tangent spaces at points \(p\) and \(q\) respectively, then \(0_p\) and \(0_q\) are distinct elements in the tangent bundle \(\ST M\) even though they are both zero vectors.
+\end{remark}
+From the definition of the bundle projection \(\pi\), it is clear that for each point \(p \in M\), the preimage of \(p\) under the bundle projection \(\pi\) is the tangent space at the point \(p\), thus, the map \(\pi\) is a surjection. That is the triple \((\ST M, M, \pi)\) forms a \emph{set bundle} over the manifold \(M\), for it to be a (topological) bundle we need to define a suitable topology on the tangent bundle \(\ST M\) such that the bundle projection \(\pi : \ST M \to M\) is continuous.
+% To map this tangent bundle \(\ST M\) to the previously provided definition of (topological) bundles, we need to define a suitable topology on the tangent bundle \(\ST M\). Furthermore, we also need to define a smooth structure on the tangent bundle \(\ST M\) to make it a smooth manifold itself later making it a smooth bundle over the manifold \(M\).
+
+\subsection{Smooth Structure on Tangent Bundle}
+
+Let's start with defining a suitable topology on the tangent bundle \(\ST M\). To make this set a topological bundle we need to define topology on it such that the bundle projection \(\pi : \ST M \to M\) is continuous and furthermore, to make it a manifold we need to define charts on it.
+
+Consider a chart \((U, x)\) on the manifold \(M\). Define the coordinate map \(\xi\) for the tangent bundle \(\ST M\) as
+\begin{equation}
+	\begin{gathered}
+		\xi : \preimg_\pi(U) \to \xi(\preimg_\pi(U)) = x(U) \times \R^{\dim M} \subseteq \R^{2\dim M} \\
+		X                    \mapsto \qty(x^1(\pi(X)), \dots, x^{\dim M}(\pi(X)), X^1, \dots, X^{\dim M}),
+	\end{gathered}
+\end{equation}
+where \(X \in \ST_p M\) is a tangent vector at the point \(p = \pi(X) \in U\), and \(X^i\) are the components of the tangent vector \(X\) in the basis induced by the chart \((U, x)\), that is
+\begin{equation*}
+	X = X^i \qty(\pdv{x^i})_p.
+\end{equation*}
+\begin{proposition}
+	The map \(\xi : \preimg_\pi(U) \to \R^{2\dim M}\) is a bijection onto its image.
+\end{proposition}
+\begin{proof}
+	To show that the map \(\xi\) is injective, let \(X, Y \in \preimg_\pi(U)\) such that \(\xi(X) = \xi(Y)\). Then we have
+	\begin{equation*}
+		\qty(x^1(p), \dots, x^{\dim M}(p), X^1, \dots, X^{\dim M}) = \qty(x^1(q), \dots, x^{\dim M}(q), Y^1, \dots, Y^{\dim M}),
+	\end{equation*}
+	where \(X \in \ST_p M\) and \(Y \in \ST_q M\). From the equality of the first \(\dim M\) components, we have \(x(p) = x(q)\). Since the chart \((U, x)\) is a bijection onto its image, we have \(p = q\). Now, from the equality of the last \(\dim M\) components, we have \(X^i = Y^i\) for all \(i = 1, 2, \dots, \dim M\). Thus, we have
+	\begin{equation*}
+		X = X^i \qty(\pdv{x^i})_p = Y^i \qty(\pdv{x^i})_p = Y.
+	\end{equation*}
+	Hence, the map \(\xi\) is injective.
+
+	To show that the map \(\xi\) is surjective onto its image, let \((a^1, \dots, a^{\dim M}, v^1, \dots, v^{\dim M}) \in \xi(\preimg_\pi(U))\). Then by definition of the image, there exists a tangent vector \(X \in \preimg_\pi(U)\) such that
+	\begin{equation*}
+		\xi(X) = \qty(a^1, \dots, a^{\dim M}, v^1, \dots, v^{\dim M}).
+	\end{equation*}
+	Thus, the map \(\xi\) is surjective onto its image. Hence, the map \(\xi\) is a bijection onto its image.
+\end{proof}
+Using this coordinate map \(\xi\), we can define a topology on the tangent bundle \(\ST M\) as follows:
+\begin{proposition}[Topology on Tangent Bundle]
+	A subset \(W \subseteq \ST M\) is defined to be open if and only if for every chart \((U, x)\) on the manifold \(M\), the set \(\xi(W \cap \preimg_\pi(U))\) is open in \(\R^{2\dim M}\).
+\end{proposition}
+\begin{proof}
+	We need to show that this definition satisfies the axioms of a topology.
+	\begin{enumerate}[(i), wide]
+		\item \uline{Empty Set and Whole Set are Open:} The empty set \(\0 \subseteq \ST M\) is open since for any chart \((U, x)\) on the manifold \(M\), we have
+		      \begin{equation*}
+			      \xi(\0 \cap \preimg_\pi(U)) = \xi(\0) = \0,
+		      \end{equation*}
+		      which is open in \(\R^{2\dim M}\). Similarly, the whole set \(\ST M\) is open since for any chart \((U, x)\) on the manifold \(M\), we have
+		      \begin{equation*}
+			      \xi(\ST M \cap \preimg_\pi(U)) = \xi(\preimg_\pi(U)) = x(U) \times \R^{\dim M}
+		      \end{equation*}
+		      which is open in \(\R^{2\dim M}\) as \(x(U)\) is open in \(\R^{\dim M}\) by the definition of charts on the manifold \(M\) and \(\R^{\dim M}\) is open in itself, thus their product \(x(U) \times \R^{\dim M}\) is also open in \(\R^{2\dim M}\).
+
+		\item \uline{Arbitrary Unions are Open:} Let \(\qty{W_\alpha}_{\alpha \in I}\) be a collection of open sets in \(\ST M\), where \(I\) is an arbitrary index set. Then for any chart \((U, x)\) on the manifold \(M\), we have
+		      \begin{equation*}
+			      \xi\qty(\bigcup_{\alpha \in I} W_\alpha \cap \preimg_\pi(U)) = \bigcup_{\alpha \in I} \xi(W_\alpha \cap \preimg_\pi(U)),
+		      \end{equation*}
+		      which is open in \(\R^{2\dim M}\) since each set \(\xi(W_\alpha \cap \preimg_\pi(U))\) is open in \(\R^{2\dim M}\) by the definition of open sets in \(\ST M\). Thus, the arbitrary union \(\bigcup_{\alpha \in I} W_\alpha\) is open in \(\ST M\).
+
+		\item \uline{Finite Intersections are Open:} Let \(W_1, W_2, \dots, W_n\) be a finite collection of open sets in \(\ST M\). Then for any chart \((U, x)\) on the manifold \(M\), we have
+		      \begin{equation*}
+			      \xi\qty(\bigcap_{i = 1}^n W_i \cap \preimg_\pi(U)) = \bigcap_{i = 1}^n \xi(W_i \cap \preimg_\pi(U)),
+		      \end{equation*}
+		      here, the equality holds because \(\xi\) is a bijection onto its image. This set is open in \(\R^{2\dim M}\) since each set \(\xi(W_i \cap \preimg_\pi(U))\) is open in \(\R^{2\dim M}\) by the definition of open sets in \(\ST M\). Thus, the finite intersection \(\bigcap_{i = 1}^n W_i\) is open in \(\ST M\).
+	\end{enumerate}
+\end{proof}
+Say \(\O_{\ST M}\) is the topology on the tangent bundle \(\ST M\) defined as above. Thus, we have made the tangent bundle \(\ST M\) a topological space \((\ST M, \O_{\ST M})\). Using the similar charts induced by the charts on the manifold \(M\), we can also define a smooth structure on the tangent bundle \(\ST M\) as follows:
+\begin{proposition}[Smooth Atlas on Tangent Bundle]
+	Let \(\A\) be a smooth atlas on the manifold \(M\). Then the collection of charts
+	\begin{equation}
+		\A_{\ST M} := \qty{(\preimg_\pi(U), \xi) \mid (U, x) \in \A}
+	\end{equation}
+	forms a smooth atlas on the tangent bundle \(\ST M\).
+\end{proposition}
+\begin{proof}
+	We need to show that the charts in the collection \(\A_{\ST M}\) are smoothly compatible. Let \((U, x)\) and \((V, y)\) be two charts in the atlas \(\A\) on the manifold \(M\). Then the corresponding charts in the collection \(\A_{\ST M}\) on the tangent bundle \(\ST M\) are \((\preimg_\pi(U), \xi)\) and \((\preimg_\pi(V), \eta)\) respectively, where \(\xi\) and \(\eta\) are the coordinate maps defined as before. Now, we need to show that the transition map
+	\begin{equation*}
+		\eta \circ \xi\inv : \xi(\preimg_\pi(U) \cap \preimg_\pi(V)) \to \eta(\preimg_\pi(U) \cap \preimg_\pi(V))
+	\end{equation*}
+	is a smooth map between open subsets of \(\R^{2\dim M}\).
+
+	Let \((a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}) \in \xi(\preimg_\pi(U) \cap \preimg_\pi(V))\).  by definition of the image, there exists a tangent vector \(X \in \preimg_\pi(U) \cap \preimg_\pi(V)\) such that
+	\begin{equation*}
+		\xi(X) = \qty(a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}).
+	\end{equation*}
+	Thus, we have
+	\begin{align*}
+		\eta \circ \xi\inv (a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}) & = \eta(X)                                                                     \\
+		                                                                    & = \qty(y^1(p), \dots, y^{\dim M}(p), \tilde{X}^1, \dots, \tilde{X}^{\dim M}),
+	\end{align*}
+	where \(p = \pi(X) \in U \cap V\) and \(\tilde{X}^i\) are the components of the tangent vector \(X\) in the basis induced by the chart \((V, y)\), that is
+	\begin{equation*}
+		X = \tilde{X}^i \qty(\pdv{y^i})_p.
+	\end{equation*}
+	Since the charts \((U, x)\) and \((V, y)\) are smoothly compatible, the map \(y \circ x\inv\) is a smooth map between open subsets of \(\R^{\dim M}\). Thus, the first \(\dim M\) components of the map \(\eta \circ \xi\inv\) are smooth functions of \((a^1, \dots, a^{\dim M})\).
+
+	For the last \(\dim M\) components, we have the change of basis formula from the basis induced by the chart \((U, x)\) to the basis induced by the chart \((V, y)\):
+	\begin{equation*}
+		\tilde{X}^i = X^j \partial_j (y^i \circ x\inv) (a^1, \dots, a^{\dim M}),
+	\end{equation*}
+	which are also smooth functions of \((a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M})\) since the map \(y \circ x\inv\) is smooth. Thus, the transition map \(\eta \circ \xi\inv\) is a smooth map between open subsets of \(\R^{2\dim M}\). Hence, the charts in the collection \(\A_{\ST M}\) are smoothly compatible. Therefore, the collection \(\A_{\ST M}\) forms a smooth atlas on the tangent bundle \(\ST M\).
+\end{proof}
+With this smooth atlas \(\A_{\ST M}\), we have made the tangent bundle \(\ST M\) a smooth manifold of dimension \(2\dim M\). Till now, we have not shown that the tangent bundle \(\ST M\) is indeed a bundle over the manifold \(M\), for that we need to show that the bundle projection \(\pi : \ST M \to M\) is a continuous map.
+\begin{proposition}[Tangent Bundle is a Topological Bundle]
+	The bundle projection \(\pi : \ST M \to M\) is a continuous map.
+\end{proposition}
+\begin{proof}
+	Let \(V \subseteq M\) be an open set in the manifold \(M\). We need to show that the preimage \(\preimg_\pi(V) \subseteq \ST M\) is an open set in the tangent bundle \(\ST M\). For that, let \((U, x)\) be any chart on the manifold \(M\). Then we have
+	\begin{equation*}
+		\xi(\preimg_\pi(V) \cap \preimg_\pi(U)) = \xi(\preimg_\pi(V \cap U)) = x(V \cap U) \times \R^{\dim M}.
+	\end{equation*}
+	Since \(V\) and \(U\) are open sets in the manifold \(M\), so \(V \cap U\) is also an open set in the manifold \(M\). Thus, the set \(x(V \cap U)\) is an open set in \(\R^{\dim M}\). Therefore, the product set \(x(V \cap U) \times \R^{\dim M}\) is also an open set in \(\R^{2\dim M}\). Since this is true for any chart \((U, x)\) on the manifold \(M\), we have that the preimage \(\preimg_\pi(V)\) is an open set in the tangent bundle \(\ST M\). Hence, the bundle projection \(\pi : \ST M \to M\) is a continuous map.
+\end{proof}
+With this, we have shown that the triple \((\ST M, M, \pi)\) forms a topological bundle over the manifold \(M\). Since we have also defined a smooth structure on the tangent bundle \(\ST M\), we can now show that the tangent bundle \(\ST M\) is indeed a smooth bundle over the manifold \(M\).
+\begin{proposition}[Tangent Bundle is a Smooth Bundle]
+	The bundle projection \(\pi : \ST M \to M\) is a smooth map.
+\end{proposition}
+\begin{proof}
+	Let \((U, x)\) be any chart on the manifold \(M\) and \((\preimg_\pi(U), \xi)\) be the corresponding chart on the tangent bundle \(\ST M\). We need to show that the map
+	\begin{equation*}
+		x \circ \pi \circ \xi\inv : \xi(\preimg_\pi(U)) \to x(U)
+	\end{equation*}
+	is a smooth map between open subsets of \(\R^{\dim M}\).
+
+	Let \((a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}) \in \xi(\preimg_\pi(U))\). By definition of the image, there exists a tangent vector \(X \in \preimg_\pi(U)\) such that
+	\begin{equation*}
+		\xi(X) = \qty(a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}).
+	\end{equation*}
+	Thus, we have
+	\begin{equation*}
+		x \circ \pi \circ \xi\inv (a^1, \dots, a^{\dim M}, X^1, \dots, X^{\dim M}) = x(\pi(X)) = x(p) = (a^1, \dots, a^{\dim M}),
+	\end{equation*}
+	where \(p = \pi(X) \in U\). This map is clearly smooth as each component is just a projection onto the first \(\dim M\) components. Hence, the bundle projection \(\pi : \ST M \to M\) is a smooth map.
+\end{proof}
+Thus, we have shown that the triple \((\ST M, M, \pi)\) forms a smooth bundle over the manifold \(M\), called the \emph{tangent bundle} of the manifold \(M\).
