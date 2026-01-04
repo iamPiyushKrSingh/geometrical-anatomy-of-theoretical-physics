@@ -1,0 +1,75 @@
+\lecture{11}
+
+\section{Tensor Fields and Modules}
+
+We started by defining the tangent space at a point \(p \in M\), and then with appropriate operations we have shown that \(T_p M\) is a vector space over \(\R\). Then we defined the tangent bundle \(TM\), now we want study how different tangent spaces relate to each other, \ie, how to relate \(T_p M\) and \(T_q M\) for \(p, q \in M\).
+\begin{definition}[Vector Field]
+	Let \(M\) be a smooth manifold and \(\ST M\) be its tangent bundle, \ie, \(\ST M \xrightarrow{\ \pi\ } M\) (where \(\pi\) is smooth). A `smooth' \emph{vector field} on \(M\) is a smooth section of the tangent bundle, \ie, a smooth map \(\sigma: M \to \ST M\) such that \(\pi \circ \sigma = \id_M\).
+	\begin{equation*}
+		\begin{tikzcd}
+			\ST M \arrow[d, shift left, "\text{\(\pi\) smooth}"] \\
+			M \arrow[u, shift left, "\text{\(\sigma\) smooth}"] \arrow[loop below, "\id_M"]
+		\end{tikzcd}
+	\end{equation*}
+\end{definition}
+The way we have defined the tangent bundle and the bundle projection map \(\pi\), it is clear that the section \(\sigma\) will assign to each point \(p \in M\) a tangent vector \(\sigma(p) \in T_p M\).
+Thus, a vector field can be thought of as an assignment of a tangent vector to each point of the manifold.
+
+Recall the definition of \nameref{def:ring}, we have a few different kinds of rings based on the properties of the multiplication operation.
+\begin{definition*}[Ring]
+	A \emph{ring} is a set \(R\) equipped with two binary operations \((+, \cdot)\) which satisfy set of properties. If a ring \(R\) satisfies the following additional properties, then we have special kinds of rings:
+	\begin{itemize}
+		\item \uline{\emph{Commutative Ring}}: If the multiplication operation is commutative, \ie, \(a \cdot b = b \cdot a\) for all \(a, b \in R\).
+		\item \uline{\emph{Ring with Unity}}: If there exists multiplicative identity \(1_R \in R\) such that \(a \cdot 1_R = 1_R \cdot a = a\) for all \(a \in R\).
+		\item \uline{\emph{Division Ring}}: If every non-zero element \(a \in R\) has a multiplicative inverse \(a^{-1} \in R\) such that \(a \cdot a^{-1} = a^{-1} \cdot a = 1_R\).
+		\item \uline{\emph{Field}}: If \(R\) is a commutative division ring.
+	\end{itemize}
+\end{definition*}
+
+\begin{remark}[Smooth functions as a ring]
+	Recall that the set of smooth functions on a manifold \(M\), denoted by \(\SC^\infty(M)\), forms a vector space over \(\R\) with the pointwise addition and scalar multiplication. Moreover, define the multiplication of two smooth functions pointwise as \(\bullet: \SC^\infty(M) \times \SC^\infty(M) \to \SC^\infty(M)\) given by
+	\begin{equation*}
+		(f \bullet g)(p) := f(p) \cdot g(p), \quad \forall p \in M.
+	\end{equation*}
+	With this multiplication, \((\SC^\infty(M), +, \bullet)\) forms a \textit{unital commutative ring}, where the multiplicative identity is the constant function \(1_M: M \to \R\) defined by \(1_M(p) := 1\) for all \(p \in M\).
+
+	However, \(\SC^\infty(M)\) is not a field, since not all non-zero smooth functions have multiplicative inverses, for example, a function that is zero at some point in \(M\) cannot have a smooth inverse defined everywhere on \(M\).
+\end{remark}
+\begin{definition}[Module]
+	Let \(R\) be a ring. A \emph{module} over \(R\) is an Abelian group \((M, +)\) together with a scalar multiplication \(\cdot: R \times M \to M\) satisfying the following properties for all \(r, s \in R\) and \(m, n \in M\):
+	\begin{enumerate}
+		\item \(r \cdot (m + n) = r \cdot m + r \cdot n\) (Distributivity over module addition)
+		\item \((r + s) \cdot m = r \cdot m + s \cdot m\) (Distributivity over ring addition)
+		\item \((r s) \cdot m = r \cdot (s \cdot m)\) (Associativity of scalar multiplication)
+		\item \(1_R \cdot m = m\) if \(R\) has a multiplicative identity \(1_R\) (Identity element of scalar multiplication)
+	\end{enumerate}
+\end{definition}
+The above definition is almost similar to the definition of a vector space, except that in a vector space the scalars come from a field, whereas in a module they come from a ring. One may think why we need modules when we have vector spaces. The reason is that not all rings are fields (in our case, \(\SC^\infty(M)\) is a ring but not a field), and the fact that the rings may not have multiplicative inverses for all non-zero elements give rise to `widely' different structures than vector spaces.
+\begin{proposition}[Vector fields as a module]
+	Let \(M\) be a smooth manifold. Then the set of all vector fields on \(M\), denoted by \(\mathfrak{X}(M)\), forms a module over the ring of smooth functions \(\SC^\infty(M)\), with the following operations:
+	\begin{equation}
+		\begin{gathered}
+			\oplus: \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)              \\
+			(\sigma_1, \sigma_2)                           \mapsto \sigma_1 \oplus \sigma_2
+		\end{gathered}
+		\quad \text{where} \quad \forall p \in M, (\sigma_1 \oplus \sigma_2) (p) := \sigma_1(p) + \sigma_2(p),
+	\end{equation}
+	and
+	\begin{equation}
+		\begin{gathered}
+			\odot: \SC^\infty(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)    \\
+			(f, \sigma)                                 \mapsto f \odot \sigma
+		\end{gathered}
+		\quad \text{where} \quad \forall p \in M, (f \odot \sigma) (p) := f(p) \cdot \sigma(p).
+	\end{equation}
+\end{proposition}
+A non-trivial fact here is that unlike vector spaces, a module generically does not have a basis (unless the ring is a division ring).
+\begin{theorem}
+	If \(D\) is a division ring, then every module over \(D\) has a basis.
+\end{theorem}
+\begin{corollary}
+	Every vector space has a basis.
+\end{corollary}
+\begin{Proof}
+	Since a vector space is a module over a field, and a field is a division ring, the theorem applies directly.
+\end{Proof}

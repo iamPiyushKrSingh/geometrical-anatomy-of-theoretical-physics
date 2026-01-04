@@ -6,7 +6,7 @@
 	Let \(K\) be a non-empty set with two binary operations \(+\) and \(\cdot\) (addition and multiplication) such that
 	\begin{itemize}
 		\item \((K, +)\) is an abelian group with identity element \(0\).
-		\item \((K \setminus \{0\}, \cdot)\) is an abelian group with identity element \(1\).
+		\item \((K \setminus \{0\}, \cdot)\) is an Abelian group with identity element \(1\).
 		\item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in K\),
 		      \begin{equation}
 			      a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.
@@ -15,13 +15,11 @@
 	Then \(K\) is called a field.
 \end{definition}
 Later we will use a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) but fewer axioms than a field, and we will call it a \emph{ring}.
-\begin{definition}[Ring]
+\begin{definition}[Ring] \label{def:ring}
 	A ring is a set \(R\) equipped with two binary operations \(+\) and \(\cdot\) such that
 	\begin{itemize}
-		\item \((R, +)\) is an abelian group with identity element \(0\).
-		\item \((R, \cdot)\) is a monoid with identity element \(1\).
-
-		      \ie\ multiplication is associative and has an identity element, but it need not be commutative.
+		\item \((R, +)\) is an Abelian group with identity element \(0\).
+		\item \((R, \cdot)\) is a semigroup, \ie\ multiplication is associative: for all \(a, b, c \in R\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\).
 		\item Multiplication is distributive over addition, \ie\ for all \(a, b, c \in R\),
 		      \begin{equation}
 			      a \cdot (b + c) = a \cdot b + a \cdot c \quad \text{and} \quad (a + b) \cdot c = a \cdot c + b \cdot c.

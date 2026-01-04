@@ -143,7 +143,7 @@ With this example, we can generalize the definition of a finite set.
 \end{definition}
 
 \begin{axiom}[Axiom of Replacement]\label{axiom:R5}
-	Let \(R\) be a functional relation. Let \(m\) be a set. Then the image of \(m\) under \(R\) \normalfont{[\(\img_R(m)\)]} is a set.
+	Let \(R\) be a functional relation. Let \(m\) be a set. Then the image of \(m\) under \(R\) \normalfont{[\(\im_R(m)\)]} is a set.
 \end{axiom}
 For this axiom to make sense, we need to define what a functional relation is.
 \begin{definition}[Functional Relation]
@@ -188,7 +188,7 @@ Intuitively PRC makes sure that the image set doesn't grow bigger than a set its
 			      Let \(x\) be a set. If \(P(x)\) is true, then \(R(x, y)\) is true if and only if \(y = x\). If \(P(x)\) is false, then \(R(x, y)\) is true if and only if \(y = \hat{y}\). \\
 			      Thus, \(\forall x: \exists! y: R(x, y)\). Hence, \(R\) is a functional relation.
 		      \end{Proof}
-		      Then by \cref{axiom:R5}, \(\img_R(m)\) is a set. And by definition of \(R\), \(\forall y \in \img_R(m): P(y)\)\footnotemark, thus we can define \(\qty{y \in m \mid P(y)} := \img_R(m)\).
+		      Then by \cref{axiom:R5}, \(\im_R(m)\) is a set. And by definition of \(R\), \(\forall y \in \im_R(m): P(y)\)\footnotemark, thus we can define \(\qty{y \in m \mid P(y)} := \im_R(m)\).
 	\end{description}
 \end{proof}
 \footnotetext{The quantifier \(\forall y \in m: P(y)\) is logically equivalent to \(\forall y: (y \in m \implies P(y))\).}
