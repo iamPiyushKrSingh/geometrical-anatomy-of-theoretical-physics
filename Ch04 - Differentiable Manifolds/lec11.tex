@@ -45,7 +45,7 @@ Recall the definition of \nameref{def:ring}, we have a few different kinds of ri
 	\end{enumerate}
 \end{definition}
 The above definition is almost similar to the definition of a vector space, except that in a vector space the scalars come from a field, whereas in a module they come from a ring. One may think why we need modules when we have vector spaces. The reason is that not all rings are fields (in our case, \(\SC^\infty(M)\) is a ring but not a field), and the fact that the rings may not have multiplicative inverses for all non-zero elements give rise to `widely' different structures than vector spaces.
-\begin{proposition}[Vector fields as a module]
+\begin{proposition}[Set of vector fields as a module]
 	Let \(M\) be a smooth manifold. Then the set of all vector fields on \(M\), denoted by \(\mathfrak{X}(M)\), forms a module over the ring of smooth functions \(\SC^\infty(M)\), with the following operations:
 	\begin{equation}
 		\begin{gathered}
@@ -64,7 +64,7 @@ The above definition is almost similar to the definition of a vector space, exce
 	\end{equation}
 \end{proposition}
 A non-trivial fact here is that unlike vector spaces, a module generically does not have a basis (unless the ring is a division ring).
-\begin{theorem}
+\begin{theorem}[Module Basis Theorem]\label{thm:module_basis}
 	If \(D\) is a division ring, then every module over \(D\) has a basis.
 \end{theorem}
 \begin{corollary}
@@ -73,3 +73,163 @@ A non-trivial fact here is that unlike vector spaces, a module generically does 
 \begin{Proof}
 	Since a vector space is a module over a field, and a field is a division ring, the theorem applies directly.
 \end{Proof}
+Before we actually prove the theorem, let's see some examples of modules on non-division rings which have bases and which do not have bases.
+\begin{example}[Vector fields on \(\R^2\)]
+	Let our smooth manifold be \(M = \R^2\). The set of smooth functions on \(\R^2\) is \(\SC^\infty(\R^2)\), and the set of vector fields on \(\R^2\) is \(\mathfrak{X}(\R^2)\). Coincidentally, \(\mathfrak{X}(\R^2)\) has a basis over the ring \(\SC^\infty(\R^2)\). Consider the two vector fields defined by
+	\begin{equation*}
+		\vb{e}_1(p) := \qty(\pdv{x})_p, \quad \vb{e}_2(p) := \qty(\pdv{y})_p, \quad \forall p = (x, y) \in \R^2.
+	\end{equation*}
+	Then, any vector field \(\sigma \in \mathfrak{X}(\R^2)\) can be expressed as
+	\begin{equation*}
+		\sigma = \sigma^1 \odot \vb{e}_1 + \sigma^2 \odot \vb{e}_2,
+	\end{equation*}
+	where \(\sigma^1, \sigma^2 \in \SC^\infty(\R^2)\) are smooth functions on \(\R^2\). Thus, \(\{\vb{e}_1, \vb{e}_2\}\) forms a basis of the module \(\mathfrak{X}(\R^2)\) over the ring \(\SC^\infty(\R^2)\).
+\end{example}
+In the above example, we were lucky to find a basis for the module of vector fields on \(\R^2\). However, in the next example we will see a module which does not have a basis.
+\begin{example}[Vector fields on \(S^2\)]
+	Let our smooth manifold be \(M = S^2\), the 2-sphere. The set of smooth functions on \(S^2\) is \(\SC^\infty(S^2)\), and the set of vector fields on \(S^2\) is \(\mathfrak{X}(S^2)\). It turns out that \(\mathfrak{X}(S^2)\) does not have a basis over the ring \(\SC^\infty(S^2)\). This is a consequence of the Hairy Ball Theorem, which states that there is no non-vanishing continuous tangent field on even-dimensional spheres. Since a basis would require the ability to express any vector field as a linear combination of basis elements, the non-existence of a non-vanishing vector field implies that no such basis can exist for \(\mathfrak{X}(S^2)\).
+\end{example}
+One may be temped to think then why don't we just work with the set of vector fields as a vector space over \(\R\) instead of as a module over \(\SC^\infty(M)\). The reason is that if we consider \(\mathfrak{X}(M)\) as a vector space over \(\R\), then we are only allowed to do scalar multiplication with constant real numbers, which in turn means we are only considering `constant' vector fields, which is not very useful. By considering \(\mathfrak{X}(M)\) as a module over \(\SC^\infty(M)\), we can have scalar multiplication with smooth functions, allowing for a much richer structure of vector fields that can vary from point to point on the manifold.
+
+The notions, methods used in the proof of this theorem is so ubiquitous in mathematics that we are not going to skip it. However, the proof requires some preparation since it uses the \nameref{axiom:C8}, in the incarnation of Zorn's Lemma.
+
+\subsection{Zorn's Lemma}
+
+Let's first state the lemma and then define the necessary terms.
+\begin{lemma}[Zorn's Lemma]
+	Let \((P, \leq)\) be a partially ordered set in which every chain has an upper bound in \(P\). Then, \(P\) contains at least one maximal element.
+\end{lemma}
+\begin{definition}[Partially Ordered Set]
+	A \emph{partially ordered set} (or \emph{poset}) is a set \(P\) equipped with a binary relation \(\leq\) that satisfies the following properties for all \(a, b, c \in P\):
+	\begin{itemize}
+		\item \uline{\emph{Reflexivity}}: \(a \leq a\).
+		\item \uline{\emph{Antisymmetry}}: If \(a \leq b\) and \(b \leq a\), then \(a = b\).
+		\item \uline{\emph{Transitivity}}: If \(a \leq b\) and \(b \leq c\), then \(a \leq c\).
+	\end{itemize}
+\end{definition}
+\begin{definition}[Chain]
+	A \emph{chain} in a partially ordered set \((P, \leq)\) is a subset \(C \subseteq P\) such that for every pair of elements \(a, b \in C\), either \(a \leq b\) or \(b \leq a\). In other words, every two elements in the chain are comparable.
+
+	This can be thought of as a totally ordered subset of the poset. Giving us following property:
+	\begin{itemize}
+		\item \uline{\emph{Totality}}: For all \(a, b \in C\), either \(a \leq b\) or \(b \leq a\).
+	\end{itemize}
+\end{definition}
+\begin{definition}[Upper Bound]
+	Let \((P, \leq)\) be a partially ordered set and \(S \subseteq P\) be a subset. An element \(u \in P\) is called an \emph{upper bound} of \(S\) if
+	\begin{equation}
+		\forall s \in S: s \leq u.
+	\end{equation}
+\end{definition}
+\begin{definition}[Maximal Element]
+	Let \((P, \leq)\) be a partially ordered set. An element \(m \in P\) is called a \emph{maximal element} of \(P\) if
+	\begin{equation}
+		\nexists x \in P: m \leq x.
+	\end{equation}
+\end{definition}
+We will not prove Zorn's Lemma here, but it can be shown that in Zermelo-Fraenkel set theory (without the Axiom of Choice), Zorn's Lemma is equivalent to the Axiom of Choice. Thus, if we accept the Axiom of Choice as an axiom of our set theory, we can use Zorn's Lemma as a theorem.
+
+\subsection[Proof of \nameref*{thm:module_basis}]{Proof of \nameref{thm:module_basis}}
+
+\begin{proof}[Theorem~\ref{thm:module_basis}]
+	Let \(M\) be a module over a division ring \(D\). We want to show that \(M\) has a basis. Consider a generating system \(S \subseteq M\) of \(M\), \ie,
+	\begin{equation}
+		\forall \vb{m} \in M, \exists \vb{e}_1, \vb{e}_2, \ldots, \vb{e}_n \in S, \exists m^1, m^2, \ldots, m^n \in D: \vb{m} = m^i \cdot \vb{e}_i.
+	\end{equation}
+	There exists such a generating system since we can always take \(S = M\). Now, consider the set \(P\) of all linearly independent subsets of \(S\), \ie,
+	\begin{equation}
+		P := \qty{L \in \powerset(S) \mid L \text{ is linearly independent}}.
+	\end{equation}
+	We can partially order \(P\) by set inclusion \(\subseteq\). Now, we want to show that every chain in \(P\) has an upper bound in \(P\). Let \(C \subseteq P\) be a chain, and define
+	\begin{equation}
+		U := \bigcup_{L \in C} L.
+	\end{equation}
+	We claim that \(U\) is an upper bound of \(C\) in \(P\). From the definition of \(U\), it is clear that for every \(L \in C\), we have \(L \subseteq U\). Now, we need to show that \(U\) is linearly independent, thus \(U \in P\). Suppose not, then there exist finitely many elements \(\vb{u}_1, \vb{u}_2, \ldots, \vb{u}_n \in U\) and scalars \(d^1, d^2, \ldots, d^n \in D\), not all zero, such that
+	\begin{equation}
+		d^i \cdot \vb{u}_i = 0.
+	\end{equation}
+	Since each \(\vb{u}_i\) belongs to \(U\), there exists some \(L_i \in C\) such that \(\vb{u}_i \in L_i\). Because \(C\) is a chain, there exists some \(L^* \in C\) such that \(L_i \subseteq L^*\) for all \(i\). Thus, all \(\vb{u}_i\) belong to \(L^*\). But this contradicts the linear independence of \(L^*\), therefore, \(U\) must be linearly independent, and hence \(U \in P\). Thus, every chain in \(P\) has an upper bound in \(P\). By Zorn's Lemma, \(P\) contains at least one maximal element, say \(\mathcal{B}\).
+
+	We claim that \(\mathcal{B}\) is a basis of \(M\). To see this, it is enough to show that \(\mathcal{B}\) generates \(S\), since \(S\) generates \(M\). Let \(\vb{m} \in S\). If \(\vb{m} \in \mathcal{B}\), then we are done. Suppose \(\vb{m} \notin \mathcal{B}\). Consider the set \(\mathcal{B}' := \mathcal{B} \cup \{\vb{m}\}\). If \(\mathcal{B}'\) is linearly independent, then it contradicts the maximality of \(\mathcal{B}\). Therefore, \(\mathcal{B}'\) must be linearly dependent. Thus, there exist finitely many elements \(\vb{b}_1, \vb{b}_2, \ldots, \vb{b}_n \in \mathcal{B}\) and scalars \(d, d^1, d^2, \ldots, d^n \in D\), not all zero, such that
+	\begin{equation}
+		d \cdot \vb{m} + d^i \cdot \vb{b}_i = 0.
+	\end{equation}
+	If \(d = 0\), then we have a linear dependence relation among the \(\vb{b}_i\), contradicting the linear independence of \(\mathcal{B}\). Therefore, \(d \neq 0\). Since \(D\) is a division ring, \(d\) has a multiplicative inverse \(d\inv\). Multiplying the above equation by \(d^{-1}\), we get
+	\begin{equation}
+		\vb{m} = - (d^{-1} d^i) \cdot \vb{b}_i.
+	\end{equation}
+	This shows that \(\vb{m}\) can be expressed as a linear combination of elements in \(\mathcal{B}\). Thus, \(\mathcal{B}\) generates \(S\), and hence \(M\). Therefore, \(\mathcal{B}\) is a basis of \(M\).
+\end{proof}
+Till now in our theoretical physics journey, whenever we have dealt with vector fields, we always thought of them in terms of their components with respect to some basis. However, with this formalism, we see that in general vector fields may not have a basis, and thus we cannot always express them in terms of components. Locally, we can still express vector fields in terms of components using local charts, and then to relate vector fields in different charts we use the concept of transition maps.
+
+\subsection{Module Construction and Important Terms}
+
+\begin{definition}[Direct Sum of Modules]
+	Let \(M\) and \(N\) be modules over a ring \(R\). The \emph{direct sum} of \(M\) and \(N\), denoted by \(M \oplus N\), is defined as the set of ordered pairs
+	\begin{equation}
+		M \oplus N := M \times N = \qty{(m, n) \mid m \in M, n \in N},
+	\end{equation}
+	equipped with the component-wise addition and scalar multiplication:
+	\begin{itemize}
+		\item \uline{\emph{Addition}}: For \((m_1, n_1), (m_2, n_2) \in M \oplus N\),
+		      \begin{equation}
+			      (m_1, n_1) + (m_2, n_2) := (m_1 + m_2, n_1 + n_2).
+		      \end{equation}
+		\item \uline{\emph{Scalar Multiplication}}: For \(r \in R\) and \((m, n) \in M \oplus N\),
+		      \begin{equation}
+			      r \cdot (m, n) := (r \cdot m, r \cdot n).
+		      \end{equation}
+	\end{itemize}
+\end{definition}
+Let's define some important terms associated with the modules.
+\begin{definition*}[Modules]
+	Let \(M\) be a module over a ring \(R\). We define the following:
+	\begin{itemize}
+		\item \(M\) is \emph{finitely generated} if it has a finite generating set.
+		\item \(M\) is \emph{free} if it has a basis.
+		\item \(M\) is \emph{projective} if it is a direct summand of a free module, i.e., there exists amapsn \(R\)-module \(N\) such that \(M \oplus N\) is a free module.
+	\end{itemize}
+\end{definition*}
+As we have seen, \(\mathfrak{X}(\R^2)\) is a free module, while \(\mathfrak{X}(S^2)\) is not free. Also, it is clear that every free module is projective, but the converse is not true in general. Similar to vector spaces, we can define linear maps between modules.
+\begin{definition}[Module Homomorphism and Isomorphism]
+	Let \(M\) and \(N\) be modules over a ring \(R\). A function \(f: M \to N\) is called a \emph{module homomorphism} if for all \(m_1, m_2 \in M\) and \(r \in R\), the following properties hold:
+	\begin{itemize}
+		\item \uline{\emph{Additivity}}: \(f(m_1 + m_2) = f(m_1) + f(m_2)\).
+		\item \uline{\emph{Scalar Compatibility}}: \(f(r \cdot m_1) = r \cdot f(m_1)\).
+	\end{itemize}
+	If a module homomorphism \(f: M \to N\) is bijective, then it is called a \emph{module isomorphism}, and we say that \(M\) and \(N\) are isomorphic modules, denoted by \(M \modIso N\).
+\end{definition}
+\begin{proposition}
+	Let \(F\) be a finitely generated free module over a ring \(R\), and let \(n\) be the cardinality of the generating set (or basis) of \(F\). Then,
+	\begin{equation*}
+		F \modIso R^n := \underbrace{R \oplus R \oplus \ldots \oplus R}_{n \text{ times}}.
+	\end{equation*}
+\end{proposition}
+\begin{proof}
+	Let \(\{\vb{e}_1, \vb{e}_2, \ldots, \vb{e}_n\}\) be a basis of \(F\). Define a map \(f: F \to R^n\) by
+	\begin{equation*}
+		f\qty(\sum_{i=1}^n r^i \cdot \vb{e}_i) := (r^1, r^2, \ldots, r^n),
+	\end{equation*}
+	for all \(r^i \in R\). It is straightforward to verify that \(f\) is a module homomorphism. Moreover, \(f\) is bijective since every element in \(R^n\) can be uniquely expressed as a linear combination of the basis elements of \(F\). Therefore, \(f\) is a module isomorphism, and hence \(F \modIso R^n\).
+\end{proof}
+With this, we can define the notion of dimension for finitely generated free modules, as the cardinality of their basis. And once we show that \(R^m \modIso R^n\) implies \(m = n\), we can conclude that the dimension is well-defined.
+
+Coming back to our main discussion on vector fields, we define vector fiber bundles.
+\begin{definition}[Vector Bundle]
+	Let \(M\) be a smooth manifold. A \emph{vector bundle} over \(M\) is a smooth fiber bundle \((E, \pi, M)\) such that for each \(p \in M\), the fiber \(F_p := \pi^{-1}(p)\) is a vector space. Moreover, the local trivializations \(\varphi_U: \pi^{-1}(U) \to U \times V\) are required to be vector space isomorphisms on each fiber, where \(V\) is a fixed vector space called the \emph{typical fiber} of the bundle.
+\end{definition}
+Similar to vector fields, we can define smooth sections of a vector bundle.
+\begin{definition}[Smooth Section of a Vector Bundle]
+	Let \((E, \pi, M)\) be a vector bundle over a smooth manifold \(M\). A \emph{smooth section} of the vector bundle is a smooth map \(\sigma: M \to E\) such that \(\pi \circ \sigma = \id_M\).
+\end{definition}
+The set of all smooth sections of a vector bundle \((E, \pi, M)\) is denoted by \(\Gamma(E)\). Similar to vector fields, \(\Gamma(E)\) forms a module over the ring \(\SC^\infty(M)\) with pointwise addition and scalar multiplication.
+
+With this setup, we can now state the Serre-Swan theorem.
+\begin{theorem}[Serre, Swan, et al.]
+	Let \((E, M, \pi)\) be a vector bundle over a smooth manifold \(M\). Then, the module of smooth sections \(\Gamma(E)\) of the vector bundle \(E\) is a finitely generated projective module over the ring \(\SC^\infty(M)\).
+\end{theorem}
+\begin{remark}
+	Using the Serre-Swan theorem, there exists a \(\SC^\infty(M)\)-module \(Q\) such that \(\Gamma(E) \oplus Q\) is a free module. If for some vector bundle \(E\), we can choose \(Q\) to be the zero module, then \(\Gamma(E)\) itself is a free module. This happens, for example, when \(E\) is the tangent bundle of \(\R^2\), as we have seen earlier.
+
+	Thus, in some sense, \(Q\) quantifies the obstruction to the existence of a basis for the module of sections \(\Gamma(E)\).
+\end{remark}

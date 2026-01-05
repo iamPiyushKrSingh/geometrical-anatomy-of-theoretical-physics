@@ -387,7 +387,79 @@ With this smooth atlas \(\A_{\ST M}\), we have made the tangent bundle \(\ST M\)
 	\end{equation*}
 	Since \(V\) and \(U\) are open sets in the manifold \(M\), so \(V \cap U\) is also an open set in the manifold \(M\). Thus, the set \(x(V \cap U)\) is an open set in \(\R^{\dim M}\). Therefore, the product set \(x(V \cap U) \times \R^{\dim M}\) is also an open set in \(\R^{2\dim M}\). Since this is true for any chart \((U, x)\) on the manifold \(M\), we have that the preimage \(\preimg_\pi(V)\) is an open set in the tangent bundle \(\ST M\). Hence, the bundle projection \(\pi : \ST M \to M\) is a continuous map.
 \end{proof}
-With this, we have shown that the triple \((\ST M, M, \pi)\) forms a topological bundle over the manifold \(M\). Since we have also defined a smooth structure on the tangent bundle \(\ST M\), we can now show that the tangent bundle \(\ST M\) is indeed a smooth bundle over the manifold \(M\).
+With this, we have shown that the triple \((\ST M, M, \pi)\) forms a topological bundle over the manifold \(M\). Before concluding that the tangent bundle \(\ST M\) is a smooth bundle over the manifold \(M\), let's take a look at the local trivializations of the tangent bundle \(\ST M\). Let's recall the definition of local trivializations of a (topological) bundle:
+\begin{definition}[Locally Trivial Bundle]
+	Let \((E, M, \pi)\) be a (topological) bundle. The bundle is called \emph{locally trivial} with typical fiber \(F\) if for every point \(p \in  M\), there exists an open neighborhood \(U \subseteq M\) of the point \(p\) and a homeomorphism \(\varphi : \preimg_\pi(U) \to U \times F\) such that the following diagram commutes:
+	\begin{equation*}
+		\begin{tikzcd}
+			\preimg_\pi(U) \arrow[rr, "\varphi"] \arrow[dr, "\pi"'] &  & U \times F \arrow[dl, "\pi_1"] \\
+			& U &
+		\end{tikzcd}
+	\end{equation*}
+\end{definition}
+\begin{proposition}[Tangent Bundle is Locally Trivial]
+	The tangent bundle \((\ST M, M, \pi)\) is a locally trivial bundle with typical fiber \(\R^{\dim M}\).
+\end{proposition}
+\begin{proof}
+	Let \(p \in M\) be any point on the manifold \(M\). Since \(M\) is a smooth manifold, there exists a chart \((U, x)\) on the manifold \(M\) such that \(p \in U\). Now, consider the map
+	\begin{equation*}
+		\varphi : \preimg_\pi(U) \to U \times \R^{\dim M}
+	\end{equation*}
+	defined by
+	\begin{equation*}
+		\varphi(X) := \qty(\pi(X), X^1, \dots, X^{\dim M}),
+	\end{equation*}
+	where \(X \in \ST_q M\) is a tangent vector at the point \(q = \pi(X) \in U\), and \(X^i\) are the components of the tangent vector \(X\) in the basis induced by the chart \((U, x)\). We need to show that the map \(\varphi\) is a homeomorphism such that the following diagram commutes:
+	\begin{equation*}
+		\begin{tikzcd}
+			\preimg_\pi(U) \arrow[rr, "\varphi"] \arrow[dr, "\pi"'] &  & U \times \R^{\dim M} \arrow[dl, "\pi_1"] \\
+			& U &
+		\end{tikzcd}
+	\end{equation*}
+
+	To show that the map \(\varphi\) is a homeomorphism, we need to show that it is a bijection and both the map and its inverse are continuous. The map \(\varphi\) is injective since if \(\varphi(X) = \varphi(Y)\) for some \(X, Y \in \preimg_\pi(U)\), then we have
+	\begin{equation*}
+		\qty(\pi(X), X^1, \dots, X^{\dim M}) = \qty(\pi(Y), Y^1, \dots, Y^{\dim M}),
+	\end{equation*}
+	from which we get \(\pi(X) = \pi(Y)\) and \(X^i = Y^i\) for all \(i = 1, 2, \dots, \dim M\). Thus, we have
+	\begin{equation*}
+		X = X^i \qty(\pdv{x^i})_{\pi(X)} = Y^i \qty(\pdv{x^i})_{\pi(Y)} = Y.
+	\end{equation*}
+	Hence, the map \(\varphi\) is injective.
+	To show that the map \(\varphi\) is surjective, let \((q, v^1, \dots, v^{\dim M}) \in U \times \R^{\dim M}\). Then we can define a tangent vector \(X \in \ST_q M\) as
+	\begin{equation*}
+		X := v^i \qty(\pdv{x^i})_q.
+	\end{equation*}
+	Thus, we have
+	\begin{equation*}
+		\varphi(X) = \qty(\pi(X), X^1, \dots, X^{\dim M}) = \qty(q, v^1, \dots, v^{\dim M}).
+	\end{equation*}
+	Hence, the map \(\varphi\) is surjective. Therefore, the map \(\varphi\) is a bijection.
+	To show that the map \(\varphi\) is continuous, let \(W \subseteq U \times \R^{\dim M}\) be an open set. We need to show that the preimage \(\preimg_\varphi(W) \subseteq \preimg_\pi(U)\) is an open set. For that, let \((U', x')\) be any chart on the manifold \(M\). Then we have
+	\begin{equation*}
+		\xi(\preimg_\varphi(W) \cap \preimg_\pi(U')) = \xi(\preimg_\pi(\pi(\preimg_\varphi(W))) \cap \preimg_\pi(U')).
+	\end{equation*}
+	Since \(\pi(\preimg_\varphi(W))\) is an open set in \(U\) (as it is the image of an open set under the projection map), the set \(\pi(\preimg_\varphi(W)) \cap U'\) is also an open set in the manifold \(M\). Thus, the set
+	\begin{equation*}
+		\xi(\preimg_\pi(\pi(\preimg_\varphi(W))) \cap \preimg_\pi(U')) = x'(\pi(\preimg_\varphi(W)) \cap U') \times \R^{\dim M}
+	\end{equation*}
+	is an open set in \(\R^{2\dim M}\). Since this is true for any chart \((U', x')\) on the manifold \(M\), we have that the preimage \(\preimg_\varphi(W)\) is an open set in \(\preimg_\pi(U)\). Hence, the map \(\varphi\) is continuous.
+	To show that the inverse map \(\varphi\inv\) is continuous, let \(W' \subseteq \preimg_\pi(U)\) be an open set. We need to show that the preimage \(\preimg_{\varphi\inv}(W') \subseteq U \times \R^{\dim M}\) is an open set. For that, let \((U', x')\) be any chart on the manifold \(M\). Then we have
+	\begin{equation*}
+		\pi_1(\preimg_{\varphi\inv}(W') \cap (U' \times \R^{\dim M})) = \pi(\preimg_\pi(U) \cap W').
+	\end{equation*}
+	Since \(W'\) is an open set in \(\preimg_\pi(U)\), the set \(\pi(\preimg_\pi(U) \cap W')\) is an open set in \(U\) (as it is the image of an open set under the projection map). Thus, the set
+	\begin{equation*}
+		\pi_1(\preimg_{\varphi\inv}(W') \cap (U' \times \R^{\dim M})) = \pi(\preimg_\pi(U) \cap W')
+	\end{equation*}
+	is an open set in \(\R^{\dim M}\). Since this is true for any chart \((U', x')\) on the manifold \(M\), we have that the preimage \(\preimg_{\varphi\inv}(W')\) is an open set in \(U \times \R^{\dim M}\). Hence, the inverse map \(\varphi\inv\) is continuous.
+	Thus, we have shown that the map \(\varphi\) is a homeomorphism. Finally, to show that the diagram commutes, let \(X \in \preimg_\pi(U)\). Then we have
+	\begin{equation*}
+		\pi_1 \circ \varphi (X) = \pi_1 \qty(\pi(X), X^1, \dots, X^{\dim M}) = \pi(X),
+	\end{equation*}
+	which shows that the diagram commutes. Hence, the tangent bundle \((\ST M, M, \pi)\) is a locally trivial bundle with typical fiber \(\R^{\dim M}\).
+\end{proof}
+Now, we are ready to show that the tangent bundle \(\ST M\) is indeed a smooth bundle over the manifold \(M\). For that, we need to show that the bundle projection \(\pi : \ST M \to M\) is a smooth map.
 \begin{proposition}[Tangent Bundle is a Smooth Bundle]
 	The bundle projection \(\pi : \ST M \to M\) is a smooth map.
 \end{proposition}
