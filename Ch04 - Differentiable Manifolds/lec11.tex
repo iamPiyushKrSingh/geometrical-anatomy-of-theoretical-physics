@@ -233,3 +233,50 @@ With this setup, we can now state the Serre-Swan theorem.
 
 	Thus, in some sense, \(Q\) quantifies the obstruction to the existence of a basis for the module of sections \(\Gamma(E)\).
 \end{remark}
+\begin{proposition}
+	Let \(P\) and \(Q\) be finitely generated (projective) modules over a commutative ring \(R\). Then
+	\begin{equation}
+		\Hom_R(P, Q) := \qty{\phi: P \to Q \mid \phi \text{ is an } R\text{-module homomorphism}}
+	\end{equation}
+	is also a finitely generated (projective) module over \(R\).
+\end{proposition}
+We will not prove this proposition here, but it can be shown using the properties of finitely generated and projective modules, along with the definition of module homomorphisms. This result is important because it allows us to construct new modules from existing ones, like the module of covector fields from the module of vector fields.
+
+Let us define dual of a module, specifically the dual of the module of vector fields, which will give us the module of covector fields.
+\begin{equation}
+	\mathfrak{X}^*(M) := \Hom_{\SC^\infty(M)}(\mathfrak{X}(M), \SC^\infty(M)).
+\end{equation}
+Elements of \(\mathfrak{X}^*(M)\) are called \emph{covector fields}. In the notation of set of smooth sections of a vector bundle, we can write
+\begin{equation*}
+	\mathfrak{X}(M) = \Gamma(\ST M), \quad \mathfrak{X}^*(M) = \Gamma(\ST M)^*,
+\end{equation*}
+where \(\ST M\) is the tangent bundle of \(M\), and \(\Gamma(\ST M)^*\) denotes the dual module of \(\Gamma(\ST M)\).
+\begin{proposition}
+	The dual of the module of vector fields \(\Gamma(\ST M)^*\) same as the module of smooth sections of the cotangent bundle \(\ST^*M\) over \(M\), i.e.,
+	\begin{equation}
+		\Gamma(\ST M)^* \modIso \Gamma(\ST^* M).
+	\end{equation}
+\end{proposition}
+With this, we have established a solid foundation for understanding vector fields, covector fields, and their associated modules on smooth manifolds. Now, let's move on to discuss tensor fields, due to this new understanding of dual modules, we can define tensor fields in two equivalent ways.
+\begin{definition}[Tensor Field]
+	Let \(M\) be a smooth manifold. A \emph{tensor field} \(t\) of type \((r, s)\) on \(M\) is a smooth section of the tensor bundle \(\ST^r_s M\), where
+	\begin{equation}
+		\ST^r_s M := \bigsqcup_{p \in M} \mathsf{T}^r_s(\ST_p M).
+	\end{equation}
+	Alternatively, a tensor field of type \((r, s)\) can be defined as a \(\SC^\infty(M)\)-multilinear map
+	\begin{equation}
+		t: \underbrace{\mathfrak{X}^*(M) \times \ldots \times \mathfrak{X}^*(M)}_{r \text{ times}} \times \underbrace{\mathfrak{X}(M) \times \ldots \times \mathfrak{X}(M)}_{s \text{ times}} \to \SC^\infty(M).
+	\end{equation}
+\end{definition}
+In other words, a tensor field of type \((r, s)\) can be viewed either as a smooth assignment of a tensor of type \((r, s)\) to each point of the manifold or as a multilinear map that takes \(r\) covector fields and \(s\) vector fields and produces a smooth function on the manifold.
+
+Similar to module of vector fields and covector fields, the set of all tensor fields of type \((r, s)\) on \(M\), denoted by \(\Gamma(\ST^r_s M)\), forms a module over the ring \(\SC^\infty(M)\) with pointwise addition and scalar multiplication. Also, we can define tensor product of tensor fields
+\begin{equation}
+	\otimes: \Gamma(\ST^r_s M) \times \Gamma(\ST^{r'}_{s'} M) \to \Gamma(\ST^{r + r'}_{s + s'} M),
+\end{equation}
+given by
+\begin{multline}
+	(t \otimes t')( \omega^1, \ldots, \omega^r, \omega^{r+1}, \ldots, \omega^{r + r'}, X_1, \ldots, X_s, X_{s+1}, \ldots, X_{s + s'}) \\
+	:= t(\omega^1, \ldots, \omega^r, X_1, \ldots, X_s) \cdot t'(\omega^{r+1}, \ldots, \omega^{r + r'}, X_{s+1}, \ldots, X_{s + s'}),
+\end{multline}
+for all \(t \in \Gamma(\ST^r_s M)\), \(t' \in \Gamma(\ST^{r'}_{s'} M)\), \(\omega^i \in \mathfrak{X}^*(M)\), and \(X_j \in \mathfrak{X}(M)\).
