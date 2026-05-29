@@ -3,5 +3,6 @@
 build_tex/
 
 *.synctex.gz
+*.log
 
 Lecture Notes.pdf

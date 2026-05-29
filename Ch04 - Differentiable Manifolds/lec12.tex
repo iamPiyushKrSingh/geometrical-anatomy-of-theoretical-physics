@@ -7,43 +7,43 @@
     \begin{equation*}
         \omega(X_1, \ldots, X_n) = \sgn(\sigma) \omega(X_{\sigma(1)}, \ldots, X_{\sigma(n)})
     \end{equation*}
-    where \(\sigma \in S_n = \text{Perm}(n)\) is a permutation of \(n\) elements, \(\sgn(\sigma)\) is the sign of the permutation, and \(X_1, \ldots, X_n \in \Gamma(\ST M)\) are vector fields on \(M\). 
+    where \(\sigma \in S_n = \text{Perm}(n)\) is a permutation of \(n\) elements, \(\sgn(\sigma)\) is the sign of the permutation, and \(X_1, \ldots, X_n \in \Gamma(\ST M)\) are vector fields on \(M\).
 \end{definition}
 Let's look at some examples of differential forms.
 \begin{example}
     \phantom{l}\vspace{-1.5em}
     \begin{enumerate}[a)]
         \item A manifold \(M\) is \emph{orientable} if it admits an oriented atlas, \ie, an atlas \(\{(U_\alpha, x_\alpha)\}\) in which all the transition maps \(x_\beta \circ x_\alpha\inv: x_\alpha(U_\alpha \cap U_\beta) \to x_\beta(U_\alpha \cap U_\beta)\) have positive determinant.
-        
-        If \(M\) is orientable, then there exits a nowhere vanishing \emph{top-form} \((n = \dim M)\) \(\omega\) on \(M\), providing a volume.
 
-    \item The electromagnetic field strength \(F\) in electrodynamics is a differential 2-form.
-    
-    \item In classical mechanics, define the configuration space \(Q\) of a system as the space of all possible configurations of the system, \ie, the space of all possible values of the generalized coordinates. Then the phase space of the system is the cotangent bundle \(\ST^* Q\) of the configuration space.
-    
-    On phase space, we have a canonical 2-form \(\omega\) called the \emph{symplectic form}. To define it, we need some more machinery, but the anti-symmetry of \(\omega\) is the reason why we have the minus sign in Hamilton's equations of motion.
+              If \(M\) is orientable, then there exists a nowhere vanishing \emph{top-form} \((n = \dim M)\) \(\omega\) on \(M\), providing a volume.
+
+        \item The electromagnetic field strength \(F\) in electrodynamics is a differential 2-form.
+
+        \item In classical mechanics, define the configuration space \(Q\) of a system as the space of all possible configurations of the system, \ie, the space of all possible values of the generalized coordinates. Then the phase space of the system is the cotangent bundle \(\ST^* Q\) of the configuration space.
+
+              On phase space, we have a canonical 2-form \(\omega\) called the \emph{symplectic form}. To define it, we need some more machinery, but the anti-symmetry of \(\omega\) is the reason why we have the minus sign in Hamilton's equations of motion.
     \end{enumerate}
 \end{example}
 Define the set of all differential \(n\)-forms on \(M\) as \(\Omega^n(M)\), which by definition is a  \(\SC^\infty(M)\)-module. Generally, taking a tensor product of a form doesn't give us a form, but we want to be able to multiply forms together to get one, so we define the \emph{wedge product}.
 \begin{definition}[Wedge Product]
     Let \(\omega \in \Omega^n(M)\) and \(\eta \in \Omega^m(M)\) be two differential forms on \(M\). The \emph{wedge product} of \(\omega\) and \(\eta\) is a differential \((n + m)\)-form defined as
     \begin{align*}
-        (\omega \wedge \eta)(X_1, \ldots, X_{n+m}) & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) (\omega \otimes \eta)(X_{\sigma(1)}, \ldots, X_{\sigma(n+m)}) \\
-        & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) \omega(X_{\sigma(1)}, \ldots, X_{\sigma(n)}) \eta(X_{\sigma(n+1)}, \ldots, X_{\sigma(n+m)}).
+        (\omega \wedge \eta)(X_1, \ldots, X_{n+m}) & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) (\omega \otimes \eta)(X_{\sigma(1)}, \ldots, X_{\sigma(n+m)})                                \\
+                                                   & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) \omega(X_{\sigma(1)}, \ldots, X_{\sigma(n)}) \eta(X_{\sigma(n+1)}, \ldots, X_{\sigma(n+m)}).
     \end{align*}
 \end{definition}
-Simplest example of wedge product is take two 1-forms \(\omega\) and \(\eta\), then
+Simplest example of wedge product is of two 1-forms \(\omega\) and \(\eta\), then
 \begin{equation*}
     (\omega \wedge \eta)(X_1, X_2) = \sum_{\sigma \in S_2} \sgn(\sigma) \omega(X_{\sigma(1)}) \eta(X_{\sigma(2)}) = \omega(X_1) \eta(X_2) - \omega(X_2) \eta(X_1).
 \end{equation*}
 Thus, we can write \(\omega \wedge \eta = \omega \otimes \eta - \eta \otimes \omega\).
 
-Recall that given a smooth map \(\phi: M \to N\) between two smooth manifolds, we induce pull-backs \(\phi^*_p: \ST^*_{\phi(p)} N \to \ST^*_p M\) on the cotangent spaces for each \(p \in M\). With this global pull-back map \(\phi^*: \Gamma(\ST^* N) \equiv \Omega^1(N) \to \Gamma(\ST^* M) \equiv \Omega^1(M)\) is defined pointwise.
+Recall that given a smooth map \(\phi: M \to N\) between two smooth manifolds, we induce pullbacks \(\phi^*_p: \ST^*_{\phi(p)} N \to \ST^*_p M\) on the cotangent spaces for each \(p \in M\). With this global pull-back map \(\phi^*: \Gamma(\ST^* N) \equiv \Omega^1(N) \to \Gamma(\ST^* M) \equiv \Omega^1(M)\) is defined pointwise.
 
 \begin{definition}[Pull-back of Forms]
     Let \(\phi: M \to N\) be a smooth map between two smooth manifolds, and let \(\omega \in \Omega^n(N)\) be a differential \(n\)-form on \(N\). The \emph{pull-back} of \(\omega\) by \(\phi\) is a differential \(n\)-form on \(M\) defined as
     \begin{equation*}
-    (\phi^* \omega)(X_1, \ldots, X_n) = \omega(\phi_*(X_1), \ldots, \phi_*(X_n))
+        (\phi^* \omega)(X_1, \ldots, X_n) = \omega(\phi_*(X_1), \ldots, \phi_*(X_n))
     \end{equation*}
     where \(\phi_*: \ST M \to \ST N\) is the (global) push-forward map induced by \(\phi\).
 
