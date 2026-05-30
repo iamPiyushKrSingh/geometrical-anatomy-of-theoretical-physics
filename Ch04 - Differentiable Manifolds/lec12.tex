@@ -1,6 +1,10 @@
 \lecture{12}
 
-\section{Differential Forms and de Rham Cohomology}
+\section{Differential Forms and deRham Cohomology}
+
+We have seen how to define the tangent bundle \(\ST M\) of a smooth manifold \(M\), and using the tangent bundle we can define vector (covector, or more generally, \((r, s)\)-tensor) fields on \(M\). Now let's look at a special type of \((0, n)\)-tensor fields called \emph{differential \(n\)-forms}, which are totally antisymmetric.
+
+\subsection{Differential Forms}
 
 \begin{definition}[Differential \(n\)-form]
     Let \(M\) be a smooth manifold, and \(0 \le n \le \dim M\). A \emph{differential \(n\)-form} on \(M\) is \((0, n)\)-tensor field \(\omega\) that is totally antisymmetric, \ie,
@@ -38,6 +42,20 @@ Simplest example of wedge product is of two 1-forms \(\omega\) and \(\eta\), the
 \end{equation*}
 Thus, we can write \(\omega \wedge \eta = \omega \otimes \eta - \eta \otimes \omega\).
 
+Before we look at the properties of the wedge product, let's look how these differential forms look like in local coordinates. Let \((U, x)\) be a chart on \(M\), and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). Then we can write \(\omega\) in local coordinates as
+\begin{equation*}
+    \omega = \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}
+\end{equation*}
+where \(\tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \in \SC^\infty(U)\) are the components of \(\omega\) in the local coordinates, and \(\dd x^i\) are the differentials of the coordinate functions \(x^i\), which are 1-forms defined as \(\dd x^i)_p(X_p) = X_p(x^i)\) for all \(p \in U\) and \(X_p \in \ST_p M\). The wedge product of the differentials of the coordinate functions is defined as
+\begin{equation*}
+    \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n} = \sum_{\sigma \in S_n} \sgn(\sigma) \dd x^{i_{\sigma(1)}} \otimes \dd x^{i_{\sigma(2)}} \otimes \cdots \otimes \dd x^{i_{\sigma(n)}}.
+\end{equation*}
+To find the components of \(\omega\) in local coordinates, we can use the following formula:
+\begin{equation*}
+    \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}(p) = \omega_p\left(\qty(\pdv{}{x^{i_1}})_p, \qty(\pdv{}{x^{i_2}})_p, \ldots, \qty(\pdv{}{x^{i_n}})_p\right)
+\end{equation*}
+for all \(p \in U\). Thus, the components of \(\omega\) in local coordinates are just the evaluation of \(\omega\) at the point \(p\) on the coordinate basis vectors \(\qty(\pdv{}{x^i})_p\).
+
 Recall that given a smooth map \(\phi: M \to N\) between two smooth manifolds, we induce pullbacks \(\phi^*_p: \ST^*_{\phi(p)} N \to \ST^*_p M\) on the cotangent spaces for each \(p \in M\). With this global pull-back map \(\phi^*: \Gamma(\ST^* N) \equiv \Omega^1(N) \to \Gamma(\ST^* M) \equiv \Omega^1(M)\) is defined pointwise.
 
 \begin{definition}[Pull-back of Forms]
@@ -49,3 +67,121 @@ Recall that given a smooth map \(\phi: M \to N\) between two smooth manifolds, w
 
     This can be equivalently defined pointwise as \((\phi^* \omega)_p = \phi^*_{\phi(p)} \omega_{\phi(p)}\) for each \(p \in M\).
 \end{definition}
+With this definition, we can keep in mind the given a smooth map \(\phi: M \to N\), vectors are pushed forward by \(\phi\) and forms (covectors being 1-forms) are pulled back by \(\phi\). Now we want to see how the pull-back of forms interacts with the wedge product. We have the following result.
+\begin{theorem}
+    Let \(\phi: M \to N\) be a smooth map between two smooth manifolds, and let \(\omega \in \Omega^n(N)\) and \(\eta \in \Omega^m(N)\) be two differential forms on \(N\). Then
+    \begin{equation*}
+        \phi^*(\omega \wedge \eta) = \phi^*(\omega) \wedge \phi^*(\eta).
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let \(X_1, \ldots, X_{n+m} \in \Gamma(\ST M)\) be vector fields on \(M\). Then
+    \begin{align*}
+        (\phi^*(\omega \wedge \eta))(X_1, \ldots, X_{n+m}) & = (\omega \wedge \eta)(\phi_*(X_1), \ldots, \phi_*(X_{n+m}))                                                                                                                                   \\
+                                                           & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) \omega(\phi_*(X_{\sigma(1)}), \ldots, \phi_*(X_{\sigma(n)})) \eta(\phi_*(X_{\sigma(n+1)}), \ldots, \phi_*(X_{\sigma(n+m)})) \\
+                                                           & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) (\phi^* \omega)(X_{\sigma(1)}, \ldots, X_{\sigma(n)}) (\phi^* \eta)(X_{\sigma(n+1)}, \ldots, X_{\sigma(n+m)})               \\
+                                                           & = \frac{1}{n!} \frac{1}{m!} \sum_{\sigma \in S_{n+m}} \sgn(\sigma) (\phi^* \omega \otimes \phi^* \eta)(X_{\sigma(1)}, \ldots, X_{\sigma(n+m)})                                                 \\
+                                                           & = ((\phi^* \omega) \wedge (\phi^* \eta))(X_1, \ldots, X_{n+m}).
+    \end{align*}
+    Since this holds for all \(X_1, \ldots, X_{n+m} \in \Gamma(\ST M)\), we have \(\phi^*(\omega \wedge \eta) = \phi^*(\omega) \wedge \phi^*(\eta)\).
+\end{proof}
+
+\subsection{Grassmann Algebra}
+
+Till now, we have seen two different forms being ``multiplied'' together (using the wedge product) to get a new form, it would be nice if we had a way to extend the space of forms such that the wedge product is closed in that space. This is done by the \emph{Grassmann algebra}.
+
+Define the set of all differential forms on \(M\) as \(\Omega(M) = \bigoplus_{n=0}^{\dim M} \Omega^n(M)\), here individual \(\Omega^n(M)\) are \(\SC^\infty(M)\)-modules so \(\oplus\) is just a direct sum of modules. Then \(\Omega(M)\) is also a \(\SC^\infty(M)\)-module.
+\begin{definition}[Grassmann Algebra]
+    The \emph{Grassmann algebra} of \(M\) is the algebra \((\Omega(M), +, \cdot, \wedge)\) where \(+\) is the pointwise addition of forms, \(\cdot\) is the pointwise multiplication of forms by smooth functions, and \(\wedge\) is the wedge product of forms, defined as \(\wedge: \Omega(M) \times \Omega(M) \to \Omega(M)\) by linear continuation of the wedge product on individual \(\Omega^n(M)\).
+\end{definition}
+Take \(\omega \in \Omega^n(M)\) and \(\eta \in \Omega^m(M)\), and define \(\psi = \omega + \eta \in \Omega(M)\). Consider \(\varphi \in \Omega^k(M)\) for some \(k\). Then
+\begin{equation*}
+    \varphi \wedge \psi = \varphi \wedge (\omega + \eta) = \underbrace{\varphi \wedge \omega}_{\in \Omega^{n+k}(M)} + \underbrace{\varphi \wedge \eta}_{\in \Omega^{m+k}(M)} \in \Omega(M).
+\end{equation*}
+Often the Grassmann algebra of a manifold \(M\) is denoted by \(\bigwedge(M)\) or \(\Gr(M)\).
+
+We will often see objects known as \emph{Grassmann numbers} in physics (especially in path integral formulation of quantum field theory and in supersymmetry) introduced as ``\emph{anti-commuting numbers}''. First, objects to don't commute (or anti-commute) but the operations on them do, so we need to specify the operation we are talking about. In the case of Grassmann numbers, we are talking about the wedge product of forms. Now, let's look from where the anti-commutativity of elements of Grassmann algebra comes from.
+\begin{theorem}
+    Let \(\omega \in \Omega^n(M)\) and \(\eta \in \Omega^m(M)\) be two differential forms on \(M\). Then
+    \begin{equation*}
+        \omega \wedge \eta = (-1)^{n m} \eta \wedge \omega.
+    \end{equation*}
+\end{theorem}
+The proof of this theorem is straightforward from the definition of wedge product, and the properties of the permutation group \(S_{n+m}\). However, this anti-commutativity is true only for the differential forms, and not for the elements of the Grassmann algebra. For example, consider \(\omega \in \Omega^n(M) \subset \Omega(M)\), \(\eta \in \Omega^m(M) \subset \Omega(M)\), and \(\varphi \in \Omega^k(M) \subset \Omega(M)\) for some \(n, m, k\). Let \(\psi = \omega + \eta \in \Omega(M)\). Then
+\begin{equation*}
+    \varphi \wedge \psi = \varphi \wedge (\omega + \eta) = \varphi \wedge \omega + \varphi \wedge \eta = (-1)^{n k} \omega \wedge \varphi + (-1)^{m k} \eta \wedge \varphi \not\propto \psi \wedge \varphi = (\omega + \eta) \wedge \varphi.
+\end{equation*}
+
+\subsection{Exterior Derivative}
+
+Recall the definition of the gradient of a smooth function \(f \in \SC^\infty(M)\) at a point \(p \in M\) as the covector \(\dd_p f \in \ST^*_p M\) defined by \(\dd_p f(X_p) = X_p(f)\) for all \(X_p \in \ST_p M\). First, we want to extend this definition to a global map, \ie, gradient of a smooth function \(f \in \SC^\infty(M)\) is a 1-form \(\dd f \in \Omega^1(M)\) defined pointwise as \((\dd f)_p = \dd_p f\) for each \(p \in M\). Thus, we have a map \(\dd: \SC^\infty(M) = \Omega^0(M) \to \Omega^1(M)\). Now we want to extend this definition to an operator \(\dd: \Omega^n(M) \to \Omega^{n+1}(M)\) for all \(n\). This is done by the \emph{exterior derivative}.
+\begin{definition}[Exterior Derivative]
+    The \emph{exterior derivative} operator \(\dd: \Omega^n(M) \to \Omega^{n+1}(M)\) is defined as
+    \begin{align*}
+        (\dd \omega)(X_1, \ldots, X_{n+1}) & = \sum_{i=1}^{n+1} (-1)^{i+1} X_i(\omega(X_1, \ldots, \xcancel{X_i}, \ldots, X_{n+1}))                                 \\
+                                           & \quad + \sum_{i < j} (-1)^{i+j} \omega([X_i, X_j], X_1, \ldots, \xcancel{X_i}, \ldots, \xcancel{X_j}, \ldots, X_{n+1})
+    \end{align*}
+    for all \(\omega \in \Omega^n(M)\) and \(X_1, \ldots, X_{n+1} \in \Gamma(\ST M)\).
+\end{definition}
+To complete this definition, one needs to check that \(\dd \omega\) is indeed a differential \((n+1)\)-form, \ie, it is totally antisymmetric and \(\SC^\infty(M)\)-linear in each argument.
+
+Before we look at the properties of the exterior derivative, let's first define the commutator of vector fields, which is used in the definition of the exterior derivative.
+\begin{definition}[Commutator of Vector Fields]
+    Let \(X, Y \in \Gamma(\ST M)\) be two vector fields on \(M\). The \emph{commutator} of \(X\) and \(Y\) is defined as
+    \begin{equation*}
+        [X, Y](f) = X(Y(f)) - Y(X(f))
+    \end{equation*}
+    for all \(f \in \SC^\infty(M)\).
+\end{definition}
+The commutator of vector fields is also known as the \emph{Lie bracket} of vector fields.
+\begin{proposition}[Commutator is a Vector Field]
+    Let \(X, Y \in \Gamma(\ST M)\) be two vector fields on \(M\). Then the commutator \([X, Y]\) is also a vector field on \(M\), \ie, \([X, Y] \in \Gamma(\ST M)\).
+\end{proposition}
+\begin{proof}
+    Let \(f, g \in \SC^\infty(M)\) be two smooth functions on \(M\). Then
+    \begin{align*}
+        [X, Y](f g) & = X(Y(f g)) - Y(X(f g))                                                                                                 \\
+                    & = X(Y(f) g + f Y(g)) - Y(X(f) g + f X(g))                                                                               \\
+                    & = X(Y(f) g) + X(f Y(g)) - Y(X(f) g) - Y(f X(g))                                                                         \\
+                    & = [\textcolor{blue}{X(Y(f)) g} + \cancel{Y(f) X(g)}] + [\bcancel{X(f) Y(g)} + \textcolor{ForestGreen}{f X(Y(g))}]       \\
+                    & \quad - [\textcolor{blue}{Y(X(f)) g} + \bcancel{X(f) Y(g)}] - [\cancel{Y(f) X(g)} + \textcolor{ForestGreen}{f Y(X(g))}] \\
+                    & = [X(Y(f)) - Y(X(f))] g + f [X(Y(g)) - Y(X(g))]                                                                         \\
+                    & = [X, Y](f) g + f [X, Y](g).
+    \end{align*}
+    Since this holds for all \(f, g \in \SC^\infty(M)\), thus \([X, Y]\) follows the Leibniz rule, and hence is a vector field on \(M\).
+\end{proof}
+Now, let's look at a simple example of the exterior derivative.
+\begin{example}
+    Fix \(n = 1\), and let \(\omega \in \Omega^1(M)\) be a differential 1-form on \(M\). Then for all \(X, Y \in \Gamma(\ST M)\), we have
+    \begin{equation*}
+        (\dd \omega)(X, Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X, Y]).
+    \end{equation*}
+    The anti-symmetry of \(\dd \omega\) is evident from this expression, and it is enough to check the \(\SC^\infty(M)\)-linearity in one argument, say \(Y\). Let \(f \in \SC^\infty(M)\) be a smooth function on \(M\). Then
+    \begin{align*}
+        (\dd \omega)(X, f Y) & = X(\omega(f Y)) - f Y(\omega(X)) - \omega([X, f Y])                                                 \\
+                             & = X(f \omega(Y)) - f Y(\omega(X)) - \omega(X(f Y) - (f Y) X)                                         \\
+                             & = X(f) \omega(Y) + f X(\omega(Y)) - f Y(\omega(X)) - \omega(X(f) Y + f X(Y) - f Y(X))                \\
+                             & = X(f) \omega(Y) + f X(\omega(Y)) - f Y(\omega(X)) - X(f) \omega(Y) - f(\omega(X(Y)) - \omega(Y(X))) \\
+                             & = f [X(\omega(Y)) - Y(\omega(X)) - \omega([X, Y])]                                                   \\
+                             & = f (\dd \omega)(X, Y).
+    \end{align*}
+\end{example}
+Similarly, we can extend the notion of exterior derivative to the whole Grassmann algebra \(\Omega(M)\) by linear continuation, however, in this case, the rank of the form does not necessarily increase by 1, since this operator is closed in \(\Omega(M)\).
+
+So, we have defined a notion of differentiation of forms, and we already know how to multiply forms together using the wedge product. Now we want to see how these two operations interact with each other, and do we recover the usual Leibniz rule of differentiation.
+\begin{theorem}
+    Let \(\omega \in \Omega^n(M)\) and \(\eta \in \Omega^m(M)\) be two differential forms on \(M\). Then
+    \begin{equation*}
+        \dd(\omega \wedge \eta) = (\dd \omega) \wedge \eta + (-1)^n \omega \wedge (\dd \eta).
+    \end{equation*}
+\end{theorem}
+So the exterior derivative does not satisfy the usual Leibniz rule, but a modified version of it, which is called the \emph{graded Leibniz rule}.
+
+We want to know how pullbacks of forms interact with the exterior derivative. We have the following result.
+\begin{theorem}
+    Let \(\phi: M \to N\) be a smooth map between two smooth manifolds, and let \(\omega \in \Omega^n(N)\) be a differential \(n\)-form on \(N\). Then
+    \begin{equation*}
+        \dd(\phi^* \omega) = \phi^*(\dd \omega).
+    \end{equation*}
+\end{theorem}
+This property symbolically means that exterior derivative and pull-back commute with each other.
