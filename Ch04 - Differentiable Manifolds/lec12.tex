@@ -44,7 +44,7 @@ Thus, we can write \(\omega \wedge \eta = \omega \otimes \eta - \eta \otimes \om
 
 Before we look at the properties of the wedge product, let's look how these differential forms look like in local coordinates. Let \((U, x)\) be a chart on \(M\), and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). Then we can write \(\omega\) in local coordinates as
 \begin{equation*}
-    \omega = \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}
+    \omega = \frac{1}{n!} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}
 \end{equation*}
 where \(\tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \in \SC^\infty(U)\) are the components of \(\omega\) in the local coordinates, and \(\dd x^i\) are the differentials of the coordinate functions \(x^i\), which are 1-forms defined as \(\dd x^i)_p(X_p) = X_p(x^i)\) for all \(p \in U\) and \(X_p \in \ST_p M\). The wedge product of the differentials of the coordinate functions is defined as
 \begin{equation*}
@@ -168,6 +168,52 @@ Now, let's look at a simple example of the exterior derivative.
 \end{example}
 Similarly, we can extend the notion of exterior derivative to the whole Grassmann algebra \(\Omega(M)\) by linear continuation, however, in this case, the rank of the form does not necessarily increase by 1, since this operator is closed in \(\Omega(M)\).
 
+This definition of the exterior derivative is quite abstract, for proving the properties of the exterior derivative, it is often easier to use the local coordinate expression of the exterior derivative. Let \((U, x)\) be a chart on \(M\), and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). Then we can write \(\omega\) in local coordinates as
+\begin{equation*}
+    \omega = \frac{1}{n!} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}.
+\end{equation*}
+In this open set \(U\), we have the natural basis for vector fields \(\qty(\pdv{x^i})\) defined pointwise as \(\qty(\pdv{x^i})_p(f) = \partial_i(f \circ x\inv)(x(p))\) for all \(p \in U\) and \(f \in \SC^\infty(M)\). Before we write the local coordinate expression for the exterior derivative, let's prove the following result.
+\begin{proposition} \label{prop:basis_commute}
+    Let \((U, x)\) be a chart on \(M\). Then for all \(i, j\), we have
+    \begin{equation*}
+        \comm{\pdv{x^i}}{\pdv{x^j}} = 0.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Let \(f \in \SC^\infty(M)\) be a smooth function on \(M\). Then
+    \begin{align*}
+        \qty(\pdv{x^i})\qty(\pdv{x^j})(f) & = \qty(\pdv{x^i})\qty(\partial_j(f \circ x\inv) \circ x) = \partial_i\qty(\partial_j(f \circ x\inv)) \circ x, \\
+        \qty(\pdv{x^j})\qty(\pdv{x^i})(f) & = \qty(\pdv{x^j})\qty(\partial_i(f \circ x\inv) \circ x) = \partial_j\qty(\partial_i(f \circ x\inv)) \circ x.
+    \end{align*}
+    The function \(f \circ x\inv: x(U) \subset \R^{\dim M} \to \R\) is a smooth function, so by Schwarz's theorem, we have \(\partial_i\qty(\partial_j(f \circ x\inv)) = \partial_j\qty(\partial_i(f \circ x\inv))\). Thus, \(\qty(\pdv{x^i})\qty(\pdv{x^j})(f) = \qty(\pdv{x^j})\qty(\pdv{x^i})(f)\) for all \(f \in \SC^\infty(M)\), and hence \(\comm{\pdv{x^i}}{\pdv{x^j}} = 0\).
+\end{proof}
+With this result, we can write the local coordinate expression for the exterior derivative as
+\begin{theorem}
+    Let \((U, x)\) be a chart on \(M\), and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). Then we have
+    \begin{equation*}
+        \dd \omega = \frac{1}{n!} \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^j} \wedge \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}.
+    \end{equation*}
+\end{theorem}
+% \begin{proof}
+%     Let \(\pdv{x^{j_1}}, \ldots, \pdv{x^{j_{n+1}}}\) be vector fields on \(U\). Then
+%     \begin{align*}
+%         (\dd \omega)\qty(\pdv{x^{j_1}}, \ldots, \pdv{x^{j_{n+1}}}) & = \sum_{k=1}^{n+1} (-1)^{k+1} \pdv{x^{j_k}}(\omega\qty(\pdv{x^{j_1}}, \ldots, \xcancel{\pdv{x^{j_k}}}, \ldots, \pdv{x^{j_{n+1}}}))                                                                                  \\
+%                                                                    & = \sum_{k=1}^{n+1} (-1)^{k+1} \pdv{x^{j_k}}\qty(\tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \delta^{i_1}_{j_1} \cdots \delta^{i_{k-1}}_{j_{k-1}} \delta^{i_k}_{j_{k+1}} \cdots \delta^{i_n}_{j_{n+1}})             \\
+%                                                                    & = \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \sum_{k=1}^{n+1} (-1)^{k+1} \delta^j_{j_k} \delta^{i_1}_{j_1} \cdots \delta^{i_{k-1}}_{j_{k-1}} \delta^{i_k}_{j_{k+1}} \cdots \delta^{i_n}_{j_{n+1}} \\
+%                                                                    & = \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \sum_{k=1}^{n+1} (-1)^{k+1} \delta^{i_1}_{j_1} \cdots \delta^{i_{k-1}}_{j_{k-1}} \delta^j_{j_k} \delta^{i_k}_{j_{k+1}} \cdots \delta^{i_n}_{j_{n+1}}
+%     \end{align*}
+%     now, the term \(\delta^{i_1}_{j_1} \cdots \delta^{i_{k-1}}_{j_{k-1}} \delta^j_{j_k} \delta^{i_k}_{j_{k+1}} \cdots \delta^{i_n}_{j_{n+1}}\) is equato to the evalution of \(n+1\)-form \(\dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_{k-1}}} \wedge \dd{x^j} \wedge \dd{x^{i_k}} \wedge \cdots \wedge \dd{x^{i_n}}\) at \(\pdv{x^{j_1}}, \ldots, \pdv{x^{j_{n+1}}}\) upto a combinatorial factor of \((n+1)!\).
+%     \begin{equation*}
+%         \delta^{i_1}_{j_1} \cdots \delta^{i_{k-1}}_{j_{k-1}} \delta^j_{j_k} \delta^{i_k}_{j_{k+1}} \cdots \delta^{i_n}_{j_{n+1}} = \frac{1}{(n+1)!} (\dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_{k-1}}} \wedge \dd{x^j} \wedge \dd{x^{i_k}} \wedge \cdots \wedge \dd{x^{i_n}})\qty(\pdv{x^{j_1}}, \ldots, \pdv{x^{j_{n+1}}}).
+%     \end{equation*}
+%     Since the vector fields \(\pdv{x^{j_1}}, \ldots, \pdv{x^{j_{n+1}}}\) are arbitrary basis vector fields, we have
+%     \begin{align*}
+%         \dd \omega & = \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \sum_{k=1}^{n+1} \frac{1}{(n+1)!} (-1)^{k+1} \dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_{k-1}}} \wedge \dd{x^j} \wedge \dd{x^{i_k}} \wedge \cdots \wedge \dd{x^{i_n}}                                                             \\
+%         \shortintertext{now, move the \(\dd{x^j}\) to the front, which introduces a factor of \((-1)^{k-1}\), we have}
+%                    & = \frac{1}{(n+1)!} \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \sum_{k=1}^{n+1} (-1)^{k+1} (-1)^{k-1} \dd{x^j} \wedge \dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_{k-1}}} \wedge \dd{x^{i_k}} \wedge \cdots \wedge \dd{x^{i_n}}                                                  \\
+%                    & = \frac{1}{(n+1)!} \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) (n+1) \dd{x^j} \wedge \dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_n}} = \frac{1}{n!} \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^j} \wedge \dd{x^{i_1}} \wedge \cdots \wedge \dd{x^{i_n}}.
+%     \end{align*}
+% \end{proof}
 So, we have defined a notion of differentiation of forms, and we already know how to multiply forms together using the wedge product. Now we want to see how these two operations interact with each other, and do we recover the usual Leibniz rule of differentiation.
 \begin{theorem}
     Let \(\omega \in \Omega^n(M)\) and \(\eta \in \Omega^m(M)\) be two differential forms on \(M\). Then
@@ -185,3 +231,227 @@ We want to know how pullbacks of forms interact with the exterior derivative. We
     \end{equation*}
 \end{theorem}
 This property symbolically means that exterior derivative and pull-back commute with each other.
+
+\subsection{Physical Examples}
+
+Now let's look at some physical scenarios where differential forms and the exterior derivative play a crucial role.
+
+\subsubsection{Electromagnetism}
+
+In the language of differential forms, to describe the electromagnetism, we need to first define our spacetime manifold \(M\). From special relativity, we know that to best describe the electromagnetism, we need to use a 4-dimensional spacetime manifold \(M\). We postulate the existence of a 2-form \(F \in \Omega^2(M)\) called the electromagnetic field strength, which encodes all the information about the electric and magnetic fields. The (homogeneous) Maxwell's equations can be written as
+\begin{equation*}
+    \dd F = 0.
+\end{equation*}
+This equation is equivalent to the two homogeneous Maxwell's equations in the usual vector calculus notation, \ie,
+\begin{align*}
+    \div{\vb{B}}                    & = 0 \text{ (no magnetic monopoles)},      &
+    \curl{\vb{E}} + \pdv{\vb{B}}{t} & = 0 \text{ (Faraday's law of induction)}.
+\end{align*}
+For a chart \((U, x)\) on \(M\), we can write the electromagnetic field strength \(F\) in local coordinates as
+\begin{equation*}
+    F = \tensor{F}{_{\mu}_{\nu}} \dd{x^\mu} \wedge \dd{x^\nu}
+\end{equation*}
+where \(\tensor{F}{_{\mu}_{\nu}} \in \SC^\infty(U)\) are the components of \(F\) in the local coordinates. The electric and magnetic fields are 1-form and 2-form on the spatial part of the spacetime manifold (\(\R^3\)), and they are related to the components of \(F\) as
+\begin{gather*}
+    E= E_i \dd x^i = E_x \dd{x} + E_y \dd{y} + E_z \dd{z},                                                                                         \\
+    B = \sum_{\substack{i, j, k \\ \text{cyclic}}} B_i \dd{x^j} \wedge \dd{x^k} = B_x \dd{y} \wedge \dd{z} + B_y \dd{z} \wedge \dd{x} + B_z \dd{x} \wedge \dd{y}.
+\end{gather*}
+So the field strength \(F\) can be written in terms of the electric and magnetic fields as
+\begin{equation*}
+    F = E \wedge \dd{t} + B.
+\end{equation*}
+In standard electrodynamics, we know that the two above homogeneous Maxwell's equations imply the existence of electric scalar potential \(\phi\) and magnetic vector potential \(\vb{A}\) such that
+\begin{align*}
+    \vb{E} & = -\grad{\phi} - \pdv{\vb{A}}{t}, & \vb{B} & = \curl{\vb{A}}.
+\end{align*}
+In the theory of differential forms, the equation \(\dd{F} = 0\) on \(\R^4\) implies the existence of a 1-form \(A \in \Omega^1(M)\) called the electromagnetic potential (or the gauge potential) such that
+\begin{equation*}
+    F = \dd{A}.
+\end{equation*}
+This is equivalent to the above equations for the electric and magnetic fields in terms of the scalar and vector potentials, and we write the electromagnetic potential \(A\) in local coordinates as
+\begin{equation*}
+    A = -\phi \dd{t} + A_x \dd{x} + A_y \dd{y} + A_z \dd{z}.
+\end{equation*}
+
+\subsubsection{Classical Mechanics}
+
+Beyond the usual Newtonian formulation of classical mechanics, we have the Lagrangian and Hamiltonian formulations of classical mechanics, in which we see extra geometric structures appearing. In the Lagrangian formulation, we start by identifying the (holonomic) contraints of the system, and then we define the generalized coordinates \(q^i\) (where $i = 1, \ldots, n$) of the system. The space of all possible values of the generalized coordinates as a smooth manifold \(Q\) called the configuration space of the system. However, the configuration space \(Q\) is not enough to describe the dynamics of the system, we need to also include the generalized velocities \(\dot{q}^i\) of the system. So, we define the tangent bundle \(\ST Q\) of the configuration space \(Q\) as the velocity phase space of the system, and we can write the Lagrangian \(L\) of the system as a smooth function on \(\ST Q\), \ie, \(L: \ST Q \to \R\). The dynamics of the system is then given by the Euler-Lagrange equations, which can be derived from the principle of least action.
+
+In the Hamiltonian formulation, we start by defining the generalized momenta \(p_i\) of the system as the conjugate momenta to the generalized coordinates \(q^i\), which is by definition a 1-form on the configuration space \(Q\). Thus, combining the generalized coordinates and momenta together, we define the \emph{phase space} of the system as the cotangent bundle \(\ST^* Q\) of the configuration space \(Q\). Locally, we can write the coordinates on the phase space as \((q^1, \ldots, q^n, p_1, \ldots, p_n)\) where \(q^i\) are the generalized coordinates and \(p_i\) are the generalized momenta.
+\begin{definition}[Symplectic Form]
+    The \emph{symplectic form} \(\omega\) on a smooth manifold \(M\) is a closed (\(\dd \omega = 0\)) non-degenerate 2-form on \(M\), \ie, let \(X \in \Gamma(\ST M)\) be a vector field on \(M\),
+    \begin{equation*}
+        (\forall Y \in \Gamma(\ST M): \omega(X, Y) = 0) \implies X = 0.
+    \end{equation*}
+    A manifold \(M\) equipped with a symplectic form \(\omega\) is called a \emph{symplectic manifold}.
+\end{definition}
+Define a 1-form \(\theta\) on the phase space \(\ST^* Q\) as
+\begin{equation*}
+    \theta = p_i \dd{q^i}.
+\end{equation*}
+This 1-form \(\theta\) is called the \emph{symplectic potential}, and define the exterior derivative of \(\theta\) as
+\begin{equation*}
+    \omega = \dd{\theta} \in \Omega^2(\ST^* Q).
+\end{equation*}
+Then we can show that \(\omega\) is a symplectic form on the phase space \(\ST^* Q\), and hence \((\ST^* Q, \omega)\) is a symplectic manifold.
+
+\subsection{deRham Cohomology}
+
+From the two examples above, we see two important statements about the differential forms and the exterior derivative. In electromagnetism, we have
+\begin{equation*}
+    \dd F = 0 \quad \implies \quad \exists A : F = \dd A.
+\end{equation*}
+In classical mechanics, we have
+\begin{equation*}
+    \exists \theta : \omega = \dd \theta \quad \implies \quad \dd \omega = 0.
+\end{equation*}
+Before we look at the mathematical structure behind these statements, let's first define some terminology.
+\begin{definition}[Closed and Exact Forms]
+    Let \(M\) be a smooth manifold, and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). We say that \(\omega\) is
+    \begin{itemize}
+        \item \emph{closed} if \(\dd{\omega} = 0\),
+        \item \emph{exact} if \(\exists \eta \in \Omega^{n-1}(M): \omega = \dd{\eta}\).
+    \end{itemize}
+\end{definition}
+The question is, whether every closed form is exact, and vice versa, \ie
+\begin{equation*}
+    (\dd{\omega} = 0) \ \Leftrightarrow \ (\exists \eta: \omega = \dd{\eta}).
+\end{equation*}
+The study of this question belongs to the field of \emph{cohomology theory}. Coming back to the question, \(\Leftarrow\) is always true, due to following result.
+\begin{theorem}
+    Let \(M\) be a smooth manifold. The operator \(\dd[2] \equiv \dd \circ \dd: \Omega^n(M) \to \Omega^{n+2}(M)\) is identically zero, \ie
+    \begin{equation*}
+        \dd[2] = 0.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    We will use local coordinates to prove this result. Let \((U, x)\) be a chart on \(M\), and let \(\omega \in \Omega^n(M)\) be a differential \(n\)-form on \(M\). Then we can write \(\omega\) in local coordinates as
+    \begin{equation*}
+        \omega = \frac{1}{n!} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} \dd x^{i_1} \wedge \dd x^{i_2} \wedge \cdots \wedge \dd x^{i_n}.
+    \end{equation*}
+    Using the local coordinate expression for the exterior derivative, we have
+    \begin{align*}
+        \dd \omega & = \frac{1}{n!} \qty(\pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^j} \wedge \dd x^{i_1} \wedge \cdots \wedge \dd x^{i_n},
+    \end{align*}
+    and hence
+    \begin{align*}
+        \dd[2] \omega & = \dd(\dd \omega) = \frac{1}{(n+1)!} \frac{1}{n!} \qty(\pdv{x^k} \pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^k} \wedge \dd{x^j} \wedge \dd x^{i_1} \wedge \cdots \wedge \dd x^{i_n} = 0.
+    \end{align*}
+    Since the wedge product of the 1-forms \(\dd{x^k}\) and \(\dd{x^j}\) is antisymmetric, we have \(\dd{x^k} \wedge \dd{x^j} = -\dd{x^j} \wedge \dd{x^k}\), we have
+    \begin{equation*}
+        \dd{x^k} \wedge \dd{x^j} = \dd{x^{[k}} \wedge \dd{x^{j]}}.
+    \end{equation*}
+    Using Schwarz's theorem, we have proven \cref{prop:basis_commute}, and thus
+    \begin{equation*}
+        \pdv{x^k} \pdv{x^j} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}} = \pdv{x^{(k}} \pdv{x^{j)}} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}.
+    \end{equation*}
+    Thus,
+    \begin{align*}
+        \dd[2] \omega & = \frac{1}{(n+1)!} \frac{1}{n!} \qty(\pdv{x^{k}} \pdv{x^{j}} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^{k}} \wedge \dd{x^{j}} \wedge \dd x^{i_1} \wedge \cdots \wedge \dd x^{i_n}     \\
+                      & = \frac{1}{(n+1)!} \frac{1}{n!} \qty(\pdv{x^{(k}} \pdv{x^{j)}} \tensor{\omega}{_{i_1}_{i_2}_{\ldots}_{i_n}}) \dd{x^{[k}} \wedge \dd{x^{j]}} \wedge \dd x^{i_1} \wedge \cdots \wedge \dd x^{i_n} \\
+                      & = 0.
+    \end{align*}
+\end{proof}
+In this proof, we used the symmetrization and anti-symmetrization notation, which is defined as follows. Given an object which carries some indices (not necessarily tensor indices) \(T_{a_1, a_2, \ldots, a_n}\), we define the symmetrization of \(T\) over the indices \(a_1, a_2, \ldots, a_n\) as
+\begin{equation*}
+    T_{(a_1 a_2 \ldots a_n)} = \frac{1}{n!} \sum_{\sigma \in S_n} T_{a_{\sigma(1)} a_{\sigma(2)} \ldots a_{\sigma(n)}}
+\end{equation*}
+and the anti-symmetrization of \(T\) over the indices \(a_1, a_2, \ldots, a_n\) as
+\begin{equation*}
+    T_{[a_1 a_2 \ldots a_n]} = \frac{1}{n!} \sum_{\sigma \in S_n} \sgn(\sigma) T_{a_{\sigma(1)} a_{\sigma(2)} \ldots a_{\sigma(n)}}
+\end{equation*}
+where \(S_n\) is the symmetric group of degree \(n\), and \(\sgn(\sigma)\) is the sign of the permutation \(\sigma\). Some special cases of the symmetrization and anti-symmetrization are
+\begin{align*}
+    T_{(a b)}   & = \frac{1}{2} (T_{a b} + T_{b a}), \qquad \qquad T_{[a b]} = \frac{1}{2} (T_{a b} - T_{b a}), \\
+    T_{(a b c)} & = \frac{1}{6} (T_{a b c} + T_{a c b} + T_{b a c} + T_{b c a} + T_{c a b} + T_{c b a}),        \\
+    T_{[a b c]} & = \frac{1}{6} (T_{a b c} - T_{a c b} - T_{b a c} + T_{b c a} + T_{c a b} - T_{c b a}).
+\end{align*}
+It is not necessary to (anti-)symmetrize over all the indices, we can also (anti-)symmetrize over a subset of the indices, for example,
+\begin{equation*}
+    \tensor{T}{^a_{(b c)}^d} = \frac{1}{2} (\tensor{T}{^a_{b c}^d} + \tensor{T}{^a_{c b}^d}), \qquad \qquad \tensor{T}{^a_{[b c]}^d} = \frac{1}{2} (\tensor{T}{^a_{b c}^d} - \tensor{T}{^a_{c b}^d}).
+\end{equation*}
+There are some useful identities involving the symmetrization and anti-symmetrization in cases of contracting indices (\ie summing over repeated indices), for example,
+\begin{align*}
+    T_{a_1, \cdots, (a_i, \cdots, a_j), \cdots, a_n} S^{a_1, \cdots, a_i, \cdots, a_j, \cdots, a_n} & = T_{a_1, \cdots, a_i, \cdots, a_j, \cdots, a_n} S^{a_1, \cdots, (a_i, \cdots, a_j), \cdots, a_n}, \\
+    T_{a_1, \cdots, [a_i, \cdots, a_j], \cdots, a_n} S^{a_1, \cdots, a_i, \cdots, a_j, \cdots, a_n} & = T_{a_1, \cdots, a_i, \cdots, a_j, \cdots, a_n} S^{a_1, \cdots, [a_i, \cdots, a_j], \cdots, a_n}.
+\end{align*}
+And
+\begin{equation*}
+    T_{a_1, \cdots, (a_i, \cdots, a_j), \cdots, a_n} S^{a_1, \cdots, [a_i, \cdots, a_j], \cdots, a_n} = 0.
+\end{equation*}
+\begin{corollary}
+    Every exact form is closed.
+\end{corollary}
+\begin{Proof}
+    Let \(\omega \in \Omega^n(M)\) be an exact form on \(M\). Then there exists a differential \((n-1)\)-form \(\eta \in \Omega^{n-1}(M)\) such that \(\omega = \dd{\eta}\). Thus,
+    \begin{equation*}
+        \dd{\omega} = \dd[2]{\eta} = 0.
+    \end{equation*}
+\end{Proof}
+With this result, existence of a 1-form \(A\) (gauge potential), such that \(F = \dd{A}\) in electromagnetism automatically satisfies the homogeneous Maxwell's equations \(\dd{F} = 0\). Similarly, the phase space being a symplectic manifold \((\ST^* Q, \omega)\) is a trivial consequence of the definition of the form \(\omega\) as the exterior derivative of the symplectic potential \(\theta\).
+
+Extend the operator \(\dd\) to the zero-vector space \(0 := \qty{0}\) by defining \(\dd 0 = 0 \in \Omega^0(M) = \SC^\infty(M)\). Then we have the following sequence of \(\SC^\infty(M)\)-modules and \(\SC^\infty(M)\)-linear maps
+\begin{equation*}
+    0 \xrightarrow{\ \dd\ } \Omega^0(M) \xrightarrow{\ \dd\ } \Omega^1(M) \xrightarrow{\ \dd\ } \Omega^2(M) \xrightarrow{\ \dd\ } \cdots \xrightarrow{\ \dd\ } \Omega^n(M) \xrightarrow{\ \dd\ } \Omega^{n+1}(M) \xrightarrow{\ \dd\ } \cdots \xrightarrow{\ \dd\ } \Omega^{\dim M}(M) \xrightarrow{\ \dd\ } 0.
+\end{equation*}
+Recall from linear algebra that given a linear map \(f: V \to W\) between two vector spaces \(V\) and \(W\), we can define the kernel and image of \(f\) as
+\begin{align*}
+    \ker{f} & = \qty{v \in V: f(v) = 0},                  &
+    \im{f}  & = \qty{w \in W: \exists v \in V, f(v) = w}.
+\end{align*}
+We can extend this definition to the case of modules and module homomorphisms, specifically, for the above sequence of \(\SC^\infty(M)\)-modules and \(\SC^\infty(M)\)-linear maps. For fix \(n\), the statement \(\dd[2] = 0\) is equivalent to the following statement
+\begin{equation*}
+    \im(\dd: \Omega^{n-1}(M) \to \Omega^n(M)) \subseteq \ker(\dd: \Omega^n(M) \to \Omega^{n+1}(M)).
+\end{equation*}
+We can define the exact and closed forms in this new language as follows.
+\begin{align*}
+    \omega \in \Omega^n(M) \text{ is exact}  & \iff \omega \in \im(\dd: \Omega^{n-1}(M) \to \Omega^n(M)),  \\
+    \omega \in \Omega^n(M) \text{ is closed} & \iff \omega \in \ker(\dd: \Omega^n(M) \to \Omega^{n+1}(M)).
+\end{align*}
+Let's define more notation to simplify the upcoming discussion. For each \(n\), we define
+\begin{align*}
+    Z^n(M) & = \ker(\dd: \Omega^n(M) \to \Omega^{n+1}(M)) \\
+    B^n(M) & = \im(\dd: \Omega^{n-1}(M) \to \Omega^n(M))
+\end{align*}
+so that \(Z^n(M)\) is the set of all closed \(n\)-forms on \(M\), and \(B^n(M)\) is the set of all exact \(n\)-forms on \(M\), and we have shown that \(B^n(M) \subseteq Z^n(M)\) for all \(n\). The question is, whether \(B^n(M) = Z^n(M)\) for all \(n\), and if not, we would like to quantify by how much closed forms fail to be exact. To answer this question, we have the following result.
+\begin{lemma}[Poincar\'e Lemma]
+    Let \(M \subseteq \R^d\) be a simply connected open subset. Then every closed form on \(M\) is exact, \ie, for all \(n\),
+    \begin{equation*}
+        Z^n(M) = B^n(M).
+    \end{equation*}
+\end{lemma}
+\begin{example}[Electromagnetism (revisited)]
+    We postulated the existence of the electromagnetic field strength \(F \in \Omega^2(M)\) on the spacetime manifold \(M\), and it satisfies the homogeneous Maxwell's equations \(\dd F = 0\). If the spacetime manifold \(M\) is simply connected, for most physical scenarios, we can take \(M = \R^4\), then by the Poincar\'e lemma, we have \(Z^2(M) = B^2(M)\), and hence there exists a 1-form \(A \in \Omega^1(M)\) such that \(F = \dd A\).
+\end{example}
+So the Poincar\'e lemma doesn't answer the question completely, so it may happen \(Z^n(M) \neq B^n(M)\) for some \(n\). To quantify this failure, we use cohomology groups.
+\begin{definition}[deRham Cohomology Group]
+    Let \(M\) be a smooth manifold, and let \(n\) be a non-negative integer. The \(n\)-th \emph{deRham cohomology group} of \(M\) is defined as the quotient vector space
+    \begin{equation*}
+        H^n(M) = \faktor{Z^n(M)}{B^n(M)}.
+    \end{equation*}
+\end{definition}
+We can understand the above quotient vector space as \(\faktor{Z^n(M)}{\sim}\) where \(\sim\) is an equivalence relation on \(Z^n(M)\) defined as
+\begin{equation*}
+    \omega \sim \eta \ :\iff\  \omega - \eta \in B^n(M).
+\end{equation*}
+The answer to the question as it is addressed in cohomology theory is: every closed form is exact if and only if the deRham cohomology group \(H^n(M)\) is trivial, \ie,
+\begin{equation*}
+    H^n(M) \vecIso 0 \quad \iff \quad Z^n(M) = B^n(M).
+\end{equation*}
+To be honest, this isn't a very satisfying answer, this is just a redefinition of the question, but it is a very useful one, because of the result proven by deRham. The theorem (in more technical terms) states that the deRham cohomology groups of a smooth manifold \(M\) only depend on the global topological structure of \(M\). In other words, the deRham cohomology groups are topological invariants of the smooth manifold \(M\). This is a very powerful result, because \(H^n(M)\) is defined in terms of exterior derivative, which only depends on the local differential structure of \(M\). And we have seen that given a topological space, there are many smooth structures that we can put on it, and the deRham cohomology groups are the same for all these different smooth structures.
+\begin{example}[Special case for \(n = 0\)]
+    Let \(M\) be a smooth manifold, and we have
+    \begin{equation*}
+        H^0(M) \vecIso \R^k
+    \end{equation*}
+    where \(k\) is the number of connected components of \(M\). Since the closed 0-forms are just locally constant functions, so we can assign different constant values to different connected components of \(M\), and still get closed 0-forms.
+
+    In particular, if \(M\) is connected, then \(H^0(M) \vecIso \R\), we have
+    \begin{equation*}
+        H^0(\R) \vecIso H^0(S^1) \vecIso H^0(\R^d) \vecIso \R.
+    \end{equation*}
+\end{example}
+Using the Poincar\'e lemma, we can compute the deRham cohomology groups for any simply connected open subset \(M \subseteq \R^d\), and we have
+\begin{equation*}
+    H^n(M) \vecIso 0, \quad \forall n > 0.
+\end{equation*}
