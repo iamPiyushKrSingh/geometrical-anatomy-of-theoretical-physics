@@ -7,17 +7,17 @@ Building on this idea, we had classified sets into different types based on thei
 \section{Topological Properties I: Separation Axioms}
 
 \begin{definition}[T1 Space]\label{def:t1_space}
-	A topological space \((M, \O)\) is called \emph{T1} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then
+	A topological space \((M, \CO)\) is called \emph{T1} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then
 	\begin{equation}
-		\exists U_p \in \O: q \notin U_p \label{eq:separation_axiom_t1}
+		\exists U_p \in \CO: q \notin U_p \label{eq:separation_axiom_t1}
 	\end{equation}
 	here \(U_p\) is an open neighbourhood of \(p\).
 \end{definition}
 
 \begin{definition}[T2 Space]\label{def:t2_space}
-	A topological space \((M, \O)\) is called \emph{T2} or \emph{Hausdorff} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then
+	A topological space \((M, \CO)\) is called \emph{T2} or \emph{Hausdorff} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then
 	\begin{equation}
-		\exists U_p, V_q \in \O: U_p \cap V_q = \0 \label{eq:separation_axiom_t2}
+		\exists U_p, V_q \in \CO: U_p \cap V_q = \0 \label{eq:separation_axiom_t2}
 	\end{equation}
 	here \(U_p\) and \(V_q\) are open neighbourhoods of \(p\) and \(q\) respectively.
 \end{definition}
@@ -57,11 +57,11 @@ Intuitively, we can see why \cref{def:t1_space} and \cref{def:t2_space} are call
 
 There are many other ``T'' properties, like T3, T4, etc. All of them have use cases in some area of mathematics or physics.
 \begin{remark}[T$2\frac{1}{2}$ Space]
-	A topological space \((M, \O)\) is called \emph{T$2\frac{1}{2}$} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then there exists a closed neighbourhood \(U_p\) of \(p\) such that \(q \notin U_p\).
+	A topological space \((M, \CO)\) is called \emph{T$2\frac{1}{2}$} if for any two distinct points \(p, q \in M\) (\ie\ \(p \neq q\)), then there exists a closed neighbourhood \(U_p\) of \(p\) such that \(q \notin U_p\).
 \end{remark}
 
 \begin{theorem}[Uniqueness of Limit Point]\label{thm:uniqueness_limit_point}
-	Let \((M, \O)\) be a Hausdorff space. Then every convergent sequence in \(M\) has a unique limit point.
+	Let \((M, \CO)\) be a Hausdorff space. Then every convergent sequence in \(M\) has a unique limit point.
 \end{theorem}
 
 \section{Compactness and Paracompactness}
@@ -69,11 +69,11 @@ There are many other ``T'' properties, like T3, T4, etc. All of them have use ca
 Before we define compactness, we need to understand the concept of `open cover'.
 
 \begin{definition}[Cover and Open Cover]\label{def:cover}
-	Let \((M, \O)\) be a topological space. A set \(C \subseteq \powerset(M)\) is called a \emph{cover} of \(M\) if
+	Let \((M, \CO)\) be a topological space. A set \(C \subseteq \powerset(M)\) is called a \emph{cover} of \(M\) if
 	\begin{equation}
 		\bigcup C = M. \label{eq:cover}
 	\end{equation}
-	If \(C \subseteq \O\) then it is called an \emph{open cover}.
+	If \(C \subseteq \CO\) then it is called an \emph{open cover}.
 \end{definition}
 
 \begin{definition}[Subcover and Finite Subcover]\label{def:subcover}
@@ -86,7 +86,7 @@ Before we define compactness, we need to understand the concept of `open cover'.
 
 \subsection{Compactness}
 \begin{definition}[Compact Space]\label{def:compact_space}
-	A topological space \((M, \O)\) is called \emph{compact} if every open cover of \(M\) has a finite subcover.
+	A topological space \((M, \CO)\) is called \emph{compact} if every open cover of \(M\) has a finite subcover.
 \end{definition}
 
 It is clear from the definition that compactness is a topological property. So we have,
@@ -95,13 +95,13 @@ It is clear from the definition that compactness is a topological property. So w
 \end{remark}
 
 \begin{definition}[Compact Subset]\label{def:compact_subset}
-	Let \((M, \O)\) be a topological space. A subset \(N \subseteq M\) is called \emph{compact} if the induced topology \((N, \eval{\O}_N)\) is compact.
+	Let \((M, \CO)\) be a topological space. A subset \(N \subseteq M\) is called \emph{compact} if the induced topology \((N, \eval{\CO}_N)\) is compact.
 \end{definition}
 
 Determining whether a topological space is compact or not, is not an easy task. With the help of a suitable homeomorphism we can simplify this task.
 
-\begin{theorem}[Heine-Borel Theorem]\label{thm:heine_borel}
-	Let \((\R^d, \Ostd)\) be a topological space. Then a subset \(K \subseteq \R^d\) is compact if and only if it is closed and bounded.
+\begin{theorem}[Heine-Borel Theorem]
+	Let \((\R^d, \COstd)\) be a topological space. Then a subset \(K \subseteq \R^d\) is compact if and only if it is closed and bounded.
 \end{theorem}
 
 \begin{remark}[Bounded Set in \(\R^d\)]
@@ -111,7 +111,7 @@ Determining whether a topological space is compact or not, is not an easy task. 
 	\end{equation}
 \end{remark}
 
-We can extend \nameref{thm:heine_borel} to any metric space. But first we need to define the concept of `metric space'.
+We can extend the Heine-Borel Theorem to any metric space. But first we need to define the concept of `metric space'.
 
 \begin{definition}[Metric Space]
 	Let \(M\) be a set. A function \(d: M \times M \to \R\) is called a \emph{metric} on \(M\) if it satisfies the following properties for all \(p, q, r \in M\):
@@ -143,9 +143,9 @@ We can define `metric-induced topology' on a metric space as we did for \(\R^d\)
 \begin{example}
 	Example of compact subsets in \(\R\) are:
 	\begin{enumerate}[(a)]
-		\item \([0, 1]\) is compact in \((\R, \Ostd)\).
+		\item \([0, 1]\) is compact in \((\R, \COstd)\).
 
-		\item \(\R\) is not compact in \((\R, \Ostd)\). It suffices to show that there exists an open cover of \(\R\) which does not have a finite subcover. Consider the open cover
+		\item \(\R\) is not compact in \((\R, \COstd)\). It suffices to show that there exists an open cover of \(\R\) which does not have a finite subcover. Consider the open cover
 		      \begin{equation}
 			      C := \qty{(n, n + 1) \mid n \in \Z} \cup \qty{(n + \fhalf, n + \flatfrac{3}{2}) \mid n \in \Z}.
 		      \end{equation}
@@ -169,7 +169,7 @@ Compactness is a very strong property, and sometimes it doesn't hold. So we need
 	\end{equation}
 	A refinement \(R\) is said to be:
 	\begin{itemize}
-		\item \emph{open} if \(R \subseteq \O\).
+		\item \emph{open} if \(R \subseteq \CO\).
 		\item \emph{Locally finite} if for every \(p \in M\), there exists an open neighbourhood \(U_p\) of \(p\) such that
 		      \begin{equation}
 			      \abs{\qty{\tilde{U} \in R \mid \tilde{U} \cap U_p \neq \0}} < \infty. \label{eq:locally_finite_cover}
@@ -182,7 +182,7 @@ Compactness is a very strong property, and sometimes it doesn't hold. So we need
 \end{remark}
 
 \begin{definition}[Paracompact Space]\label{def:paracompact_space}
-	A topological space \((M, \O)\) is called \emph{paracompact} if every open cover of \(M\) has a locally finite open refinement.
+	A topological space \((M, \CO)\) is called \emph{paracompact} if every open cover of \(M\) has a locally finite open refinement.
 \end{definition}
 
 \begin{corollary}
@@ -190,7 +190,7 @@ Compactness is a very strong property, and sometimes it doesn't hold. So we need
 \end{corollary}
 
 \begin{definition}[Metrisable Space]
-	A topological space \((M, \O)\) is called \emph{metrizable} if there exists a metric \(d\) on \(M\) such that the metric-induced topology \(\O_d\) is same as \(\O\).
+	A topological space \((M, \CO)\) is called \emph{metrizable} if there exists a metric \(d\) on \(M\) such that the metric-induced topology \(\O_d\) is same as \(\CO\).
 \end{definition}
 
 \begin{theorem}[Stone's Theorem]\label{thm:stone}
@@ -200,23 +200,23 @@ Compactness is a very strong property, and sometimes it doesn't hold. So we need
 \begin{example}
 	Let's see some topological spaces which are paracompact or not:
 	\begin{enumerate}[(a)]
-		\item The topological space \((\R^d, \Ostd)\) is metrizable since \(\Ostd = \O_d\) where \(d = \norm{\cdot}_2\). Hence, \((\R^d, \Ostd)\) is paracompact.
+		\item The topological space \((\R^d, \COstd)\) is metrizable since \(\COstd = \O_d\) where \(d = \norm{\cdot}_2\). Hence, \((\R^d, \COstd)\) is paracompact.
 		\item Alexandroff Long Line is not paracompact. To construct it, we first observe that we could ``build'' \(\R\) by taking the interval \([0,1)\) and stacking countably many copies of it one after the other. Hence, in a sense, \(\R\) is equivalent to \(\Z \times [0,1)\). The long line \(L\) is defined analogously as \(L: \omega_1 \times [0,1)\), where \(\omega_1\) is an uncountable infinite set. The resulting space \(L\) is not paracompact.
 	\end{enumerate}
 \end{example}
 
 \begin{theorem}
-	Let \((M, \O)\) be a paracompact space and \((N, \O_N)\) be a compact space. Then the product space \((M \times N, \O_{M \times N})\) is paracompact.
+	Let \((M, \CO)\) be a paracompact space and \((N, \O_N)\) be a compact space. Then the product space \((M \times N, \O_{M \times N})\) is paracompact.
 \end{theorem}
 
 \begin{corollary}
-	Let \((M, \O)\) be a paracompact space and \((N_i, \O_{N_i})\) be compact spaces for all \(i \in \qty{1, 2, \ldots, n}\). Then the product space \(M \times N_1 \times N_2 \times \ldots \times N_n\) is paracompact.
+	Let \((M, \CO)\) be a paracompact space and \((N_i, \O_{N_i})\) be compact spaces for all \(i \in \qty{1, 2, \ldots, n}\). Then the product space \(M \times N_1 \times N_2 \times \ldots \times N_n\) is paracompact.
 \end{corollary}
 
 At this point, we can discuss the sufficient and necessary criteria for paracompactness which are used as definitions in some books. For that we need to define the concept of `\emph{partition of unity}.'
 
 \begin{definition}[Partition of Unity]\label{def:partition_of_unity}
-	Let \((M, \O)\) be a topological space. A set \(\mathcal{F}\) of continuous functions \(\phi: M \to [0, 1]\) is called a \emph{partition of unity} if for each \(p \in M\),
+	Let \((M, \CO)\) be a topological space. A set \(\mathcal{F}\) of continuous functions \(\phi: M \to [0, 1]\) is called a \emph{partition of unity} if for each \(p \in M\),
 	\begin{enumerate}[(a)]
 		\item There exists an open neighbourhood \(U_p\) such that \(\phi(p) \ne 0\) for finitely many \(\phi \in \mathcal{F}\).
 		\item \(\sum\limits_{\phi \in \mathcal{F}} \phi(p) = 1\).
@@ -224,18 +224,18 @@ At this point, we can discuss the sufficient and necessary criteria for paracomp
 \end{definition}
 
 \begin{definition}[Partition of Unity Subordinate to a Cover]\label{def:partition_of_unity_subordinate}
-	Let \((M, \O)\) be a topological space and let \(C\) be a cover of \(M\). A partition of unity \(\mathcal{F}\) is said to be \emph{subordinate} to \(C\) if:
+	Let \((M, \CO)\) be a topological space and let \(C\) be a cover of \(M\). A partition of unity \(\mathcal{F}\) is said to be \emph{subordinate} to \(C\) if:
 	\begin{equation}
 		\forall \phi \in \mathcal{F}: \exists U \in C: f(p) \ne 0 \implies p \in U. \label{eq:partition_of_unity_subordinate}
 	\end{equation}
 \end{definition}
 
 \begin{theorem}
-	Let \((M, \O)\) be a Hausdorff space. Then \(M\) is paracompact if and only if every open cover \(C\) admits a partition of unity subordinate to \(C\).
+	Let \((M, \CO)\) be a Hausdorff space. Then \(M\) is paracompact if and only if every open cover \(C\) admits a partition of unity subordinate to \(C\).
 \end{theorem}
 
 \begin{example}
-	Let \((\R, \Ostd)\) be a topological space. By \cref{thm:stone}, \((\R, \Ostd)\) is paracompact. Consider the open cover \(C := \qty{U_1 = (-\infty, 1), U_2 = (0, \infty)}\). We can construct a partition of unity \(\mathcal{F} = \qty{\phi_1, \phi_2}\) subordinate to \(C\) as follows:
+	Let \((\R, \COstd)\) be a topological space. By \cref{thm:stone}, \((\R, \COstd)\) is paracompact. Consider the open cover \(C := \qty{U_1 = (-\infty, 1), U_2 = (0, \infty)}\). We can construct a partition of unity \(\mathcal{F} = \qty{\phi_1, \phi_2}\) subordinate to \(C\) as follows:
 	\begin{align*}
 		\phi_1(x) = \begin{cases}
 			            1       & \text{if}\ x \le 0       \\
@@ -255,22 +255,22 @@ At this point, we can discuss the sufficient and necessary criteria for paracomp
 
 \subsection{Connectedness}
 \begin{definition}[Connected Space]\label{def:connected_space}
-	A topological space \((M, \O)\) is called \emph{connected} unless there exists two non-empty open sets \(A, B\) such that
+	A topological space \((M, \CO)\) is called \emph{connected} unless there exists two non-empty open sets \(A, B\) such that
 	\begin{equation}
 		A \cup B = M \quad \text{and} \quad A \cap B = \0. \label{eq:connected_space}
 	\end{equation}
 \end{definition}
 
 \begin{example}
-	Let \(\qty(M := \R \setminus \qty{0}, \O := \eval{\Ostd}_{\R \setminus \qty{0}})\) be a topological space. Then \(M\) is not connected since we can write \(M = A \cup B\) where \(A = (-\infty, 0)\) and \(B = (0, \infty)\) with \(A \cap B = \0\).
+	Let \(\qty(M := \R \setminus \qty{0}, \CO := \eval{\COstd}_{\R \setminus \qty{0}})\) be a topological space. Then \(M\) is not connected since we can write \(M = A \cup B\) where \(A = (-\infty, 0)\) and \(B = (0, \infty)\) with \(A \cap B = \0\).
 \end{example}
 
 \begin{theorem}
-	The closed interval \([0, 1]\) with induced topology from \((\R, \Ostd)\) is connected.
+	The closed interval \([0, 1]\) with induced topology from \((\R, \COstd)\) is connected.
 \end{theorem}
 
 \begin{theorem}
-	Let \((M, \O)\) be a topological space. Then \(M\) is connected if and only if \(\0\) and \(M\) are the only subsets of \(M\) that are both open and closed.
+	Let \((M, \CO)\) be a topological space. Then \(M\) is connected if and only if \(\0\) and \(M\) are the only subsets of \(M\) that are both open and closed.
 \end{theorem}
 
 \begin{proof}
@@ -284,18 +284,18 @@ At this point, we can discuss the sufficient and necessary criteria for paracomp
 
 \subsection{Path-Connectedness}
 \begin{definition}[Path-Connected Space]\label{def:path_connected_space}
-	A topological space \((M, \O)\) is called \emph{path-connected} if for every pair of points \(p, q \in M\), there exists a continuous curve \(\gamma: [0, 1] \to M\) such that \(\gamma(0) = p\) and \(\gamma(1) = q\).
+	A topological space \((M, \CO)\) is called \emph{path-connected} if for every pair of points \(p, q \in M\), there exists a continuous curve \(\gamma: [0, 1] \to M\) such that \(\gamma(0) = p\) and \(\gamma(1) = q\).
 \end{definition}
 
 \begin{example}
-	Let \((\R^d, \Ostd)\) be a topological space. Then \((\R^d, \Ostd)\) is path-connected.
+	Let \((\R^d, \COstd)\) be a topological space. Then \((\R^d, \COstd)\) is path-connected.
 \end{example}
 \begin{proof}
 	Let \(p, q \in \R^d\). Then the curve \(\gamma(\lambda) := (1 - \lambda)p + \lambda q\) is continuous and \(\gamma(0) = p\) and \(\gamma(1) = q\).
 \end{proof}
 
 \begin{example}
-	Let \(S := \qty{\qty(x, \sin(\frac{1}{x})) \mid x \in (0, 1]} \cup \qty{(0, 0)} \subseteq \R^2\). Then \((S, \eval{\Ostd}_{S})\) is not path-connected but connected.
+	Let \(S := \qty{\qty(x, \sin(\frac{1}{x})) \mid x \in (0, 1]} \cup \qty{(0, 0)} \subseteq \R^2\). Then \((S, \eval{\COstd}_{S})\) is not path-connected but connected.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width = 0.7\textwidth]{lec05-eg_path_connected.png}
@@ -308,7 +308,7 @@ At this point, we can discuss the sufficient and necessary criteria for paracomp
 	Every path-connected space is connected.
 \end{theorem}
 \begin{proof}
-	Let \((M, \O)\) be a path-connected space. Suppose not \(M\) is not connected. Then there exists two non-empty open sets \(A, B\) such that \(A \dcup B = M\). Since, \(A\) and \(B\) are non-empty, we can choose \(a \in A\) and \(b \in B\). Since \(M\) is path-connected, there exists a continuous curve \(\gamma: [0, 1] \to M\) such that \(\gamma(0) = a\) and \(\gamma(1) = b\). Moreover, \(\gamma\) is continuous and \(A, B\) are open, disjoint sets, \(\preimg_{\gamma}(A)\) and \(\preimg_{\gamma}(B)\) are open, disjoint sets. We know
+	Let \((M, \CO)\) be a path-connected space. Suppose not \(M\) is not connected. Then there exists two non-empty open sets \(A, B\) such that \(A \dcup B = M\). Since, \(A\) and \(B\) are non-empty, we can choose \(a \in A\) and \(b \in B\). Since \(M\) is path-connected, there exists a continuous curve \(\gamma: [0, 1] \to M\) such that \(\gamma(0) = a\) and \(\gamma(1) = b\). Moreover, \(\gamma\) is continuous and \(A, B\) are open, disjoint sets, \(\preimg_{\gamma}(A)\) and \(\preimg_{\gamma}(B)\) are open, disjoint sets. We know
 	\begin{equation*}
 		\qty[0, 1] = \preimg_{\gamma}(M) = \preimg_{\gamma}(A \dcup B) = \preimg_{\gamma}(A) \dcup \preimg_{\gamma}(B).
 	\end{equation*}
@@ -318,7 +318,7 @@ At this point, we can discuss the sufficient and necessary criteria for paracomp
 \section{Homotopic Curves and Fundamental Group}
 
 \begin{definition}[Homotopic Curves]\label{def:homotopic_curves}
-	Let \((M, \O)\) be a topological space. Two continuous curves \(\gamma_1, \gamma_2: [0, 1] \to M\) such that
+	Let \((M, \CO)\) be a topological space. Two continuous curves \(\gamma_1, \gamma_2: [0, 1] \to M\) such that
 	\begin{equation*}
 		\gamma_1(0) = \gamma_2(0) \quad \text{and} \quad \gamma_1(1) = \gamma_2(1)
 	\end{equation*}
@@ -337,7 +337,7 @@ Pictorially, see \cref{fig:homotopic_curves}.
 \end{figure}
 
 \begin{proposition}[Homotopy is an Equivalence Relation]\label{prop:homotopy_equivalence_relation}
-	Let \((M, \O)\) be a topological space. Define a relation \(\sim\) on the set of continuous curves \(\qty{\gamma: [0, 1] \to M}\) by
+	Let \((M, \CO)\) be a topological space. Define a relation \(\sim\) on the set of continuous curves \(\qty{\gamma: [0, 1] \to M}\) by
 	\begin{equation}
 		\gamma_1 \sim \gamma_2 :\iff \gamma_1 \text{ and } \gamma_2 \text{ are homotopic}. \label{eq:homotopy_equivalence_relation}
 	\end{equation}
@@ -360,7 +360,7 @@ Pictorially, see \cref{fig:homotopic_curves}.
 \end{proof}
 
 \begin{definition}[Space of Loops]\label{def:space_of_loops}
-	Let \((M, \O)\) be a topological space. Then, for every point \(p \in M\), the set \(\mathscr{L}_p\) defined as
+	Let \((M, \CO)\) be a topological space. Then, for every point \(p \in M\), the set \(\mathscr{L}_p\) defined as
 	\begin{equation}
 		\mathscr{L}_p := \qty{\gamma: [0, 1] \to M \mid \gamma \ \text{is continuous and}\ \gamma(0) = \gamma(1) = p} \label{eq:space_of_loops}
 	\end{equation}
@@ -368,7 +368,7 @@ Pictorially, see \cref{fig:homotopic_curves}.
 \end{definition}
 
 \begin{definition}[Concatenation of Loops]\label{def:concatenation_of_loops}
-	Let \((M, \O)\) be a topological space. Fix a point \(p \in M\). We define the \emph{concatenation} operation \(\ast_p: \mathscr{L}_p \times \mathscr{L}_p \to \mathscr{L}_p\) as
+	Let \((M, \CO)\) be a topological space. Fix a point \(p \in M\). We define the \emph{concatenation} operation \(\ast_p: \mathscr{L}_p \times \mathscr{L}_p \to \mathscr{L}_p\) as
 	\begin{equation}
 		(\gamma_1 \ast_p \gamma_2)(\lambda) := \begin{cases}
 			\gamma_1(2\lambda)     & \text{if}\ 0 \le \lambda < \frac{1}{2}   \\
@@ -400,7 +400,7 @@ For future discussion, we need the notion of isomorphism between groups.
 
 Now we can define the fundamental group.
 \begin{definition}[Fundamental Group]\label{def:fundamental_group}
-	Let \((M, \O)\) be a topological space and let \(p \in M\). Define the set \(\pi_1(p)\) as
+	Let \((M, \CO)\) be a topological space and let \(p \in M\). Define the set \(\pi_1(p)\) as
 	\begin{equation}
 		\pi_1(p) := \faktor{\mathscr{L}_p}{\sim} = \qty{[\gamma] \mid \gamma \in \mathscr{L}_p} \label{eq:fundamental_group_set}
 	\end{equation}
@@ -479,7 +479,7 @@ Now we can define the fundamental group.
 	\begin{equation}
 		S^2 := \qty{(x, y, z) \in \R^3 \mid x^2 + y^2 + z^2 = 1}. \label{eq:2_sphere}
 	\end{equation}
-	We define the topological space \((S^2, \O)\) where \(\O\) is the induced topology from \((\R^3, \Ostd)\).
+	We define the topological space \((S^2, \CO)\) where \(\CO\) is the induced topology from \((\R^3, \COstd)\).
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}

@@ -5,7 +5,7 @@ Roughly speaking, a topological manifold is a topological space that locally loo
 \section{Definition and Construction of Topological Manifolds}
 
 \begin{definition}[Topological Manifold]
-	A paracompact Hausdorff topological space \((M, \O)\) is called a \emph{\(d\)-dimensional (topological) manifold} if for every \(p \in M\) there exists an open neighborhood \(U_p \in \O\) of \(p\) and a homeomorphism \(x: U_p \to x(U_p) \subseteq \R^d\). And we write \(\dim{M} = d\).
+	A paracompact Hausdorff topological space \((M, \CO)\) is called a \emph{\(d\)-dimensional (topological) manifold} if for every \(p \in M\) there exists an open neighborhood \(U_p \in \CO\) of \(p\) and a homeomorphism \(x: U_p \to x(U_p) \subseteq \R^d\). And we write \(\dim{M} = d\).
 \end{definition}
 
 \begin{example}
@@ -25,7 +25,7 @@ Roughly speaking, a topological manifold is a topological space that locally loo
 \subsection{Submanifolds}
 
 \begin{definition}[Submanifold]
-	Let \((M, \O)\) be a topological manifold and \(N \subseteq M\) be a subset. Then \((N, \eval{\O}_N)\) is called a \emph{submanifold} of \((M, \O)\) if it is a topological manifold in its own right.
+	Let \((M, \CO)\) be a topological manifold and \(N \subseteq M\) be a subset. Then \((N, \eval{\CO}_N)\) is called a \emph{submanifold} of \((M, \CO)\) if it is a topological manifold in its own right.
 \end{definition}
 
 \begin{example}
@@ -430,7 +430,7 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 \section{Viewing Manifolds from Atlases}
 
 \begin{definition}[Chart]\label{def:chart}
-	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the pair \((U, x)\), where \(U \in \O\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism, is called a \emph{chart} on \(M\).
+	Let \((M, \CO)\) be a \(d\)-dimensional manifold. Then the pair \((U, x)\), where \(U \in \CO\) and \(x: U \to x(U) \subseteq \R^d\) is a homeomorphism, is called a \emph{chart} on \(M\).
 \end{definition}
 
 \begin{remark}[Component Functions]\label{rem:component-functions}
@@ -445,7 +445,7 @@ From now on, we will be focusing on locally trivial bundles unless mentioned oth
 \end{remark}
 
 \begin{definition}[Atlas]\label{def:atlas}
-	Let \((M, \O)\) be a \(d\)-dimensional manifold. Then the collection of all charts \(\A := \qty{(U_\alpha, x_\alpha) \mid \alpha \in I}\) is called an \emph{atlas} of the manifold \(M\) if,
+	Let \((M, \CO)\) be a \(d\)-dimensional manifold. Then the collection of all charts \(\A := \qty{(U_\alpha, x_\alpha) \mid \alpha \in I}\) is called an \emph{atlas} of the manifold \(M\) if,
 	\begin{equation}
 		\bigcup_{\alpha \in I} U_\alpha = M,
 	\end{equation}
@@ -494,7 +494,7 @@ This also express that, all the physics that we have done so far lives in chart.
 \end{definition}
 
 \begin{example}
-	Let \((\R, \Ostd)\) be our topological manifold. Then we have a trivial atlas \(\A = \qty{(\R, \id_{\R})}\), but it is not maximal. Since chart \(((0, 1), \id_{(0, 1)})\) is \(\SC^0\)-compatible with the chart \((\R, \id_{\R})\), but it is not in the atlas \(\A\).
+	Let \((\R, \COstd)\) be our topological manifold. Then we have a trivial atlas \(\A = \qty{(\R, \id_{\R})}\), but it is not maximal. Since chart \(((0, 1), \id_{(0, 1)})\) is \(\SC^0\)-compatible with the chart \((\R, \id_{\R})\), but it is not in the atlas \(\A\).
 \end{example}
 
 We can look at ``objects on'' topological manifolds from two point of view. Consider a curve \(\gamma\) in a \(d\)-dimensional manifold, \ie\ \(\gamma: \R \to M\). From our previous knowledge, we know this curve has to be continuous if it describes the trajectory of a classical particle.

@@ -3,7 +3,7 @@
 \section{Adding Structure by refining the (maximal) \texorpdfstring{\(\SC^0\)}{C0}-atlas}
 
 \begin{definition}[\(\flower\)-Atlas]
-	Let \((M, \O)\) be a \(d\)-dimensional manifold. An atlas \(\A\) is called \(\flower\)-atlas, if any two charts \((U, x), (V, y) \in \A\) are \(\flower\)-compatible.
+	Let \((M, \CO)\) be a \(d\)-dimensional manifold. An atlas \(\A\) is called \(\flower\)-atlas, if any two charts \((U, x), (V, y) \in \A\) are \(\flower\)-compatible.
 \end{definition}
 
 In other words, either \(U \cap V = \0\) or if \(U \cap V \neq \0\), then the transition map \(y \circ x^{-1}\) is \(\flower\) as a map from \(\R^d\) to \(\R^d\).
@@ -51,19 +51,19 @@ But in the case of \(\SC^0\)-atlas, it may happen that it doesn't admit a \(\SC^
 Hence, we will not make any distinction between \(\SC^k\)-manifolds and \(\SC^{\infty}\)-manifolds, and we will always work with \(\SC^{\infty}\)-manifolds.
 
 \begin{definition}[\(\SC^{k}\)-manifold]
-	A triple \((M, \O, \A)\) is called a \(\SC^{k}\)-manifold where
+	A triple \((M, \CO, \A)\) is called a \(\SC^{k}\)-manifold where
 	\begin{itemize}
-		\item \((M, \O)\) is a topological manifold.
+		\item \((M, \CO)\) is a topological manifold.
 		\item \(\A\) is a maximal \(\SC^{k}\)-atlas on \(M\).
 	\end{itemize}
 \end{definition}
 
 \begin{definition}[Incompatible Atlases]
-	Let two \(\flower\)-compactible atlases \(\A_1\) and \(\A_2\) on a topological manifold \((M, \O)\) be called compatible if \(\A_1 \cup \A_2\) is a $\flower$-atlas on \(M\). Otherwise, they are called incompatible.
+	Let two \(\flower\)-compactible atlases \(\A_1\) and \(\A_2\) on a topological manifold \((M, \CO)\) be called compatible if \(\A_1 \cup \A_2\) is a $\flower$-atlas on \(M\). Otherwise, they are called incompatible.
 \end{definition}
 
 \begin{remark}
-	A given topological manifold \((M, \O)\) can have different incompatible atlases.
+	A given topological manifold \((M, \CO)\) can have different incompatible atlases.
 \end{remark}
 
 A simple example of incompatible atlases,
@@ -121,11 +121,11 @@ This example shows that we can equip the real line \(\R\) with different incompa
 
 With this new notation, we want to finally answer the question: whether, for instance
 \begin{equation}
-	(\R, \Ostd, \A_{1, \text{max}}) \diffIso (\R, \Ostd, \A_{2, \text{max}})
+	(\R, \COstd, \A_{1, \text{max}}) \diffIso (\R, \COstd, \A_{2, \text{max}})
 \end{equation}
 where \(\A_{1, \text{max}}\) and \(\A_{2, \text{max}}\) are the maximal \(\SC^{\infty}\)-atlases on \(\R\) defined in the previous example.
 
-In principle, we want to know, how many different differentiable structures are there on a given topological manifold \((M, \O)\) -- up to diffeomorphism? The answer to this question is not known in general, but we know that it depends on the dimension of the manifold \(M\).
+In principle, we want to know, how many different differentiable structures are there on a given topological manifold \((M, \CO)\) -- up to diffeomorphism? The answer to this question is not known in general, but we know that it depends on the dimension of the manifold \(M\).
 
 \begin{theorem}[Radon-Moise]
 	For \(d \le 3\), any two \(\SC^{\infty}\)-manifolds of dimension \(d\) are diffeomorphic if and only if they are homeomorphic. In other words, let \((M, \O_M, \A_M)\) and \((N, \O_N, \A_N)\) be two \(\SC^{\infty}\)-manifolds of dimension \(d\) and \(d \le 3\). Then

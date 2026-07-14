@@ -1,0 +1,341 @@
+\lecture{13}
+
+Now we will start with another important topic in differential geometry and theoretical physics, namely, Lie theory. From point of view of differential geometry, we will start with Lie groups.
+
+\section{Lie Groups}
+
+Till now, we must have seen many examples of Lie groups, without actually knowing what a Lie group is. So, we will start with the definition of Lie groups.
+
+\begin{definition}[Lie Group]
+    The tuple \((G, \cdot)\) is a \emph{Lie group} if it statisfies the following properties:
+    \begin{enumerate}[(i)]
+        \item \((G, \cdot)\) is a group under the operation \(\cdot\).
+        \item \(G\) is a smooth manifold, and the maps\footnotemark
+              \begin{align*}
+                  \mu: G \times G & \to G,                 & i: G & \to G          \\
+                  (g_1, g_2)      & \mapsto g_1 \cdot g_2, & g    & \mapsto g^{-1}
+              \end{align*}
+              are smooth.
+              \footnotetext{
+                  Since \(G\) is a smooth manifold, it admits a smooth atlas. Thus, the product manifold \(G \times G\) also inherits the smooth structure from \(G\). Therefore, the map \(\mu\) is well-defined.
+              }
+    \end{enumerate}
+\end{definition}
+There are many examples of Lie groups, let's look at some of them.
+\begin{example}
+    \phantom{l}\vspace{-1.5em}
+    \begin{enumerate}[(a)]
+        \item \(n\)-dimensional Euclidean space \(\mathbb{R}^n\) with the usual addition operation \(+\) is a \emph{commutative} Lie group. This usually called the \(n\)-dimensional \emph{translation group}.
+        \item Unit-circle \(S^1 := \qty{z \in \C \mid |z| = 1}\) with the usual complex multiplication is a \emph{commutative} Lie group. This is usually called \(\U(1)\) group, \emph{unitary group} of degree \(1\).
+        \item Define the set of invertible linear transformations from \(\R^n\) to \(\R^n\), \(\GL(n, \R) := \{\varphi: \R^n \xrightarrow{\ \sim\ } \R^n | \det\varphi \ne 0\}\). Equip \(\GL(n, \R)\) with the composition of linear transformations as the group operation, it becomes a Lie group, called the \emph{general linear group} of degree \(n\).
+    \end{enumerate}
+\end{example}
+
+\subsection{Detour: Inner Products}
+
+For another example, we need to define few notions in linear algebra. Consider a \(d\)-dimensional real vector space \(V\). A \emph{pseudo-inner product} on \(V\) is a bilinear map \(\langle \cdot, \cdot \rangle: V \times V \xrightarrow{\ \sim\ } \R\) such that it satisfies the following properties:
+\begin{enumerate}[(i)]
+    \item Symmetry: \(\langle v, w \rangle = \langle w, v \rangle\) for all \(v, w \in V\).
+    \item Non-degeneracy: If for all \(v \in V\), \(\langle v, w \rangle = 0\), then \(w = 0\).
+\end{enumerate}
+If we impose a stronger version of non-degeneracy, \ie, positive-definiteness
+\begin{equation*}
+    \forall v, w \in V, \quad \langle v, w \rangle \geq 0, \quad \text{and} \quad \langle v, w \rangle = 0 \iff v = 0,
+\end{equation*}
+then we call it an \emph{inner product}.
+
+Since \(V\) is finite-dimensional, we can choose a basis \(\{e_1, \dots, e_d\}\) of \(V\). Then we can define a matrix \(g\) as
+\begin{equation*}
+    g_{ij} := \langle e_i, e_j \rangle.
+\end{equation*}
+Then \(g\) is a \(d \times d\) matrix, and the pseudo-inner product on \(V\) can be expressed in terms of the matrix \(g\) as
+\begin{equation*}
+    \langle v, w \rangle := v^i g_{ij} w^j,
+\end{equation*}
+where \(v = v^i e_i\) and \(w = w^j e_j\)\footnote{Einstein summation convention is used here.}. The matrix \(g\) is called the \emph{metric} of the pseudo-inner product.
+\begin{theorem}[Signature of a Pseudo-Inner Product]
+    Given a pseudo-inner product \(\langle \cdot, \cdot \rangle\) on a \(d\)-dimensional real vector space \(V\), there exists a basis \(\{\tilde{e}_1, \dots, \tilde{e}_d\}\) of \(V\) such that the matrix of the pseudo-inner product in this basis is diagonal with entries \(+1\) and \(-1\). The number of \(+1\)'s and \(-1\)'s on the diagonal is called the signature of the pseudo-inner product.
+\end{theorem}
+\begin{proof}
+    By the definition of the pseudo-inner product, the matrix \(g\) is symmetric, and hence it is diagonalizable using Spectral Theorem. Let \(\{e_1, \dots, e_d\}\) be the basis of \(V\) such that \(g\) is diagonal, \ie,
+    \begin{equation*}
+        P^\top g P = D,
+    \end{equation*}
+    where \(P\) is the matrix whose columns are the basis vectors \(e_1, \dots, e_d\), and \(D\) is a diagonal matrix with entries \(\lambda_1, \dots, \lambda_d\). Since the pseudo-inner product is non-degenerate, the matrix \(g\) is invertible, and hence \(g\) has zero 0-eigenvalues. So, define \(\tilde{e}_i = \frac{1}{\sqrt{\abs{\lambda_i}}} e_i\). Then \(\tilde{e}_i\) is a basis of \(V\) such that \(g\) is diagonal with entries \(+1\) and \(-1\).
+
+    Say there are \(p\) positive eigenvalues and \(q\) negative eigenvalues. Then \((p, q)\) is the signature of the pseudo-inner product, and hence \(d = p + q\).
+\end{proof}
+It can be shown that the signature of a pseudo-inner product is unique, \ie, it doesn't depend on the choice of basis in which the matrix is expressed. So we can characterize each pseudo-inner product by its signature.
+
+This thus help us define another important Lie group, namely, the \emph{orthogonal group}.
+\begin{example}
+    Define the set \(\O(p, q)\) of all the linear transformations on \(V\) that preserve the pseudo-inner product, \ie,
+    \begin{equation*}
+        \O(p, q) = \{\varphi: V \xrightarrow{\ \sim\ } V \ |\  \langle \varphi(v), \varphi(w) \rangle = \langle v, w \rangle \text{ for all } v, w \in V\}.
+    \end{equation*}
+    Using composition of linear transformations as the group operation, we have \((O(p, q), \circ)\) is a Lie group with signature \((p, q)\). This is called the \emph{orthogonal group} of degree \((p, q)\).
+
+    This is a subgroup of the general linear group \(\GL(d, \R)\).
+\end{example}
+The orthogonal group is a generalization of the rotation group \(\O(3, 0)\) and the Lorentz group \(\O(1, 3)\).
+
+\section{Left-Translation Map}
+
+In classical mechanics, we have seen that any rotation in \(\R^3\) can be decomposed into three parameters, namely, the Euler angles. The notion of Lie algebra is generalization of this idea.
+\begin{definition}[Left-translation]
+    Let \((G, \cdot)\) be a Lie group. For any \(g \in G\), the \emph{left-translation} by \(g\) is the map
+    \begin{align*}
+        \ell_g: G & \to G,                          \\
+        h         & \mapsto \ell_g(h) := g \cdot h.
+    \end{align*}
+\end{definition}
+Just from the definition, we can see the following proposition.
+\begin{proposition}
+    Let \(G\) be a Lie group, composition of left-translation maps is a left-translation map.
+    \begin{equation*}
+        \forall g, h \in G, \quad \ell_g \circ \ell_h = \ell_{g h}.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Let \(g, h \in G\), and \(k \in G\), then
+    \begin{align*}
+        (\ell_g \circ \ell_h)(k) & = \ell_g(h \cdot k)   \\
+                                 & = g \cdot (h \cdot k) \\
+                                 & = (g \cdot h) \cdot k \\
+                                 & = \ell_{g h}(k).
+    \end{align*}
+    So \(\ell_g \circ \ell_h = \ell_{g h}\).
+\end{proof}
+
+\begin{proposition}
+    The left-translation is a set-isomorphism. Moreover, it is a diffeomorphism.
+\end{proposition}
+\begin{proof}
+    To prove the first claim, we need to show that the map \(\ell_g\) is bijective. Let \(h_1, h_2 \in G\), and \(\ell_g(h_1) = \ell_g(h_2)\). Then
+    \begin{align*}
+        g \cdot h_1 = g \cdot h_2 \quad \implies \quad h_1 = h_2.
+    \end{align*}
+    So \(\ell_g\) is injective. For the surjectivity, let \(h \in G\), consider the element \(g\inv \cdot h\) in the left-translation. Then
+    \begin{align*}
+        \ell_g(g\inv \cdot h) = \ell_g(g) \cdot \ell_g(h) = g \cdot h = h.
+    \end{align*}
+    So \(\ell_g\) is surjective.
+
+    To prove the second claim, we need to show that the map \(\ell_g\) is smooth, which is trivial since the group operation is a smooth binary operation.
+\end{proof}
+Observe, the left-translation \(\ell_g\) is not a group-homomorphism, as
+\begin{align*}
+    \ell_g(h_1 \cdot h_2) = g \cdot (h_1 \cdot h_2) \neq (g \cdot h_1) \cdot (g \cdot h_2) = \ell_g(h_1) \cdot \ell_g(h_2).
+\end{align*}
+
+Now, the question is, why we are interested in a map on a group which doesn't preserve the group structure? The answer lies in the fact that we don't want to probe the group structure of \(G\) using the left-translation. Recall the idea of pullback and pushforward in differential geometry. Let \(\phi: M \to N\) be a smooth map between manifolds, then we can pull back a covector from \(N\) to \(M\) by \(\phi\). Since map by definition maps the elements of the domain to a single element in the codomain, and it maps all the points in the domain to some point in the codomain, pull-backing an entire covector field from \(N\) to define a covector field on \(M\) is trivial as it can be done by doing the pullback at each point in \(M\).
+
+However, this is not true for the pushforward of the vector fields. Say it may happen that two different points on \(M\) are mapped to the same point in \(N\) (as map \(\phi\) may not be injective), then the pushforward of a vector field is not well-defined. Also, the map \(\phi\) may not be surjective, so the pushforward may not cover the whole of \(N\), thus the pushforward is not a vector field. But if \(\phi\) is a diffeomorphism, then both the issues with the pushforward are solved.
+
+With this in mind, we now can push forward any vector field on \(G\) to another vector field on \(G\) using the left-translation map. Let \(X\) be a vector field on \(G\), then
+\begin{align*}
+    (\ell_g)_*: \Gamma(\ST G) & \to \Gamma(\ST G),    \\
+    X                         & \mapsto (\ell_g)_*(X)
+\end{align*}
+is a vector field on \(G\) defined pointwise. Let \(h \in G\) is mapped to \(\ell_g(h) = g h \in G\), and hence push-forward at a point \(h\) of a vector \(X(h)\) on point \(h\) is a vector on point \(g \cdot h\), \ie, \((\ell_g)_{* h}(X(h)) \in \ST_{g \cdot h} G\).
+\begin{align*}
+    (\ell_g)_*(X): G & \to \Gamma(\ST G),                                                         \\
+    h                & \mapsto (\ell_g)_*(X)(h) := (\ell_g)_{* g\inv \cdot h}(X(g \inv \cdot h)).
+\end{align*}
+For simpler notation, we can write \((\ell_g)_*(X)(g \cdot h) = (\ell_g)_{* h}(X(h))\).
+
+For any \(f \in \SC^\infty(G)\), the action of push forwarded vector field is given by
+\begin{equation*}
+    (\ell_g)_*(X)(f) = X(f \circ \ell_g).
+\end{equation*}
+This just follows from the definition of push-forward at each point. With this definition, we can prove another important result about composition of push-forward maps generated by left-translation.
+\begin{proposition}
+    Let \(G\) be a Lie group. For any \(g, h \in G\),
+    \begin{equation*}
+        (\ell_g)_* (\ell_h)_* = (\ell_{g h})_*.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Let \(X \in \Gamma(\ST G)\), and any \(f \in \SC^\infty(G)\). Then
+    \begin{align*}
+        (\ell_g)_*(\ell_h)_*(X)(f) & = (\ell_h)_*(X)(f \circ \ell_g)  \\
+                                   & = X(f \circ \ell_g \circ \ell_h) \\
+                                   & = X(f \circ \ell_{g h})          \\
+                                   & = (\ell_{g h})_*(X)(f).
+    \end{align*}
+    Since this holds for all \(X \in \Gamma(\ST G)\) and \(f \in \SC^\infty(G)\), we have \((\ell_g)_*(\ell_h)_* = (\ell_{g h})_*\).
+\end{proof}
+
+\section{Lie Algebra of a Lie Group}
+
+A general vector field is very big in general, and since they don't admit a basis, it is hard to work with them. So we will rather focus on a special kind of vector fields, namely, left-invariant vector fields.
+\begin{definition}[Left-Invariant Vector Field]
+    Let \((G, \cdot)\) be a Lie group. A \emph{left-invariant} vector field on \(G\) is a vector field \(X: G \to \Gamma(\ST G)\) such that
+    \begin{equation} \label{eq:left-invariant-def1}
+        \forall g \in G, \quad (\ell_g)_*(X) = X.
+    \end{equation}
+\end{definition}
+From now on, we will use a shorthand to denote the vector at a point \(h\) as \(X_h = X(h)\). Equivalently, we can rewrite the definition pointwise, \ie,
+\begin{equation} \label{eq:left-invariant-def2}
+    \forall g, h \in G, \quad (\ell_g)_{* h}(X_h) = X_{g \cdot h}.
+\end{equation}
+Using the last equivalent definition, if we apply it on a general smooth function \(f \in \SC^\infty(G)\), we get
+\begin{align*}
+    (\ell_g)_*(X_h)(f)   & = X_{g h}(f)            \\
+    X_h(f \circ \ell_g)  & = (X f)(g h)            \\
+    X(f \circ \ell_g)(h) & = (X f \circ \ell_g)(h)
+\end{align*}
+Since \(h\) is arbitrary, we can equivalently write \(X\) is a left-invariant vector field on \(G\) if and only if
+\begin{equation} \label{eq:left-invariant-def3}
+    \forall f \in \SC^\infty(G), \quad X(f \circ \ell_g) = X(f) \circ \ell_g.
+\end{equation}
+All the \cref{eq:left-invariant-def1,eq:left-invariant-def2,eq:left-invariant-def3} are equivalent, and used to define a left-invariant vector field.
+\begin{definition}[Lie Algebra of a Lie Group]
+    Let \((G, \cdot)\) be a Lie group. The set of all left-invariant vector fields on \(G\) denoted by \(L(G)\) is called the \emph{Lie algebra} of \(G\).
+\end{definition}
+By definition, \(L(G)\) is a subset of \(\Gamma(\ST G)\), so one can expect it to inherit the \(\SC^\infty(G)\) module structure on \(L(G)\). However, it turns out that \(L(G)\) is not a \(\SC^\infty(G)\) submodule of \(\Gamma(\ST G)\). To see this, let \(X \in L(G)\) and \(f \in \SC^\infty(G)\), if \(L(G)\) is a \(\SC^\infty(G)\) module, then \(f X\) should be a left-invariant vector field on \(G\), \ie,
+\begin{equation*}
+    \forall g, h \in G, \quad (\ell_g)_{* h}((f X)_h) = (f X)_{g \cdot h}.
+\end{equation*}
+Simplifying the left-hand side, we get
+\begin{equation*}
+    (\ell_g)_{* h}((f X)_h) = (\ell_g)_{* h}(f(h) X_h) = f(h) (\ell_g)_{* h}(X_h) = f(h) X_{g \cdot h}.
+\end{equation*}
+The right-hand side becomes \(f(g \cdot h) X_{g \cdot h}\), which is not equal to \(f(h) X_{g \cdot h}\). So \(L(G)\) is not a \(\SC^\infty(G)\) module. For the equality to hold, we need
+\begin{equation*}
+    \forall g, h \in G, \quad f(g \cdot h) = f(h).
+\end{equation*}
+This is not true in general, only when \(f\) is a constant function. So \(L(G)\) is closed under scalar multiplication.
+
+We have seen that \(\Gamma(\ST G)\) can be thought of as a real infinite-dimensional vector space. Since \(L(G)\) is not a \(\SC^\infty(G)\) module, we now expect \(L(G)\) to be a real vector space, and specifically, a finite-dimensional real vector space. Before we prove this, let's look at some more terminologies.
+
+Recall the definition of an abstract Lie algebra (see \cref{def:lie-algebra}) \((L, +, \cdot, [\_, \_])\), \ie, an algebra over a field \(K\), with product operation \([\_, \_]\) satisfying the following properties:
+\begin{enumerate}[(i)]
+    \item Bilinearity: \([a X, b Y] = a b [X, Y]\), for all \(a, b \in K\) and \(X, Y \in L\).
+    \item Anti-symmetry: \([X, Y] = -[Y, X]\) for all \(X, Y \in L\).
+    \item Jacobi Identity: \([X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0\) for all \(X, Y, Z \in L\).
+\end{enumerate}
+For example, consider the set of all vector fields on a manifold \(M\). Then we know that \(\Gamma(\ST M)\) is an infinite-dimensional real vector space, also we have defined the \nameref{def:commutator-of-vector-fields}, which is satisfied all the properties of a Lie algebra. So we can say that \(\Gamma(\ST M)\) is a Lie algebra over \(\R\).
+\begin{theorem}
+    Let \(G\) be a Lie group, then \(L(G)\) is a Lie subalgebra of \(\Gamma(\ST G)\).
+\end{theorem}
+\begin{proof}
+    It is enough to show that \(L(G)\) is closed under Lie bracket, \ie, for all \(X, Y \in L(G)\), \([X, Y] \in L(G)\). Let \(X, Y \in L(G)\), and \(f \in \SC^\infty(G)\), then
+    \begin{equation*}
+        [X, Y](f) = X(Y(f)) - Y(X(f)).
+    \end{equation*}
+    Consider \(g \in G\), then \(\ell_g\) is the left-translation map, so we have
+    \begin{align*}
+        [X, Y](f \circ \ell_g) & = X(Y(f \circ \ell_g)) - Y(X(f \circ \ell_g)) \\
+                               & = X(Y(f) \circ \ell_g) - Y(X(f) \circ \ell_g) \\
+                               & = X(Y(f)) \circ \ell_g - Y(X(f)) \circ \ell_g \\
+                               & = [X, Y](f) \circ \ell_g.
+    \end{align*}
+    So \([X, Y]\) is a left-invariant vector field on \(G\). Thus, \(L(G)\) is a Lie subalgebra of \(\Gamma(\ST G)\).
+\end{proof}
+Now, the question remains, what is the dimensionality of \(L(G)\)? For the same, we have the following result.
+\begin{theorem}
+    Let \(G\) be a Lie group, then \(L(G)\) is isomorphic to \(\ST_e G\), where \(e\) is the identity element of \(G\).
+    \begin{equation*}
+        L(G) \vecIso \ST_e G.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    To prove this theorem, we need to define a bijective linear map \(j: \ST_e G \xrightarrow{\ \sim\ } L(G)\). Let \(A \in \ST_e G\), and define
+    \begin{equation*}
+        g \mapsto j(A),\ \text{defined pointwise as} \quad j(A)_g := (\ell_g)_*(A), \forall g \in G.
+    \end{equation*}
+    However, we need to show a few things about this map.
+    \begin{enumerate}[(i)]
+        \item \(j(A)\) is a smooth vector field on \(G\).
+        \item \(j(A)\) is a left-invariant vector field on \(G\). Let \(h \in G\), then we want to show that
+              \begin{equation*}
+                  (\ell_h)_*(j(A)) = j(A).
+              \end{equation*}
+              Expressing left-hand side pointwise, we have
+              \begin{equation*}
+                  (\ell_h)_*(j(A)_g) = (\ell_h)_*((\ell_g)_*(A)) = ((\ell_h)_*(\ell_g)_*)(A) = (\ell_{g h})_*(A) = j(A)_{g h}.
+              \end{equation*}
+              By \cref{eq:left-invariant-def2}, \(j(A)\) is a left-invariant vector field on \(G\).
+
+        \item \(j\) is a linear map. Let \(c \in \R\), and \(A, B \in \ST_e G\), then
+              \begin{equation*}
+                  j(c A + B) = c j(A) + j(B).
+              \end{equation*}
+              Since \((\ell_g)_*\) is a linear map for all \(g \in G\).
+
+        \item \(j\) is injective. Let \(A, B \in \ST_e G\), with \(j(A) = j(B)\), then
+              \begin{equation*}
+                  j(A)_g = j(B)_g \quad \forall g \in G.
+              \end{equation*}
+              Set \(g = e\), then
+              \begin{align*}
+                  j(A)_e        & = j(B)_e,        \\
+                  (\ell_e)_*(A) & = (\ell_e)_*(B), \\
+                  A             & = B.
+              \end{align*}
+
+        \item \(j\) is surjective. Let \(X \in L(G)\), define \(A^{(X)} = X_e\), then
+              \begin{equation*}
+                  j(A^{(X)})_g = (\ell_g)_*(X_e) = X_{g e} = X_g.
+              \end{equation*}
+              So \(j(A^{(X)}) = X\), thus \(j\) is surjective.
+    \end{enumerate}
+    This completes the proof.
+\end{proof}
+\begin{corollary}
+    The Lie algebra \(L(G)\) is finite-dimensional over \(\R\), with dimension \(\dim L(G) = \dim G\).
+\end{corollary}
+\begin{Proof}
+    Since \(L(G)\) is isomorphic to \(\ST_e G\), and we have shown that \(\ST_e G\) is finite-dimensional over \(\R\), then \(L(G)\) is finite-dimensional over \(\R\).
+    \begin{equation*}
+        \dim L(G) = \dim \ST_e G = \dim G.
+    \end{equation*}
+\end{Proof}
+
+The \(L(G)\) is not just a \(\R\) finite-dimensional vector space, but it also an abstract Lie algebra over \(\R\). It will be very helpful if we can define a similar Lie bracket \(\llbracket \_, \_ \rrbracket\) for \(\ST_e G\) which is compatible with the linear isomorphism \(j\), \ie,
+\begin{equation*}
+    j(\llbracket A, B \rrbracket) = [j(A), j(B)], \quad \forall A, B \in \ST_e G.
+\end{equation*}
+With this Lie bracket, we can show that \(\ST_e G\) is isomorphic (as a Lie algebra) to \(L(G)\). Because then we can forget about the left-invariant vector fields altogether, and just focus on the vector in \(\ST_e G\).
+
+Now, for defining the Lie bracket on \(\ST_e G\), we can just use the compability condition with the linear isomorphism \(j\). Let \(A, B \in \ST_e G\), then
+\begin{equation*}
+    \llbracket A, B \rrbracket := j\inv\qty([j(A), j(B)]).
+\end{equation*}
+\begin{proposition}
+    Let \(G\) be a Lie group, then \(\ST_e G\) is a Lie algebra over \(\R\).
+\end{proposition}
+\begin{proof}
+    It is enough to show that \(\llbracket \_, \_ \rrbracket\) is a Lie bracket on \(\ST_e G\). Let \(A, B, C \in \ST_e G\), and \(s \in \R\), then
+    \begin{align*}
+        \llbracket s A + B, C \rrbracket & = j\inv\qty([j(s A + B), j(C)])                              \\
+                                         & = j\inv\qty([s j(A) + j(B), j(C)])                           \\
+                                         & = s j\inv\qty([j(A), j(C)]) + j\inv\qty([j(B), j(C)])        \\
+                                         & = s \llbracket A, C \rrbracket + \llbracket B, C \rrbracket.
+    \end{align*}
+    So \(\llbracket \_, \_ \rrbracket\) is bilinear, as the commutator on vector fields is bilinear, and \(j\) and \(j\inv\) are linear maps. With similar argument, we can show that \(\llbracket \_, \_ \rrbracket\) is anti-symmetric. For the Jacobi identity, consider \(A, B, C \in \ST_e G\), and the Jacobi identity for the Lie algebra \(L(G)\) is
+    \begin{equation*}
+        [j(A), [j(B), j(C)]] + [j(B), [j(C), j(A)]] + [j(C), [j(A), j(B)]] = 0.
+    \end{equation*}
+    Since \(j(A), j(B), j(C) \in L(G)\). Now apply \(j\inv\) to both sides, after using linearity of \(j\), we have
+    \begin{equation*}
+        j\inv\qty([j(A), [j(B), j(C)]]) + j\inv\qty([j(B), [j(C), j(A)]]) + j\inv\qty([j(C), [j(A), j(B)]]) = 0.
+    \end{equation*}
+    Using the compatibility condition with \(j\), we have
+    \begin{equation*}
+        j\inv\qty([j(A), j(\llbracket B, C \rrbracket)]) + j\inv\qty([j(B), j(\llbracket C, A \rrbracket)]) + j\inv\qty([j(C), j(\llbracket A, B \rrbracket)]) = 0.
+    \end{equation*}
+    By definition of \(\llbracket \_, \_ \rrbracket\), we have
+    \begin{equation*}
+        \llbracket A, \llbracket B, C \rrbracket \rrbracket + \llbracket B, \llbracket C, A \rrbracket \rrbracket + \llbracket C, \llbracket A, B \rrbracket \rrbracket = 0.
+    \end{equation*}
+    Thus, \((\ST_e G, \llbracket \_, \_ \rrbracket)\) is a Lie algebra over \(\R\).
+\end{proof}
+From this, it is easy to conclude the following theorem.
+\begin{theorem}
+    Let \(G\) be a Lie group, then \(L(G)\) is isomorphic (as a Lie algebra) to \(\ST_e G\).
+\end{theorem}
+\begin{proof}
+    Since \(L(G)\) is a Lie algebra over \(\R\), and \(\ST_e G\) is a Lie algebra over \(\R\), then \(L(G)\) is isomorphic (as a vector space) to \(\ST_e G\). And the linear isomorphism \(j\) is compatible with the Lie bracket \(\llbracket \_, \_ \rrbracket\) on \(\ST_e G\) and commutator on \(L(G)\), thus \(L(G)\) is isomorphic (as a Lie algebra) to \(\ST_e G\).
+\end{proof}
