@@ -1,0 +1,115 @@
+\lecture{14}
+
+In the last lecture, we have seen how to define the Lie algebra of a Lie group. In the next lecture, we will see given a Lie algebra, what is the corresponding Lie group. However, today we will explore the Lie algebra only (irrespective of the Lie group it is embedded in), and try to classify the Lie algebras.
+
+\section{Classification of (complex) Lie algebras}
+
+In general, a complex Lie algebra is a Lie algebra over the complex field \(\C\). The Lie algebra of a complex Lie group is complex, here complex Lie group means a Lie group which is locally isomorphic to \(\C^n\), where \(n\) is the dimension of the Lie group and the transition maps are analytic.
+
+Let \(L_1, L_2\) be two Lie subalgebras of a Lie algebra \((L, [-, -])\) over field \(K\), then
+\begin{equation*}
+    [L_1, L_2] = \Span_K\qty{[l_1, l_2] \in L \mid l_1 \in L_1, l_2 \in L_2}.
+\end{equation*}
+Using this we can generate subalgebras of \(L\).
+\begin{definition}[Abelian Algebra]
+    A Lie algebra \((L, [-, -])\) is \emph{abelian} if \([L, L] = 0\), \ie,
+    \begin{equation*}
+        \forall l_1, l_2 \in L, \quad [l_1, l_2] = 0.
+    \end{equation*}
+\end{definition}
+Here \(0\) denotes the trivial Lie subalgebra \(\qty{0}\) of \(L\).
+
+Abelian Lie algebras are highly non-interesting as Lie algebras. Even from the classification point of view, they are not very interesting. Given two abelian Lie algebras, every linear isomorphism between them is automatically a Lie algebra isomorphism. Thus, for each \(n \in \N\), there is a unique abelian Lie algebra (upto isomorphism) of dimension \(n\).
+
+\begin{definition}[Ideal of a Lie algebra]
+    An ideal \(I\) of a Lie algebra \((L, [-, -])\) is a subspace of \(L\) such that \([I, L] \subseteq I\), \ie,
+    \begin{equation*}
+        \forall x \in I, \forall l \in L, \quad [x, l] \in I.
+    \end{equation*}
+\end{definition}
+From the definition it is clear that \(\qty{0}, L\) are ideals of \(L\), and these are known as \emph{trivial} ideals of a Lie algebra.
+
+\begin{definition}[Simple Lie algebra]
+    A Lie algebra \(L\) is said to be
+    \begin{itemize}
+        \item \emph{simple} if it is non-abelian, and it contains no non-trivial ideals.
+        \item \emph{semi-simple} if it contains no non-trivial abelian ideals.
+    \end{itemize}
+\end{definition}
+It is easy to see that every simple Lie algebra is semi-simple.
+\begin{remark}[1-dimensional abelian Lie algebra]
+    If we had defined simple Lie algebras as those which contains no non-trivial abelian ideals. Then, the 1-dimensional abelian Lie algebra would be simple. However, it will not be semi-simple, which will create a exception to the observation that every simple Lie algebra is semi-simple.
+\end{remark}
+
+\begin{definition}[Derived Lie algebra and Derived Series]
+    Let \(L\) be a Lie algebra. The Lie subalgebra
+    \begin{equation*}
+        L^{(1)} := [L, L],
+    \end{equation*}
+    is called the \emph{derived Lie algebra} of \(L\). We can define series of subalgebras using the derived Lie algebra.
+    \begin{equation*}
+        L^{(0)} := L, \qquad L^{(1)} := [L, L], \qquad L^{(2)} := [L^{(1)}, L^{(1)}], \qquad \ldots, \qquad L^{(k)} := [L^{(k-1)}, L^{(k-1)}].
+    \end{equation*}
+    These derived Lie algebras are called the \emph{derived series} of \(L\).
+\end{definition}
+It is easy to show that \(L^{(k)}\) is a Lie subalgebra of \(L^{(k-1)}\).
+\begin{equation*}
+    L^{(0)} \supseteq L^{(1)} \supseteq L^{(2)} \supseteq \cdots \supseteq L^{(k)} \supseteq \cdots.
+\end{equation*}
+\begin{definition}[Solvable Lie algebra]
+    A Lie algebra \(L\) is \emph{solvable} if its derived series eventually terminates at \(0\), \ie, there exists \(n \in \N\) such that
+    \begin{equation*}
+        L^{(n)} = \qty{0}.
+    \end{equation*}
+\end{definition}
+
+Recall the direct sum of vector spaces \(V \oplus W\) has cartesian product \(V \times W\) as underlying set with the operations defined component-wise. With this in mind, we can define the direct sum and semi-direct sum of Lie algebras.
+\begin{definition}[Direct sum of Lie algebras]
+    Let \(L_1, L_2\) be Lie algebras over a field \(K\). The \emph{direct sum}, denoted as \(L = L_1 \Loplus L_2\), is formed by taking direct sum of vector spaces \(L_1 \oplus L_2\) with the Lie bracket defined component-wise. For any \(x_1, x_2 \in L_1\) and \(y_1, y_2 \in L_2\),
+    \begin{equation*}
+        [(x_1, y_1), (x_2, y_2)] = ([x_1, x_2]_1, [y_1, y_2]_2),
+    \end{equation*}
+    where \([x_1, x_2]_1\) and \([y_1, y_2]_2\) are Lie brackets of \(L_1\) and \(L_2\) respectively.
+\end{definition}
+\begin{remark}[Independence in direct sum]
+    The way we defined the direct sum of Lie algebras the following result holds.
+    \begin{itemize}[(i)]
+        \item Commutativity: Elements of \(L_1\) commute with elements of \(L_2\), \ie,
+              \begin{equation*}
+                  [L_1, L_2] = 0.
+              \end{equation*}
+        \item Non-trivial ideals: since the two components of the direct sum commute, both \(L_1\) and \(L_2\) forms ideals of \(L\).
+    \end{itemize}
+\end{remark}
+\begin{definition}[Semi-direct sum of Lie algebras]
+    A Lie algebra \(L\) is a semi-direct sum of two vector subspaces \(A\) and \(I\) if
+    \begin{itemize}
+        \item \(L = A \oplus I\) as vector spaces,
+        \item \(I\) is an ideal of \(L\), \ie, \([I, L] \subseteq I\),
+        \item \(A\) is a Lie subalgebra of \(L\) (\([A, A] \subseteq A\)), but not necessarily an ideal of \(L\).
+    \end{itemize}
+    We denote this as \(L = I \rtimes A\) (the open end of the triangle points toward the ideal).
+\end{definition}
+
+The idea of classifying Lie algebras stems from a very important theorem in Lie theory given by Levi.
+\begin{theorem}[Levi's Theorem]
+    Every finite-dimensional complex Lie algebra \((L, [\cdot, \cdot])\) can be decomposed as
+    \begin{equation*}
+        L = R \rtimes (L_1 \Loplus L_2 \Loplus \cdots \Loplus L_n),
+    \end{equation*}
+    where
+    \begin{enumerate}[(a)]
+        \item \(R\) is a solvable ideal of \(L\),
+        \item \(L_i\)'s are simple Lie subalgebras of \(L\).
+    \end{enumerate}
+\end{theorem}
+A general classification of solvable Lie algebras is still missing, except for some special cases. In contrast, the finite-dimensional, simple, complex Lie algebras are have been classified completely.
+
+This gives us another way to define semi-simple Lie algebras.
+\begin{proposition}
+    A Lie algebra \(L\) is semi-simple if it is solvable part is trivial, \ie, \(R = \qty{0}\). Thus, any semi-simple Lie algebra can be written as direct sum of simple Lie algebras.
+\end{proposition}
+Hence, the simple Lie algebras are basic building blocks of any semi-simple Lie algebra. Then, by Levi's theorem, classification of simple Lie algebras easily covers the classification of all semi-simple Lie algebras.
+
+
+\subsection{Adjoint Map and Killing Form}
