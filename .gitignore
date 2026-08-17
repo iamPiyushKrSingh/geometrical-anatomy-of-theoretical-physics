@@ -7,3 +7,5 @@ build_tex/
 
 Lecture Notes.pdf
 latest.pdf
+
+*.autosave.*
